@@ -65,40 +65,79 @@
   // ---------- Inhalt je Stichtag (unabhängig von der Ansicht) ----------
   let inhalt = null;
 
+  // ---------- Reihenfolge paralleler Linien ----------
+  // Auf jedem Abschnitt liegen die Linien so nebeneinander, wie sie später auseinanderlaufen:
+  // wer an der nächsten Verzweigung nach links abbiegt, liegt links (sonst rückwärts gesucht, sonst Linienrang).
+  // So bleibt die Reihenfolge entlang gemeinsamer Strecken gleich, und Linien kreuzen sich nur, wo es nötig ist.
+  const KOS = Math.cos((47.37 * Math.PI) / 180);
+  const planXY = (id) => {
+    const [x, y] = lage.get(id).p;
+    return [x * KOS, y];
+  };
+  function wende(p, c, n) {
+    const [a, b, d] = [planXY(p), planXY(c), planXY(n)];
+    const u = [b[0] - a[0], b[1] - a[1]], v = [d[0] - b[0], d[1] - b[1]];
+    return Math.atan2(u[0] * v[1] - u[1] * v[0], u[0] * v[0] + u[1] * v[1]);
+  }
+  function knotenFolge(v) {
+    const folge = [];
+    for (const s of v.kanten) {
+      const rueck = s.startsWith('-');
+      const k = netz.kanteById.get(rueck ? s.slice(1) : s);
+      if (!folge.length) folge.push(rueck ? k.b : k.a);
+      folge.push(rueck ? k.a : k.b);
+    }
+    return folge;
+  }
+  // Positiv, wenn A rechts von B liegen soll (Blickrichtung start -> weiter über fa/fb)
+  function seite(fa, fb, vorher, start) {
+    let p = vorher, c = start;
+    for (let i = 0; i < Math.min(fa.length, fb.length); i++) {
+      if (fa[i] !== fb[i]) return wende(p, c, fb[i]) - wende(p, c, fa[i]);
+      [p, c] = [c, fa[i]];
+    }
+    return 0;
+  }
+
   /** Ein Eintrag pro (Abschnitt, Linie). Linien auf demselben Abschnitt liegen nebeneinander. */
   function linienEintraege(proLinie) {
     const proKante = new Map();
     for (const v of proLinie.values()) {
-      for (const signiert of v.kanten) {
-        const rueck = signiert.startsWith('-');
-        const id = rueck ? signiert.slice(1) : signiert;
+      const folge = knotenFolge(v);
+      v.kanten.forEach((signiert, i) => {
+        const id = signiert.startsWith('-') ? signiert.slice(1) : signiert;
+        const k = netz.kanteById.get(id);
         if (!proKante.has(id)) proKante.set(id, []);
         const liste = proKante.get(id);
-        if (!liste.some((e) => e.linie === v.linie)) liste.push({ linie: v.linie, rueck });
-      }
+        if (liste.some((e) => e.linie === v.linie)) return;
+        // weiterer Weg in Richtung a -> b und zurück ab a
+        const vorwaerts = folge[i] === k.a;
+        const nach = folge.slice(i + 2), vor = folge.slice(0, i).reverse();
+        liste.push({ linie: v.linie, vor: vorwaerts ? nach : vor, zur: vorwaerts ? vor : nach });
+      });
     }
     const eintraege = [];
     for (const [id, liste] of proKante) {
-      liste.sort((a, b) => netz.linieById.get(a.linie).rang - netz.linieById.get(b.linie).rang);
-      // Ausrichtung wie die erste Linie: so bleibt die Reihenfolge entlang gemeinsamer Stammstrecken stabil
-      const rueck = liste[0].rueck;
+      const k = netz.kanteById.get(id);
+      const rang = (e) => netz.linieById.get(e.linie).rang;
+      liste.sort((A, B) => seite(A.vor, B.vor, k.a, k.b) || -seite(A.zur, B.zur, k.b, k.a) || rang(A) - rang(B));
       const n = liste.length;
       liste.forEach((e, i) => {
         const l = netz.linieById.get(e.linie);
         eintraege.push({
           kante: id,
-          rueck,
+          rueck: false,
           properties: { kante: id, linie: l.id, nummer: l.nummer, farbe: l.farbe, art: l.art, slot: i - (n - 1) / 2, gs: geom.get(id).geschaetzt },
         });
       });
     }
-    return { eintraege, kanten: new Set(proKante.keys()) };
+    return { eintraege, kanten: new Set(proKante.keys()), breite: new Map([...proKante].map(([id, l]) => [id, l.length])) };
   }
 
   function inhaltBerechnen() {
     const jetzt = zustand(netz, datum);
     const vorher = vorjahrDatum ? zustand(netz, vorjahrDatum) : null;
-    const { eintraege, kanten } = linienEintraege(jetzt);
+    const { eintraege, kanten, breite: buendel } = linienEintraege(jetzt);
     const vorherKanten = vorher ? linienEintraege(vorher).kanten : kanten;
 
     const halte = new Map();
@@ -116,8 +155,79 @@
       linien: eintraege,
       neu: [...kanten].filter((k) => !vorherKanten.has(k)),
       weg: [...vorherKanten].filter((k) => !kanten.has(k)),
-      halte: [...halte].map(([id, h]) => ({ id, properties: { id, name: netz.haltestelleById.get(id).name, end: h.end, linien: h.linien.join(' ') } })),
+      halte: [...halte].map(([id, h]) => {
+        // Balken quer über das breiteste Bündel an der Haltestelle
+        let kante = null, n = 1;
+        for (const k of kantenAn.get(id) ?? []) {
+          if ((buendel.get(k.id) ?? 0) > n || (!kante && buendel.has(k.id))) [kante, n] = [k, buendel.get(k.id)];
+        }
+        return { id, kante, properties: { id, name: netz.haltestelleById.get(id).name, end: h.end, linien: h.linien.join(' '), bild: `balken-${Math.min(n, MAXBUENDEL)}` } };
+      }),
     };
+  }
+
+  // Abschnitte je Haltestelle
+  const kantenAn = new Map();
+  for (const k of netz.kanten) {
+    for (const h of [k.a, k.b]) {
+      if (!kantenAn.has(h)) kantenAn.set(h, []);
+      kantenAn.get(h).push(k);
+    }
+  }
+  // Drehung des Balkens (Grad im Uhrzeigersinn, Bildschirm): quer zur Richtung des Abschnitts an der Haltestelle
+  function balkenWinkel(h) {
+    if (!h.kante) return 0;
+    const c = linienzug(h.kante.id);
+    const [p, q] = h.kante.a === h.id ? [c[0], c[1]] : [c.at(-2), c.at(-1)];
+    const breitengrad = (p[1] * Math.PI) / 180;
+    return (Math.atan2(-(q[1] - p[1]) / Math.cos(breitengrad), q[0] - p[0]) * 180) / Math.PI + 90;
+  }
+
+  // Balkenbilder für 1 bis MAXBUENDEL parallele Linien, gezeichnet für eine Linienbreite von REF Pixeln
+  const MAXBUENDEL = 10;
+  const REF = 10;
+  function balkenBilder() {
+    const pr = 2;
+    for (let n = 1; n <= MAXBUENDEL; n++) {
+      const w = (n * REF + 6) * pr, h = (REF + 4) * pr;
+      const c = document.createElement('canvas');
+      c.width = w;
+      c.height = h;
+      const g = c.getContext('2d');
+      const r = h / 2 - 1.5 * pr;
+      g.beginPath();
+      g.roundRect(1.5 * pr, 1.5 * pr, w - 3 * pr, h - 3 * pr, r);
+      g.fillStyle = '#ffffff';
+      g.fill();
+      g.lineWidth = 2.5 * pr;
+      g.strokeStyle = '#1d1d1b';
+      g.stroke();
+      map.addImage(`balken-${n}`, g.getImageData(0, 0, w, h), { pixelRatio: pr });
+    }
+  }
+
+  // ---------- Hintergrund im Plan: Stadtgebiet, Wald, See, Flüsse (public/data/hintergrund.json) ----------
+  let hintergrund = null;
+  const HINTERGRUND = [
+    // Ebene, Eigenschaft, Deckkraft im Plan
+    ['flaeche-stadt', 'fill-opacity', 0.75],
+    ['flaeche-wald', 'fill-opacity', 1],
+    ['flaeche-see', 'fill-opacity', 1],
+    ['fluss', 'line-opacity', 1],
+    ['stadtgrenze', 'line-opacity', 1],
+  ];
+  function hintergrundZeichnen() {
+    if (!hintergrund) return;
+    for (const [id, eig, wert] of HINTERGRUND) map.setPaintProperty(id, eig, wert * t);
+    if (t === 0) return; // in der Karte unsichtbar
+    const zug = (f) => (t === 1 ? f.p : f.g.map((x, i) => mischen(x, f.p[i])));
+    const fc = (features) => ({ type: 'FeatureCollection', features });
+    map.getSource('flaechen').setData(
+      fc(hintergrund.flaechen.map((f) => ({ type: 'Feature', properties: { art: f.art }, geometry: { type: 'Polygon', coordinates: [zug(f)] } }))),
+    );
+    map.getSource('fluesse').setData(
+      fc(hintergrund.fluesse.map((f) => ({ type: 'Feature', properties: { art: f.art }, geometry: { type: 'LineString', coordinates: zug(f) } }))),
+    );
   }
 
   // ---------- Zeichnen mit dem aktuellen Überblendungsgrad ----------
@@ -129,9 +239,16 @@
     map.getSource('neu').setData(fc(inhalt.neu.map((id) => linie(id))));
     map.getSource('weg').setData(fc(inhalt.weg.map((id) => linie(id))));
     map.getSource('halte').setData(
-      fc(inhalt.halte.map((h) => ({ type: 'Feature', properties: h.properties, geometry: { type: 'Point', coordinates: punkt(h.id) } }))),
+      fc(
+        inhalt.halte.map((h) => ({
+          type: 'Feature',
+          properties: { ...h.properties, winkel: balkenWinkel(h) },
+          geometry: { type: 'Point', coordinates: punkt(h.id) },
+        })),
+      ),
     );
     map.setPaintProperty('papier', 'background-opacity', t);
+    hintergrundZeichnen();
   }
 
   function auswahlAnwenden() {
@@ -143,8 +260,7 @@
     map.setPaintProperty('linien', 'line-opacity', hat ? ['case', istGewaehlt, basis, 0.12] : basis);
     map.setLayoutProperty('linien', 'line-sort-key', hat ? ['case', istGewaehlt, 1, 0] : 0);
     const haltGewaehlt = ['in', auswahl ?? '§', ['get', 'linien']];
-    map.setPaintProperty('halte', 'circle-opacity', hat ? ['case', haltGewaehlt, 1, 0.25] : 1);
-    map.setPaintProperty('halte', 'circle-stroke-opacity', hat ? ['case', haltGewaehlt, 1, 0.25] : 1);
+    map.setPaintProperty('halte', 'icon-opacity', hat ? ['case', haltGewaehlt, 1, 0.25] : 1);
     map.setFilter('halte-name', hat ? haltGewaehlt : ['==', ['get', 'end'], true]);
     map.setPaintProperty('neu', 'line-opacity', hat ? 0 : 0.55);
     map.setPaintProperty('weg', 'line-opacity', hat ? 0 : 0.9);
@@ -216,7 +332,7 @@
       fitBoundsOptions: { padding: polster() },
       attributionControl: {
         compact: true,
-        customAttribution: 'Liniendaten © OpenStreetMap-Mitwirkende (ODbL), Wikipedia · Planlage nach ZVV-Liniennetzplan',
+        customAttribution: 'Linien- und Hintergrunddaten © OpenStreetMap-Mitwirkende (ODbL), Wikipedia · Planlage nach ZVV-Liniennetzplan',
       },
       maxZoom: 18,
       // Eigene Beschriftungen in Barlow: Glyphen aus public/fonts (scripts/build-glyphs.mjs), Grundkarte unverändert
@@ -239,6 +355,32 @@
 
       // Papier über der Grundkarte: im Plan deckend, in der Karte unsichtbar
       map.addLayer({ id: 'papier', type: 'background', paint: { 'background-color': '#f8f6f1', 'background-opacity': t } });
+
+      // Hintergrundflächen des Plans, vereinfacht und mit den Linien überblendet
+      map.addSource('flaechen', { type: 'geojson', data: leer });
+      map.addSource('fluesse', { type: 'geojson', data: leer });
+      const flaeche = (art, farbe) =>
+        map.addLayer({ id: `flaeche-${art}`, type: 'fill', source: 'flaechen', filter: ['==', ['get', 'art'], art], paint: { 'fill-color': farbe, 'fill-opacity': 0 } });
+      flaeche('stadt', '#ffffff');
+      flaeche('wald', '#e0ead3');
+      flaeche('see', '#d3e5ef');
+      map.addLayer({
+        id: 'fluss', type: 'line', source: 'fluesse',
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: { 'line-color': '#d3e5ef', 'line-width': ['interpolate', ['linear'], ['zoom'], 11, 4, 13, 8, 16, 22], 'line-opacity': 0 },
+      });
+      map.addLayer({
+        id: 'stadtgrenze', type: 'line', source: 'flaechen', filter: ['==', ['get', 'art'], 'stadt'],
+        layout: { 'line-join': 'round' },
+        paint: { 'line-color': '#b3ad9f', 'line-width': ['interpolate', ['linear'], ['zoom'], 11, 1, 16, 2], 'line-dasharray': [4, 2], 'line-opacity': 0 },
+      });
+      fetch(`${import.meta.env.BASE_URL}data/hintergrund.json`)
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => {
+          hintergrund = d;
+          hintergrundZeichnen();
+        })
+        .catch(() => {});
       map.addLayer({
         id: 'neu', type: 'line', source: 'neu',
         layout: { 'line-cap': 'round', 'line-join': 'round' },
@@ -258,13 +400,17 @@
           'line-dasharray': ['case', ['==', ['get', 'art'], 'baulinie'], ['literal', [2, 1]], ['literal', [1, 0]]],
         },
       });
+      balkenBilder();
       map.addLayer({
-        id: 'halte', type: 'circle', source: 'halte',
-        paint: {
-          'circle-radius': ['interpolate', ['linear'], ['zoom'], 11, ['case', ['get', 'end'], 3.5, 2], 16, ['case', ['get', 'end'], 9, 6]],
-          'circle-color': '#ffffff',
-          'circle-stroke-color': '#1d1d1b',
-          'circle-stroke-width': ['interpolate', ['linear'], ['zoom'], 11, 1, 16, 2],
+        id: 'halte', type: 'symbol', source: 'halte',
+        layout: {
+          'icon-image': ['get', 'bild'],
+          // Bildbreite folgt der Linienbreite (siehe «breite»)
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 11, 2 / REF, 13, 3.5 / REF, 16, 7 / REF],
+          'icon-rotate': ['get', 'winkel'],
+          'icon-rotation-alignment': 'map',
+          'icon-allow-overlap': true,
+          'icon-ignore-placement': true,
         },
       });
       map.addLayer({

@@ -12,10 +12,16 @@ npm run daten:osm    # OSM-Rohdaten neu laden (Overpass)
 npm run daten        # public/data/netz.json neu bauen
 ```
 
-Plangeometrie neu ableiten (nur nötig bei neuem Plan oder neuen Haltestellen; braucht Python mit `pymupdf`, `numpy`, `scipy`):
+Liniennetzplan neu berechnen (nötig bei neuen Haltestellen oder Abschnitten; dauert einige Minuten):
 
 ```bash
-python3 scripts/plan/extract-plan.py ~/Downloads/Liniennetzplan.pdf && npm run daten
+npm run plan         # oktilineares Layout -> data/layout.json, dann netz.json und Hintergrund
+```
+
+Ausgangslage aus dem ZVV-Plan neu ableiten (nur bei neuem Plan; braucht Python mit `pymupdf`, `numpy`, `scipy`):
+
+```bash
+python3 scripts/plan/extract-plan.py ~/Downloads/Liniennetzplan.pdf && npm run plan
 ```
 
 ## Funktionen
@@ -54,7 +60,24 @@ Der Build bricht ab, wenn sich Versionen einer Linie zeitlich überschneiden ode
 4. Abschnitte folgen dem Strich der Linienfarbe im Plan.
 5. Was der Plan nicht zeigt (Limmattalbahn ausserhalb des Plans, Flughafen, Bahnhofquai/HB), wird aus der Geografie geschätzt und im Plan blasser gezeichnet.
 
-Für einzelne Haltestellen, bei denen die Zuordnung danebenliegt, gibt es im Skript die Liste `FEST`. `npm run daten` legt den Plan mit einer Ähnlichkeitstransformation über das Stadtgebiet. So zeigt dieselbe Kartenansicht beide Lagen. Historische Abschnitte, die der heutige Plan nicht kennt, werden gerade zwischen ihren Haltestellen gezogen.
+Für einzelne Haltestellen, bei denen die Zuordnung danebenliegt, gibt es im Skript die Liste `FEST`.
+
+### Eigenes Layout
+
+[`scripts/plan/layout.mjs`](scripts/plan/layout.mjs) berechnet daraus einen eigenen oktilinearen Plan nach Nöllenburg & Wolff ([Drawing and Labeling High-Quality Metro Maps by Mixed-Integer Programming](https://doi.org/10.1109/TVCG.2010.81), 2011), mit dem Solver [HiGHS](https://highs.dev). Es schreibt [`data/layout.json`](data/layout.json).
+
+- Alle Abschnitte aller Jahre bilden einen Graphen. Ketten von Haltestellen ohne Verzweigung werden zu geraden Stücken zusammengefasst, die Zwischenhalte liegen gleichmässig darauf.
+- Harte Bedingungen: jedes Stück waagrecht, senkrecht oder diagonal; Reihenfolge der Abschnitte um jede Haltestelle wie in der Vorlage; Mindestlänge je Haltestellenabstand; kein Stück berührt ein anderes. Abstände werden nur für Paare verlangt, die nahe liegen oder sich in einer Lösung berühren; dann wird nachgerechnet.
+- Ziele: wenige und flache Knicke entlang der Linien, Richtungen und Lage nahe an der Vorlage. Der Plan wird so begradigt, aber nicht neu verteilt: Das vergrösserte Zentrum der Vorlage bleibt.
+- Abschnitte, die eine Folge anderer abkürzen (z.B. bevor dazwischen ein Halt eröffnet wurde), werden über diese Folge gezeichnet.
+
+`npm run daten` legt den Plan mit Massstab und Verschiebung, aber ohne Drehung über das Stadtgebiet. So zeigt dieselbe Kartenansicht beide Lagen, und Waagrechte bleiben waagrecht. Fehlt `data/layout.json`, nimmt der Build `data/plan.json`.
+
+In der Darstellung liegen parallele Linien so nebeneinander, wie sie später auseinanderlaufen: Wer an der nächsten Verzweigung links abbiegt, liegt links. So kreuzen sie sich nur, wo es nötig ist. Haltestellen sind weisse Balken quer über das ganze Bündel.
+
+### Hintergrund
+
+[`scripts/plan/hintergrund.mjs`](scripts/plan/hintergrund.mjs) holt Zürichsee, Limmat, Sihl, Wald und die Stadtgrenze aus OpenStreetMap (Overpass, zwischengespeichert in `data/raw/osm/`). Die Formen werden vereinfacht und geglättet. Eine Thin-Plate-Spline durch alle Haltestellen (geografische Lage → Planlage) verzerrt sie in den Plan. Ergebnis ist [`public/data/hintergrund.json`](public/data/hintergrund.json) mit beiden Lagen je Punkt. Im Plan blenden die Flächen mit den Linien über, in der geografischen Karte zeigt die Grundkarte das Original.
 
 Jede Version trägt einen **Status**:
 
@@ -101,7 +124,7 @@ Grenzen:
 - Linienfarben sind die heutigen. Kurse in der Hauptverkehrszeit, Teilstrecken und temporäre Linien sind nicht erfasst, z.B. Linie 16 im Jahr 2026.
 - Die Grundkarte ist die Light Base Map von swisstopo.
 - Schrift ist Barlow (OFL). Die Kartenbeschriftungen nutzen eigene Glyphen in `public/fonts/`, erzeugt mit `npm run glyphen`.
-- Die Planlage ist aus dem ZVV-Liniennetzplan abgeleitet (gültig ab 14.12.2025).
+- Die Planlage ist ein eigenes oktilineares Layout mit dem ZVV-Liniennetzplan (gültig ab 14.12.2025) als Ausgangslage.
 - Der Plan zeigt den Stand Dezember 2025, OSM den Stand November 2026. Wo die beiden abweichen, folgt die Planlage dem nächstgelegenen Tramstrich.
 
 ## Nächste Etappen

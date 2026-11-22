@@ -269,16 +269,21 @@ const haltestellen = [...stations.values()]
 const round = (c) => [+c[0].toFixed(6), +c[1].toFixed(6)];
 
 // ---------- Schema-Lage aus dem Liniennetzplan ----------
-// data/plan.json (aus scripts/plan/extract-plan.py) enthält Plankoordinaten in PDF-Punkten.
-// Sie werden mit einer Ähnlichkeitstransformation (Drehung, einheitlicher Massstab, Verschiebung)
+// data/layout.json (eigenes oktilineares Layout aus scripts/plan/layout.mjs) oder ersatzweise
+// data/plan.json (aus scripts/plan/extract-plan.py) enthält Plankoordinaten in Punkten, y nach unten.
+// Sie werden mit einheitlichem Massstab und Verschiebung (ohne Drehung)
 // über das Stadtgebiet gelegt, damit Plan und Karte in derselben Kartenansicht überblendet werden können.
 const kantenListe = [...kanten.values()];
 let plan = null;
-try {
-  plan = JSON.parse(await readFile(new URL('data/plan.json', root), 'utf8'));
-} catch {
-  warn('data/plan.json fehlt: keine Planansicht');
+let planDatei = null;
+for (const datei of ['data/layout.json', 'data/plan.json']) {
+  try {
+    plan = JSON.parse(await readFile(new URL(datei, root), 'utf8'));
+    planDatei = datei;
+    break;
+  } catch {}
 }
+if (!plan) warn('data/layout.json und data/plan.json fehlen: keine Planansicht');
 if (plan) {
   const lat0 = 47.37;
   const k = Math.cos((lat0 * Math.PI) / 180);
@@ -300,7 +305,8 @@ if (plan) {
     im += dw[1] * dz[0] - dw[0] * dz[1];
     nn += dz[0] * dz[0] + dz[1] * dz[1];
   }
-  const a = [re / nn, im / nn];
+  // ohne Drehung: Waagrechte und Diagonalen des Plans bleiben auf dem Bildschirm waagrecht und diagonal
+  const a = [Math.hypot(re, im) / nn, 0];
   const b = [mw[0] - (a[0] * mz[0] - a[1] * mz[1]), mw[1] - (a[0] * mz[1] + a[1] * mz[0])];
   const zuKarte = (p) => {
     const z = ausPlan(p);
@@ -309,7 +315,7 @@ if (plan) {
   };
   for (const h of haltestellen) {
     const p = plan.haltestellen[h.id];
-    if (!p) warn(`Plan: ${h.name} fehlt in data/plan.json (extract-plan.py neu laufen lassen)`);
+    if (!p) warn(`Plan: ${h.name} fehlt in ${planDatei} (scripts/plan/layout.mjs neu laufen lassen)`);
     h.plan = p ? zuKarte(p) : [h.lon, h.lat];
     if (!p || plan.herkunft.haltestellen[h.id]) h.planGeschaetzt = true;
   }
