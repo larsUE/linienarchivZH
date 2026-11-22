@@ -49,7 +49,7 @@
     <p><span class="muster neu"></span> neuer Abschnitt seit dem Vorjahr</p>
     <p><span class="muster weg"></span> seit dem Vorjahr nicht mehr befahren</p>
     <p><span class="muster bau"></span> Baulinie</p>
-    <p class="still klein">Klick auf eine Linie öffnet ihren Verlauf. Pfeiltasten blättern durch die Jahre.</p>
+    <p class="still klein">Klick auf eine Linie öffnet ihren Verlauf. Pfeiltasten blättern durch die Jahre, P und G wechseln zwischen Plan und Karte.</p>
   </div>
 </section>
 

@@ -268,12 +268,68 @@ const haltestellen = [...stations.values()]
   });
 const round = (c) => [+c[0].toFixed(6), +c[1].toFixed(6)];
 
+// ---------- Schema-Lage aus dem Liniennetzplan ----------
+// data/plan.json (aus scripts/plan/extract-plan.py) enthält Plankoordinaten in PDF-Punkten.
+// Sie werden mit einer Ähnlichkeitstransformation (Drehung, einheitlicher Massstab, Verschiebung)
+// über das Stadtgebiet gelegt, damit Plan und Karte in derselben Kartenansicht überblendet werden können.
+const kantenListe = [...kanten.values()];
+let plan = null;
+try {
+  plan = JSON.parse(await readFile(new URL('data/plan.json', root), 'utf8'));
+} catch {
+  warn('data/plan.json fehlt: keine Planansicht');
+}
+if (plan) {
+  const lat0 = 47.37;
+  const k = Math.cos((lat0 * Math.PI) / 180);
+  // komplexe Zahlen als [re, im]; Plan-y zeigt nach unten, daher gespiegelt
+  const ausPlan = ([x, y]) => [x, -y];
+  const ausGeo = (h) => [h.lon * k, h.lat];
+  const paare = haltestellen
+    .filter((h) => plan.haltestellen[h.id] && !plan.herkunft.haltestellen[h.id])
+    .map((h) => [ausPlan(plan.haltestellen[h.id]), ausGeo(h)]);
+  // Kleinste Quadrate für w = a·z + b
+  const n = paare.length;
+  const mz = paare.reduce((s, [z]) => [s[0] + z[0] / n, s[1] + z[1] / n], [0, 0]);
+  const mw = paare.reduce((s, [, w]) => [s[0] + w[0] / n, s[1] + w[1] / n], [0, 0]);
+  let re = 0, im = 0, nn = 0;
+  for (const [z, w] of paare) {
+    const dz = [z[0] - mz[0], z[1] - mz[1]];
+    const dw = [w[0] - mw[0], w[1] - mw[1]];
+    re += dw[0] * dz[0] + dw[1] * dz[1]; // dw · conj(dz)
+    im += dw[1] * dz[0] - dw[0] * dz[1];
+    nn += dz[0] * dz[0] + dz[1] * dz[1];
+  }
+  const a = [re / nn, im / nn];
+  const b = [mw[0] - (a[0] * mz[0] - a[1] * mz[1]), mw[1] - (a[0] * mz[1] + a[1] * mz[0])];
+  const zuKarte = (p) => {
+    const z = ausPlan(p);
+    const w = [a[0] * z[0] - a[1] * z[1] + b[0], a[0] * z[1] + a[1] * z[0] + b[1]];
+    return round([w[0] / k, w[1]]);
+  };
+  for (const h of haltestellen) {
+    const p = plan.haltestellen[h.id];
+    if (!p) warn(`Plan: ${h.name} fehlt in data/plan.json (extract-plan.py neu laufen lassen)`);
+    h.plan = p ? zuKarte(p) : [h.lon, h.lat];
+    if (!p || plan.herkunft.haltestellen[h.id]) h.planGeschaetzt = true;
+  }
+  const hById = new Map(haltestellen.map((h) => [h.id, h]));
+  for (const kante of kantenListe) {
+    const pts = plan.kanten[kante.id];
+    kante.planCoords = pts ? pts.map(zuKarte) : [hById.get(kante.a).plan, hById.get(kante.b).plan];
+    if (!pts || plan.herkunft.kanten[kante.id]) kante.planGeschaetzt = true;
+  }
+  const bbox = plan.groesse;
+  plan = { quelle: plan.quelle, rahmen: [zuKarte([0, bbox[1]]), zuKarte([bbox[0], 0])] };
+}
+
 const out = {
   meta: {
     erstellt: new Date().toISOString(),
     osmStand: osm.osm3s?.timestamp_osm_base ?? null,
     stichtag: cfg.stichtag,
     zeitraum: cfg.zeitraum,
+    plan,
   },
   quellen: Object.fromEntries(
     Object.entries(cfg.quellen).map(([k, q]) => [k, { ...q, abgerufen: q.abgerufen ? isoDate(q.abgerufen) : null }]),
@@ -281,7 +337,7 @@ const out = {
   linien,
   versionen,
   haltestellen,
-  kanten: [...kanten.values()].map((k) => ({ ...k, coords: k.coords.map(round) })),
+  kanten: kantenListe.map((k) => ({ ...k, coords: k.coords.map(round) })),
 };
 
 await mkdir(new URL('public/data/', root), { recursive: true });

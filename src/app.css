@@ -1,5 +1,5 @@
 :root {
-  --schrift: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  --schrift: 'Barlow', 'Helvetica Neue', Arial, system-ui, sans-serif;
   --papier: #f8f6f1;
   --tinte: #1d1d1b;
   --grau: #77746d;
@@ -21,6 +21,10 @@ body {
 }
 button {
   font-family: inherit;
+}
+/* MapLibre-Bedienelemente und Popups ebenfalls in Barlow */
+.maplibregl-map {
+  font-family: var(--schrift);
 }
 button:focus-visible,
 a:focus-visible {

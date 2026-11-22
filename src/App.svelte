@@ -10,6 +10,7 @@
   let fehler = $state(null);
   let jahr = $state(null);
   let auswahl = $state(null);
+  let ansicht = $state('plan'); // 'plan' oder 'karte'
   let spielt = $state(false);
 
   const datum = $derived(netz && jahr ? stichtag(netz, jahr) : null);
@@ -19,16 +20,19 @@
     netz ? new Map(netz.jahre.slice(1).map((j) => [j, aenderungen(netz, j).length])) : new Map(),
   );
 
-  // Zustand in der URL: #/2018 oder #/2018/tram-8
+  // Zustand in der URL: #/plan/2018 oder #/karte/2018/tram-8 (ältere Links ohne Ansicht: #/2018/tram-8)
+  const ANSICHTEN = ['plan', 'karte'];
   function ausHash() {
-    const [, j, l] = location.hash.split('/');
+    const teile = location.hash.split('/').slice(1);
+    if (ANSICHTEN.includes(teile[0])) ansicht = teile.shift();
+    const [j, l] = teile;
     const n = Number(j);
     jahr = netz.jahre.includes(n) ? n : netz.jahre.at(-1);
     auswahl = l && netz.linieById.has(l) ? l : null;
   }
   $effect(() => {
     if (!netz || !jahr) return;
-    const ziel = `#/${jahr}${auswahl ? '/' + auswahl : ''}`;
+    const ziel = `#/${ansicht}/${jahr}${auswahl ? '/' + auswahl : ''}`;
     if (location.hash !== ziel) history.replaceState(null, '', ziel);
   });
 
@@ -50,11 +54,12 @@
   }
 
   function taste(ev) {
-    if (!netz || ev.target.closest?.('input, textarea')) return;
+    if (!netz || ev.metaKey || ev.ctrlKey || ev.altKey || ev.target.closest?.('input, textarea')) return;
     const i = netz.jahre.indexOf(jahr);
     if (ev.key === 'ArrowLeft' && i > 0) setzeJahr(netz.jahre[i - 1]);
     else if (ev.key === 'ArrowRight' && i < netz.jahre.length - 1) setzeJahr(netz.jahre[i + 1]);
     else if (ev.key === 'Escape') auswahl = null;
+    else if (ev.key === 'p' || ev.key === 'g') ansicht = ev.key === 'p' ? 'plan' : 'karte';
     else return;
     ev.preventDefault();
   }
@@ -78,16 +83,16 @@
 {:else if netz && jahr}
   <div class="app">
     <main class="kartenflaeche">
-      <Karte {netz} {datum} {vorjahrDatum} {auswahl} onlinie={(id) => (auswahl = id)} />
+      <Karte {netz} {datum} {vorjahrDatum} {auswahl} {ansicht} onlinie={(id) => (auswahl = id)} />
     </main>
 
     <aside class="seitenleiste">
       <div class="kopf">
         <h1>Linienarchiv Zürich</h1>
         <p>Tramnetz {netz.jahre[0]}–{netz.jahre.at(-1)} · Pilot</p>
-        <div class="ansicht" role="tablist" aria-label="Kartenansicht">
-          <button role="tab" aria-selected="false" disabled title="Folgt in Etappe 2">Liniennetzplan</button>
-          <button role="tab" aria-selected="true" class="aktiv">Geografisch</button>
+        <div class="ansicht" role="group" aria-label="Kartenansicht">
+          <button aria-pressed={ansicht === 'plan'} class:aktiv={ansicht === 'plan'} onclick={() => (ansicht = 'plan')}>Liniennetzplan</button>
+          <button aria-pressed={ansicht === 'karte'} class:aktiv={ansicht === 'karte'} onclick={() => (ansicht = 'karte')}>Geografisch</button>
         </div>
       </div>
       <div class="inhalt">
@@ -168,9 +173,11 @@
     background: white;
     box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
   }
-  .ansicht button:disabled {
-    color: var(--grau);
-    cursor: not-allowed;
+  .ansicht button {
+    cursor: pointer;
+  }
+  .ansicht button:not(.aktiv):hover {
+    background: rgb(255 255 255 / 0.5);
   }
   .inhalt {
     overflow-y: auto;

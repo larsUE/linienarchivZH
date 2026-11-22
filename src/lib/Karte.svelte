@@ -3,7 +3,7 @@
   import maplibregl from 'maplibre-gl';
   import { zustand, halteAm } from './netz.js';
 
-  let { netz, datum, vorjahrDatum, auswahl = null, onlinie } = $props();
+  let { netz, datum, vorjahrDatum, auswahl = null, ansicht = 'plan', onlinie } = $props();
 
   let container;
   let map = $state(null);
@@ -15,13 +15,58 @@
 
   const STIL = 'https://vectortiles.geo.admin.ch/styles/ch.swisstopo.lightbasemap.vt/style.json';
   const leer = { type: 'FeatureCollection', features: [] };
+  const DAUER = 900; // Überblendung in ms
 
   // Linienbreite und Versatz paralleler Linien in Pixeln, abhängig vom Zoom
   const breite = ['interpolate', ['linear'], ['zoom'], 11, 2, 13, 3.5, 16, 7];
   const versatz = ['interpolate', ['linear'], ['zoom'], 11, ['*', ['get', 'slot'], 2], 13, ['*', ['get', 'slot'], 3.5], 16, ['*', ['get', 'slot'], 7]];
 
-  /** Ein Feature pro (Abschnitt, Linie). Linien auf demselben Abschnitt liegen nebeneinander. */
-  function linienFeatures(proLinie) {
+  // ---------- Geometrie: geografisch und im Plan, mit gleicher Punktzahl ----------
+  // Beide Linienzüge werden an denselben relativen Positionen abgetastet (Vereinigung ihrer Stützpunkte),
+  // so bleiben Ecken in beiden Ansichten erhalten und die Überblendung ist eine einfache Interpolation.
+  function anteile(coords) {
+    const d = [0];
+    for (let i = 1; i < coords.length; i++) d.push(d[i - 1] + Math.hypot(coords[i][0] - coords[i - 1][0], coords[i][1] - coords[i - 1][1]));
+    const L = d.at(-1) || 1;
+    return d.map((x) => x / L);
+  }
+  function abtasten(coords, t, ts) {
+    const out = [];
+    let i = 0;
+    for (const s of ts) {
+      while (i < coords.length - 2 && t[i + 1] < s) i++;
+      const f = t[i + 1] > t[i] ? Math.min(1, Math.max(0, (s - t[i]) / (t[i + 1] - t[i]))) : 0;
+      out.push([coords[i][0] + (coords[i + 1][0] - coords[i][0]) * f, coords[i][1] + (coords[i + 1][1] - coords[i][1]) * f]);
+    }
+    return out;
+  }
+  function angleichen(g, p) {
+    const tg = anteile(g);
+    const tp = anteile(p);
+    const ts = [...new Set([...tg, ...tp].map((x) => Math.round(x * 1e5) / 1e5))].sort((a, b) => a - b);
+    return { g: abtasten(g, tg, ts), p: abtasten(p, tp, ts) };
+  }
+  const geom = new Map(netz.kanten.map((k) => [k.id, { ...angleichen(k.coords, k.planCoords ?? k.coords), geschaetzt: !!k.planGeschaetzt }]));
+  const lage = new Map(netz.haltestellen.map((h) => [h.id, { g: [h.lon, h.lat], p: h.plan ?? [h.lon, h.lat] }]));
+
+  // Überblendungsgrad: 0 = geografisch, 1 = Plan
+  let t = ansicht === 'plan' ? 1 : 0;
+  const mischen = (a, b) => (t === 0 ? a : t === 1 ? b : [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]);
+  function linienzug(id, rueck = false) {
+    const { g, p } = geom.get(id);
+    const c = t === 0 ? g : t === 1 ? p : g.map((x, i) => mischen(x, p[i]));
+    return rueck ? [...c].reverse() : c;
+  }
+  const punkt = (id) => {
+    const l = lage.get(id);
+    return mischen(l.g, l.p);
+  };
+
+  // ---------- Inhalt je Stichtag (unabhängig von der Ansicht) ----------
+  let inhalt = null;
+
+  /** Ein Eintrag pro (Abschnitt, Linie). Linien auf demselben Abschnitt liegen nebeneinander. */
+  function linienEintraege(proLinie) {
     const proKante = new Map();
     for (const v of proLinie.values()) {
       for (const signiert of v.kanten) {
@@ -32,117 +77,154 @@
         if (!liste.some((e) => e.linie === v.linie)) liste.push({ linie: v.linie, rueck });
       }
     }
-    const features = [];
-    for (const [id, eintraege] of proKante) {
-      const kante = netz.kanteById.get(id);
-      eintraege.sort((a, b) => netz.linieById.get(a.linie).rang - netz.linieById.get(b.linie).rang);
+    const eintraege = [];
+    for (const [id, liste] of proKante) {
+      liste.sort((a, b) => netz.linieById.get(a.linie).rang - netz.linieById.get(b.linie).rang);
       // Ausrichtung wie die erste Linie: so bleibt die Reihenfolge entlang gemeinsamer Stammstrecken stabil
-      const coords = eintraege[0].rueck ? [...kante.coords].reverse() : kante.coords;
-      const n = eintraege.length;
-      eintraege.forEach((e, i) => {
+      const rueck = liste[0].rueck;
+      const n = liste.length;
+      liste.forEach((e, i) => {
         const l = netz.linieById.get(e.linie);
-        features.push({
-          type: 'Feature',
-          properties: { kante: id, linie: l.id, nummer: l.nummer, farbe: l.farbe, art: l.art, slot: i - (n - 1) / 2 },
-          geometry: { type: 'LineString', coordinates: coords },
+        eintraege.push({
+          kante: id,
+          rueck,
+          properties: { kante: id, linie: l.id, nummer: l.nummer, farbe: l.farbe, art: l.art, slot: i - (n - 1) / 2, gs: geom.get(id).geschaetzt },
         });
       });
     }
-    return { features, kanten: new Set(proKante.keys()) };
+    return { eintraege, kanten: new Set(proKante.keys()) };
   }
 
-  function aktualisieren() {
-    if (!bereit) return;
+  function inhaltBerechnen() {
     const jetzt = zustand(netz, datum);
     const vorher = vorjahrDatum ? zustand(netz, vorjahrDatum) : null;
-    const { features, kanten } = linienFeatures(jetzt);
+    const { eintraege, kanten } = linienEintraege(jetzt);
+    const vorherKanten = vorher ? linienEintraege(vorher).kanten : kanten;
 
-    // Abschnitte, die seit dem Vorjahr dazugekommen oder weggefallen sind
-    const vorherKanten = vorher ? linienFeatures(vorher).kanten : kanten;
-    const neu = [...kanten].filter((k) => !vorherKanten.has(k));
-    const weg = [...vorherKanten].filter((k) => !kanten.has(k));
-    const alsFeature = (id) => ({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: netz.kanteById.get(id).coords } });
-
-    const halteJetzt = new Map();
+    const halte = new Map();
     for (const v of jetzt.values()) {
       const ids = halteAm(v, datum);
       ids.forEach((id, i) => {
         const end = i === 0 || i === ids.length - 1;
-        const h = halteJetzt.get(id) ?? { linien: [], end: false };
+        const h = halte.get(id) ?? { linien: [], end: false };
         h.linien.push(v.linie);
         h.end ||= end;
-        halteJetzt.set(id, h);
+        halte.set(id, h);
       });
     }
-    const halteFeatures = [...halteJetzt].map(([id, h]) => {
-      const s = netz.haltestelleById.get(id);
-      return {
-        type: 'Feature',
-        properties: { id, name: s.name, end: h.end, linien: h.linien.join(' ') },
-        geometry: { type: 'Point', coordinates: [s.lon, s.lat] },
-      };
-    });
+    inhalt = {
+      linien: eintraege,
+      neu: [...kanten].filter((k) => !vorherKanten.has(k)),
+      weg: [...vorherKanten].filter((k) => !kanten.has(k)),
+      halte: [...halte].map(([id, h]) => ({ id, properties: { id, name: netz.haltestelleById.get(id).name, end: h.end, linien: h.linien.join(' ') } })),
+    };
+  }
 
-    map.getSource('linien').setData({ type: 'FeatureCollection', features });
-    map.getSource('neu').setData({ type: 'FeatureCollection', features: neu.map(alsFeature) });
-    map.getSource('weg').setData({ type: 'FeatureCollection', features: weg.map(alsFeature) });
-    map.getSource('halte').setData({ type: 'FeatureCollection', features: halteFeatures });
+  // ---------- Zeichnen mit dem aktuellen Überblendungsgrad ----------
+  function zeichnen() {
+    if (!bereit || !inhalt) return;
+    const fc = (features) => ({ type: 'FeatureCollection', features });
+    const linie = (id, rueck, properties = {}) => ({ type: 'Feature', properties, geometry: { type: 'LineString', coordinates: linienzug(id, rueck) } });
+    map.getSource('linien').setData(fc(inhalt.linien.map((e) => linie(e.kante, e.rueck, e.properties))));
+    map.getSource('neu').setData(fc(inhalt.neu.map((id) => linie(id))));
+    map.getSource('weg').setData(fc(inhalt.weg.map((id) => linie(id))));
+    map.getSource('halte').setData(
+      fc(inhalt.halte.map((h) => ({ type: 'Feature', properties: h.properties, geometry: { type: 'Point', coordinates: punkt(h.id) } }))),
+    );
+    map.setPaintProperty('papier', 'background-opacity', t);
   }
 
   function auswahlAnwenden() {
     if (!bereit) return;
     const hat = !!auswahl;
     const istGewaehlt = ['==', ['get', 'linie'], auswahl ?? ''];
-    map.setPaintProperty('linien', 'line-opacity', hat ? ['case', istGewaehlt, 1, 0.12] : 1);
+    // Im Plan sind geschätzte Abschnitte (ausserhalb des Plans) blasser
+    const basis = ansicht === 'plan' ? ['case', ['get', 'gs'], 0.45, 1] : 1;
+    map.setPaintProperty('linien', 'line-opacity', hat ? ['case', istGewaehlt, basis, 0.12] : basis);
     map.setLayoutProperty('linien', 'line-sort-key', hat ? ['case', istGewaehlt, 1, 0] : 0);
     const haltGewaehlt = ['in', auswahl ?? '§', ['get', 'linien']];
     map.setPaintProperty('halte', 'circle-opacity', hat ? ['case', haltGewaehlt, 1, 0.25] : 1);
     map.setPaintProperty('halte', 'circle-stroke-opacity', hat ? ['case', haltGewaehlt, 1, 0.25] : 1);
     map.setFilter('halte-name', hat ? haltGewaehlt : ['==', ['get', 'end'], true]);
-    map.setLayoutProperty('halte-name', 'visibility', 'visible');
     map.setPaintProperty('neu', 'line-opacity', hat ? 0 : 0.55);
     map.setPaintProperty('weg', 'line-opacity', hat ? 0 : 0.9);
   }
 
   $effect(() => {
     void datum; void vorjahrDatum;
-    aktualisieren();
-    auswahlAnwenden();
+    if (!bereit) return;
+    inhaltBerechnen();
+    zeichnen();
   });
   $effect(() => {
-    void auswahl;
+    void auswahl; void ansicht;
     auswahlAnwenden();
+  });
+
+  // Überblendung zwischen Karte und Plan
+  let animation = 0;
+  $effect(() => {
+    const ziel = ansicht === 'plan' ? 1 : 0;
+    if (!bereit || t === ziel) return;
+    cancelAnimationFrame(animation);
+    const start = t;
+    const t0 = performance.now();
+    const reduziert = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const schritt = (jetzt) => {
+      const f = reduziert ? 1 : Math.min(1, (jetzt - t0) / DAUER);
+      const e = f < 0.5 ? 4 * f * f * f : 1 - (-2 * f + 2) ** 3 / 2;
+      t = f === 1 ? ziel : Math.min(1, Math.max(0, start + (ziel - start) * e));
+      zeichnen();
+      if (f < 1) animation = requestAnimationFrame(schritt);
+    };
+    animation = requestAnimationFrame(schritt);
   });
 
   // Bei Auswahl einer Linie auf alle ihre Linienwege (über alle Jahre) zoomen
   $effect(() => {
     if (!bereit || !auswahl) return;
+    const imPlan = ansicht === 'plan';
     const b = [Infinity, Infinity, -Infinity, -Infinity];
     for (const v of netz.versionenProLinie.get(auswahl) ?? []) {
       for (const id of v.haltestellen) {
-        const h = netz.haltestelleById.get(id);
-        b[0] = Math.min(b[0], h.lon); b[1] = Math.min(b[1], h.lat);
-        b[2] = Math.max(b[2], h.lon); b[3] = Math.max(b[3], h.lat);
+        const l = lage.get(id);
+        const [x, y] = imPlan ? l.p : l.g;
+        b[0] = Math.min(b[0], x); b[1] = Math.min(b[1], y);
+        b[2] = Math.max(b[2], x); b[3] = Math.max(b[3], y);
       }
     }
     map.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: polster(), maxZoom: 15, duration: 600 });
   });
 
+  function startAusschnitt() {
+    // Stadtgebiet Zürich (die Limmattalbahn reicht weit nach Westen), in der gerade gezeigten Ansicht
+    const b = [Infinity, Infinity, -Infinity, -Infinity];
+    for (const h of netz.haltestellen) {
+      if (h.ort !== 'Zürich' || (t === 1 && h.planGeschaetzt)) continue;
+      const [x, y] = t === 1 ? lage.get(h.id).p : lage.get(h.id).g;
+      b[0] = Math.min(b[0], x); b[1] = Math.min(b[1], y);
+      b[2] = Math.max(b[2], x); b[3] = Math.max(b[3], y);
+    }
+    return [[b[0], b[1]], [b[2], b[3]]];
+  }
+
   onMount(() => {
-    // Startansicht: Stadtgebiet Zürich (die Limmattalbahn reicht weit nach Westen)
-    const [w, s, e, n] = netz.haltestellen
-      .filter((h) => h.ort === 'Zürich')
-      .reduce(
-        (b, h) => [Math.min(b[0], h.lon), Math.min(b[1], h.lat), Math.max(b[2], h.lon), Math.max(b[3], h.lat)],
-        [Infinity, Infinity, -Infinity, -Infinity],
-      );
     map = new maplibregl.Map({
       container,
       style: STIL,
-      bounds: [[w, s], [e, n]],
+      bounds: startAusschnitt(),
       fitBoundsOptions: { padding: polster() },
-      attributionControl: { compact: true, customAttribution: 'Liniendaten © OpenStreetMap-Mitwirkende (ODbL), Wikipedia' },
+      attributionControl: {
+        compact: true,
+        customAttribution: 'Liniendaten © OpenStreetMap-Mitwirkende (ODbL), Wikipedia · Planlage nach ZVV-Liniennetzplan',
+      },
       maxZoom: 18,
+      // Eigene Beschriftungen in Barlow: Glyphen aus public/fonts (scripts/build-glyphs.mjs), Grundkarte unverändert
+      transformRequest: (url, art) => {
+        if (art !== 'Glyphs' || !url.includes('Barlow')) return undefined;
+        const [, bereich] = url.match(/\/(\d+-\d+)\.pbf/) ?? [];
+        return { url: new URL(`${import.meta.env.BASE_URL}fonts/barlow-medium/${bereich}.pbf`, location.href).href };
+      },
     });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 
@@ -155,6 +237,8 @@
       }
       for (const id of ['linien', 'neu', 'weg', 'halte']) map.addSource(id, { type: 'geojson', data: leer });
 
+      // Papier über der Grundkarte: im Plan deckend, in der Karte unsichtbar
+      map.addLayer({ id: 'papier', type: 'background', paint: { 'background-color': '#f8f6f1', 'background-opacity': t } });
       map.addLayer({
         id: 'neu', type: 'line', source: 'neu',
         layout: { 'line-cap': 'round', 'line-join': 'round' },
@@ -188,7 +272,7 @@
         filter: ['==', ['get', 'end'], true],
         layout: {
           'text-field': ['get', 'name'],
-          'text-font': ['Frutiger Neue Regular'],
+          'text-font': ['Barlow Medium'],
           'text-size': ['interpolate', ['linear'], ['zoom'], 11, 11, 16, 14],
           'text-offset': [0.8, 0],
           'text-anchor': 'left',
@@ -208,19 +292,17 @@
         tip.remove();
       });
       map.on('click', (ev) => {
-        const t = 6; // Trefferradius in Pixeln
-        const f = map.queryRenderedFeatures([[ev.point.x - t, ev.point.y - t], [ev.point.x + t, ev.point.y + t]], { layers: ['linien'] });
+        const r = 6; // Trefferradius in Pixeln
+        const f = map.queryRenderedFeatures([[ev.point.x - r, ev.point.y - r], [ev.point.x + r, ev.point.y + r]], { layers: ['linien'] });
         // Bei Auswahl hat die gewählte Linie Vorrang, sonst die oberste
         const treffer = f.find((x) => x.properties.linie === auswahl) ?? f[0];
         onlinie?.(treffer ? treffer.properties.linie : null);
       });
 
       map.resize();
-      map.fitBounds([[w, s], [e, n]], { padding: polster(), animate: false });
+      map.fitBounds(startAusschnitt(), { padding: polster(), animate: false });
 
       bereit = true;
-      aktualisieren();
-      auswahlAnwenden();
     });
 
     // Grösse nachführen, falls sich das Layout nach dem Start noch ändert
@@ -228,6 +310,7 @@
     ro.observe(container);
 
     return () => {
+      cancelAnimationFrame(animation);
       ro.disconnect();
       map.remove();
     };

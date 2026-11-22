@@ -1,4 +1,8 @@
 import { mount } from 'svelte';
+import '@fontsource/barlow/400.css';
+import '@fontsource/barlow/500.css';
+import '@fontsource/barlow/600.css';
+import '@fontsource/barlow/700.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './app.css';
 import App from './App.svelte';
