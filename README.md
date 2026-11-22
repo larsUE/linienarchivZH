@@ -62,10 +62,41 @@ Jede Version trägt einen **Status**:
 - `abgeleitet`: Die Endpunkte sind belegt, die Zwischenhalte sind rekonstruiert.
 - `unsicher`: Die Quellen widersprechen sich.
 
+## Fahrplandaten-Import
+
+Die Linienwege ab 2015 werden mit offenen Fahrplandaten der Stadt Zürich (CC0) geprüft:
+
+| Quelle | Zeitraum | Abdeckung |
+|---|---|---|
+| [GTFS-Fahrplandaten VBZ/ZVV](https://data.stadt-zuerich.ch/dataset/vbz_fahrplandaten_gtfs) | Fahrplanjahre 2019–2026 (ab Dezember 2018) | lückenlos, Woche für Woche |
+| [Fahrzeiten SOLL-IST VBZ](https://data.stadt-zuerich.ch/dataset?q=vbz_fahrzeiten_ogd) | 2015–2018 | je eine Stichwoche (Mai, 2015 Oktober) |
+
+```bash
+python3 scripts/import/fetch-fahrplan.py         # Rohdaten nach data/raw/gtfs/ und data/raw/fahrzeiten/ (ca. 1,5 GB, nicht im Repo)
+npm run daten                                    # netz.json muss aktuell sein
+node scripts/import/import-fahrplan.mjs          # ca. 3 Minuten
+```
+
+Das Importskript macht aus jeder Tramfahrt eine Folge unserer Haltestellen. Pro Linie und Woche gilt der häufigste Linienweg. Gleiche Wochen werden zu Zeiträumen zusammengefasst und mit der jeweils gültigen Version in `linien.yaml` verglichen. Es schreibt:
+
+- [`data/import/bericht.md`](data/import/bericht.md): Zeiträume je Linie, Abgleich mit der erfassten Version, Linien ohne Erfassung und unbekannte Haltestellennamen.
+- `data/import/fahrplan.json`: dieselben Zeiträume mit Haltestellenfolgen, maschinenlesbar.
+
+Haltestellennamen, die sich umbenannt haben oder anders heissen als in OSM, stehen in `linien.yaml` unter `fahrplan_alias`. Der Wert `null` blendet einen Halt aus, z.B. eine Wendeschlaufe. Die Versionen werden von Hand in `linien.yaml` nachgeführt. Belegte Wege stehen dort als Haltestellenliste mit dem Status `belegt` und den Quellen `gtfs` oder `vbz-fahrzeiten`.
+
+Grenzen:
+
+- **2010–2014 haben keine Fahrplandaten.** Versionen, die vor 2015 beginnen, sind für diese Jahre angenommen.
+- 2015–2018 gibt es nur Stichwochen. Ein Wechsel zwischen zwei Stichwochen ist nur auf das Jahr genau eingegrenzt.
+- Als vorübergehend gelten Zeiträume unter 8 Wochen oder solche zwischen zwei Zeiträumen mit gleichem Weg. Sie werden nicht als Version übernommen, z.B. die Linie 13 bis Hardturm von Juli 2022 bis August 2023.
+- Die Wochen beginnen am Montag. Wechsel am Fahrplanwechsel werden auf das offizielle Datum gesetzt.
+- Der häufigste Weg verdeckt Teilstrecken. Bei Linie 9 wendet die Mehrheit der Kurse in Heuried, deshalb meldet der Bericht dort eine Abweichung.
+- In GTFS ist die Limmattalbahn (Linie 20) erst ab dem Fahrplanjahr 2026 als Tram eingetragen.
+
 ## Quellen und Grenzen des Pilots
 
 - Haltestellen und Gleise stammen aus OpenStreetMap (Stand November 2026, ODbL). Die Linienwege stammen aus den Wikipedia-Artikeln *Strassenbahn Zürich* und *Linienchronik der Strassenbahn Zürich*.
-- **Die historischen Stände sind nicht mit Primärquellen geprüft.** Viele Zwischenhalte sind aus heutigen Linienwegen zusammengesetzt. Historische Netzpläne oder Fahrpläne fehlen noch.
+- Ab 2015 sind die Linienwege mit Fahrplandaten belegt (siehe [Fahrplandaten-Import](#fahrplandaten-import)). **Die Stände 2010–2014 sind nicht mit Primärquellen geprüft.** Für diese Jahre fehlen noch historische Netzpläne oder Fahrpläne.
 - Strecken, die es heute nicht mehr gibt, können nicht dargestellt werden, weil der Router nur das heutige Gleisnetz kennt. Ausnahme: Gleise, die in OSM als «im Bau» erfasst sind, z.B. am Bahnhofquai.
 - Linienfarben sind die heutigen. Kurse in der Hauptverkehrszeit, Teilstrecken und temporäre Linien sind nicht erfasst, z.B. Linie 16 im Jahr 2026.
 - Die Grundkarte ist die Light Base Map von swisstopo.

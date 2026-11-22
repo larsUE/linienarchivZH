@@ -1,0 +1,817 @@
+# Abgleich Fahrplandaten – erfasste Versionen
+
+Erstellt 2026-11-22 mit `scripts/import/import-fahrplan.mjs`.
+
+Quellen:
+
+- `vbz-fahrzeiten-2015`: 2015-10-04 – 2015-10-10 (Stichwoche)
+- `vbz-fahrzeiten-2016`: 2016-05-08 – 2016-05-14 (Stichwoche)
+- `vbz-fahrzeiten-2017`: 2017-05-07 – 2017-05-13 (Stichwoche)
+- `vbz-fahrzeiten-2018`: 2018-05-06 – 2018-05-12 (Stichwoche)
+- `gtfs-2019`: 2018-12-09 – 2019-12-14
+- `gtfs-2020`: 2019-12-15 – 2020-12-12
+- `gtfs-2021`: 2020-12-13 – 2021-12-11
+- `gtfs-2022`: 2020-12-13 – 2022-12-18
+- `gtfs-2023`: 2022-12-11 – 2023-12-09
+- `gtfs-2024`: 2023-12-10 – 2024-12-14
+- `gtfs-2025`: 2024-12-15 – 2025-12-13
+- `gtfs-2026`: 2025-12-14 – 2026-12-12
+
+Zeiträume unter 8 Wochen oder zwischen zwei Zeiträumen mit gleichem Weg sind als *vorübergehend* markiert (Umleitungen, Baustellen).
+
+## Linie 2
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Bahnhof Tiefenbrunnen – Farbhof, 25 Halte
+  - Version `tram-2@anfang` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Bahnhof Tiefenbrunnen – Farbhof, 25 Halte
+  - Version `tram-2@anfang` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Bahnhof Tiefenbrunnen – Farbhof, 25 Halte
+  - Version `tram-2@anfang` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Bahnhof Tiefenbrunnen – Farbhof, 25 Halte
+  - Version `tram-2@anfang` (belegt): gleich
+- **2018-12-03 – 2019-07-14** (32 Wo., gtfs-2019): Bahnhof Tiefenbrunnen – Farbhof, 25 Halte
+  - Version `tram-2@anfang` (belegt): gleich
+- **2019-07-15 – 2019-09-01** (7 Wo., gtfs-2019) *vorübergehend*: Bahnhof Tiefenbrunnen – Kappeli, 21 Halte
+  - Version `tram-2@anfang` (belegt): abweichend
+  - nur erfasst: Grimselstrasse, Lindenplatz, Bachmattstrasse, Farbhof
+- **2019-09-02 – 2024-07-14** (254 Wo., gtfs-2019, gtfs-2020, gtfs-2022, gtfs-2023, gtfs-2024) *vorübergehend*: Bahnhof Tiefenbrunnen – Geissweid, 31 Halte
+  - Version `tram-2@2019-09-02` (belegt): gleich
+- **2024-07-15 – 2024-07-28** (2 Wo., gtfs-2024) *vorübergehend*: Bahnhof Tiefenbrunnen – Kappeli, 21 Halte
+  - Version `tram-2@2019-09-02` (belegt): abweichend
+  - nur erfasst: Grimselstrasse, Lindenplatz, Bachmattstrasse, Farbhof, Micafil, Mülligen, Gasometerbrücke, Wagonsfabrik, Schlieren Zentrum/Bahnhof, Geissweid
+- **2024-07-29 – 2025-06-08** (45 Wo., gtfs-2024, gtfs-2025): Bahnhof Tiefenbrunnen – Geissweid, 31 Halte
+  - Version `tram-2@2019-09-02` (belegt): gleich
+- **2025-06-09 – 2025-07-13** (5 Wo., gtfs-2025) *vorübergehend*: Bahnhof Tiefenbrunnen – Geissweid, 30 Halte
+  - Version `tram-2@2019-09-02` (belegt): abweichend
+  - nur erfasst: Lindenplatz
+- **2025-07-14 – 2025-12-14** (22 Wo., gtfs-2025, gtfs-2026): Bahnhof Tiefenbrunnen – Geissweid, 31 Halte
+  - Version `tram-2@2019-09-02` (belegt): gleich
+- **2025-12-15 – 2026-12-13** (52 Wo., gtfs-2026): Geissweid – Klusplatz, 30 Halte
+  - Version `tram-2@2025-12-14` (belegt): gleich
+
+## Linie 3
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Albisrieden – Klusplatz, 21 Halte
+  - Version `tram-3@anfang` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Albisrieden – Klusplatz, 21 Halte
+  - Version `tram-3@anfang` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Albisrieden – Klusplatz, 21 Halte
+  - Version `tram-3@anfang` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Albisrieden – Klusplatz, 21 Halte
+  - Version `tram-3@anfang` (belegt): gleich
+- **2018-12-03 – 2024-04-21** (281 Wo., gtfs-2019, gtfs-2020, gtfs-2022, gtfs-2023, gtfs-2024): Albisrieden – Klusplatz, 21 Halte
+  - Version `tram-3@anfang` (belegt): gleich
+- **2024-04-22 – 2024-05-05** (2 Wo., gtfs-2024) *vorübergehend*: Klusplatz – Letzigrund, 17 Halte
+  - Version `tram-3@anfang` (belegt): abweichend
+  - nur im Fahrplan: Letzigrund
+  - nur erfasst: Albisrieden, Fellenbergstrasse, Siemens, Hubertus, Altes Krematorium
+- **2024-05-06 – 2024-09-22** (20 Wo., gtfs-2024): Albisrieden – Klusplatz, 21 Halte
+  - Version `tram-3@anfang` (belegt): gleich
+- **2024-09-23 – 2024-09-29** (1 Wo., gtfs-2024) *vorübergehend*: Albisrieden – Kirche Fluntern, 20 Halte
+  - Version `tram-3@anfang` (belegt): abweichend
+  - nur im Fahrplan: Haldenegg, ETH/Universitätsspital, Platte, Voltastrasse, Kirche Fluntern
+  - nur erfasst: Neumarkt, Kunsthaus, Hottingerplatz, Römerhof, Hölderlinstrasse, Klusplatz
+- **2024-09-30 – 2025-07-13** (41 Wo., gtfs-2024, gtfs-2025): Albisrieden – Klusplatz, 21 Halte
+  - Version `tram-3@anfang` (belegt): gleich
+- **2025-07-14 – 2025-07-27** (2 Wo., gtfs-2025) *vorübergehend*: Albisrieden – Bahnhofplatz/HB, 14 Halte
+  - Version `tram-3@anfang` (belegt): abweichend
+  - nur erfasst: Central, Neumarkt, Kunsthaus, Hottingerplatz, Römerhof, Hölderlinstrasse, Klusplatz
+- **2025-07-28 – 2026-12-13** (72 Wo., gtfs-2025, gtfs-2026): Albisrieden – Klusplatz, 21 Halte
+  - Version `tram-3@anfang` (belegt): gleich
+
+## Linie 4
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Bahnhof Altstetten Nord – Bahnhof Tiefenbrunnen, 26 Halte
+  - Version `tram-4@2011-12-11` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Bahnhof Altstetten Nord – Bahnhof Tiefenbrunnen, 26 Halte
+  - Version `tram-4@2011-12-11` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Bahnhof Altstetten Nord – Bahnhof Tiefenbrunnen, 26 Halte
+  - Version `tram-4@2011-12-11` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Bahnhof Altstetten Nord – Bahnhof Tiefenbrunnen, 26 Halte
+  - Version `tram-4@2011-12-11` (belegt): gleich
+- **2018-12-03 – 2020-05-03** (74 Wo., gtfs-2019, gtfs-2020): Bahnhof Altstetten Nord – Bahnhof Tiefenbrunnen, 26 Halte
+  - Version `tram-4@2011-12-11` (belegt): gleich
+- **2020-05-04 – 2020-05-31** (4 Wo., gtfs-2020) *vorübergehend*: Bahnhof Altstetten Nord – Bahnhof Stadelhofen, 20 Halte
+  - Version `tram-4@2011-12-11` (belegt): abweichend
+  - nur im Fahrplan: Bahnhof Stadelhofen
+  - nur erfasst: Bahnhof Tiefenbrunnen, Wildbachstrasse, Fröhlichstrasse, Höschgasse, Feldeggstrasse, Kreuzstrasse, Opernhaus
+- **2020-06-01 – 2020-10-04** (18 Wo., gtfs-2020): Bahnhof Altstetten Nord – Bahnhof Tiefenbrunnen, 26 Halte
+  - Version `tram-4@2011-12-11` (belegt): gleich
+- **2020-10-05 – 2020-10-11** (1 Wo., gtfs-2020) *vorübergehend*: Bahnhof Altstetten Nord – Frankental, 18 Halte
+  - Version `tram-4@2011-12-11` (belegt): abweichend
+  - nur im Fahrplan: Wipkingerplatz, Waidfussweg, Eschergutweg, Alte Trotte, Schwert, Meierhofplatz, Zwielplatz, Wartau, Winzerstrasse, Frankental
+  - nur erfasst: Bahnhof Tiefenbrunnen, Wildbachstrasse, Fröhlichstrasse, Höschgasse, Feldeggstrasse, Kreuzstrasse, Opernhaus, Bellevue, Helmhaus, Rathaus, Rudolf-Brun-Brücke, Central, Bahnhofquai/HB, Sihlquai/HB, Museum für Gestaltung, Limmatplatz, Quellenstrasse, Löwenbräu
+- **2020-10-12 – 2024-09-22** (206 Wo., gtfs-2020, gtfs-2022, gtfs-2023, gtfs-2024): Bahnhof Altstetten Nord – Bahnhof Tiefenbrunnen, 26 Halte
+  - Version `tram-4@2011-12-11` (belegt): gleich
+- **2024-09-23 – 2024-09-29** (1 Wo., gtfs-2024) *vorübergehend*: Bahnhof Altstetten Nord – Bucheggplatz, 22 Halte
+  - Version `tram-4@2011-12-11` (belegt): abweichend
+  - nur im Fahrplan: Haldenegg, Sonneggstrasse, Ottikerstrasse, Röslistrasse, Schaffhauserplatz, Laubiweg, Bucheggplatz
+  - nur erfasst: Bahnhof Tiefenbrunnen, Wildbachstrasse, Fröhlichstrasse, Höschgasse, Feldeggstrasse, Kreuzstrasse, Opernhaus, Bellevue, Helmhaus, Rathaus, Rudolf-Brun-Brücke
+- **2024-09-30 – 2025-07-13** (41 Wo., gtfs-2024, gtfs-2025): Bahnhof Altstetten Nord – Bahnhof Tiefenbrunnen, 26 Halte
+  - Version `tram-4@2011-12-11` (belegt): gleich
+- **2025-07-14 – 2025-08-03** (3 Wo., gtfs-2025) *vorübergehend*: Bahnhof Altstetten Nord – Seebach, 27 Halte
+  - Version `tram-4@2011-12-11` (belegt): abweichend
+  - nur im Fahrplan: Stampfenbachplatz, Beckenhof, Kronenstrasse, Schaffhauserplatz, Guggachstrasse, Milchbuck, Hirschwiesenstrasse, Berninaplatz, Salersteig, Sternen Oerlikon, Bahnhof Oerlikon Ost, Felsenrainstrasse, Seebacherplatz, Seebach
+  - nur erfasst: Bahnhof Tiefenbrunnen, Wildbachstrasse, Fröhlichstrasse, Höschgasse, Feldeggstrasse, Kreuzstrasse, Opernhaus, Bellevue, Helmhaus, Rathaus, Rudolf-Brun-Brücke, Central, Bahnhofquai/HB
+- **2025-08-04 – 2025-12-14** (19 Wo., gtfs-2025, gtfs-2026): Bahnhof Altstetten Nord – Bahnhof Tiefenbrunnen, 26 Halte
+  - Version `tram-4@2011-12-11` (belegt): gleich
+- **2025-12-15 – 2026-12-13** (52 Wo., gtfs-2026): Bahnhofstrasse/HB – Rehalp, 16 Halte
+  - Version `tram-4@2025-12-14` (belegt): gleich
+
+## Linie 5
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Kirche Fluntern – Laubegg, 14 Halte
+  - Version `tram-5@2007-03-22` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Kirche Fluntern – Laubegg, 14 Halte
+  - Version `tram-5@2007-03-22` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Kirche Fluntern – Laubegg, 14 Halte
+  - Version `tram-5@2007-03-22` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Kirche Fluntern – Laubegg, 14 Halte
+  - Version `tram-5@2007-03-22` (belegt): gleich
+- **2018-12-03 – 2018-12-09** (1 Wo., gtfs-2019) *vorübergehend*: Laubegg – Zoo, 18 Halte
+  - Version `tram-5@2007-03-22` (belegt): abweichend
+  - nur im Fahrplan: Toblerplatz, Zürichbergstrasse, Susenbergstrasse, Zoo
+- **2018-12-10 – 2021-07-11** (135 Wo., gtfs-2019, gtfs-2020, gtfs-2022): Kirche Fluntern – Laubegg, 14 Halte
+  - Version `tram-5@2007-03-22` (belegt): gleich
+- **2021-07-12 – 2021-08-22** (6 Wo., gtfs-2022) *vorübergehend*: Bahnhof Enge – Kirche Fluntern, 9 Halte
+  - Version `tram-5@2007-03-22` (belegt): abweichend
+  - nur erfasst: Bahnhof Enge/Bederstrasse, Waffenplatzstrasse, Sihlcity Nord, Saalsporthalle, Laubegg
+- **2021-08-23 – 2024-10-27** (166 Wo., gtfs-2022, gtfs-2023, gtfs-2024): Kirche Fluntern – Laubegg, 14 Halte
+  - Version `tram-5@2007-03-22` (belegt): gleich
+- **2024-10-28 – 2024-11-10** (2 Wo., gtfs-2024) *vorübergehend*: Kirche Fluntern – Laubegg, 16 Halte
+  - Version `tram-5@2007-03-22` (belegt): abweichend
+  - nur im Fahrplan: Kantonalbank, Paradeplatz, Stockerstrasse, Tunnelstrasse
+  - nur erfasst: Rentenanstalt, Bahnhof Enge
+- **2024-11-11 – 2025-12-14** (57 Wo., gtfs-2024, gtfs-2025, gtfs-2026): Kirche Fluntern – Laubegg, 14 Halte
+  - Version `tram-5@2007-03-22` (belegt): gleich
+- **2025-12-15 – 2026-12-13** (52 Wo., gtfs-2026): Bahnhof Stadelhofen – Laubegg, 12 Halte
+  - Version `tram-5@2025-12-14` (belegt): gleich
+
+## Linie 6
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Bahnhof Enge – Zoo, 16 Halte
+  - Version `tram-6@anfang` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Bahnhof Enge – Zoo, 16 Halte
+  - Version `tram-6@anfang` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Bahnhof Enge – Zoo, 16 Halte
+  - Version `tram-6@anfang` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Bahnhof Enge – Zoo, 16 Halte
+  - Version `tram-6@anfang` (belegt): gleich
+- **2018-12-03 – 2019-06-30** (30 Wo., gtfs-2019): Bahnhof Enge – Zoo, 16 Halte
+  - Version `tram-6@anfang` (belegt): gleich
+- **2019-07-01 – 2019-07-07** (1 Wo., gtfs-2019) *vorübergehend*: Bahnhof Altstetten Nord – Zoo, 24 Halte
+  - Version `tram-6@anfang` (belegt): abweichend
+  - nur im Fahrplan: Bahnhof Altstetten Nord, Würzgraben, Aargauerstrasse, Sportweg, Toni-Areal, Technopark, Schiffbau, Escher-Wyss-Platz, Löwenbräu, Quellenstrasse, Limmatplatz, Museum für Gestaltung, Sihlquai/HB, Bahnhofquai/HB
+  - nur erfasst: Bahnhof Enge, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg, Bahnhofstrasse/HB
+- **2019-07-08 – 2019-11-24** (20 Wo., gtfs-2019): Bahnhof Enge – Zoo, 16 Halte
+  - Version `tram-6@anfang` (belegt): gleich
+- **2019-11-25 – 2020-07-12** (33 Wo., gtfs-2019, gtfs-2020): Werdhölzli – Zoo, 26 Halte
+  - Version `tram-6@2019-11-25` (belegt): gleich
+- **2020-07-13 – 2020-08-16** (5 Wo., gtfs-2020) *vorübergehend*: Bahnhof Altstetten Nord – Zoo, 24 Halte
+  - Version `tram-6@2019-11-25` (belegt): abweichend
+  - nur im Fahrplan: Bahnhof Altstetten Nord, Würzgraben, Aargauerstrasse, Sportweg, Toni-Areal, Technopark, Schiffbau
+  - nur erfasst: Werdhölzli, Bändliweg, Grünaustrasse, Tüffenwies, Hardhof, Hardturm, Bernoulli-Häuser, Fischerweg, Förrlibuckstrasse
+- **2020-08-17 – 2020-10-04** (7 Wo., gtfs-2020) *vorübergehend*: Werdhölzli – Zoo, 26 Halte
+  - Version `tram-6@2019-11-25` (belegt): gleich
+- **2020-10-05 – 2020-10-11** (1 Wo., gtfs-2020) *vorübergehend*: Werdhölzli – Zoo, 32 Halte
+  - Version `tram-6@2019-11-25` (belegt): abweichend
+  - nur im Fahrplan: Schiffbau, Bahnhof Hardbrücke, Hardplatz, Güterbahnhof, Bäckeranlage, Helvetiaplatz, Stauffacher, Bahnhof Selnau, Stockerstrasse, Paradeplatz, Rennweg, Bahnhofstrasse/HB
+  - nur erfasst: Löwenbräu, Quellenstrasse, Limmatplatz, Museum für Gestaltung, Sihlquai/HB, Bahnhofquai/HB
+- **2020-10-12 – 2021-05-30** (33 Wo., gtfs-2020, gtfs-2022): Werdhölzli – Zoo, 26 Halte
+  - Version `tram-6@2019-11-25` (belegt): gleich
+- **2021-05-31 – 2021-11-28** (26 Wo., gtfs-2022) *vorübergehend*: Hardturm – Zoo, 21 Halte
+  - Version `tram-6@2019-11-25` (belegt): abweichend
+  - nur erfasst: Werdhölzli, Bändliweg, Grünaustrasse, Tüffenwies, Hardhof
+- **2021-11-29 – 2021-12-12** (2 Wo., gtfs-2022) *vorübergehend*: Werdhölzli – Zoo, 26 Halte
+  - Version `tram-6@2019-11-25` (belegt): gleich
+- **2021-12-13 – 2023-07-02** (81 Wo., gtfs-2022, gtfs-2023): Bahnhof Enge – Zoo, 16 Halte
+  - Version `tram-6@2021-12-12` (belegt): gleich
+- **2023-07-03 – 2023-07-09** (1 Wo., gtfs-2023) *vorübergehend*: Bahnhof Altstetten Nord – Zoo, 24 Halte
+  - Version `tram-6@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Bahnhof Altstetten Nord, Würzgraben, Aargauerstrasse, Sportweg, Toni-Areal, Technopark, Schiffbau, Escher-Wyss-Platz, Löwenbräu, Quellenstrasse, Limmatplatz, Museum für Gestaltung, Sihlquai/HB, Bahnhofquai/HB
+  - nur erfasst: Bahnhof Enge, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg, Bahnhofstrasse/HB
+- **2023-07-10 – 2025-07-13** (105 Wo., gtfs-2023, gtfs-2024, gtfs-2025): Bahnhof Enge – Zoo, 16 Halte
+  - Version `tram-6@2021-12-12` (belegt): gleich
+- **2025-07-14 – 2025-08-03** (3 Wo., gtfs-2025) *vorübergehend*: Bahnhof Stadelhofen – Zoo, 15 Halte
+  - Version `tram-6@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Bahnhof Stadelhofen, Bellevue, Helmhaus, Rathaus, Rudolf-Brun-Brücke
+  - nur erfasst: Bahnhof Enge, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg, Bahnhofstrasse/HB
+- **2025-08-04 – 2025-12-14** (19 Wo., gtfs-2025, gtfs-2026): Bahnhof Enge – Zoo, 16 Halte
+  - Version `tram-6@2021-12-12` (belegt): gleich
+- **2025-12-15 – 2026-04-12** (17 Wo., gtfs-2026): Bahnhofplatz/HB – Zoo, 11 Halte
+  - Version `tram-6@2025-12-14` (belegt): gleich
+- **2026-04-13 – 2026-04-19** (1 Wo., gtfs-2026) *vorübergehend*: Bahnhof Enge – Bahnhofplatz/HB, 10 Halte
+  - Version `tram-6@2025-12-14` (belegt): abweichend
+  - nur im Fahrplan: Bahnhof Enge, Rentenanstalt, Bürkliplatz, Bellevue, Kunsthaus, Kantonsschule
+  - nur erfasst: Platte, Voltastrasse, Kirche Fluntern, Toblerplatz, Zürichbergstrasse, Susenbergstrasse, Zoo
+- **2026-04-20 – 2026-12-13** (34 Wo., gtfs-2026): Bahnhofplatz/HB – Zoo, 11 Halte
+  - Version `tram-6@2025-12-14` (belegt): gleich
+
+## Linie 7
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Bahnhof Stettbach – Wollishoferplatz, 31 Halte
+  - Version `tram-7@anfang` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Bahnhof Stettbach – Wollishoferplatz, 31 Halte
+  - Version `tram-7@anfang` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Bahnhof Stettbach – Wollishoferplatz, 31 Halte
+  - Version `tram-7@anfang` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Bahnhof Stettbach – Wollishoferplatz, 31 Halte
+  - Version `tram-7@anfang` (belegt): gleich
+- **2018-12-03 – 2024-10-13** (306 Wo., gtfs-2019, gtfs-2020, gtfs-2022, gtfs-2023, gtfs-2024): Bahnhof Stettbach – Wollishoferplatz, 31 Halte
+  - Version `tram-7@anfang` (belegt): gleich
+- **2024-10-14 – 2024-10-20** (1 Wo., gtfs-2024) *vorübergehend*: Bahnhof Stettbach – Wollishoferplatz, 34 Halte
+  - Version `tram-7@anfang` (belegt): abweichend
+  - nur im Fahrplan: Universität Irchel, Langmauerstrasse, Letzistrasse, Kinkelstrasse, Seilbahn Rigiblick, Winkelriedstrasse, Haldenbach, ETH/Universitätsspital
+  - nur erfasst: Sonneggstrasse, Ottikerstrasse, Röslistrasse, Schaffhauserplatz, Guggachstrasse
+- **2024-10-21 – 2025-07-13** (38 Wo., gtfs-2024, gtfs-2025): Bahnhof Stettbach – Wollishoferplatz, 31 Halte
+  - Version `tram-7@anfang` (belegt): gleich
+- **2025-07-14 – 2025-07-27** (2 Wo., gtfs-2025) *vorübergehend*: Bahnhofstrasse/HB – Wollishoferplatz, 14 Halte
+  - Version `tram-7@anfang` (belegt): abweichend
+  - nur erfasst: Central, Haldenegg, Sonneggstrasse, Ottikerstrasse, Röslistrasse, Schaffhauserplatz, Guggachstrasse, Milchbuck, Tierspital, Waldgarten, Ueberlandpark, Schwamendingerplatz, Roswiesen, Glattwiesen, Probstei, Mattenhof, Bahnhof Stettbach
+- **2025-07-28 – 2026-12-13** (72 Wo., gtfs-2025, gtfs-2026): Bahnhof Stettbach – Wollishoferplatz, 31 Halte
+  - Version `tram-7@anfang` (belegt): gleich
+
+## Linie 8
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Hardplatz – Klusplatz, 16 Halte
+  - Version `tram-8@anfang` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Hardplatz – Klusplatz, 16 Halte
+  - Version `tram-8@anfang` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Hardplatz – Klusplatz, 16 Halte
+  - Version `tram-8@anfang` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Hardturm – Klusplatz, 24 Halte
+  - Version `tram-8@2017-12-10` (belegt): gleich
+- **2018-12-03 – 2020-07-12** (84 Wo., gtfs-2019, gtfs-2020): Hardturm – Klusplatz, 24 Halte
+  - Version `tram-8@2017-12-10` (belegt): gleich
+- **2020-07-13 – 2020-08-16** (5 Wo., gtfs-2020) *vorübergehend*: Escher-Wyss-Platz – Klusplatz, 20 Halte
+  - Version `tram-8@2017-12-10` (belegt): abweichend
+  - nur erfasst: Hardturm, Bernoulli-Häuser, Fischerweg, Förrlibuckstrasse
+- **2020-08-17 – 2021-02-14** (26 Wo., gtfs-2020, gtfs-2022): Hardturm – Klusplatz, 24 Halte
+  - Version `tram-8@2017-12-10` (belegt): gleich
+- **2021-02-15 – 2021-02-28** (2 Wo., gtfs-2022) *vorübergehend*: Hardturm – Klusplatz, 23 Halte
+  - Version `tram-8@2017-12-10` (belegt): abweichend
+  - nur im Fahrplan: Kunsthaus, Hottingerplatz
+  - nur erfasst: Bahnhof Stadelhofen, Kreuzplatz, Englischviertelstrasse
+- **2021-03-01 – 2021-05-30** (13 Wo., gtfs-2022) *vorübergehend*: Hardturm – Klusplatz, 24 Halte
+  - Version `tram-8@2017-12-10` (belegt): gleich
+- **2021-05-31 – 2021-07-25** (8 Wo., gtfs-2022) *vorübergehend*: Hardturm – Klusplatz, 23 Halte
+  - Version `tram-8@2017-12-10` (belegt): abweichend
+  - nur im Fahrplan: Kunsthaus, Hottingerplatz
+  - nur erfasst: Bahnhof Stadelhofen, Kreuzplatz, Englischviertelstrasse
+- **2021-07-26 – 2025-07-13** (207 Wo., gtfs-2022, gtfs-2023, gtfs-2024, gtfs-2025) *vorübergehend*: Hardturm – Klusplatz, 24 Halte
+  - Version `tram-8@2017-12-10` (belegt): gleich
+- **2025-07-14 – 2025-08-03** (3 Wo., gtfs-2025) *vorübergehend*: Hardturm – Klusplatz, 23 Halte
+  - Version `tram-8@2017-12-10` (belegt): abweichend
+  - nur im Fahrplan: Kunsthaus, Hottingerplatz
+  - nur erfasst: Bahnhof Stadelhofen, Kreuzplatz, Englischviertelstrasse
+- **2025-08-04 – 2025-10-05** (9 Wo., gtfs-2025) *vorübergehend*: Hardturm – Klusplatz, 24 Halte
+  - Version `tram-8@2017-12-10` (belegt): gleich
+- **2025-10-06 – 2025-11-02** (4 Wo., gtfs-2025) *vorübergehend*: Hardturm – Klusplatz, 23 Halte
+  - Version `tram-8@2017-12-10` (belegt): abweichend
+  - nur im Fahrplan: Kunsthaus, Hottingerplatz
+  - nur erfasst: Bahnhof Stadelhofen, Kreuzplatz, Englischviertelstrasse
+- **2025-11-03 – 2025-12-14** (6 Wo., gtfs-2025, gtfs-2026) *vorübergehend*: Hardturm – Klusplatz, 24 Halte
+  - Version `tram-8@2017-12-10` (belegt): gleich
+- **2025-12-15 – 2026-04-12** (17 Wo., gtfs-2026): Hardturm – Kirche Fluntern, 23 Halte
+  - Version `tram-8@2025-12-14` (belegt): gleich
+- **2026-04-13 – 2026-04-19** (1 Wo., gtfs-2026) *vorübergehend*: Bahnhof Enge – Hardturm, 15 Halte
+  - Version `tram-8@2025-12-14` (belegt): abweichend
+  - nur erfasst: Kirche Fluntern, Voltastrasse, Platte, Kantonsschule, Kunsthaus, Bellevue, Bürkliplatz, Rentenanstalt
+- **2026-04-20 – 2026-12-13** (34 Wo., gtfs-2026): Hardturm – Kirche Fluntern, 23 Halte
+  - Version `tram-8@2025-12-14` (belegt): gleich
+
+## Linie 9
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+  - Notiz der Version: Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Für 2010–2014 als unverändert angenommen.
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+  - Notiz der Version: Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Für 2010–2014 als unverändert angenommen.
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+  - Notiz der Version: Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Für 2010–2014 als unverändert angenommen.
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+  - Notiz der Version: Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Für 2010–2014 als unverändert angenommen.
+- **2018-12-03 – 2020-09-06** (92 Wo., gtfs-2019, gtfs-2020): Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+  - Notiz der Version: Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Für 2010–2014 als unverändert angenommen.
+- **2020-09-07 – 2020-11-22** (11 Wo., gtfs-2020) *vorübergehend*: Heuried – Hirzenbach, 31 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse, Langmauerstrasse
+- **2020-11-23 – 2022-04-24** (74 Wo., gtfs-2020, gtfs-2022): Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+  - Notiz der Version: Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Für 2010–2014 als unverändert angenommen.
+- **2022-04-25 – 2022-05-22** (4 Wo., gtfs-2022) *vorübergehend*: Hirzenbach – Triemli, 34 Halte
+  - Version `tram-9@anfang` (belegt): gleich
+- **2022-05-23 – 2022-05-29** (1 Wo., gtfs-2022) *vorübergehend*: Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+- **2022-05-30 – 2022-06-05** (1 Wo., gtfs-2022) *vorübergehend*: Hirzenbach – Triemli, 34 Halte
+  - Version `tram-9@anfang` (belegt): gleich
+- **2022-06-06 – 2022-06-12** (1 Wo., gtfs-2022) *vorübergehend*: Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+- **2022-06-13 – 2022-07-03** (3 Wo., gtfs-2022) *vorübergehend*: Hirzenbach – Triemli, 34 Halte
+  - Version `tram-9@anfang` (belegt): gleich
+- **2022-07-04 – 2022-07-24** (3 Wo., gtfs-2022) *vorübergehend*: Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+- **2022-07-25 – 2022-08-21** (4 Wo., gtfs-2022) *vorübergehend*: Hirzenbach – Triemli, 34 Halte
+  - Version `tram-9@anfang` (belegt): gleich
+- **2022-08-22 – 2023-07-02** (45 Wo., gtfs-2022, gtfs-2023): Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+  - Notiz der Version: Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Für 2010–2014 als unverändert angenommen.
+- **2023-07-03 – 2023-07-09** (1 Wo., gtfs-2023) *vorübergehend*: Hirzenbach – Klusplatz, 24 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur im Fahrplan: Hottingerplatz, Römerhof, Hölderlinstrasse, Klusplatz
+  - nur erfasst: Triemli, Schaufelbergerstrasse, Heuried, Talwiesenstrasse, Goldbrunnenplatz, Schmiede Wiedikon, Bahnhof Wiedikon, Werd, Stauffacher, Sihlstrasse, Paradeplatz, Kantonalbank, Bürkliplatz, Bellevue
+- **2023-07-10 – 2024-09-22** (63 Wo., gtfs-2023, gtfs-2024): Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+  - Notiz der Version: Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Für 2010–2014 als unverändert angenommen.
+- **2024-09-23 – 2024-09-29** (1 Wo., gtfs-2024) *vorübergehend*: Heuried – Hirzenbach, 30 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur im Fahrplan: Sihlpost/HB, Löwenplatz, Bahnhofplatz/HB, Central, Haldenegg
+  - nur erfasst: Triemli, Schaufelbergerstrasse, Sihlstrasse, Paradeplatz, Kantonalbank, Bürkliplatz, Bellevue, Kunsthaus, Kantonsschule
+- **2024-09-30 – 2026-06-14** (89 Wo., gtfs-2024, gtfs-2025, gtfs-2026): Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+  - Notiz der Version: Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Für 2010–2014 als unverändert angenommen.
+- **2026-06-15 – 2026-07-05** (3 Wo., gtfs-2026) *vorübergehend*: Hirzenbach – Triemli, 34 Halte
+  - Version `tram-9@anfang` (belegt): gleich
+- **2026-07-06 – 2026-12-13** (23 Wo., gtfs-2026): Heuried – Hirzenbach, 32 Halte
+  - Version `tram-9@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+  - Notiz der Version: Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Für 2010–2014 als unverändert angenommen.
+
+## Linie 10
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Fracht – Löwenplatz, 28 Halte
+  - Version `tram-10@anfang` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Fracht – Löwenplatz, 28 Halte
+  - Version `tram-10@anfang` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Fracht – Löwenplatz, 28 Halte
+  - Version `tram-10@anfang` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Fracht – Löwenplatz, 28 Halte
+  - Version `tram-10@anfang` (belegt): gleich
+- **2018-12-03 – 2019-11-24** (51 Wo., gtfs-2019): Fracht – Löwenplatz, 28 Halte
+  - Version `tram-10@anfang` (belegt): gleich
+- **2019-11-25 – 2020-03-29** (18 Wo., gtfs-2019, gtfs-2020): Bahnhof Enge – Fracht, 32 Halte
+  - Version `tram-10@2019-11-25` (belegt): gleich
+- **2020-03-30 – 2020-05-03** (5 Wo., gtfs-2020) *vorübergehend*: Bahnhofplatz/HB – Fracht, 27 Halte
+  - Version `tram-10@2019-11-25` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhof Enge, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg, Bahnhofstrasse/HB
+- **2020-05-04 – 2020-05-31** (4 Wo., gtfs-2020) *vorübergehend*: Bahnhofstrasse/HB – Fracht, 27 Halte
+  - Version `tram-10@2019-11-25` (belegt): abweichend
+  - nur erfasst: Bahnhof Enge, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg
+- **2020-06-01 – 2020-09-06** (14 Wo., gtfs-2020): Bahnhof Enge – Fracht, 32 Halte
+  - Version `tram-10@2019-11-25` (belegt): gleich
+- **2020-09-07 – 2020-11-22** (11 Wo., gtfs-2020) *vorübergehend*: Bahnhof Enge – Fracht, 31 Halte
+  - Version `tram-10@2019-11-25` (belegt): abweichend
+  - nur erfasst: Langmauerstrasse
+- **2020-11-23 – 2021-07-11** (33 Wo., gtfs-2020, gtfs-2022): Bahnhof Enge – Fracht, 32 Halte
+  - Version `tram-10@2019-11-25` (belegt): gleich
+- **2021-07-12 – 2021-08-22** (6 Wo., gtfs-2022) *vorübergehend*: Bahnhofplatz/HB – Fracht, 27 Halte
+  - Version `tram-10@2019-11-25` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhof Enge, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg, Bahnhofstrasse/HB
+- **2021-08-23 – 2021-10-03** (6 Wo., gtfs-2022) *vorübergehend*: Bahnhof Enge – Fracht, 32 Halte
+  - Version `tram-10@2019-11-25` (belegt): gleich
+- **2021-10-04 – 2021-10-24** (3 Wo., gtfs-2022) *vorübergehend*: Albisgütli – Fracht, 39 Halte
+  - Version `tram-10@2019-11-25` (belegt): abweichend
+  - nur im Fahrplan: Albisgütli, Strassenverkehrsamt, Uetlihof, Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse
+  - nur erfasst: Bahnhof Enge
+- **2021-10-25 – 2021-12-12** (7 Wo., gtfs-2022) *vorübergehend*: Bahnhof Enge – Fracht, 32 Halte
+  - Version `tram-10@2019-11-25` (belegt): gleich
+- **2021-12-13 – 2022-08-07** (34 Wo., gtfs-2022): Fracht – Löwenplatz, 28 Halte
+  - Version `tram-10@2021-12-12` (belegt): gleich
+- **2022-08-08 – 2022-08-14** (1 Wo., gtfs-2022) *vorübergehend*: Fracht – Heuried, 36 Halte
+  - Version `tram-10@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Sihlpost/HB, Stauffacher, Werd, Bahnhof Wiedikon, Schmiede Wiedikon, Goldbrunnenplatz, Talwiesenstrasse, Heuried
+- **2022-08-15 – 2025-07-13** (152 Wo., gtfs-2022, gtfs-2023, gtfs-2024, gtfs-2025): Fracht – Löwenplatz, 28 Halte
+  - Version `tram-10@2021-12-12` (belegt): gleich
+- **2025-07-14 – 2025-08-03** (3 Wo., gtfs-2025) *vorübergehend*: Bahnhof Tiefenbrunnen – Fracht, 37 Halte
+  - Version `tram-10@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Bahnhof Tiefenbrunnen, Wildbachstrasse, Fröhlichstrasse, Höschgasse, Feldeggstrasse, Kreuzstrasse, Opernhaus, Bellevue, Helmhaus, Rathaus, Rudolf-Brun-Brücke
+  - nur erfasst: Löwenplatz, Bahnhofplatz/HB
+- **2025-08-04 – 2025-12-07** (18 Wo., gtfs-2025): Fracht – Löwenplatz, 28 Halte
+  - Version `tram-10@2021-12-12` (belegt): gleich
+- **2025-12-08 – 2025-12-14** (1 Wo., gtfs-2026) *vorübergehend*: Bahnhofplatz/HB – Fracht, 27 Halte
+  - Version `tram-10@2021-12-12` (belegt): abweichend
+  - nur erfasst: Löwenplatz
+- **2025-12-15 – 2025-12-21** (1 Wo., gtfs-2026) *vorübergehend*: Bahnhofstrasse/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): gleich
+- **2025-12-22 – 2025-12-28** (1 Wo., gtfs-2026) *vorübergehend*: Bahnhofplatz/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2025-12-29 – 2026-03-29** (13 Wo., gtfs-2026) *vorübergehend*: Bahnhofstrasse/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): gleich
+- **2026-03-30 – 2026-04-26** (4 Wo., gtfs-2026) *vorübergehend*: Bahnhofplatz/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2026-04-27 – 2026-05-10** (2 Wo., gtfs-2026) *vorübergehend*: Bahnhofstrasse/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): gleich
+- **2026-05-11 – 2026-05-17** (1 Wo., gtfs-2026) *vorübergehend*: Bahnhofplatz/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2026-05-18 – 2026-06-14** (4 Wo., gtfs-2026) *vorübergehend*: Bahnhofstrasse/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): gleich
+- **2026-06-15 – 2026-06-21** (1 Wo., gtfs-2026) *vorübergehend*: Bahnhofplatz/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2026-06-22 – 2026-08-02** (6 Wo., gtfs-2026) *vorübergehend*: Bahnhofstrasse/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): gleich
+- **2026-08-03 – 2026-08-09** (1 Wo., gtfs-2026) *vorübergehend*: Bahnhofplatz/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2026-08-10 – 2026-10-04** (8 Wo., gtfs-2026) *vorübergehend*: Bahnhofstrasse/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): gleich
+- **2026-10-05 – 2026-10-11** (1 Wo., gtfs-2026) *vorübergehend*: Bahnhofplatz/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2026-10-12 – 2026-11-15** (5 Wo., gtfs-2026) *vorübergehend*: Bahnhofstrasse/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): gleich
+- **2026-11-16 – 2026-11-22** (1 Wo., gtfs-2026) *vorübergehend*: Bahnhofplatz/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2026-11-23 – 2026-12-13** (3 Wo., gtfs-2026) *vorübergehend*: Bahnhofstrasse/HB – Fracht, 27 Halte
+  - Version `tram-10@2025-12-14` (belegt): gleich
+
+## Linie 11
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Auzelg – Rehalp, 34 Halte
+  - Version `tram-11@2006-12-10` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Auzelg – Rehalp, 34 Halte
+  - Version `tram-11@2006-12-10` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Auzelg – Rehalp, 34 Halte
+  - Version `tram-11@2006-12-10` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Auzelg – Rehalp, 34 Halte
+  - Version `tram-11@2006-12-10` (belegt): gleich
+- **2018-12-03 – 2024-07-14** (293 Wo., gtfs-2019, gtfs-2020, gtfs-2022, gtfs-2023, gtfs-2024): Auzelg – Rehalp, 34 Halte
+  - Version `tram-11@2006-12-10` (belegt): gleich
+- **2024-07-15 – 2024-08-11** (4 Wo., gtfs-2024) *vorübergehend*: Auzelg – Rehalp, 33 Halte
+  - Version `tram-11@2006-12-10` (belegt): abweichend
+  - nur im Fahrplan: Röslistrasse, Ottikerstrasse, Sonneggstrasse, Haldenegg, Central, Rudolf-Brun-Brücke, Rathaus, Helmhaus
+  - nur erfasst: Bürkliplatz, Kantonalbank, Paradeplatz, Rennweg, Bahnhofstrasse/HB, Bahnhofquai/HB, Stampfenbachplatz, Beckenhof, Kronenstrasse
+- **2024-08-12 – 2024-10-13** (9 Wo., gtfs-2024): Auzelg – Rehalp, 34 Halte
+  - Version `tram-11@2006-12-10` (belegt): gleich
+- **2024-10-14 – 2024-10-20** (1 Wo., gtfs-2024) *vorübergehend*: Auzelg – Bucheggplatz, 12 Halte
+  - Version `tram-11@2006-12-10` (belegt): abweichend
+  - nur erfasst: Rehalp, Friedhof Enzenbühl, Balgrist, Burgwies, Wetlistrasse, Hedwigsteig, Hegibachplatz, Signaustrasse, Kreuzplatz, Bahnhof Stadelhofen, Bellevue, Bürkliplatz, Kantonalbank, Paradeplatz, Rennweg, Bahnhofstrasse/HB, Bahnhofquai/HB, Stampfenbachplatz, Beckenhof, Kronenstrasse, Schaffhauserplatz, Laubiweg
+- **2024-10-21 – 2025-07-13** (38 Wo., gtfs-2024, gtfs-2025): Auzelg – Rehalp, 34 Halte
+  - Version `tram-11@2006-12-10` (belegt): gleich
+- **2025-07-14 – 2025-08-03** (3 Wo., gtfs-2025) *vorübergehend*: Albisgütli – Rehalp, 24 Halte
+  - Version `tram-11@2006-12-10` (belegt): abweichend
+  - nur im Fahrplan: Albisgütli, Strassenverkehrsamt, Uetlihof, Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse, Tunnelstrasse, Stockerstrasse
+  - nur erfasst: Rennweg, Bahnhofstrasse/HB, Bahnhofquai/HB, Stampfenbachplatz, Beckenhof, Kronenstrasse, Schaffhauserplatz, Laubiweg, Bucheggplatz, Brunnenhof, Bad Allenmoos, Regensbergbrücke, Bahnhof Oerlikon, Sternen Oerlikon, Messe/Hallenstadion, Leutschenbach, Oerlikerhus, Glattpark, Fernsehstudio, Auzelg
+- **2025-08-04 – 2025-12-14** (19 Wo., gtfs-2025, gtfs-2026): Auzelg – Rehalp, 34 Halte
+  - Version `tram-11@2006-12-10` (belegt): gleich
+- **2025-12-15 – 2026-12-13** (52 Wo., gtfs-2026): Bahnhof Tiefenbrunnen – Central, 14 Halte
+  - Version `tram-11@2025-12-14` (belegt): gleich
+
+## Linie 12
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Bahnhof Stettbach – Fracht, 18 Halte
+  - Version `tram-12@2010-12-12` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Bahnhof Stettbach – Fracht, 18 Halte
+  - Version `tram-12@2010-12-12` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Bahnhof Stettbach – Fracht, 18 Halte
+  - Version `tram-12@2010-12-12` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Bahnhof Stettbach – Fracht, 18 Halte
+  - Version `tram-12@2010-12-12` (belegt): gleich
+- **2018-12-03 – 2026-12-13** (419 Wo., gtfs-2019, gtfs-2020, gtfs-2022, gtfs-2023, gtfs-2024, gtfs-2025, gtfs-2026): Bahnhof Stettbach – Fracht, 18 Halte
+  - Version `tram-12@2010-12-12` (belegt): gleich
+
+## Linie 13
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Albisgütli – Frankental, 30 Halte
+  - Version `tram-13@anfang` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Albisgütli – Frankental, 30 Halte
+  - Version `tram-13@anfang` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Albisgütli – Frankental, 30 Halte
+  - Version `tram-13@anfang` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Albisgütli – Frankental, 30 Halte
+  - Version `tram-13@anfang` (belegt): gleich
+- **2018-12-03 – 2020-10-04** (96 Wo., gtfs-2019, gtfs-2020): Albisgütli – Frankental, 30 Halte
+  - Version `tram-13@anfang` (belegt): gleich
+- **2020-10-05 – 2020-10-11** (1 Wo., gtfs-2020) *vorübergehend*: Albisgütli – Bahnhof Tiefenbrunnen, 25 Halte
+  - Version `tram-13@anfang` (belegt): abweichend
+  - nur im Fahrplan: Central, Rudolf-Brun-Brücke, Rathaus, Helmhaus, Bellevue, Opernhaus, Kreuzstrasse, Feldeggstrasse, Höschgasse, Fröhlichstrasse, Wildbachstrasse, Bahnhof Tiefenbrunnen
+  - nur erfasst: Bahnhofquai/HB, Sihlquai/HB, Museum für Gestaltung, Limmatplatz, Quellenstrasse, Löwenbräu, Escher-Wyss-Platz, Wipkingerplatz, Waidfussweg, Eschergutweg, Alte Trotte, Schwert, Meierhofplatz, Zwielplatz, Wartau, Winzerstrasse, Frankental
+- **2020-10-12 – 2021-07-11** (39 Wo., gtfs-2020, gtfs-2022): Albisgütli – Frankental, 30 Halte
+  - Version `tram-13@anfang` (belegt): gleich
+- **2021-07-12 – 2021-07-18** (1 Wo., gtfs-2022) *vorübergehend*: Bahnhof Enge – Frankental, 23 Halte
+  - Version `tram-13@anfang` (belegt): abweichend
+  - nur im Fahrplan: Bahnhof Enge
+  - nur erfasst: Albisgütli, Strassenverkehrsamt, Uetlihof, Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse
+- **2021-07-19 – 2021-07-25** (1 Wo., gtfs-2022) *vorübergehend*: Albisgütli – Bahnhof Enge, 9 Halte
+  - Version `tram-13@anfang` (belegt): abweichend
+  - nur im Fahrplan: Bahnhof Enge
+  - nur erfasst: Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg, Bahnhofstrasse/HB, Bahnhofquai/HB, Sihlquai/HB, Museum für Gestaltung, Limmatplatz, Quellenstrasse, Löwenbräu, Escher-Wyss-Platz, Wipkingerplatz, Waidfussweg, Eschergutweg, Alte Trotte, Schwert, Meierhofplatz, Zwielplatz, Wartau, Winzerstrasse, Frankental
+- **2021-07-26 – 2021-08-22** (4 Wo., gtfs-2022) *vorübergehend*: Bahnhof Enge – Frankental, 23 Halte
+  - Version `tram-13@anfang` (belegt): abweichend
+  - nur im Fahrplan: Bahnhof Enge
+  - nur erfasst: Albisgütli, Strassenverkehrsamt, Uetlihof, Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse
+- **2021-08-23 – 2022-07-17** (47 Wo., gtfs-2022): Albisgütli – Frankental, 30 Halte
+  - Version `tram-13@anfang` (belegt): gleich
+- **2022-07-18 – 2023-08-20** (57 Wo., gtfs-2022, gtfs-2023) *vorübergehend*: Albisgütli – Hardturm, 24 Halte
+  - Version `tram-13@anfang` (belegt): abweichend
+  - nur im Fahrplan: Förrlibuckstrasse, Fischerweg, Bernoulli-Häuser, Hardturm
+  - nur erfasst: Wipkingerplatz, Waidfussweg, Eschergutweg, Alte Trotte, Schwert, Meierhofplatz, Zwielplatz, Wartau, Winzerstrasse, Frankental
+- **2023-08-21 – 2025-07-13** (99 Wo., gtfs-2023, gtfs-2024, gtfs-2025): Albisgütli – Frankental, 30 Halte
+  - Version `tram-13@anfang` (belegt): gleich
+- **2025-07-14 – 2025-08-03** (3 Wo., gtfs-2025) *vorübergehend*: Auzelg – Frankental, 33 Halte
+  - Version `tram-13@anfang` (belegt): abweichend
+  - nur im Fahrplan: Auzelg, Fernsehstudio, Glattpark, Oerlikerhus, Leutschenbach, Messe/Hallenstadion, Sternen Oerlikon, Bahnhof Oerlikon, Regensbergbrücke, Bad Allenmoos, Brunnenhof, Bucheggplatz, Laubiweg, Schaffhauserplatz, Kronenstrasse, Beckenhof, Stampfenbachplatz
+  - nur erfasst: Albisgütli, Strassenverkehrsamt, Uetlihof, Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg, Bahnhofstrasse/HB, Bahnhofquai/HB
+- **2025-08-04 – 2025-12-14** (19 Wo., gtfs-2025, gtfs-2026): Albisgütli – Frankental, 30 Halte
+  - Version `tram-13@anfang` (belegt): gleich
+- **2025-12-15 – 2026-12-13** (52 Wo., gtfs-2026): Albisgütli – Bahnhofstrasse/HB, 13 Halte
+  - Version `tram-13@2025-12-14` (belegt): gleich
+
+## Linie 14
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Seebach – Triemli, 27 Halte
+  - Version `tram-14@anfang` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Seebach – Triemli, 27 Halte
+  - Version `tram-14@anfang` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Seebach – Triemli, 27 Halte
+  - Version `tram-14@anfang` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Seebach – Triemli, 27 Halte
+  - Version `tram-14@anfang` (belegt): gleich
+- **2018-12-03 – 2020-09-06** (92 Wo., gtfs-2019, gtfs-2020): Seebach – Triemli, 27 Halte
+  - Version `tram-14@anfang` (belegt): gleich
+- **2020-09-07 – 2020-09-20** (2 Wo., gtfs-2020) *vorübergehend*: Heuried – Seebach, 25 Halte
+  - Version `tram-14@anfang` (belegt): abweichend
+  - nur erfasst: Triemli, Schaufelbergerstrasse
+- **2020-09-21 – 2024-07-14** (199 Wo., gtfs-2020, gtfs-2022, gtfs-2023, gtfs-2024): Seebach – Triemli, 27 Halte
+  - Version `tram-14@anfang` (belegt): gleich
+- **2024-07-15 – 2024-08-11** (4 Wo., gtfs-2024) *vorübergehend*: Seebach – Triemli, 28 Halte
+  - Version `tram-14@anfang` (belegt): abweichend
+  - nur im Fahrplan: Röslistrasse, Ottikerstrasse, Sonneggstrasse, Haldenegg, Central
+  - nur erfasst: Bahnhofquai/HB, Stampfenbachplatz, Beckenhof, Kronenstrasse
+- **2024-08-12 – 2024-10-13** (9 Wo., gtfs-2024): Seebach – Triemli, 27 Halte
+  - Version `tram-14@anfang` (belegt): gleich
+- **2024-10-14 – 2024-10-20** (1 Wo., gtfs-2024) *vorübergehend*: Seebach – Triemli, 31 Halte
+  - Version `tram-14@anfang` (belegt): abweichend
+  - nur im Fahrplan: Universität Irchel, Langmauerstrasse, Letzistrasse, Kinkelstrasse, Seilbahn Rigiblick, Winkelriedstrasse, Haldenbach, ETH/Universitätsspital, Haldenegg, Central
+  - nur erfasst: Bahnhofquai/HB, Stampfenbachplatz, Beckenhof, Kronenstrasse, Schaffhauserplatz, Guggachstrasse
+- **2024-10-21 – 2025-07-13** (38 Wo., gtfs-2024, gtfs-2025): Seebach – Triemli, 27 Halte
+  - Version `tram-14@anfang` (belegt): gleich
+- **2025-07-14 – 2025-07-27** (2 Wo., gtfs-2025) *vorübergehend*: Bahnhofplatz/HB – Triemli, 12 Halte
+  - Version `tram-14@anfang` (belegt): abweichend
+  - nur erfasst: Bahnhofquai/HB, Stampfenbachplatz, Beckenhof, Kronenstrasse, Schaffhauserplatz, Guggachstrasse, Milchbuck, Hirschwiesenstrasse, Berninaplatz, Salersteig, Sternen Oerlikon, Bahnhof Oerlikon Ost, Felsenrainstrasse, Seebacherplatz, Seebach
+- **2025-07-28 – 2025-12-14** (20 Wo., gtfs-2025, gtfs-2026) *vorübergehend*: Seebach – Triemli, 27 Halte
+  - Version `tram-14@anfang` (belegt): gleich
+- **2025-12-15 – 2026-12-13** (52 Wo., gtfs-2026): Bahnhofplatz/HB – Triemli, 12 Halte
+  - Version `tram-14@2025-12-14` (belegt): gleich
+
+## Linie 15
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Bucheggplatz – Klusplatz, 18 Halte
+  - Version `tram-15@anfang` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Bucheggplatz – Klusplatz, 18 Halte
+  - Version `tram-15@anfang` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Bucheggplatz – Klusplatz, 18 Halte
+  - Version `tram-15@anfang` (belegt): gleich
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Bahnhof Stadelhofen – Bucheggplatz, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): gleich
+- **2018-12-03 – 2020-05-03** (74 Wo., gtfs-2019, gtfs-2020): Bahnhof Stadelhofen – Bucheggplatz, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): gleich
+- **2020-06-01 – 2021-10-17** (72 Wo., gtfs-2020, gtfs-2022): Bahnhof Stadelhofen – Bucheggplatz, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): gleich
+- **2021-10-18 – 2021-10-24** (1 Wo., gtfs-2022) *vorübergehend*: Bucheggplatz – Rehalp, 22 Halte
+  - Version `tram-15@2017-12-10` (belegt): abweichend
+  - nur im Fahrplan: Kreuzplatz, Signaustrasse, Hegibachplatz, Hedwigsteig, Wetlistrasse, Burgwies, Balgrist, Friedhof Enzenbühl, Rehalp
+- **2021-10-25 – 2022-01-09** (11 Wo., gtfs-2022): Bahnhof Stadelhofen – Bucheggplatz, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): gleich
+- **2022-03-14 – 2022-10-09** (30 Wo., gtfs-2022): Bahnhof Stadelhofen – Bucheggplatz, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): gleich
+- **2023-05-01 – 2024-07-14** (63 Wo., gtfs-2023, gtfs-2024): Bahnhof Stadelhofen – Bucheggplatz, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): gleich
+- **2024-08-05 – 2024-09-22** (7 Wo., gtfs-2024) *vorübergehend*: Bahnhof Stadelhofen – Bucheggplatz, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): gleich
+- **2024-09-30 – 2024-10-13** (2 Wo., gtfs-2024) *vorübergehend*: Bahnhof Stadelhofen – Bucheggplatz, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): gleich
+- **2024-10-21 – 2025-03-09** (20 Wo., gtfs-2024, gtfs-2025): Bahnhof Stadelhofen – Bucheggplatz, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): gleich
+- **2025-03-10 – 2025-03-23** (2 Wo., gtfs-2025) *vorübergehend*: Bucheggplatz – Rehalp, 22 Halte
+  - Version `tram-15@2017-12-10` (belegt): abweichend
+  - nur im Fahrplan: Kreuzplatz, Signaustrasse, Hegibachplatz, Hedwigsteig, Wetlistrasse, Burgwies, Balgrist, Friedhof Enzenbühl, Rehalp
+- **2025-03-24 – 2025-06-01** (10 Wo., gtfs-2025): Bahnhof Stadelhofen – Bucheggplatz, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): gleich
+- **2025-06-02 – 2025-06-08** (1 Wo., gtfs-2025) *vorübergehend*: Bahnhof Stadelhofen – Milchbuck, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): abweichend
+  - nur im Fahrplan: Guggachstrasse, Milchbuck
+  - nur erfasst: Bucheggplatz, Laubiweg
+- **2025-06-09 – 2025-06-15** (1 Wo., gtfs-2025) *vorübergehend*: Bahnhof Stadelhofen – Bucheggplatz, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): gleich
+- **2025-06-16 – 2025-07-13** (4 Wo., gtfs-2025) *vorübergehend*: Bahnhof Stadelhofen – Milchbuck, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): abweichend
+  - nur im Fahrplan: Guggachstrasse, Milchbuck
+  - nur erfasst: Bucheggplatz, Laubiweg
+- **2025-07-14 – 2025-08-03** (3 Wo., gtfs-2025) *vorübergehend*: Bahnhof Stettbach – Klusplatz, 27 Halte
+  - Version `tram-15@2017-12-10` (belegt): abweichend
+  - nur im Fahrplan: Bahnhof Stettbach, Mattenhof, Probstei, Glattwiesen, Roswiesen, Schwamendingerplatz, Ueberlandpark, Waldgarten, Tierspital, Milchbuck, Guggachstrasse, Kreuzplatz, Englischviertelstrasse, Römerhof, Hölderlinstrasse, Klusplatz
+  - nur erfasst: Bucheggplatz, Laubiweg
+- **2025-08-04 – 2025-12-14** (19 Wo., gtfs-2025, gtfs-2026): Bahnhof Stadelhofen – Milchbuck, 13 Halte
+  - Version `tram-15@2017-12-10` (belegt): abweichend
+  - nur im Fahrplan: Guggachstrasse, Milchbuck
+  - nur erfasst: Bucheggplatz, Laubiweg
+  - Notiz der Version: Wendet neu am Bahnhof Stadelhofen (längere Fahrzeuge auf Linie 8). August bis Dezember 2025 vorübergehend bis Milchbuck statt Bucheggplatz.
+- **2025-12-15 – 2026-12-13** (52 Wo., gtfs-2026): Bahnhof Tiefenbrunnen – Bahnhofstrasse/HB, 13 Halte
+  - Version `tram-15@2025-12-14` (belegt): gleich
+
+## Linie 17
+
+- **2015-09-28 – 2015-10-04** (1 Wo., vbz-fahrzeiten-2015): Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2011-12-11` (belegt): gleich
+- **2016-05-02 – 2016-05-08** (1 Wo., vbz-fahrzeiten-2016): Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2011-12-11` (belegt): gleich
+- **2017-05-01 – 2017-05-07** (1 Wo., vbz-fahrzeiten-2017): Bahnhofplatz/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2011-12-11` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+  - Notiz der Version: Neue Linie, ersetzt die Linie 4E. Fahrplandaten belegen den Weg ab 2015 (bis 2018 Wendeschlaufe über Gessnerallee; in der Stichwoche Mai 2017 ab Bahnhofplatz/HB).
+- **2018-04-30 – 2018-05-06** (1 Wo., vbz-fahrzeiten-2018): Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2011-12-11` (belegt): gleich
+- **2018-12-03 – 2019-06-30** (30 Wo., gtfs-2019): Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2011-12-11` (belegt): gleich
+- **2019-07-01 – 2019-07-07** (1 Wo., gtfs-2019) *vorübergehend*: Bucheggplatz – Werdhölzli, 24 Halte
+  - Version `tram-17@2011-12-11` (belegt): abweichend
+  - nur im Fahrplan: Bucheggplatz, Laubiweg, Schaffhauserplatz, Röslistrasse, Ottikerstrasse, Sonneggstrasse, Haldenegg, Central
+  - nur erfasst: Bahnhofstrasse/HB
+- **2019-07-08 – 2019-07-14** (1 Wo., gtfs-2019) *vorübergehend*: Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2011-12-11` (belegt): gleich
+- **2019-07-15 – 2019-09-01** (7 Wo., gtfs-2019) *vorübergehend*: Albisgütli – Werdhölzli, 29 Halte
+  - Version `tram-17@2011-12-11` (belegt): abweichend
+  - nur im Fahrplan: Albisgütli, Strassenverkehrsamt, Uetlihof, Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg
+- **2019-09-02 – 2019-09-08** (1 Wo., gtfs-2019) *vorübergehend*: Laubegg – Werdhölzli, 26 Halte
+  - Version `tram-17@2011-12-11` (belegt): abweichend
+  - nur im Fahrplan: Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg
+- **2019-09-09 – 2019-11-17** (10 Wo., gtfs-2019): Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2011-12-11` (belegt): gleich
+- **2019-11-18 – 2019-11-24** (1 Wo., gtfs-2019) *vorübergehend*: Bahnhofplatz/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2011-12-11` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2021-12-06 – 2021-12-12** (1 Wo., gtfs-2022) *vorübergehend*: Bucheggplatz – Werdhölzli, 24 Halte
+  - keine erfasste Version
+- **2021-12-13 – 2022-07-24** (32 Wo., gtfs-2022): Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2022-07-25 – 2022-08-07** (2 Wo., gtfs-2022) *vorübergehend*: Albisgütli – Werdhölzli, 29 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Albisgütli, Strassenverkehrsamt, Uetlihof, Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg
+- **2022-08-08 – 2022-08-14** (1 Wo., gtfs-2022) *vorübergehend*: Bahnhofplatz/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2022-08-15 – 2022-09-04** (3 Wo., gtfs-2022) *vorübergehend*: Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2022-09-05 – 2022-09-11** (1 Wo., gtfs-2022) *vorübergehend*: Laubegg – Werdhölzli, 26 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg
+- **2022-09-12 – 2023-04-16** (31 Wo., gtfs-2022, gtfs-2023): Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2023-04-17 – 2023-04-23** (1 Wo., gtfs-2023) *vorübergehend*: Bahnhofplatz/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2023-04-24 – 2023-07-02** (10 Wo., gtfs-2023): Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2023-07-03 – 2023-07-09** (1 Wo., gtfs-2023) *vorübergehend*: Bucheggplatz – Werdhölzli, 24 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Bucheggplatz, Laubiweg, Schaffhauserplatz, Röslistrasse, Ottikerstrasse, Sonneggstrasse, Haldenegg, Central
+  - nur erfasst: Bahnhofstrasse/HB
+- **2023-07-10 – 2023-07-30** (3 Wo., gtfs-2023) *vorübergehend*: Albisgütli – Werdhölzli, 29 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Albisgütli, Strassenverkehrsamt, Uetlihof, Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg
+- **2023-07-31 – 2023-08-06** (1 Wo., gtfs-2023) *vorübergehend*: Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2023-08-07 – 2023-08-13** (1 Wo., gtfs-2023) *vorübergehend*: Bahnhofplatz/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2023-08-14 – 2023-08-20** (1 Wo., gtfs-2023) *vorübergehend*: Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2023-08-21 – 2023-09-10** (3 Wo., gtfs-2023) *vorübergehend*: Albisgütli – Werdhölzli, 29 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Albisgütli, Strassenverkehrsamt, Uetlihof, Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg
+- **2023-09-11 – 2024-08-04** (47 Wo., gtfs-2023, gtfs-2024): Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2024-08-05 – 2024-08-11** (1 Wo., gtfs-2024) *vorübergehend*: Bahnhofplatz/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2024-08-12 – 2024-09-01** (3 Wo., gtfs-2024) *vorübergehend*: Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2024-09-02 – 2024-09-08** (1 Wo., gtfs-2024) *vorübergehend*: Laubegg – Werdhölzli, 26 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg
+- **2024-09-09 – 2024-09-22** (2 Wo., gtfs-2024) *vorübergehend*: Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2024-09-23 – 2024-09-29** (1 Wo., gtfs-2024) *vorübergehend*: Bucheggplatz – Werdhölzli, 24 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Bucheggplatz, Laubiweg, Schaffhauserplatz, Röslistrasse, Ottikerstrasse, Sonneggstrasse, Haldenegg, Central
+  - nur erfasst: Bahnhofstrasse/HB
+- **2024-09-30 – 2024-10-06** (1 Wo., gtfs-2024) *vorübergehend*: Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2024-10-07 – 2024-10-20** (2 Wo., gtfs-2024) *vorübergehend*: Rehalp – Werdhölzli, 32 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Rehalp, Friedhof Enzenbühl, Balgrist, Burgwies, Wetlistrasse, Hedwigsteig, Hegibachplatz, Signaustrasse, Kreuzplatz, Bahnhof Stadelhofen, Bellevue, Bürkliplatz, Kantonalbank, Paradeplatz, Rennweg
+- **2024-10-21 – 2025-07-06** (37 Wo., gtfs-2024, gtfs-2025): Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2025-07-07 – 2025-07-27** (3 Wo., gtfs-2025) *vorübergehend*: Bucheggplatz – Werdhölzli, 21 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Bucheggplatz, Laubiweg, Schaffhauserplatz, Kronenstrasse, Beckenhof, Stampfenbachplatz
+  - nur erfasst: Bahnhofstrasse/HB, Bahnhofquai/HB
+- **2025-07-28 – 2025-08-03** (1 Wo., gtfs-2025) *vorübergehend*: Milchbuck – Werdhölzli, 21 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Milchbuck, Guggachstrasse, Schaffhauserplatz, Kronenstrasse, Beckenhof, Stampfenbachplatz
+  - nur erfasst: Bahnhofstrasse/HB, Bahnhofquai/HB
+- **2025-08-04 – 2025-08-10** (1 Wo., gtfs-2025) *vorübergehend*: Bahnhofplatz/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Bahnhofplatz/HB
+  - nur erfasst: Bahnhofstrasse/HB
+- **2025-08-11 – 2025-09-07** (4 Wo., gtfs-2025) *vorübergehend*: Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2025-09-08 – 2025-09-14** (1 Wo., gtfs-2025) *vorübergehend*: Laubegg – Werdhölzli, 26 Halte
+  - Version `tram-17@2021-12-12` (belegt): abweichend
+  - nur im Fahrplan: Laubegg, Saalsporthalle, Sihlcity Nord, Waffenplatzstrasse, Bahnhof Enge/Bederstrasse, Tunnelstrasse, Stockerstrasse, Paradeplatz, Rennweg
+- **2025-09-15 – 2025-12-14** (13 Wo., gtfs-2025, gtfs-2026): Bahnhofstrasse/HB – Werdhölzli, 17 Halte
+  - Version `tram-17@2021-12-12` (belegt): gleich
+- **2025-12-15 – 2026-12-13** (52 Wo., gtfs-2026): Bucheggplatz – Werdhölzli, 21 Halte
+  - Version `tram-17@2025-12-14` (belegt): gleich
+
+## Linie 20
+
+- **2025-12-08 – 2026-12-13** (53 Wo., gtfs-2026): Bahnhof Altstetten – Killwangen Bahnhof, 27 Halte
+  - Version `tram-20@2022-12-11` (belegt): gleich
+
+## Linie 50
+
+- **2025-12-08 – 2026-07-19** (32 Wo., gtfs-2026): Auzelg – Frankental, 33 Halte
+  - Version `tram-50@2025-12-14` (belegt): gleich
+- **2026-07-20 – 2026-08-09** (3 Wo., gtfs-2026) *vorübergehend*: Auzelg – Frankental, 32 Halte
+  - Version `tram-50@2025-12-14` (belegt): abweichend
+  - nur erfasst: Zwielplatz
+- **2026-08-10 – 2026-12-13** (18 Wo., gtfs-2026): Auzelg – Frankental, 33 Halte
+  - Version `tram-50@2025-12-14` (belegt): gleich
+
+## Linie 51
+
+- **2025-12-08 – 2026-12-13** (53 Wo., gtfs-2026): Bahnhof Altstetten Nord – Seebach, 27 Halte
+  - Version `tram-51@2025-12-14` (belegt): gleich
+
+## Nicht erfasste Linien
+
+Im Fahrplan als Tram geführt, im Archiv (noch) keine Linie:
+
+- **16**: 2026-03-09 – 2026-03-15 (Bellevue – Rehalp); 2026-04-27 – 2026-07-05 (Laubegg – Milchbuck); 2026-07-06 – 2026-07-12 (Klusplatz – Laubegg); 2026-07-13 – 2026-10-18 (Laubegg – Milchbuck)
+- **18**: 2024-06-24 – 2024-06-30 (Bahnhof Stadelhofen – Letzigrund); 2024-07-08 – 2024-07-14 (Bahnhof Stadelhofen – Letzigrund); 2024-09-02 – 2024-09-08 (Bahnhof Stadelhofen – Letzigrund)
+- **19**: 2019-05-06 – 2019-05-12 (Haldenegg – Letzigrund); 2019-06-17 – 2019-06-23 (Haldenegg – Letzigrund); 2019-07-08 – 2019-07-14 (Haldenegg – Letzigrund); 2019-07-29 – 2019-08-04 (Haldenegg – Letzigrund); 2019-08-26 – 2019-09-01 (Haldenegg – Letzigrund); 2020-04-06 – 2020-05-03 (Bahnhof Enge – Bahnhofstrasse/HB); 2022-05-16 – 2022-05-22 (Bahnhofstrasse/HB – Zoo); 2022-05-30 – 2022-06-05 (Haldenegg – Letzigrund); 2022-07-11 – 2022-07-17 (Haldenegg – Letzigrund); 2022-08-15 – 2022-08-21 (Haldenegg – Letzigrund); 2022-09-05 – 2022-09-18 (Haldenegg – Letzigrund); 2023-06-12 – 2023-06-18 (Haldenegg – Letzigrund); 2023-06-26 – 2023-07-02 (Haldenegg – Letzigrund); 2023-08-28 – 2023-09-10 (Haldenegg – Letzigrund); 2023-10-16 – 2023-10-22 (Bahnhof Stadelhofen – Bahnhof Tiefenbrunnen); 2024-03-25 – 2024-03-31 (Bahnhof Stadelhofen – Bahnhof Tiefenbrunnen); 2024-06-24 – 2024-06-30 (Haldenegg – Letzigrund); 2024-07-08 – 2024-07-21 (Haldenegg – Letzigrund); 2024-09-02 – 2024-09-08 (Haldenegg – Letzigrund); 2025-05-19 – 2025-05-25 (Bahnhof Stadelhofen – Bahnhof Tiefenbrunnen); 2025-05-26 – 2025-06-01 (Haldenegg – Letzigrund); 2025-06-30 – 2025-07-06 (Haldenegg – Letzigrund); 2025-07-07 – 2025-07-13 (Bahnhof Stadelhofen – Letzigrund); 2025-07-14 – 2025-07-27 (Bahnhofplatz/HB – Letzigrund); 2025-07-28 – 2025-08-03 (Haldenegg – Letzigrund); 2025-08-25 – 2025-08-31 (Haldenegg – Letzigrund)
+- **E**: 2024-08-19 – 2024-10-06 (Bahnhof Oerlikon Ost – Universität Irchel); 2024-10-21 – 2024-12-22 (Bahnhof Oerlikon Ost – Universität Irchel); 2025-01-06 – 2025-02-09 (Bahnhof Oerlikon Ost – Universität Irchel); 2025-02-24 – 2025-04-20 (Bahnhof Oerlikon Ost – Universität Irchel); 2025-05-05 – 2025-07-13 (Bahnhof Oerlikon Ost – Universität Irchel); 2025-08-18 – 2025-10-05 (Bahnhof Oerlikon Ost – Universität Irchel); 2025-10-20 – 2025-12-21 (Bahnhof Oerlikon Ost – Universität Irchel); 2026-01-05 – 2026-02-08 (Bahnhof Oerlikon Ost – Universität Irchel); 2026-02-23 – 2026-04-19 (Bahnhof Oerlikon Ost – Universität Irchel); 2026-05-04 – 2026-05-24 (Bahnhof Oerlikon Ost – Universität Irchel); 2026-05-25 – 2026-05-31 (Haldenegg – Letzigrund); 2026-06-01 – 2026-06-14 (Bahnhof Oerlikon Ost – Universität Irchel); 2026-06-15 – 2026-06-21 (Haldenegg – Letzigrund); 2026-06-22 – 2026-06-28 (Bahnhof Oerlikon Ost – Universität Irchel); 2026-06-29 – 2026-07-05 (Haldenegg – Letzigrund); 2026-07-06 – 2026-07-12 (Bahnhof Oerlikon Ost – Universität Irchel); 2026-07-13 – 2026-07-19 (Haldenegg – Letzigrund); 2026-08-17 – 2026-08-23 (Bahnhof Oerlikon Ost – Universität Irchel); 2026-08-24 – 2026-08-30 (Haldenegg – Letzigrund); 2026-08-31 – 2026-10-04 (Bahnhof Oerlikon Ost – Universität Irchel); 2026-10-19 – 2026-12-13 (Bahnhof Oerlikon Ost – Universität Irchel)
+
+## Unbekannte Haltestellennamen
+
+In `data/linien.yaml` unter `fahrplan_alias` zuordnen oder als neue Haltestelle erfassen.
+
+- Zürich, Frohburg (4975 Fahrten)
+- Zürich, Friedrichstrasse (4974 Fahrten)
+- Zürich, Lehenstrasse (4545 Fahrten)
+- Zürich, Rebbergsteig (4545 Fahrten)
+- Zürich, Kempfhofsteig (4545 Fahrten)
+- Zürich, Zwinglihaus (918 Fahrten)
+- Zürich, Bertastrasse (918 Fahrten)
+- Zürich, Friedhof Sihlfeld (918 Fahrten)
+- Zürich, Bircher-Benner (532 Fahrten)
+- Zürich, Riedhofstrasse (474 Fahrten)
+- Zürich, Geeringstrasse (474 Fahrten)
+- Zürich, Neumühlequai (266 Fahrten)
+- Forch, Bahnhof (131 Fahrten)
+- Neue Forch (131 Fahrten)
+- Maiacher, Station (131 Fahrten)
+- Zumikon (131 Fahrten)
+- Zumikon, Waltikon (131 Fahrten)
+- Zollikerberg (131 Fahrten)
+- Spital Zollikerberg (131 Fahrten)
+- Waldburg, Station (66 Fahrten)
+- Waldburg (65 Fahrten)
+- Zürich, Usteristrasse (25 Fahrten)
