@@ -1,0 +1,29 @@
+:root {
+  --schrift: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  --papier: #f8f6f1;
+  --tinte: #1d1d1b;
+  --grau: #77746d;
+  --rand: #e0dcd2;
+  --akzent: #1d1d1b;
+  --belegt: #2f7d4f;
+  --abgeleitet: #a86a12;
+  --unsicher: #b83a3a;
+  color-scheme: light;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--papier);
+  color: var(--tinte);
+  font-family: var(--schrift);
+  -webkit-font-smoothing: antialiased;
+}
+button {
+  font-family: inherit;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #2b6cb0;
+  outline-offset: 2px;
+}
