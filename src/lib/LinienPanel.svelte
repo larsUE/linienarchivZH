@@ -44,7 +44,7 @@
     <button class="zurueck" onclick={onschliessen} aria-label="Zurück zur Übersicht">←</button>
     <LinienBadge {linie} gross />
     <div class="titel">
-      <h2>{linie.art === 'baulinie' ? 'Baulinie' : 'Tram'} {linie.nummer}</h2>
+      <h2>{{ baulinie: 'Baulinie', bus: 'Bus' }[linie.art] ?? 'Tram'} {linie.nummer}</h2>
       {#if endpunkte}
         <p>{endpunkte[0]} – {endpunkte[1]}</p>
       {:else}
@@ -62,6 +62,10 @@
       </div>
     </div>
     <div class="band" aria-label="Versionen im Zeitverlauf" style:--n={netz.jahre.length}>
+      {#if (netz.erfasstAb[linie.gruppe] ?? start) > start}
+        <!-- Jahre ohne Daten für dieses Verkehrsmittel (Busse vor 2015) -->
+        <span class="nicht-erfasst" style:width="{pos(`${netz.erfasstAb[linie.gruppe]}-01-01`, 0) * 100}%" title="vor {netz.erfasstAb[linie.gruppe]} nicht erfasst"></span>
+      {/if}
       {#each versionen as v (v.id)}
         {@const a = pos(v.von, 0)}
         {@const b = pos(v.bis, 1)}
@@ -87,7 +91,7 @@
       <p class="zeitraum">{zeitraumText(aktuell)}</p>
       <p>
         <span class="status {aktuell.status}">{STATUS[aktuell.status].text}</span>
-        <span class="still">{STATUS[aktuell.status].erklaerung}</span>
+        <span class="still">{linie.art === 'bus' && aktuell.status === 'belegt' ? 'Linienweg und Haltestellen aus den Fahrplandaten.' : STATUS[aktuell.status].erklaerung}</span>
       </p>
       {#if aktuell.notiz}<p>{aktuell.notiz}</p>{/if}
       <p class="quellen">
@@ -208,6 +212,13 @@
     opacity: 1;
     top: 0;
     bottom: 0;
+  }
+  .nicht-erfasst {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: repeating-linear-gradient(135deg, transparent 0 4px, rgb(0 0 0 / 0.08) 4px 5px);
   }
   .marke {
     position: absolute;

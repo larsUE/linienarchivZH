@@ -12,9 +12,10 @@
   class="badge"
   class:gross
   class:bau={linie.art === 'baulinie'}
+  class:bus={linie.art === 'bus'}
   style:background={linie.art === 'baulinie' ? 'white' : linie.farbe}
   style:color={linie.art === 'baulinie' ? linie.farbe : hell ? '#1d1d1b' : 'white'}
-  style:border-color={linie.farbe}>{linie.nummer}</span
+  style:border-color={linie.art === 'bus' && hell ? '#55524c' : linie.farbe}>{linie.nummer}</span
 >
 
 <style>
@@ -39,5 +40,13 @@
   }
   .bau {
     border-style: dashed;
+  }
+  /* Busse: abgerundet, helle Linienfarben (meist weiss) mit dunklem Rand */
+  .bus {
+    border-radius: 10px;
+    border-width: 1.5px;
+  }
+  .bus.gross {
+    border-radius: 17px;
   }
 </style>

@@ -1,4 +1,4 @@
-# Abgleich Fahrplandaten – erfasste Versionen
+# Abgleich Fahrplandaten – erfasste Versionen (Tram)
 
 Erstellt 2026-11-22 mit `scripts/import/import-fahrplan.mjs`.
 
@@ -793,17 +793,7 @@ Im Fahrplan als Tram geführt, im Archiv (noch) keine Linie:
 
 In `data/linien.yaml` unter `fahrplan_alias` zuordnen oder als neue Haltestelle erfassen.
 
-- Zürich, Frohburg (4975 Fahrten)
-- Zürich, Friedrichstrasse (4974 Fahrten)
-- Zürich, Lehenstrasse (4545 Fahrten)
-- Zürich, Rebbergsteig (4545 Fahrten)
-- Zürich, Kempfhofsteig (4545 Fahrten)
-- Zürich, Zwinglihaus (918 Fahrten)
-- Zürich, Bertastrasse (918 Fahrten)
-- Zürich, Friedhof Sihlfeld (918 Fahrten)
 - Zürich, Bircher-Benner (532 Fahrten)
-- Zürich, Riedhofstrasse (474 Fahrten)
-- Zürich, Geeringstrasse (474 Fahrten)
 - Zürich, Neumühlequai (266 Fahrten)
 - Forch, Bahnhof (131 Fahrten)
 - Neue Forch (131 Fahrten)

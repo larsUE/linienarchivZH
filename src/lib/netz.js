@@ -4,7 +4,10 @@ export async function ladeNetz() {
   const res = await fetch('/data/netz.json');
   if (!res.ok) throw new Error(`Netzdaten nicht ladbar (${res.status})`);
   const netz = await res.json();
+  for (const l of netz.linien) l.gruppe ??= l.art === 'bus' ? 'bus' : 'tram';
   netz.linieById = new Map(netz.linien.map((l, i) => [l.id, { ...l, rang: i }]));
+  // Erstes erfasstes Jahr je Verkehrsmittel: { tram: 2010, bus: 2015 }
+  netz.erfasstAb = netz.meta.erfasstAb ?? { tram: netz.meta.zeitraum[0] };
   netz.haltestelleById = new Map(netz.haltestellen.map((h) => [h.id, h]));
   netz.kanteById = new Map(netz.kanten.map((k) => [k.id, k]));
   netz.versionenProLinie = new Map();
@@ -22,10 +25,19 @@ export const stichtag = (netz, jahr) => `${jahr}-${netz.meta.stichtag}`;
 
 export const istAktiv = (v, datum) => (!v.von || v.von <= datum) && (!v.bis || datum <= v.bis);
 
-/** Alle gültigen Versionen an einem Datum, je Linie höchstens eine. */
-export function zustand(netz, datum) {
+export const GRUPPEN = { tram: 'Tram', bus: 'Bus' };
+
+/** Ist das Verkehrsmittel im Jahr erfasst? (Busse erst ab 2015) */
+export const erfasst = (netz, gruppe, jahr) => netz.erfasstAb[gruppe] !== undefined && jahr >= netz.erfasstAb[gruppe];
+
+/** Alle gültigen Versionen an einem Datum, je Linie höchstens eine; optional nur die gezeigten Verkehrsmittel. */
+export function zustand(netz, datum, gruppen = null) {
   const proLinie = new Map();
-  for (const v of netz.versionen) if (istAktiv(v, datum)) proLinie.set(v.linie, v);
+  for (const v of netz.versionen) {
+    if (!istAktiv(v, datum)) continue;
+    if (gruppen && !gruppen.includes(netz.linieById.get(v.linie).gruppe)) continue;
+    proLinie.set(v.linie, v);
+  }
   return proLinie;
 }
 
@@ -41,12 +53,13 @@ const gleicherWeg = (a, b, datumA, datumB) => {
   return ha === hb.join('|') || ha === [...hb].reverse().join('|');
 };
 
-/** Änderungen zwischen dem Stand des Vorjahres und dem Stand des Jahres. */
-export function aenderungen(netz, jahr) {
+/** Änderungen zwischen dem Stand des Vorjahres und dem Stand des Jahres (nur Verkehrsmittel, die im Vorjahr schon erfasst sind). */
+export function aenderungen(netz, jahr, gruppen = ['tram']) {
   const d1 = stichtag(netz, jahr - 1);
   const d2 = stichtag(netz, jahr);
-  const vorher = zustand(netz, d1);
-  const nachher = zustand(netz, d2);
+  const vergleichbar = gruppen.filter((g) => erfasst(netz, g, jahr - 1));
+  const vorher = zustand(netz, d1, vergleichbar);
+  const nachher = zustand(netz, d2, vergleichbar);
   const liste = [];
   for (const l of netz.linien) {
     const a = vorher.get(l.id);

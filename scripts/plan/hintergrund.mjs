@@ -14,6 +14,10 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 
 const root = new URL('../../', import.meta.url);
 const netz = JSON.parse(await readFile(new URL('public/data/netz.json', root), 'utf8'));
+// Nur das Tramnetz: Busse haben (noch) keine Planlage
+netz.haltestellen = netz.haltestellen.filter((h) => !h.nurBus);
+netz.kanten = netz.kanten.filter((k) => !k.bus);
+netz.versionen = netz.versionen.filter((v) => !v.linie.startsWith('bus-'));
 
 // ---------- OSM laden ----------
 const BBOX = [47.315, 8.3, 47.47, 8.63]; // s, w, n, o

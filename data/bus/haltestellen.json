@@ -1,0 +1,2332 @@
+[
+ {
+  "id": "albisrank",
+  "name": "Albisrank",
+  "ort": "Zürich",
+  "lon": 8.494671,
+  "lat": 47.379764,
+  "fahrplan": [
+   "Zürich, Albisrank"
+  ]
+ },
+ {
+  "id": "albisriederdorfli",
+  "name": "Albisriederdörfli",
+  "ort": "Zürich",
+  "lon": 8.485006,
+  "lat": 47.375384,
+  "fahrplan": [
+   "Zürich, Albisriederdörfli"
+  ]
+ },
+ {
+  "id": "altenhofstrasse",
+  "name": "Altenhofstrasse",
+  "ort": "Zürich",
+  "lon": 8.561466,
+  "lat": 47.355226,
+  "fahrplan": [
+   "Zürich, Altenhofstrasse"
+  ]
+ },
+ {
+  "id": "althoos",
+  "name": "Althoos",
+  "ort": "Zürich",
+  "lon": 8.524123,
+  "lat": 47.410637,
+  "fahrplan": [
+   "Zürich, Althoos"
+  ]
+ },
+ {
+  "id": "am-bortli",
+  "name": "Am Börtli",
+  "ort": "Zürich",
+  "lon": 8.507221,
+  "lat": 47.399578,
+  "fahrplan": [
+   "Zürich, Am Börtli"
+  ]
+ },
+ {
+  "id": "am-suteracher",
+  "name": "Am Suteracher",
+  "ort": "Zürich",
+  "lon": 8.469761,
+  "lat": 47.390925,
+  "fahrplan": [
+   "Zürich, Am Suteracher"
+  ]
+ },
+ {
+  "id": "appenzellerstrasse",
+  "name": "Appenzellerstrasse",
+  "ort": "Zürich",
+  "lon": 8.50953,
+  "lat": 47.3989,
+  "fahrplan": [
+   "Zürich, Appenzellerstrasse"
+  ]
+ },
+ {
+  "id": "arnikahof",
+  "name": "Arnikahof",
+  "ort": "Zürich",
+  "lon": 8.530968,
+  "lat": 47.415586,
+  "fahrplan": [
+   "Zürich, Arnikahof"
+  ]
+ },
+ {
+  "id": "aspholz",
+  "name": "Aspholz",
+  "ort": "Zürich",
+  "lon": 8.501005,
+  "lat": 47.424982,
+  "fahrplan": [
+   "Zürich, Aspholz"
+  ]
+ },
+ {
+  "id": "aubrucke",
+  "name": "Aubrücke",
+  "ort": "Zürich",
+  "lon": 8.572281,
+  "lat": 47.410451,
+  "fahrplan": [
+   "Zürich, Aubrücke"
+  ]
+ },
+ {
+  "id": "ausserdorfstrasse",
+  "name": "Ausserdorfstrasse",
+  "ort": "Zürich",
+  "lon": 8.548575,
+  "lat": 47.424542,
+  "fahrplan": [
+   "Zürich, Ausserdorfstrasse"
+  ]
+ },
+ {
+  "id": "auzelg-ost",
+  "name": "Auzelg Ost",
+  "ort": "Zürich",
+  "lon": 8.57194,
+  "lat": 47.413409,
+  "fahrplan": [
+   "Zürich, Auzelg Ost"
+  ]
+ },
+ {
+  "id": "bahnhof-affoltern",
+  "name": "Bahnhof Affoltern",
+  "ort": "Zürich",
+  "lon": 8.507387,
+  "lat": 47.421169,
+  "fahrplan": [
+   "Zürich, Bahnhof Affoltern"
+  ]
+ },
+ {
+  "id": "bahnhof-affoltern-sud",
+  "name": "Bahnhof Affoltern Süd",
+  "ort": "Zürich",
+  "lon": 8.508506,
+  "lat": 47.42064,
+  "fahrplan": [
+   "Zürich, Bahnhof Affoltern Süd"
+  ]
+ },
+ {
+  "id": "bahnhof-leimbach",
+  "name": "Bahnhof Leimbach",
+  "ort": "Zürich",
+  "lon": 8.518638,
+  "lat": 47.333316,
+  "fahrplan": [
+   "Zürich, Bahnhof Leimbach"
+  ]
+ },
+ {
+  "id": "bahnhof-oerlikon-nord",
+  "name": "Bahnhof Oerlikon Nord",
+  "ort": "Zürich",
+  "lon": 8.544026,
+  "lat": 47.41238,
+  "fahrplan": [
+   "Zürich, Bahnhof Oerlikon Nord"
+  ]
+ },
+ {
+  "id": "bahnhof-wipkingen",
+  "name": "Bahnhof Wipkingen",
+  "ort": "Zürich",
+  "lon": 8.529845,
+  "lat": 47.393351,
+  "fahrplan": [
+   "Zürich, Bahnhof Wipkingen"
+  ]
+ },
+ {
+  "id": "bahnhof-wollishofen",
+  "name": "Bahnhof Wollishofen",
+  "ort": "Zürich",
+  "lon": 8.533295,
+  "lat": 47.348258,
+  "fahrplan": [
+   "Zürich, Bahnhof Wollishofen"
+  ]
+ },
+ {
+  "id": "balgrist-ost",
+  "name": "Balgrist Ost",
+  "ort": "Zürich",
+  "lon": 8.575039,
+  "lat": 47.354751,
+  "fahrplan": [
+   "Zürich, Balgrist Ost"
+  ]
+ },
+ {
+  "id": "barenbohlstrasse",
+  "name": "Bärenbohlstrasse",
+  "ort": "Zürich",
+  "lon": 8.509844,
+  "lat": 47.425797,
+  "fahrplan": [
+   "Zürich, Bärenbohlstrasse"
+  ]
+ },
+ {
+  "id": "baslerstrasse",
+  "name": "Baslerstrasse",
+  "ort": "Zürich",
+  "lon": 8.489991,
+  "lat": 47.388653,
+  "fahrplan": [
+   "Zürich, Baslerstrasse"
+  ]
+ },
+ {
+  "id": "berghaldenstrasse",
+  "name": "Berghaldenstrasse",
+  "ort": "Zürich",
+  "lon": 8.590059,
+  "lat": 47.358683,
+  "fahrplan": [
+   "Zürich, Berghaldenstrasse"
+  ]
+ },
+ {
+  "id": "bertastrasse",
+  "name": "Bertastrasse",
+  "ort": "Zürich",
+  "lon": 8.513509,
+  "lat": 47.373866,
+  "fahrplan": [
+   "Zürich, Bertastrasse"
+  ]
+ },
+ {
+  "id": "berufswahlschule",
+  "name": "Berufswahlschule",
+  "ort": "Zürich",
+  "lon": 8.533286,
+  "lat": 47.404302,
+  "fahrplan": [
+   "Zürich, Berufswahlschule"
+  ]
+ },
+ {
+  "id": "bethanien",
+  "name": "Bethanien",
+  "ort": "Zürich",
+  "lon": 8.556058,
+  "lat": 47.380883,
+  "fahrplan": [
+   "Zürich, Bethanien"
+  ]
+ },
+ {
+  "id": "binz",
+  "name": "Binz",
+  "ort": "Zürich",
+  "lon": 8.518356,
+  "lat": 47.362988,
+  "fahrplan": [
+   "Zürich, Binz"
+  ]
+ },
+ {
+  "id": "binz-center",
+  "name": "Binz Center",
+  "ort": "Zürich",
+  "lon": 8.511016,
+  "lat": 47.361883,
+  "fahrplan": [
+   "Zürich, Binz Center"
+  ]
+ },
+ {
+  "id": "birch-glatttalstrasse",
+  "name": "Birch-/Glatttalstrasse",
+  "ort": "Zürich",
+  "lon": 8.546136,
+  "lat": 47.427416,
+  "fahrplan": [
+   "Zürich, Birch-/Glatttalstrasse"
+  ]
+ },
+ {
+  "id": "birchdorfli",
+  "name": "Birchdörfli",
+  "ort": "Zürich",
+  "lon": 8.530631,
+  "lat": 47.407552,
+  "fahrplan": [
+   "Zürich, Birchdörfli"
+  ]
+ },
+ {
+  "id": "birchstrasse",
+  "name": "Birchstrasse",
+  "ort": "Zürich",
+  "lon": 8.535823,
+  "lat": 47.413051,
+  "fahrplan": [
+   "Zürich, Birchstrasse"
+  ]
+ },
+ {
+  "id": "bleulerstrasse",
+  "name": "Bleulerstrasse",
+  "ort": "Zürich",
+  "lon": 8.571614,
+  "lat": 47.34717,
+  "fahrplan": [
+   "Zürich, Bleulerstrasse"
+  ]
+ },
+ {
+  "id": "blumenfeldstrasse",
+  "name": "Blumenfeldstrasse",
+  "ort": "Zürich",
+  "lon": 8.505231,
+  "lat": 47.423782,
+  "fahrplan": [
+   "Zürich, Blumenfeldstrasse"
+  ]
+ },
+ {
+  "id": "bollingerweg",
+  "name": "Bollingerweg",
+  "ort": "Zürich",
+  "lon": 8.53793,
+  "lat": 47.414212,
+  "fahrplan": [
+   "Zürich, Bollingerweg"
+  ]
+ },
+ {
+  "id": "botanischer-garten",
+  "name": "Botanischer Garten",
+  "ort": "Zürich",
+  "lon": 8.557731,
+  "lat": 47.359373,
+  "fahrplan": [
+   "Zürich, Botanischer Garten"
+  ]
+ },
+ {
+  "id": "bristenstrasse",
+  "name": "Bristenstrasse",
+  "ort": "Zürich",
+  "lon": 8.487027,
+  "lat": 47.390064,
+  "fahrplan": [
+   "Zürich, Bristenstrasse"
+  ]
+ },
+ {
+  "id": "brunau-mutschellenstr",
+  "name": "Brunau/Mutschellenstr.",
+  "ort": "Zürich",
+  "lon": 8.526503,
+  "lat": 47.354599,
+  "fahrplan": [
+   "Zürich, Brunau/Mutschellenstr."
+  ]
+ },
+ {
+  "id": "buhnstrasse",
+  "name": "Buhnstrasse",
+  "ort": "Zürich",
+  "lon": 8.538913,
+  "lat": 47.422294,
+  "fahrplan": [
+   "Zürich, Buhnstrasse"
+  ]
+ },
+ {
+  "id": "chaletweg",
+  "name": "Chaletweg",
+  "ort": "Zürich",
+  "lon": 8.531197,
+  "lat": 47.413376,
+  "fahrplan": [
+   "Zürich, Chaletweg"
+  ]
+ },
+ {
+  "id": "dorflinde",
+  "name": "Dorflinde",
+  "ort": "Zürich",
+  "lon": 8.549186,
+  "lat": 47.40737,
+  "fahrplan": [
+   "Zürich, Dorflinde"
+  ]
+ },
+ {
+  "id": "dreispitz",
+  "name": "Dreispitz",
+  "ort": "Zürich",
+  "lon": 8.567794,
+  "lat": 47.410753,
+  "fahrplan": [
+   "Zürich, Dreispitz"
+  ]
+ },
+ {
+  "id": "drusbergstrasse",
+  "name": "Drusbergstrasse",
+  "ort": "Zürich",
+  "lon": 8.578839,
+  "lat": 47.360414,
+  "fahrplan": [
+   "Zürich, Drusbergstrasse"
+  ]
+ },
+ {
+  "id": "dunkelholzli",
+  "name": "Dunkelhölzli",
+  "ort": "Zürich",
+  "lon": 8.470287,
+  "lat": 47.388702,
+  "fahrplan": [
+   "Zürich, Dunkelhölzli"
+  ]
+ },
+ {
+  "id": "einfangstrasse",
+  "name": "Einfangstrasse",
+  "ort": "Zürich",
+  "lon": 8.512979,
+  "lat": 47.415734,
+  "fahrplan": [
+   "Zürich, Einfangstrasse"
+  ]
+ },
+ {
+  "id": "epi-klinik",
+  "name": "EPI-Klinik",
+  "ort": "Zürich",
+  "lon": 8.570786,
+  "lat": 47.348729,
+  "fahrplan": [
+   "Zürich, EPI-Klinik"
+  ]
+ },
+ {
+  "id": "eth-honggerberg",
+  "name": "ETH Hönggerberg",
+  "ort": "Zürich",
+  "lon": 8.507773,
+  "lat": 47.408664,
+  "fahrplan": [
+   "Zürich, ETH Hönggerberg"
+  ]
+ },
+ {
+  "id": "feusisbergli",
+  "name": "Feusisbergli",
+  "ort": "Zürich",
+  "lon": 8.471023,
+  "lat": 47.392634,
+  "fahrplan": [
+   "Zürich, Feusisbergli"
+  ]
+ },
+ {
+  "id": "flobotstrasse",
+  "name": "Flobotstrasse",
+  "ort": "Zürich",
+  "lon": 8.567004,
+  "lat": 47.38071,
+  "fahrplan": [
+   "Zürich, Flobotstrasse"
+  ]
+ },
+ {
+  "id": "fluhgasse",
+  "name": "Flühgasse",
+  "ort": "Zürich",
+  "lon": 8.569371,
+  "lat": 47.350577,
+  "fahrplan": [
+   "Zürich, Flühgasse"
+  ]
+ },
+ {
+  "id": "flurstrasse",
+  "name": "Flurstrasse",
+  "ort": "Zürich",
+  "lon": 8.49199,
+  "lat": 47.381549,
+  "fahrplan": [
+   "Zürich, Flurstrasse"
+  ]
+ },
+ {
+  "id": "freiestrasse",
+  "name": "Freiestrasse",
+  "ort": "Zürich",
+  "lon": 8.562804,
+  "lat": 47.362875,
+  "fahrplan": [
+   "Zürich, Freiestrasse"
+  ]
+ },
+ {
+  "id": "freilagerstrasse",
+  "name": "Freilagerstrasse",
+  "ort": "Zürich",
+  "lon": 8.490821,
+  "lat": 47.379473,
+  "fahrplan": [
+   "Zürich, Freilagerstrasse"
+  ]
+ },
+ {
+  "id": "friedackerstrasse",
+  "name": "Friedackerstrasse",
+  "ort": "Zürich",
+  "lon": 8.553507,
+  "lat": 47.405883,
+  "fahrplan": [
+   "Zürich, Friedackerstrasse"
+  ]
+ },
+ {
+  "id": "friedhof-eichbuhl",
+  "name": "Friedhof Eichbühl",
+  "ort": "Zürich",
+  "lon": 8.474877,
+  "lat": 47.383365,
+  "fahrplan": [
+   "Zürich, Friedhof Eichbühl"
+  ]
+ },
+ {
+  "id": "friedhof-honggerberg",
+  "name": "Friedhof Hönggerberg",
+  "ort": "Zürich",
+  "lon": 8.494339,
+  "lat": 47.408549,
+  "fahrplan": [
+   "Zürich, Friedhof Hönggerberg"
+  ]
+ },
+ {
+  "id": "friedhof-schwandenholz",
+  "name": "Friedhof Schwandenholz",
+  "ort": "Zürich",
+  "lon": 8.537373,
+  "lat": 47.421165,
+  "fahrplan": [
+   "Zürich, Friedhof Schwandenholz"
+  ]
+ },
+ {
+  "id": "friedhof-sihlfeld",
+  "name": "Friedhof Sihlfeld",
+  "ort": "Zürich",
+  "lon": 8.510953,
+  "lat": 47.375919,
+  "fahrplan": [
+   "Zürich, Friedhof Sihlfeld"
+  ]
+ },
+ {
+  "id": "friedhof-uetliberg",
+  "name": "Friedhof Uetliberg",
+  "ort": "Zürich",
+  "lon": 8.500488,
+  "lat": 47.358792,
+  "fahrplan": [
+   "Zürich, Friedhof Uetliberg"
+  ]
+ },
+ {
+  "id": "friedrichstrasse",
+  "name": "Friedrichstrasse",
+  "ort": "Zürich",
+  "lon": 8.568522,
+  "lat": 47.40391,
+  "fahrplan": [
+   "Zürich, Friedrichstrasse"
+  ]
+ },
+ {
+  "id": "friesenberg",
+  "name": "Friesenberg",
+  "ort": "Zürich",
+  "lon": 8.508043,
+  "lat": 47.3645,
+  "fahrplan": [
+   "Zürich, Friesenberg"
+  ]
+ },
+ {
+  "id": "friesenberghalde",
+  "name": "Friesenberghalde",
+  "ort": "Zürich",
+  "lon": 8.502312,
+  "lat": 47.36112,
+  "fahrplan": [
+   "Zürich, Friesenberghalde"
+  ]
+ },
+ {
+  "id": "friesenbergstrasse",
+  "name": "Friesenbergstrasse",
+  "ort": "Zürich",
+  "lon": 8.504989,
+  "lat": 47.362157,
+  "fahrplan": [
+   "Zürich, Friesenbergstrasse"
+  ]
+ },
+ {
+  "id": "frohburg",
+  "name": "Frohburg",
+  "ort": "Zürich",
+  "lon": 8.56244,
+  "lat": 47.404162,
+  "fahrplan": [
+   "Zürich, Frohburg"
+  ]
+ },
+ {
+  "id": "fronwald",
+  "name": "Fronwald",
+  "ort": "Zürich",
+  "lon": 8.509835,
+  "lat": 47.42198,
+  "fahrplan": [
+   "Zürich, Fronwald"
+  ]
+ },
+ {
+  "id": "frymannstrasse",
+  "name": "Frymannstrasse",
+  "ort": "Zürich",
+  "lon": 8.519034,
+  "lat": 47.335231,
+  "fahrplan": [
+   "Zürich, Frymannstrasse"
+  ]
+ },
+ {
+  "id": "geeringstrasse",
+  "name": "Geeringstrasse",
+  "ort": "Zürich",
+  "lon": 8.480599,
+  "lat": 47.414291,
+  "fahrplan": [
+   "Zürich, Geeringstrasse"
+  ]
+ },
+ {
+  "id": "germaniastrasse",
+  "name": "Germaniastrasse",
+  "ort": "Zürich",
+  "lon": 8.552559,
+  "lat": 47.387321,
+  "fahrplan": [
+   "Zürich, Germaniastrasse"
+  ]
+ },
+ {
+  "id": "giblenstrasse",
+  "name": "Giblenstrasse",
+  "ort": "Zürich",
+  "lon": 8.48611,
+  "lat": 47.410549,
+  "fahrplan": [
+   "Zürich, Giblenstrasse"
+  ]
+ },
+ {
+  "id": "glaubtenstrasse",
+  "name": "Glaubtenstrasse",
+  "ort": "Zürich",
+  "lon": 8.519451,
+  "lat": 47.414204,
+  "fahrplan": [
+   "Zürich, Glaubtenstrasse"
+  ]
+ },
+ {
+  "id": "glaubtenstrasse-nord",
+  "name": "Glaubtenstrasse Nord",
+  "ort": "Zürich",
+  "lon": 8.519725,
+  "lat": 47.414728,
+  "fahrplan": [
+   "Zürich, Glaubtenstrasse Nord"
+  ]
+ },
+ {
+  "id": "glaubtenstrasse-sud",
+  "name": "Glaubtenstrasse Süd",
+  "ort": "Zürich",
+  "lon": 8.518472,
+  "lat": 47.413598,
+  "fahrplan": [
+   "Zürich, Glaubtenstrasse Süd"
+  ]
+ },
+ {
+  "id": "goldackerweg",
+  "name": "Goldackerweg",
+  "ort": "Zürich",
+  "lon": 8.487184,
+  "lat": 47.372227,
+  "fahrplan": [
+   "Zürich, Goldackerweg"
+  ]
+ },
+ {
+  "id": "grubenstrasse",
+  "name": "Grubenstrasse",
+  "ort": "Zürich",
+  "lon": 8.511645,
+  "lat": 47.362863,
+  "fahrplan": [
+   "Zürich, Grubenstrasse"
+  ]
+ },
+ {
+  "id": "grunauring",
+  "name": "Grünauring",
+  "ort": "Zürich",
+  "lon": 8.486762,
+  "lat": 47.396611,
+  "fahrplan": [
+   "Zürich, Grünauring"
+  ]
+ },
+ {
+  "id": "gutstrasse",
+  "name": "Gutstrasse",
+  "ort": "Zürich",
+  "lon": 8.506624,
+  "lat": 47.371725,
+  "fahrplan": [
+   "Zürich, Gutstrasse"
+  ]
+ },
+ {
+  "id": "hallenbad-oerlikon",
+  "name": "Hallenbad Oerlikon",
+  "ort": "Zürich",
+  "lon": 8.555878,
+  "lat": 47.410753,
+  "fahrplan": [
+   "Zürich, Hallenbad Oerlikon"
+  ]
+ },
+ {
+  "id": "hegianwandweg",
+  "name": "Hegianwandweg",
+  "ort": "Zürich",
+  "lon": 8.509983,
+  "lat": 47.356632,
+  "fahrplan": [
+   "Zürich, Hegianwandweg"
+  ]
+ },
+ {
+  "id": "heizenholz",
+  "name": "Heizenholz",
+  "ort": "Zürich",
+  "lon": 8.483848,
+  "lat": 47.412275,
+  "fahrplan": [
+   "Zürich, Heizenholz"
+  ]
+ },
+ {
+  "id": "herbstweg",
+  "name": "Herbstweg",
+  "ort": "Zürich",
+  "lon": 8.564745,
+  "lat": 47.408905,
+  "fahrplan": [
+   "Zürich, Herbstweg"
+  ]
+ },
+ {
+  "id": "herdernstrasse",
+  "name": "Herdernstrasse",
+  "ort": "Zürich",
+  "lon": 8.508495,
+  "lat": 47.384839,
+  "fahrplan": [
+   "Zürich, Herdernstrasse"
+  ]
+ },
+ {
+  "id": "hermetschloo",
+  "name": "Hermetschloo",
+  "ort": "Zürich",
+  "lon": 8.473709,
+  "lat": 47.394087,
+  "fahrplan": [
+   "Zürich, Hermetschloo"
+  ]
+ },
+ {
+  "id": "hertensteinstrasse",
+  "name": "Hertensteinstrasse",
+  "ort": "Zürich",
+  "lon": 8.543648,
+  "lat": 47.422822,
+  "fahrplan": [
+   "Zürich, Hertensteinstrasse"
+  ]
+ },
+ {
+  "id": "hertersteg",
+  "name": "Hertersteg",
+  "ort": "Zürich",
+  "lon": 8.522977,
+  "lat": 47.367697,
+  "fahrplan": [
+   "Zürich, Hertersteg"
+  ]
+ },
+ {
+  "id": "herzogenmuhlestrasse",
+  "name": "Herzogenmühlestrasse",
+  "ort": "Zürich",
+  "lon": 8.572717,
+  "lat": 47.40733,
+  "fahrplan": [
+   "Zürich, Herzogenmühlestrasse"
+  ]
+ },
+ {
+  "id": "heubeeriweg",
+  "name": "Heubeeriweg",
+  "ort": "Zürich",
+  "lon": 8.564592,
+  "lat": 47.381674,
+  "fahrplan": [
+   "Zürich, Heubeeriweg"
+  ]
+ },
+ {
+  "id": "himmeri",
+  "name": "Himmeri",
+  "ort": "Zürich",
+  "lon": 8.538608,
+  "lat": 47.419992,
+  "fahrplan": [
+   "Zürich, Himmeri"
+  ]
+ },
+ {
+  "id": "hofliweg",
+  "name": "Höfliweg",
+  "ort": "Zürich",
+  "lon": 8.511003,
+  "lat": 47.367645,
+  "fahrplan": [
+   "Zürich, Höfliweg"
+  ]
+ },
+ {
+  "id": "hofstrasse",
+  "name": "Hofstrasse",
+  "ort": "Zürich",
+  "lon": 8.562135,
+  "lat": 47.373075,
+  "fahrplan": [
+   "Zürich, Hofstrasse"
+  ]
+ },
+ {
+  "id": "hohenklingensteig",
+  "name": "Hohenklingensteig",
+  "ort": "Zürich",
+  "lon": 8.490643,
+  "lat": 47.401223,
+  "fahrplan": [
+   "Zürich, Hohenklingensteig"
+  ]
+ },
+ {
+  "id": "holderlinsteig",
+  "name": "Hölderlinsteig",
+  "ort": "Zürich",
+  "lon": 8.564866,
+  "lat": 47.366931,
+  "fahrplan": [
+   "Zürich, Hölderlinsteig"
+  ]
+ },
+ {
+  "id": "holzerhurd",
+  "name": "Holzerhurd",
+  "ort": "Zürich",
+  "lon": 8.496661,
+  "lat": 47.423809,
+  "fahrplan": [
+   "Zürich, Holzerhurd"
+  ]
+ },
+ {
+  "id": "honggerberg",
+  "name": "Hönggerberg",
+  "ort": "Zürich",
+  "lon": 8.504973,
+  "lat": 47.405024,
+  "fahrplan": [
+   "Zürich, Hönggerberg"
+  ]
+ },
+ {
+  "id": "hugelstrasse",
+  "name": "Hügelstrasse",
+  "ort": "Zürich",
+  "lon": 8.526494,
+  "lat": 47.358281,
+  "fahrplan": [
+   "Zürich, Hügelstrasse"
+  ]
+ },
+ {
+  "id": "hungerbergstrasse",
+  "name": "Hungerbergstrasse",
+  "ort": "Zürich",
+  "lon": 8.501916,
+  "lat": 47.421105,
+  "fahrplan": [
+   "Zürich, Hungerbergstrasse"
+  ]
+ },
+ {
+  "id": "hurstholz",
+  "name": "Hürstholz",
+  "ort": "Zürich",
+  "lon": 8.522897,
+  "lat": 47.416877,
+  "fahrplan": [
+   "Zürich, Hürstholz"
+  ]
+ },
+ {
+  "id": "im-gut",
+  "name": "Im Gut",
+  "ort": "Zürich",
+  "lon": 8.503205,
+  "lat": 47.373711,
+  "fahrplan": [
+   "Zürich, Im Gut"
+  ]
+ },
+ {
+  "id": "im-hagacker",
+  "name": "Im Hagacker",
+  "ort": "Zürich",
+  "lon": 8.507428,
+  "lat": 47.359623,
+  "fahrplan": [
+   "Zürich, Im Hagacker"
+  ]
+ },
+ {
+  "id": "im-husli",
+  "name": "Im Hüsli",
+  "ort": "Zürich",
+  "lon": 8.512773,
+  "lat": 47.328269,
+  "fahrplan": [
+   "Zürich, Im Hüsli"
+  ]
+ },
+ {
+  "id": "im-klosterli",
+  "name": "Im Klösterli",
+  "ort": "Zürich",
+  "lon": 8.576854,
+  "lat": 47.384575,
+  "fahrplan": [
+   "Zürich, Im Klösterli"
+  ]
+ },
+ {
+  "id": "im-walder",
+  "name": "Im Walder",
+  "ort": "Zürich",
+  "lon": 8.574339,
+  "lat": 47.348076,
+  "fahrplan": [
+   "Zürich, Im Walder"
+  ]
+ },
+ {
+  "id": "im-wingert",
+  "name": "Im Wingert",
+  "ort": "Zürich",
+  "lon": 8.508914,
+  "lat": 47.401302,
+  "fahrplan": [
+   "Zürich, Im Wingert"
+  ]
+ },
+ {
+  "id": "in-der-ey",
+  "name": "In der Ey",
+  "ort": "Zürich",
+  "lon": 8.491496,
+  "lat": 47.369547,
+  "fahrplan": [
+   "Zürich, In der Ey"
+  ]
+ },
+ {
+  "id": "jugendherberge",
+  "name": "Jugendherberge",
+  "ort": "Zürich",
+  "lon": 8.528054,
+  "lat": 47.347698,
+  "fahrplan": [
+   "Zürich, Jugendherberge"
+  ]
+ },
+ {
+  "id": "kaferberg",
+  "name": "Käferberg",
+  "ort": "Zürich",
+  "lon": 8.517938,
+  "lat": 47.399727,
+  "fahrplan": [
+   "Zürich, Käferberg"
+  ]
+ },
+ {
+  "id": "kalchbuhlweg",
+  "name": "Kalchbühlweg",
+  "ort": "Zürich",
+  "lon": 8.531502,
+  "lat": 47.340518,
+  "fahrplan": [
+   "Zürich, Kalchbühlweg"
+  ]
+ },
+ {
+  "id": "kanonengasse",
+  "name": "Kanonengasse",
+  "ort": "Zürich",
+  "lon": 8.53015,
+  "lat": 47.378423,
+  "fahrplan": [
+   "Zürich, Kanonengasse"
+  ]
+ },
+ {
+  "id": "kapfstrasse",
+  "name": "Kapfstrasse",
+  "ort": "Zürich",
+  "lon": 8.571087,
+  "lat": 47.361098,
+  "fahrplan": [
+   "Zürich, Kapfstrasse"
+  ]
+ },
+ {
+  "id": "kappenbuhlweg",
+  "name": "Kappenbühlweg",
+  "ort": "Zürich",
+  "lon": 8.498269,
+  "lat": 47.402974,
+  "fahrplan": [
+   "Zürich, Kappenbühlweg"
+  ]
+ },
+ {
+  "id": "kashaldenstrasse",
+  "name": "Käshaldenstrasse",
+  "ort": "Zürich",
+  "lon": 8.541016,
+  "lat": 47.429954,
+  "fahrplan": [
+   "Zürich, Käshaldenstrasse"
+  ]
+ },
+ {
+  "id": "kempfhofsteig",
+  "name": "Kempfhofsteig",
+  "ort": "Zürich",
+  "lon": 8.509831,
+  "lat": 47.397471,
+  "fahrplan": [
+   "Zürich, Kempfhofsteig"
+  ]
+ },
+ {
+  "id": "kernstrasse",
+  "name": "Kernstrasse",
+  "ort": "Zürich",
+  "lon": 8.524397,
+  "lat": 47.374624,
+  "fahrplan": [
+   "Zürich, Kernstrasse"
+  ]
+ },
+ {
+  "id": "kienastenwies",
+  "name": "Kienastenwies",
+  "ort": "Zürich",
+  "lon": 8.600821,
+  "lat": 47.35522,
+  "fahrplan": [
+   "Zürich, Kienastenwies"
+  ]
+ },
+ {
+  "id": "kilchberg-zh-alterszentrum",
+  "name": "Kilchberg ZH, Alterszentrum",
+  "ort": "Kilchberg ZH",
+  "lon": 8.540845,
+  "lat": 47.31982,
+  "fahrplan": [
+   "Kilchberg ZH, Alterszentrum"
+  ]
+ },
+ {
+  "id": "kilchberg-zh-bachlerstrasse",
+  "name": "Kilchberg ZH, Bächlerstrasse",
+  "ort": "Kilchberg ZH",
+  "lon": 8.539565,
+  "lat": 47.329185,
+  "fahrplan": [
+   "Kilchberg ZH, Bächlerstrasse"
+  ]
+ },
+ {
+  "id": "kilchberg-zh-breitloo",
+  "name": "Kilchberg ZH, Breitloo",
+  "ort": "Kilchberg ZH",
+  "lon": 8.540185,
+  "lat": 47.326052,
+  "fahrplan": [
+   "Kilchberg ZH, Breitloo"
+  ]
+ },
+ {
+  "id": "kilchberg-zh-kirche",
+  "name": "Kilchberg ZH, Kirche",
+  "ort": "Kilchberg ZH",
+  "lon": 8.541649,
+  "lat": 47.317884,
+  "fahrplan": [
+   "Kilchberg ZH, Kirche"
+  ]
+ },
+ {
+  "id": "kilchberg-zh-stockengut",
+  "name": "Kilchberg ZH, Stockengut",
+  "ort": "Kilchberg ZH",
+  "lon": 8.540454,
+  "lat": 47.323648,
+  "fahrplan": [
+   "Kilchberg ZH, Stockengut"
+  ]
+ },
+ {
+  "id": "kinderspital",
+  "name": "Kinderspital",
+  "ort": "Zürich",
+  "lon": 8.572308,
+  "lat": 47.352582,
+  "fahrplan": [
+   "Zürich, Kinderspital"
+  ]
+ },
+ {
+  "id": "klinik-hirslanden",
+  "name": "Klinik Hirslanden",
+  "ort": "Zürich",
+  "lon": 8.576746,
+  "lat": 47.351496,
+  "fahrplan": [
+   "Zürich, Klinik Hirslanden"
+  ]
+ },
+ {
+  "id": "klosbach",
+  "name": "Klosbach",
+  "ort": "Zürich",
+  "lon": 8.5639,
+  "lat": 47.369951,
+  "fahrplan": [
+   "Zürich, Klosbach"
+  ]
+ },
+ {
+  "id": "koschenruti",
+  "name": "Köschenrüti",
+  "ort": "Zürich",
+  "lon": 8.537081,
+  "lat": 47.429042,
+  "fahrplan": [
+   "Zürich, Köschenrüti"
+  ]
+ },
+ {
+  "id": "krematorium-nordheim",
+  "name": "Krematorium Nordheim",
+  "ort": "Zürich",
+  "lon": 8.52812,
+  "lat": 47.405409,
+  "fahrplan": [
+   "Zürich, Krematorium Nordheim"
+  ]
+ },
+ {
+  "id": "kronleinstrasse",
+  "name": "Krönleinstrasse",
+  "ort": "Zürich",
+  "lon": 8.561133,
+  "lat": 47.384073,
+  "fahrplan": [
+   "Zürich, Krönleinstrasse"
+  ]
+ },
+ {
+  "id": "lagernstrasse",
+  "name": "Lägernstrasse",
+  "ort": "Zürich",
+  "lon": 8.532284,
+  "lat": 47.395559,
+  "fahrplan": [
+   "Zürich, Lägernstrasse"
+  ]
+ },
+ {
+  "id": "langensteinenstrasse",
+  "name": "Langensteinenstrasse",
+  "ort": "Zürich",
+  "lon": 8.549725,
+  "lat": 47.392491,
+  "fahrplan": [
+   "Zürich, Langensteinenstrasse"
+  ]
+ },
+ {
+  "id": "langgrutstrasse",
+  "name": "Langgrütstrasse",
+  "ort": "Zürich",
+  "lon": 8.500245,
+  "lat": 47.373802,
+  "fahrplan": [
+   "Zürich, Langgrütstrasse"
+  ]
+ },
+ {
+  "id": "lehenstrasse",
+  "name": "Lehenstrasse",
+  "ort": "Zürich",
+  "lon": 8.520853,
+  "lat": 47.396139,
+  "fahrplan": [
+   "Zürich, Lehenstrasse"
+  ]
+ },
+ {
+  "id": "leimgrubelstrasse",
+  "name": "Leimgrübelstrasse",
+  "ort": "Zürich",
+  "lon": 8.543688,
+  "lat": 47.428656,
+  "fahrplan": [
+   "Zürich, Leimgrübelstrasse"
+  ]
+ },
+ {
+  "id": "lerchenhalde",
+  "name": "Lerchenhalde",
+  "ort": "Zürich",
+  "lon": 8.509693,
+  "lat": 47.411746,
+  "fahrplan": [
+   "Zürich, Lerchenhalde"
+  ]
+ },
+ {
+  "id": "lerchenrain",
+  "name": "Lerchenrain",
+  "ort": "Zürich",
+  "lon": 8.509476,
+  "lat": 47.41433,
+  "fahrplan": [
+   "Zürich, Lerchenrain"
+  ]
+ },
+ {
+  "id": "lettenstrasse",
+  "name": "Lettenstrasse",
+  "ort": "Zürich",
+  "lon": 8.532706,
+  "lat": 47.390605,
+  "fahrplan": [
+   "Zürich, Lettenstrasse"
+  ]
+ },
+ {
+  "id": "letzibach",
+  "name": "Letzibach",
+  "ort": "Zürich",
+  "lon": 8.495112,
+  "lat": 47.389018,
+  "fahrplan": [
+   "Zürich, Letzibach"
+  ]
+ },
+ {
+  "id": "letzipark",
+  "name": "Letzipark",
+  "ort": "Zürich",
+  "lon": 8.499805,
+  "lat": 47.387634,
+  "fahrplan": [
+   "Zürich, Letzipark"
+  ]
+ },
+ {
+  "id": "letzipark-west",
+  "name": "Letzipark West",
+  "ort": "Zürich",
+  "lon": 8.496299,
+  "lat": 47.386467,
+  "fahrplan": [
+   "Zürich, Letzipark West"
+  ]
+ },
+ {
+  "id": "loogarten",
+  "name": "Loogarten",
+  "ort": "Zürich",
+  "lon": 8.472348,
+  "lat": 47.389468,
+  "fahrplan": [
+   "Zürich, Loogarten"
+  ]
+ },
+ {
+  "id": "loorenstrasse",
+  "name": "Loorenstrasse",
+  "ort": "Zürich",
+  "lon": 8.594286,
+  "lat": 47.359592,
+  "fahrplan": [
+   "Zürich, Loorenstrasse"
+  ]
+ },
+ {
+  "id": "luggwegstrasse",
+  "name": "Luggwegstrasse",
+  "ort": "Zürich",
+  "lon": 8.493536,
+  "lat": 47.389471,
+  "fahrplan": [
+   "Zürich, Luggwegstrasse"
+  ]
+ },
+ {
+  "id": "maillartstrasse",
+  "name": "Maillartstrasse",
+  "ort": "Zürich",
+  "lon": 8.532324,
+  "lat": 47.416199,
+  "fahrplan": [
+   "Zürich, Maillartstrasse"
+  ]
+ },
+ {
+  "id": "manegg",
+  "name": "Manegg",
+  "ort": "Zürich",
+  "lon": 8.520161,
+  "lat": 47.337003,
+  "fahrplan": [
+   "Zürich, Manegg"
+  ]
+ },
+ {
+  "id": "manesseplatz",
+  "name": "Manesseplatz",
+  "ort": "Zürich",
+  "lon": 8.521679,
+  "lat": 47.365601,
+  "fahrplan": [
+   "Zürich, Manesseplatz"
+  ]
+ },
+ {
+  "id": "marbachweg",
+  "name": "Marbachweg",
+  "ort": "Zürich",
+  "lon": 8.515467,
+  "lat": 47.330424,
+  "fahrplan": [
+   "Zürich, Marbachweg"
+  ]
+ },
+ {
+  "id": "max-bill-platz",
+  "name": "Max-Bill-Platz",
+  "ort": "Zürich",
+  "lon": 8.541025,
+  "lat": 47.41402,
+  "fahrplan": [
+   "Zürich, Max-Bill-Platz"
+  ]
+ },
+ {
+  "id": "michelstrasse",
+  "name": "Michelstrasse",
+  "ort": "Zürich",
+  "lon": 8.495502,
+  "lat": 47.406461,
+  "fahrplan": [
+   "Zürich, Michelstrasse"
+  ]
+ },
+ {
+  "id": "militar-langstrasse",
+  "name": "Militär-/Langstrasse",
+  "ort": "Zürich",
+  "lon": 8.527666,
+  "lat": 47.379727,
+  "fahrplan": [
+   "Zürich, Militär-/Langstrasse"
+  ]
+ },
+ {
+  "id": "mittelleimbach",
+  "name": "Mittelleimbach",
+  "ort": "Zürich",
+  "lon": 8.514394,
+  "lat": 47.323206,
+  "fahrplan": [
+   "Zürich, Mittelleimbach"
+  ]
+ },
+ {
+  "id": "motteliweg",
+  "name": "Mötteliweg",
+  "ort": "Zürich",
+  "lon": 8.526391,
+  "lat": 47.413993,
+  "fahrplan": [
+   "Zürich, Mötteliweg"
+  ]
+ },
+ {
+  "id": "muhlacker",
+  "name": "Mühlacker",
+  "ort": "Zürich",
+  "lon": 8.496239,
+  "lat": 47.426058,
+  "fahrplan": [
+   "Zürich, Mühlacker"
+  ]
+ },
+ {
+  "id": "neeserweg",
+  "name": "Neeserweg",
+  "ort": "Zürich",
+  "lon": 8.47472,
+  "lat": 47.390611,
+  "fahrplan": [
+   "Zürich, Neeserweg"
+  ]
+ },
+ {
+  "id": "neuaffoltern",
+  "name": "Neuaffoltern",
+  "ort": "Zürich",
+  "lon": 8.525356,
+  "lat": 47.411776,
+  "fahrplan": [
+   "Zürich, Neuaffoltern"
+  ]
+ },
+ {
+  "id": "neubuhl",
+  "name": "Neubühl",
+  "ort": "Zürich",
+  "lon": 8.534684,
+  "lat": 47.333074,
+  "fahrplan": [
+   "Zürich, Neubühl"
+  ]
+ },
+ {
+  "id": "neunbrunnen",
+  "name": "Neunbrunnen",
+  "ort": "Zürich",
+  "lon": 8.538235,
+  "lat": 47.416564,
+  "fahrplan": [
+   "Zürich, Neunbrunnen"
+  ]
+ },
+ {
+  "id": "nordheimstrasse",
+  "name": "Nordheimstrasse",
+  "ort": "Zürich",
+  "lon": 8.530505,
+  "lat": 47.403573,
+  "fahrplan": [
+   "Zürich, Nordheimstrasse"
+  ]
+ },
+ {
+  "id": "nordstrasse",
+  "name": "Nordstrasse",
+  "ort": "Zürich",
+  "lon": 8.536225,
+  "lat": 47.388223,
+  "fahrplan": [
+   "Zürich, Nordstrasse"
+  ]
+ },
+ {
+  "id": "nurenbergstrasse",
+  "name": "Nürenbergstrasse",
+  "ort": "Zürich",
+  "lon": 8.53298,
+  "lat": 47.39239,
+  "fahrplan": [
+   "Zürich, Nürenbergstrasse"
+  ]
+ },
+ {
+  "id": "obere-hornhalde",
+  "name": "Obere Hornhalde",
+  "ort": "Zürich",
+  "lon": 8.537216,
+  "lat": 47.331268,
+  "fahrplan": [
+   "Zürich, Obere Hornhalde"
+  ]
+ },
+ {
+  "id": "oberengstringen-eggbuhl",
+  "name": "Oberengstringen, Eggbühl",
+  "ort": "Oberengstringen",
+  "lon": 8.474109,
+  "lat": 47.405524,
+  "fahrplan": [
+   "Oberengstringen, Eggbühl"
+  ]
+ },
+ {
+  "id": "oberengstringen-lanzrain",
+  "name": "Oberengstringen, Lanzrain",
+  "ort": "Oberengstringen",
+  "lon": 8.467646,
+  "lat": 47.407452,
+  "fahrplan": [
+   "Oberengstringen, Lanzrain"
+  ]
+ },
+ {
+  "id": "oberengstringen-paradies",
+  "name": "Oberengstringen, Paradies",
+  "ort": "Oberengstringen",
+  "lon": 8.458923,
+  "lat": 47.410443,
+  "fahrplan": [
+   "Oberengstringen, Paradies"
+  ]
+ },
+ {
+  "id": "oberengstringen-zentrum",
+  "name": "Oberengstringen, Zentrum",
+  "ort": "Oberengstringen",
+  "lon": 8.462471,
+  "lat": 47.409187,
+  "fahrplan": [
+   "Oberengstringen, Zentrum"
+  ]
+ },
+ {
+  "id": "oberwiesenstrasse",
+  "name": "Oberwiesenstrasse",
+  "ort": "Zürich",
+  "lon": 8.533074,
+  "lat": 47.410421,
+  "fahrplan": [
+   "Zürich, Oberwiesenstrasse"
+  ]
+ },
+ {
+  "id": "okenstrasse",
+  "name": "Okenstrasse",
+  "ort": "Zürich",
+  "lon": 8.534121,
+  "lat": 47.388212,
+  "fahrplan": [
+   "Zürich, Okenstrasse"
+  ]
+ },
+ {
+  "id": "orionstrasse",
+  "name": "Orionstrasse",
+  "ort": "Zürich",
+  "lon": 8.56646,
+  "lat": 47.416795,
+  "fahrplan": [
+   "Zürich, Orionstrasse"
+  ]
+ },
+ {
+  "id": "raffelstrasse",
+  "name": "Räffelstrasse",
+  "ort": "Zürich",
+  "lon": 8.514987,
+  "lat": 47.362906,
+  "fahrplan": [
+   "Zürich, Räffelstrasse"
+  ]
+ },
+ {
+  "id": "rautihalde",
+  "name": "Rautihalde",
+  "ort": "Zürich",
+  "lon": 8.473682,
+  "lat": 47.386607,
+  "fahrplan": [
+   "Zürich, Rautihalde"
+  ]
+ },
+ {
+  "id": "rautistrasse",
+  "name": "Rautistrasse",
+  "ort": "Zürich",
+  "lon": 8.483929,
+  "lat": 47.38346,
+  "fahrplan": [
+   "Zürich, Rautistrasse"
+  ]
+ },
+ {
+  "id": "rebbergsteig",
+  "name": "Rebbergsteig",
+  "ort": "Zürich",
+  "lon": 8.51474,
+  "lat": 47.397033,
+  "fahrplan": [
+   "Zürich, Rebbergsteig"
+  ]
+ },
+ {
+  "id": "reckenholz",
+  "name": "Reckenholz",
+  "ort": "Zürich",
+  "lon": 8.515202,
+  "lat": 47.428374,
+  "fahrplan": [
+   "Zürich, Reckenholz"
+  ]
+ },
+ {
+  "id": "riedgraben",
+  "name": "Riedgraben",
+  "ort": "Zürich",
+  "lon": 8.558843,
+  "lat": 47.410801,
+  "fahrplan": [
+   "Zürich, Riedgraben"
+  ]
+ },
+ {
+  "id": "riedhofstrasse",
+  "name": "Riedhofstrasse",
+  "ort": "Zürich",
+  "lon": 8.479449,
+  "lat": 47.409883,
+  "fahrplan": [
+   "Zürich, Riedhofstrasse"
+  ]
+ },
+ {
+  "id": "rigiblick",
+  "name": "Rigiblick",
+  "ort": "Zürich",
+  "lon": 8.554064,
+  "lat": 47.387412,
+  "fahrplan": [
+   "Zürich, Rigiblick"
+  ]
+ },
+ {
+  "id": "rontgenstrasse",
+  "name": "Röntgenstrasse",
+  "ort": "Zürich",
+  "lon": 8.529409,
+  "lat": 47.38213,
+  "fahrplan": [
+   "Zürich, Röntgenstrasse"
+  ]
+ },
+ {
+  "id": "rosengartenstrasse",
+  "name": "Rosengartenstrasse",
+  "ort": "Zürich",
+  "lon": 8.525443,
+  "lat": 47.394313,
+  "fahrplan": [
+   "Zürich, Rosengartenstrasse"
+  ]
+ },
+ {
+  "id": "rotbuchstrasse",
+  "name": "Rotbuchstrasse",
+  "ort": "Zürich",
+  "lon": 8.535989,
+  "lat": 47.391144,
+  "fahrplan": [
+   "Zürich, Rotbuchstrasse"
+  ]
+ },
+ {
+  "id": "rutihof",
+  "name": "Rütihof",
+  "ort": "Zürich",
+  "lon": 8.477258,
+  "lat": 47.413731,
+  "fahrplan": [
+   "Zürich, Rütihof"
+  ]
+ },
+ {
+  "id": "saatlenstrasse",
+  "name": "Saatlenstrasse",
+  "ort": "Zürich",
+  "lon": 8.563316,
+  "lat": 47.410896,
+  "fahrplan": [
+   "Zürich, Saatlenstrasse"
+  ]
+ },
+ {
+  "id": "sackzelg",
+  "name": "Sackzelg",
+  "ort": "Zürich",
+  "lon": 8.495152,
+  "lat": 47.374345,
+  "fahrplan": [
+   "Zürich, Sackzelg"
+  ]
+ },
+ {
+  "id": "salzweg",
+  "name": "Salzweg",
+  "ort": "Zürich",
+  "lon": 8.471706,
+  "lat": 47.387738,
+  "fahrplan": [
+   "Zürich, Salzweg"
+  ]
+ },
+ {
+  "id": "sbb-werkstatte",
+  "name": "SBB-Werkstätte",
+  "ort": "Zürich",
+  "lon": 8.502401,
+  "lat": 47.386838,
+  "fahrplan": [
+   "Zürich, SBB-Werkstätte"
+  ]
+ },
+ {
+  "id": "schanzackerstrasse",
+  "name": "Schanzackerstrasse",
+  "ort": "Zürich",
+  "lon": 8.547416,
+  "lat": 47.392086,
+  "fahrplan": [
+   "Zürich, Schanzackerstrasse"
+  ]
+ },
+ {
+  "id": "schappiweg",
+  "name": "Schäppiweg",
+  "ort": "Zürich",
+  "lon": 8.551131,
+  "lat": 47.389906,
+  "fahrplan": [
+   "Zürich, Schäppiweg"
+  ]
+ },
+ {
+  "id": "schauenberg",
+  "name": "Schauenberg",
+  "ort": "Zürich",
+  "lon": 8.506956,
+  "lat": 47.416178,
+  "fahrplan": [
+   "Zürich, Schauenberg"
+  ]
+ },
+ {
+  "id": "scheuchzerstrasse",
+  "name": "Scheuchzerstrasse",
+  "ort": "Zürich",
+  "lon": 8.544196,
+  "lat": 47.387683,
+  "fahrplan": [
+   "Zürich, Scheuchzerstrasse"
+  ]
+ },
+ {
+  "id": "schlieren-zentrum",
+  "name": "Schlieren, Zentrum",
+  "ort": "Schlieren",
+  "lon": 8.444581,
+  "lat": 47.397994,
+  "fahrplan": [
+   "Schlieren, Zentrum"
+  ]
+ },
+ {
+  "id": "schlyfi",
+  "name": "Schlyfi",
+  "ort": "Zürich",
+  "lon": 8.574258,
+  "lat": 47.362498,
+  "fahrplan": [
+   "Zürich, Schlyfi"
+  ]
+ },
+ {
+  "id": "schonauring",
+  "name": "Schönauring",
+  "ort": "Zürich",
+  "lon": 8.536501,
+  "lat": 47.426052,
+  "fahrplan": [
+   "Zürich, Schönauring"
+  ]
+ },
+ {
+  "id": "schulhaus-altweg",
+  "name": "Schulhaus Altweg",
+  "ort": "Zürich",
+  "lon": 8.494191,
+  "lat": 47.372689,
+  "fahrplan": [
+   "Zürich, Schulhaus Altweg"
+  ]
+ },
+ {
+  "id": "schulhaus-buchlern",
+  "name": "Schulhaus Buchlern",
+  "ort": "Zürich",
+  "lon": 8.477974,
+  "lat": 47.384571,
+  "fahrplan": [
+   "Zürich, Schulhaus Buchlern"
+  ]
+ },
+ {
+  "id": "schumacherweg",
+  "name": "Schumacherweg",
+  "ort": "Zürich",
+  "lon": 8.514771,
+  "lat": 47.412215,
+  "fahrplan": [
+   "Zürich, Schumacherweg"
+  ]
+ },
+ {
+  "id": "schurgistrasse",
+  "name": "Schürgistrasse",
+  "ort": "Zürich",
+  "lon": 8.579692,
+  "lat": 47.408728,
+  "fahrplan": [
+   "Zürich, Schürgistrasse"
+  ]
+ },
+ {
+  "id": "schutzenhaus-hongg",
+  "name": "Schützenhaus Höngg",
+  "ort": "Zürich",
+  "lon": 8.496688,
+  "lat": 47.409506,
+  "fahrplan": [
+   "Zürich, Schützenhaus Höngg"
+  ]
+ },
+ {
+  "id": "schwandenholz",
+  "name": "Schwandenholz",
+  "ort": "Zürich",
+  "lon": 8.519407,
+  "lat": 47.423818,
+  "fahrplan": [
+   "Zürich, Schwandenholz"
+  ]
+ },
+ {
+  "id": "schweighof",
+  "name": "Schweighof",
+  "ort": "Zürich",
+  "lon": 8.502761,
+  "lat": 47.364634,
+  "fahrplan": [
+   "Zürich, Schweighof"
+  ]
+ },
+ {
+  "id": "segantinistrasse",
+  "name": "Segantinistrasse",
+  "ort": "Zürich",
+  "lon": 8.489816,
+  "lat": 47.40754,
+  "fahrplan": [
+   "Zürich, Segantinistrasse"
+  ]
+ },
+ {
+  "id": "sihlcity",
+  "name": "Sihlcity",
+  "ort": "Zürich",
+  "lon": 8.523009,
+  "lat": 47.358202,
+  "fahrplan": [
+   "Zürich, Sihlcity"
+  ]
+ },
+ {
+  "id": "sihlweidstrasse",
+  "name": "Sihlweidstrasse",
+  "ort": "Zürich",
+  "lon": 8.514187,
+  "lat": 47.326652,
+  "fahrplan": [
+   "Zürich, Sihlweidstrasse"
+  ]
+ },
+ {
+  "id": "singlistrasse",
+  "name": "Singlistrasse",
+  "ort": "Zürich",
+  "lon": 8.492646,
+  "lat": 47.405485,
+  "fahrplan": [
+   "Zürich, Singlistrasse"
+  ]
+ },
+ {
+  "id": "solidapark",
+  "name": "Solidapark",
+  "ort": "Zürich",
+  "lon": 8.488513,
+  "lat": 47.387847,
+  "fahrplan": [
+   "Zürich, Solidapark"
+  ]
+ },
+ {
+  "id": "sprecherstrasse",
+  "name": "Sprecherstrasse",
+  "ort": "Zürich",
+  "lon": 8.552307,
+  "lat": 47.367664,
+  "fahrplan": [
+   "Zürich, Sprecherstrasse"
+  ]
+ },
+ {
+  "id": "spyriplatz",
+  "name": "Spyriplatz",
+  "ort": "Zürich",
+  "lon": 8.552132,
+  "lat": 47.382288,
+  "fahrplan": [
+   "Zürich, Spyriplatz"
+  ]
+ },
+ {
+  "id": "spyristeig",
+  "name": "Spyristeig",
+  "ort": "Zürich",
+  "lon": 8.556318,
+  "lat": 47.386205,
+  "fahrplan": [
+   "Zürich, Spyristeig"
+  ]
+ },
+ {
+  "id": "staudenbuhl",
+  "name": "Staudenbühl",
+  "ort": "Zürich",
+  "lon": 8.535338,
+  "lat": 47.420041,
+  "fahrplan": [
+   "Zürich, Staudenbühl"
+  ]
+ },
+ {
+  "id": "stierenried",
+  "name": "Stierenried",
+  "ort": "Zürich",
+  "lon": 8.535738,
+  "lat": 47.416619,
+  "fahrplan": [
+   "Zürich, Stierenried"
+  ]
+ },
+ {
+  "id": "strickhof",
+  "name": "Strickhof",
+  "ort": "Zürich",
+  "lon": 8.547506,
+  "lat": 47.393515,
+  "fahrplan": [
+   "Zürich, Strickhof"
+  ]
+ },
+ {
+  "id": "thujastrasse",
+  "name": "Thujastrasse",
+  "ort": "Zürich",
+  "lon": 8.527774,
+  "lat": 47.350217,
+  "fahrplan": [
+   "Zürich, Thujastrasse"
+  ]
+ },
+ {
+  "id": "triemlispital",
+  "name": "Triemlispital",
+  "ort": "Zürich",
+  "lon": 8.496877,
+  "lat": 47.366057,
+  "fahrplan": [
+   "Zürich, Triemlispital"
+  ]
+ },
+ {
+  "id": "tulpenstrasse",
+  "name": "Tulpenstrasse",
+  "ort": "Zürich",
+  "lon": 8.567637,
+  "lat": 47.406528,
+  "fahrplan": [
+   "Zürich, Tulpenstrasse"
+  ]
+ },
+ {
+  "id": "unteraffoltern",
+  "name": "Unteraffoltern",
+  "ort": "Zürich",
+  "lon": 8.511272,
+  "lat": 47.424037,
+  "fahrplan": [
+   "Zürich, Unteraffoltern"
+  ]
+ },
+ {
+  "id": "unterengstringen-langacher",
+  "name": "Unterengstringen, Langacher",
+  "ort": "Unterengstringen",
+  "lon": 8.453277,
+  "lat": 47.41223,
+  "fahrplan": [
+   "Unterengstringen, Langacher"
+  ]
+ },
+ {
+  "id": "unterengstringen-sennenbuel",
+  "name": "Unterengstringen, Sennenbüel",
+  "ort": "Unterengstringen",
+  "lon": 8.449125,
+  "lat": 47.413434,
+  "fahrplan": [
+   "Unterengstringen, Sennenbüel"
+  ]
+ },
+ {
+  "id": "untermoosstrasse",
+  "name": "Untermoosstrasse",
+  "ort": "Zürich",
+  "lon": 8.483357,
+  "lat": 47.379691,
+  "fahrplan": [
+   "Zürich, Untermoosstrasse"
+  ]
+ },
+ {
+  "id": "verenastrasse",
+  "name": "Verenastrasse",
+  "ort": "Zürich",
+  "lon": 8.52525,
+  "lat": 47.340935,
+  "fahrplan": [
+   "Zürich, Verenastrasse"
+  ]
+ },
+ {
+  "id": "vogelsangstrasse",
+  "name": "Vogelsangstrasse",
+  "ort": "Zürich",
+  "lon": 8.549249,
+  "lat": 47.38348,
+  "fahrplan": [
+   "Zürich, Vogelsangstrasse"
+  ]
+ },
+ {
+  "id": "waffenplatz-bederstr",
+  "name": "Waffenplatz-/Bederstr.",
+  "ort": "Zürich",
+  "lon": 8.526503,
+  "lat": 47.361646,
+  "fahrplan": [
+   "Zürich, Waffenplatz-/Bederstr."
+  ]
+ },
+ {
+  "id": "waidbadstrasse",
+  "name": "Waidbadstrasse",
+  "ort": "Zürich",
+  "lon": 8.513523,
+  "lat": 47.398976,
+  "fahrplan": [
+   "Zürich, Waidbadstrasse"
+  ]
+ },
+ {
+  "id": "waidhof",
+  "name": "Waidhof",
+  "ort": "Zürich",
+  "lon": 8.522811,
+  "lat": 47.423676,
+  "fahrplan": [
+   "Zürich, Waidhof"
+  ]
+ },
+ {
+  "id": "waidspital",
+  "name": "Waidspital",
+  "ort": "Zürich",
+  "lon": 8.521874,
+  "lat": 47.399152,
+  "fahrplan": [
+   "Zürich, Waidspital"
+  ]
+ },
+ {
+  "id": "wallisellen-glatt-bus",
+  "name": "Wallisellen, Glatt (Bus)",
+  "ort": "Wallisellen",
+  "lon": 8.594946,
+  "lat": 47.40913,
+  "fahrplan": [
+   "Wallisellen, Glatt (Bus)"
+  ]
+ },
+ {
+  "id": "waserstrasse",
+  "name": "Waserstrasse",
+  "ort": "Zürich",
+  "lon": 8.583933,
+  "lat": 47.358372,
+  "fahrplan": [
+   "Zürich, Waserstrasse"
+  ]
+ },
+ {
+  "id": "weihersteig",
+  "name": "Weihersteig",
+  "ort": "Zürich",
+  "lon": 8.528008,
+  "lat": 47.398116,
+  "fahrplan": [
+   "Zürich, Weihersteig"
+  ]
+ },
+ {
+  "id": "widmerstrasse",
+  "name": "Widmerstrasse",
+  "ort": "Zürich",
+  "lon": 8.532971,
+  "lat": 47.336847,
+  "fahrplan": [
+   "Zürich, Widmerstrasse"
+  ]
+ },
+ {
+  "id": "wieslergasse",
+  "name": "Wieslergasse",
+  "ort": "Zürich",
+  "lon": 8.495964,
+  "lat": 47.404132,
+  "fahrplan": [
+   "Zürich, Wieslergasse"
+  ]
+ },
+ {
+  "id": "winzerhalde",
+  "name": "Winzerhalde",
+  "ort": "Zürich",
+  "lon": 8.494564,
+  "lat": 47.400061,
+  "fahrplan": [
+   "Zürich, Winzerhalde"
+  ]
+ },
+ {
+  "id": "winzerstrasse-sud",
+  "name": "Winzerstrasse Süd",
+  "ort": "Zürich",
+  "lon": 8.486384,
+  "lat": 47.403108,
+  "fahrplan": [
+   "Zürich, Winzerstrasse Süd"
+  ]
+ },
+ {
+  "id": "wonnebergstrasse",
+  "name": "Wonnebergstrasse",
+  "ort": "Zürich",
+  "lon": 8.566483,
+  "lat": 47.351855,
+  "fahrplan": [
+   "Zürich, Wonnebergstrasse"
+  ]
+ },
+ {
+  "id": "zehntenhausplatz",
+  "name": "Zehntenhausplatz",
+  "ort": "Zürich",
+  "lon": 8.506347,
+  "lat": 47.419143,
+  "fahrplan": [
+   "Zürich, Zehntenhausplatz"
+  ]
+ },
+ {
+  "id": "zentrum-witikon",
+  "name": "Zentrum Witikon",
+  "ort": "Zürich",
+  "lon": 8.586879,
+  "lat": 47.358275,
+  "fahrplan": [
+   "Zürich, Zentrum Witikon"
+  ]
+ },
+ {
+  "id": "zielweg",
+  "name": "Zielweg",
+  "ort": "Zürich",
+  "lon": 8.497613,
+  "lat": 47.358756,
+  "fahrplan": [
+   "Zürich, Zielweg"
+  ]
+ },
+ {
+  "id": "zollikon-bahnhof",
+  "name": "Zollikon, Bahnhof",
+  "ort": "Zollikon",
+  "lon": 8.569892,
+  "lat": 47.337636,
+  "fahrplan": [
+   "Zollikon, Bahnhof"
+  ]
+ },
+ {
+  "id": "zollikon-dufourplatz",
+  "name": "Zollikon, Dufourplatz",
+  "ort": "Zollikon",
+  "lon": 8.57296,
+  "lat": 47.340229,
+  "fahrplan": [
+   "Zollikon, Dufourplatz"
+  ]
+ },
+ {
+  "id": "zollikon-gemeindehaus",
+  "name": "Zollikon, Gemeindehaus",
+  "ort": "Zollikon",
+  "lon": 8.576879,
+  "lat": 47.340439,
+  "fahrplan": [
+   "Zollikon, Gemeindehaus"
+  ]
+ },
+ {
+  "id": "zollikon-niederhofenrain",
+  "name": "Zollikon, Niederhofenrain",
+  "ort": "Zollikon",
+  "lon": 8.576715,
+  "lat": 47.347792,
+  "fahrplan": [
+   "Zollikon, Niederhofenrain"
+  ]
+ },
+ {
+  "id": "zollikon-rotfluhstrasse",
+  "name": "Zollikon, Rotfluhstrasse",
+  "ort": "Zollikon",
+  "lon": 8.577011,
+  "lat": 47.343276,
+  "fahrplan": [
+   "Zollikon, Rotfluhstrasse"
+  ]
+ },
+ {
+  "id": "zweiackerstrasse",
+  "name": "Zweiackerstrasse",
+  "ort": "Zürich",
+  "lon": 8.598059,
+  "lat": 47.357024,
+  "fahrplan": [
+   "Zürich, Zweiackerstrasse"
+  ]
+ },
+ {
+  "id": "zwinglihaus",
+  "name": "Zwinglihaus",
+  "ort": "Zürich",
+  "lon": 8.516292,
+  "lat": 47.371653,
+  "fahrplan": [
+   "Zürich, Zwinglihaus"
+  ]
+ }
+]

@@ -1,0 +1,9211 @@
+{
+ "quellen": {
+  "vbz-fahrzeiten-2015": {
+   "von": "2015-10-04",
+   "bis": "2015-10-10",
+   "art": "stichwoche"
+  },
+  "vbz-fahrzeiten-2016": {
+   "von": "2016-05-08",
+   "bis": "2016-05-14",
+   "art": "stichwoche"
+  },
+  "vbz-fahrzeiten-2017": {
+   "von": "2017-05-07",
+   "bis": "2017-05-13",
+   "art": "stichwoche"
+  },
+  "vbz-fahrzeiten-2018": {
+   "von": "2018-05-06",
+   "bis": "2018-05-12",
+   "art": "stichwoche"
+  },
+  "gtfs-2019": {
+   "von": "2018-12-09",
+   "bis": "2019-12-14",
+   "art": "gtfs"
+  },
+  "gtfs-2020": {
+   "von": "2019-12-15",
+   "bis": "2020-12-12",
+   "art": "gtfs"
+  },
+  "gtfs-2021": {
+   "von": "2020-12-13",
+   "bis": "2021-12-11",
+   "art": "gtfs"
+  },
+  "gtfs-2022": {
+   "von": "2020-12-13",
+   "bis": "2022-12-18",
+   "art": "gtfs"
+  },
+  "gtfs-2023": {
+   "von": "2022-12-11",
+   "bis": "2023-12-09",
+   "art": "gtfs"
+  },
+  "gtfs-2024": {
+   "von": "2023-12-10",
+   "bis": "2024-12-14",
+   "art": "gtfs"
+  },
+  "gtfs-2025": {
+   "von": "2024-12-15",
+   "bis": "2025-12-13",
+   "art": "gtfs"
+  },
+  "gtfs-2026": {
+   "von": "2025-12-14",
+   "bis": "2026-12-12",
+   "art": "gtfs"
+  }
+ },
+ "linien": {
+  "31": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "hegibachplatz",
+     "signaustrasse",
+     "kreuzplatz",
+     "sprecherstrasse",
+     "kunsthaus",
+     "neumarkt",
+     "central",
+     "bahnhofplatz-hb",
+     "lowenplatz",
+     "sihlpost-hb",
+     "kanonengasse",
+     "militar-langstrasse",
+     "backeranlage",
+     "guterbahnhof",
+     "hardplatz",
+     "herdernstrasse",
+     "sbb-werkstatte",
+     "letzipark",
+     "luggwegstrasse",
+     "bahnhof-altstetten",
+     "seidelhof",
+     "farbhof",
+     "micafil",
+     "mulligen",
+     "gasometerbrucke",
+     "wagonsfabrik",
+     "schlieren-zentrum-bahnhof",
+     "schlieren-zentrum"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "hegibachplatz",
+     "signaustrasse",
+     "kreuzplatz",
+     "sprecherstrasse",
+     "kunsthaus",
+     "neumarkt",
+     "central",
+     "bahnhofplatz-hb",
+     "lowenplatz",
+     "sihlpost-hb",
+     "kanonengasse",
+     "militar-langstrasse",
+     "backeranlage",
+     "guterbahnhof",
+     "hardplatz",
+     "herdernstrasse",
+     "sbb-werkstatte",
+     "letzipark",
+     "luggwegstrasse",
+     "bahnhof-altstetten",
+     "seidelhof",
+     "farbhof",
+     "micafil",
+     "mulligen",
+     "gasometerbrucke",
+     "wagonsfabrik",
+     "schlieren-zentrum-bahnhof",
+     "schlieren-zentrum"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "hegibachplatz",
+     "signaustrasse",
+     "kreuzplatz",
+     "sprecherstrasse",
+     "kunsthaus",
+     "neumarkt",
+     "central",
+     "bahnhofplatz-hb",
+     "lowenplatz",
+     "sihlpost-hb",
+     "kanonengasse",
+     "militar-langstrasse",
+     "backeranlage",
+     "guterbahnhof",
+     "hardplatz",
+     "herdernstrasse",
+     "sbb-werkstatte",
+     "letzipark",
+     "luggwegstrasse",
+     "bahnhof-altstetten",
+     "seidelhof",
+     "farbhof",
+     "micafil",
+     "mulligen",
+     "gasometerbrucke",
+     "wagonsfabrik",
+     "schlieren-zentrum-bahnhof",
+     "schlieren-zentrum"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "farbhof",
+     "seidelhof",
+     "bahnhof-altstetten",
+     "letzibach",
+     "letzipark",
+     "sbb-werkstatte",
+     "herdernstrasse",
+     "hardplatz",
+     "guterbahnhof",
+     "backeranlage",
+     "militar-langstrasse",
+     "kanonengasse",
+     "sihlpost-hb",
+     "lowenplatz",
+     "bahnhofplatz-hb",
+     "central",
+     "neumarkt",
+     "kunsthaus",
+     "sprecherstrasse",
+     "kreuzplatz",
+     "signaustrasse",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "kapfstrasse",
+     "schlyfi",
+     "drusbergstrasse",
+     "waserstrasse",
+     "zentrum-witikon",
+     "berghaldenstrasse",
+     "loorenstrasse",
+     "zweiackerstrasse",
+     "kienastenwies"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2019-07-14",
+    "wochen": 32,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": false,
+    "halte": [
+     "farbhof",
+     "seidelhof",
+     "bahnhof-altstetten",
+     "letzibach",
+     "letzipark",
+     "sbb-werkstatte",
+     "herdernstrasse",
+     "hardplatz",
+     "guterbahnhof",
+     "backeranlage",
+     "militar-langstrasse",
+     "kanonengasse",
+     "sihlpost-hb",
+     "lowenplatz",
+     "bahnhofplatz-hb",
+     "central",
+     "neumarkt",
+     "kunsthaus",
+     "sprecherstrasse",
+     "kreuzplatz",
+     "signaustrasse",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "kapfstrasse",
+     "schlyfi",
+     "drusbergstrasse",
+     "waserstrasse",
+     "zentrum-witikon",
+     "berghaldenstrasse",
+     "loorenstrasse",
+     "zweiackerstrasse",
+     "kienastenwies"
+    ]
+   },
+   {
+    "von": "2019-07-15",
+    "bis": "2021-05-30",
+    "wochen": 98,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-altstetten",
+     "letzibach",
+     "letzipark",
+     "sbb-werkstatte",
+     "herdernstrasse",
+     "hardplatz",
+     "guterbahnhof",
+     "backeranlage",
+     "militar-langstrasse",
+     "kanonengasse",
+     "sihlpost-hb",
+     "lowenplatz",
+     "bahnhofplatz-hb",
+     "central",
+     "neumarkt",
+     "kunsthaus",
+     "sprecherstrasse",
+     "kreuzplatz",
+     "signaustrasse",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "kapfstrasse",
+     "schlyfi",
+     "drusbergstrasse",
+     "waserstrasse",
+     "zentrum-witikon",
+     "berghaldenstrasse",
+     "loorenstrasse",
+     "zweiackerstrasse",
+     "kienastenwies"
+    ]
+   },
+   {
+    "von": "2021-05-31",
+    "bis": "2025-07-13",
+    "wochen": 215,
+    "quellen": [
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025"
+    ],
+    "kurz": false,
+    "halte": [
+     "hermetschloo",
+     "micafil",
+     "farbhof",
+     "seidelhof",
+     "bahnhof-altstetten",
+     "letzibach",
+     "letzipark",
+     "sbb-werkstatte",
+     "herdernstrasse",
+     "hardplatz",
+     "guterbahnhof",
+     "backeranlage",
+     "militar-langstrasse",
+     "kanonengasse",
+     "sihlpost-hb",
+     "lowenplatz",
+     "bahnhofplatz-hb",
+     "central",
+     "neumarkt",
+     "kunsthaus",
+     "sprecherstrasse",
+     "kreuzplatz",
+     "signaustrasse",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "kapfstrasse",
+     "schlyfi",
+     "drusbergstrasse",
+     "waserstrasse",
+     "zentrum-witikon",
+     "berghaldenstrasse",
+     "loorenstrasse",
+     "zweiackerstrasse",
+     "kienastenwies"
+    ]
+   },
+   {
+    "von": "2025-07-14",
+    "bis": "2025-08-03",
+    "wochen": 3,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofplatz-hb",
+     "lowenplatz",
+     "sihlpost-hb",
+     "kanonengasse",
+     "militar-langstrasse",
+     "backeranlage",
+     "guterbahnhof",
+     "hardplatz",
+     "herdernstrasse",
+     "sbb-werkstatte",
+     "letzipark",
+     "letzibach",
+     "bahnhof-altstetten",
+     "seidelhof",
+     "farbhof",
+     "micafil",
+     "hermetschloo"
+    ]
+   },
+   {
+    "von": "2025-08-04",
+    "bis": "2026-12-13",
+    "wochen": 71,
+    "quellen": [
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "hermetschloo",
+     "micafil",
+     "farbhof",
+     "seidelhof",
+     "bahnhof-altstetten",
+     "letzibach",
+     "letzipark",
+     "sbb-werkstatte",
+     "herdernstrasse",
+     "hardplatz",
+     "guterbahnhof",
+     "backeranlage",
+     "militar-langstrasse",
+     "kanonengasse",
+     "sihlpost-hb",
+     "lowenplatz",
+     "bahnhofplatz-hb",
+     "central",
+     "neumarkt",
+     "kunsthaus",
+     "sprecherstrasse",
+     "kreuzplatz",
+     "signaustrasse",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "kapfstrasse",
+     "schlyfi",
+     "drusbergstrasse",
+     "waserstrasse",
+     "zentrum-witikon",
+     "berghaldenstrasse",
+     "loorenstrasse",
+     "zweiackerstrasse",
+     "kienastenwies"
+    ]
+   }
+  ],
+  "32": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "holzerhurd",
+     "hungerbergstrasse",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "birchdorfli",
+     "brunnenhof",
+     "bucheggplatz",
+     "lagernstrasse",
+     "rotbuchstrasse",
+     "nordstrasse",
+     "limmatplatz",
+     "rontgenstrasse",
+     "militar-langstrasse",
+     "helvetiaplatz",
+     "kernstrasse",
+     "kalkbreite-bhf-wiedikon",
+     "zwinglihaus",
+     "goldbrunnenplatz",
+     "hofliweg",
+     "friesenberg",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "holzerhurd",
+     "hungerbergstrasse",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "birchdorfli",
+     "brunnenhof",
+     "bucheggplatz",
+     "lagernstrasse",
+     "rotbuchstrasse",
+     "nordstrasse",
+     "limmatplatz",
+     "rontgenstrasse",
+     "militar-langstrasse",
+     "helvetiaplatz",
+     "kernstrasse",
+     "kalkbreite-bhf-wiedikon",
+     "zwinglihaus",
+     "goldbrunnenplatz",
+     "hofliweg",
+     "friesenberg",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "holzerhurd",
+     "hungerbergstrasse",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "birchdorfli",
+     "brunnenhof",
+     "bucheggplatz",
+     "lagernstrasse",
+     "rotbuchstrasse",
+     "nordstrasse",
+     "limmatplatz",
+     "rontgenstrasse",
+     "militar-langstrasse",
+     "helvetiaplatz",
+     "kernstrasse",
+     "kalkbreite-bhf-wiedikon",
+     "zwinglihaus",
+     "goldbrunnenplatz",
+     "hofliweg",
+     "friesenberg",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "holzerhurd",
+     "hungerbergstrasse",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "birchdorfli",
+     "brunnenhof",
+     "bucheggplatz",
+     "lagernstrasse",
+     "rotbuchstrasse",
+     "nordstrasse",
+     "limmatplatz",
+     "rontgenstrasse",
+     "militar-langstrasse",
+     "helvetiaplatz",
+     "kernstrasse",
+     "kalkbreite-bhf-wiedikon",
+     "zwinglihaus",
+     "goldbrunnenplatz",
+     "hofliweg",
+     "friesenberg",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2026-10-04",
+    "wochen": 409,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "holzerhurd",
+     "hungerbergstrasse",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "birchdorfli",
+     "brunnenhof",
+     "bucheggplatz",
+     "lagernstrasse",
+     "rotbuchstrasse",
+     "nordstrasse",
+     "limmatplatz",
+     "rontgenstrasse",
+     "militar-langstrasse",
+     "helvetiaplatz",
+     "kernstrasse",
+     "kalkbreite-bhf-wiedikon",
+     "zwinglihaus",
+     "goldbrunnenplatz",
+     "hofliweg",
+     "friesenberg",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt"
+    ]
+   },
+   {
+    "von": "2026-10-05",
+    "bis": "2026-10-11",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "limmatplatz",
+     "rontgenstrasse",
+     "militar-langstrasse",
+     "helvetiaplatz",
+     "kernstrasse",
+     "kalkbreite-bhf-wiedikon",
+     "zwinglihaus",
+     "goldbrunnenplatz",
+     "hofliweg",
+     "friesenberg",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt"
+    ]
+   },
+   {
+    "von": "2026-10-12",
+    "bis": "2026-12-13",
+    "wochen": 9,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "holzerhurd",
+     "hungerbergstrasse",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "birchdorfli",
+     "brunnenhof",
+     "bucheggplatz",
+     "lagernstrasse",
+     "rotbuchstrasse",
+     "nordstrasse",
+     "limmatplatz",
+     "rontgenstrasse",
+     "militar-langstrasse",
+     "helvetiaplatz",
+     "kernstrasse",
+     "kalkbreite-bhf-wiedikon",
+     "zwinglihaus",
+     "goldbrunnenplatz",
+     "hofliweg",
+     "friesenberg",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt"
+    ]
+   }
+  ],
+  "33": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "hegibachplatz",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2019-07-14",
+    "wochen": 32,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": false,
+    "halte": [
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2019-07-15",
+    "bis": "2023-08-20",
+    "wochen": 214,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2023-08-21",
+    "bis": "2023-10-15",
+    "wochen": 8,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2023-10-16",
+    "bis": "2023-10-22",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "hinterbergstrasse",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2023-10-23",
+    "bis": "2023-12-03",
+    "wochen": 6,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2023-12-04",
+    "bis": "2023-12-10",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "hinterbergstrasse",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2023-12-11",
+    "bis": "2024-06-02",
+    "wochen": 25,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2024-06-03",
+    "bis": "2024-07-07",
+    "wochen": 5,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "hinterbergstrasse",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2024-07-08",
+    "bis": "2024-07-14",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2024-07-15",
+    "bis": "2024-07-28",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "hinterbergstrasse",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2024-07-29",
+    "bis": "2024-09-22",
+    "wochen": 8,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2024-09-23",
+    "bis": "2024-09-29",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "kirche-fluntern",
+     "hinterbergstrasse",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2024-09-30",
+    "bis": "2026-11-01",
+    "wochen": 109,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "frohlichstrasse",
+     "hoschgasse",
+     "botanischer-garten",
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   },
+   {
+    "von": "2026-11-02",
+    "bis": "2026-12-13",
+    "wochen": 6,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "hegibachplatz",
+     "freiestrasse",
+     "klusplatz",
+     "holderlinsteig",
+     "klosbach",
+     "hofstrasse",
+     "kirche-fluntern",
+     "toblerplatz",
+     "bethanien",
+     "spyriplatz",
+     "vogelsangstrasse",
+     "seilbahn-rigiblick",
+     "scheuchzerstrasse",
+     "schaffhauserplatz",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "hubertus",
+     "sackzelg",
+     "schulhaus-altweg",
+     "in-der-ey",
+     "triemli"
+    ]
+   }
+  ],
+  "34": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "kienastenwies",
+     "zweiackerstrasse",
+     "loorenstrasse",
+     "berghaldenstrasse",
+     "zentrum-witikon",
+     "waserstrasse",
+     "drusbergstrasse",
+     "schlyfi",
+     "kapfstrasse",
+     "klusplatz"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "kienastenwies",
+     "zweiackerstrasse",
+     "loorenstrasse",
+     "berghaldenstrasse",
+     "zentrum-witikon",
+     "waserstrasse",
+     "drusbergstrasse",
+     "schlyfi",
+     "kapfstrasse",
+     "klusplatz"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "kienastenwies",
+     "zweiackerstrasse",
+     "loorenstrasse",
+     "berghaldenstrasse",
+     "zentrum-witikon",
+     "waserstrasse",
+     "drusbergstrasse",
+     "schlyfi",
+     "kapfstrasse",
+     "klusplatz"
+    ]
+   }
+  ],
+  "35": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "friedhof-eichbuhl",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli",
+     "loogarten",
+     "am-suteracher",
+     "feusisbergli",
+     "neeserweg",
+     "farbhof",
+     "lindenplatz",
+     "solidapark"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "friedhof-eichbuhl",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli",
+     "loogarten",
+     "am-suteracher",
+     "feusisbergli",
+     "neeserweg",
+     "farbhof",
+     "lindenplatz",
+     "solidapark"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "friedhof-eichbuhl",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli",
+     "loogarten",
+     "am-suteracher",
+     "feusisbergli",
+     "neeserweg",
+     "farbhof",
+     "lindenplatz",
+     "solidapark"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "farbhof",
+     "neeserweg",
+     "feusisbergli",
+     "am-suteracher",
+     "loogarten",
+     "dunkelholzli",
+     "salzweg",
+     "rautihalde",
+     "schulhaus-buchlern",
+     "friedhof-eichbuhl"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2018-12-09",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": true,
+    "halte": [
+     "farbhof",
+     "neeserweg",
+     "feusisbergli",
+     "am-suteracher",
+     "loogarten",
+     "dunkelholzli",
+     "salzweg",
+     "rautihalde",
+     "schulhaus-buchlern",
+     "friedhof-eichbuhl"
+    ]
+   },
+   {
+    "von": "2018-12-10",
+    "bis": "2019-07-14",
+    "wochen": 31,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": false,
+    "halte": [
+     "friedhof-eichbuhl",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli",
+     "loogarten",
+     "am-suteracher",
+     "feusisbergli",
+     "neeserweg",
+     "farbhof",
+     "lindenplatz",
+     "solidapark"
+    ]
+   },
+   {
+    "von": "2019-07-15",
+    "bis": "2021-05-30",
+    "wochen": 98,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-altstetten",
+     "solidapark",
+     "lindenplatz",
+     "farbhof",
+     "neeserweg",
+     "feusisbergli",
+     "am-suteracher",
+     "loogarten",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2021-05-31",
+    "bis": "2022-01-16",
+    "wochen": 33,
+    "quellen": [
+     "gtfs-2022"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "solidapark",
+     "lindenplatz",
+     "farbhof",
+     "neeserweg",
+     "feusisbergli",
+     "am-suteracher",
+     "loogarten",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2022-01-17",
+    "bis": "2022-09-04",
+    "wochen": 33,
+    "quellen": [
+     "gtfs-2022"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-altstetten",
+     "solidapark",
+     "lindenplatz",
+     "farbhof",
+     "neeserweg",
+     "feusisbergli",
+     "am-suteracher",
+     "loogarten",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2022-09-05",
+    "bis": "2025-12-14",
+    "wochen": 171,
+    "quellen": [
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "solidapark",
+     "lindenplatz",
+     "farbhof",
+     "neeserweg",
+     "feusisbergli",
+     "am-suteracher",
+     "loogarten",
+     "dunkelholzli"
+    ]
+   }
+  ],
+  "37": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "eth-honggerberg",
+     "lerchenhalde",
+     "lerchenrain",
+     "schauenberg",
+     "zehntenhausplatz",
+     "bahnhof-affoltern-sud",
+     "bahnhof-affoltern",
+     "barenbohlstrasse",
+     "unteraffoltern",
+     "schwandenholz",
+     "waidhof"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "schauenberg",
+     "lerchenrain",
+     "lerchenhalde",
+     "eth-honggerberg"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "schauenberg",
+     "lerchenrain",
+     "lerchenhalde",
+     "eth-honggerberg"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "schauenberg",
+     "lerchenrain",
+     "lerchenhalde",
+     "eth-honggerberg"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2023-12-10",
+    "wochen": 262,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "schauenberg",
+     "lerchenrain",
+     "lerchenhalde",
+     "eth-honggerberg"
+    ]
+   },
+   {
+    "von": "2023-12-11",
+    "bis": "2026-12-13",
+    "wochen": 157,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "eth-honggerberg",
+     "lerchenhalde",
+     "lerchenrain",
+     "schauenberg",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "blumenfeldstrasse",
+     "aspholz",
+     "muhlacker"
+    ]
+   }
+  ],
+  "38": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "schutzenhaus-hongg",
+     "friedhof-honggerberg",
+     "michelstrasse",
+     "wieslergasse",
+     "kappenbuhlweg",
+     "meierhofplatz",
+     "schwert",
+     "am-bortli",
+     "appenzellerstrasse",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "schutzenhaus-hongg",
+     "friedhof-honggerberg",
+     "michelstrasse",
+     "wieslergasse",
+     "kappenbuhlweg",
+     "meierhofplatz",
+     "schwert",
+     "am-bortli",
+     "appenzellerstrasse",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "schutzenhaus-hongg",
+     "friedhof-honggerberg",
+     "michelstrasse",
+     "wieslergasse",
+     "kappenbuhlweg",
+     "meierhofplatz",
+     "schwert",
+     "am-bortli",
+     "appenzellerstrasse",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "schutzenhaus-hongg",
+     "friedhof-honggerberg",
+     "michelstrasse",
+     "wieslergasse",
+     "kappenbuhlweg",
+     "meierhofplatz",
+     "schwert",
+     "am-bortli",
+     "appenzellerstrasse",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2024-08-25",
+    "wochen": 299,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "schutzenhaus-hongg",
+     "friedhof-honggerberg",
+     "michelstrasse",
+     "wieslergasse",
+     "kappenbuhlweg",
+     "meierhofplatz",
+     "schwert",
+     "am-bortli",
+     "appenzellerstrasse",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital"
+    ]
+   },
+   {
+    "von": "2024-08-26",
+    "bis": "2025-08-31",
+    "wochen": 53,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "friedhof-honggerberg",
+     "michelstrasse",
+     "wieslergasse",
+     "kappenbuhlweg",
+     "meierhofplatz",
+     "schwert",
+     "am-bortli",
+     "appenzellerstrasse",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital"
+    ]
+   },
+   {
+    "von": "2025-09-01",
+    "bis": "2026-12-13",
+    "wochen": 67,
+    "quellen": [
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "schutzenhaus-hongg",
+     "friedhof-honggerberg",
+     "michelstrasse",
+     "wieslergasse",
+     "kappenbuhlweg",
+     "meierhofplatz",
+     "schwert",
+     "am-bortli",
+     "appenzellerstrasse",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital"
+    ]
+   }
+  ],
+  "39": [
+   {
+    "von": "2018-12-03",
+    "bis": "2019-12-15",
+    "wochen": 54,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020"
+    ],
+    "halte": [
+     "im-klosterli",
+     "zoo",
+     "flobotstrasse",
+     "heubeeriweg",
+     "kronleinstrasse",
+     "spyristeig",
+     "rigiblick",
+     "germaniastrasse",
+     "schappiweg",
+     "langensteinenstrasse",
+     "schanzackerstrasse",
+     "letzistrasse"
+    ]
+   },
+   {
+    "von": "2019-12-16",
+    "bis": "2022-06-26",
+    "wochen": 132,
+    "quellen": [
+     "gtfs-2020",
+     "gtfs-2022"
+    ],
+    "kurz": false,
+    "halte": [
+     "im-klosterli",
+     "zoo",
+     "flobotstrasse",
+     "heubeeriweg",
+     "kronleinstrasse",
+     "spyristeig",
+     "rigiblick",
+     "germaniastrasse",
+     "schappiweg",
+     "langensteinenstrasse",
+     "strickhof",
+     "universitat-irchel",
+     "letzistrasse"
+    ]
+   },
+   {
+    "von": "2022-06-27",
+    "bis": "2022-07-10",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2022"
+    ],
+    "kurz": true,
+    "halte": [
+     "letzistrasse",
+     "universitat-irchel",
+     "strickhof",
+     "langensteinenstrasse",
+     "schappiweg",
+     "germaniastrasse",
+     "rigiblick",
+     "spyristeig",
+     "kronleinstrasse",
+     "heubeeriweg",
+     "flobotstrasse",
+     "zoo"
+    ]
+   },
+   {
+    "von": "2022-07-11",
+    "bis": "2023-06-04",
+    "wochen": 47,
+    "quellen": [
+     "gtfs-2022",
+     "gtfs-2023"
+    ],
+    "kurz": false,
+    "halte": [
+     "im-klosterli",
+     "zoo",
+     "flobotstrasse",
+     "heubeeriweg",
+     "kronleinstrasse",
+     "spyristeig",
+     "rigiblick",
+     "germaniastrasse",
+     "schappiweg",
+     "langensteinenstrasse",
+     "strickhof",
+     "universitat-irchel",
+     "letzistrasse"
+    ]
+   },
+   {
+    "von": "2023-06-05",
+    "bis": "2023-08-27",
+    "wochen": 12,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "im-klosterli",
+     "zoo",
+     "flobotstrasse",
+     "heubeeriweg",
+     "kronleinstrasse",
+     "spyristeig",
+     "rigiblick",
+     "germaniastrasse",
+     "schappiweg",
+     "langensteinenstrasse",
+     "strickhof",
+     "universitat-irchel"
+    ]
+   },
+   {
+    "von": "2023-08-28",
+    "bis": "2026-12-13",
+    "wochen": 172,
+    "quellen": [
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "im-klosterli",
+     "zoo",
+     "flobotstrasse",
+     "heubeeriweg",
+     "kronleinstrasse",
+     "spyristeig",
+     "rigiblick",
+     "germaniastrasse",
+     "schappiweg",
+     "langensteinenstrasse",
+     "strickhof",
+     "universitat-irchel",
+     "letzistrasse"
+    ]
+   }
+  ],
+  "40": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "bucheggplatz",
+     "brunnenhof",
+     "berufswahlschule",
+     "nordheimstrasse",
+     "krematorium-nordheim",
+     "maienweg",
+     "althoos",
+     "glaubtenstrasse"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "bucheggplatz",
+     "brunnenhof",
+     "berufswahlschule",
+     "nordheimstrasse",
+     "krematorium-nordheim",
+     "maienweg",
+     "althoos",
+     "glaubtenstrasse",
+     "glaubtenstrasse-nord",
+     "hurstholz",
+     "staudenbuhl",
+     "friedhof-schwandenholz",
+     "buhnstrasse",
+     "hertensteinstrasse",
+     "seebacherplatz"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "bucheggplatz",
+     "brunnenhof",
+     "berufswahlschule",
+     "nordheimstrasse",
+     "krematorium-nordheim",
+     "maienweg",
+     "althoos",
+     "glaubtenstrasse",
+     "glaubtenstrasse-nord",
+     "hurstholz",
+     "staudenbuhl",
+     "friedhof-schwandenholz",
+     "buhnstrasse",
+     "hertensteinstrasse",
+     "seebacherplatz",
+     "seebach"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "bucheggplatz",
+     "brunnenhof",
+     "berufswahlschule",
+     "nordheimstrasse",
+     "krematorium-nordheim",
+     "maienweg",
+     "althoos",
+     "glaubtenstrasse",
+     "glaubtenstrasse-nord",
+     "hurstholz",
+     "staudenbuhl",
+     "friedhof-schwandenholz",
+     "buhnstrasse",
+     "hertensteinstrasse",
+     "seebacherplatz",
+     "seebach"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2018-12-16",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": true,
+    "halte": [
+     "bucheggplatz",
+     "brunnenhof",
+     "berufswahlschule",
+     "nordheimstrasse",
+     "krematorium-nordheim",
+     "maienweg",
+     "althoos",
+     "glaubtenstrasse",
+     "glaubtenstrasse-nord",
+     "hurstholz",
+     "staudenbuhl",
+     "friedhof-schwandenholz",
+     "buhnstrasse",
+     "hertensteinstrasse",
+     "seebacherplatz"
+    ]
+   },
+   {
+    "von": "2018-12-17",
+    "bis": "2020-05-17",
+    "wochen": 74,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020"
+    ],
+    "kurz": false,
+    "halte": [
+     "bucheggplatz",
+     "brunnenhof",
+     "berufswahlschule",
+     "nordheimstrasse",
+     "krematorium-nordheim",
+     "maienweg",
+     "althoos",
+     "glaubtenstrasse",
+     "glaubtenstrasse-nord",
+     "hurstholz",
+     "staudenbuhl",
+     "friedhof-schwandenholz",
+     "buhnstrasse",
+     "hertensteinstrasse",
+     "seebacherplatz",
+     "seebach"
+    ]
+   },
+   {
+    "von": "2020-05-18",
+    "bis": "2020-07-19",
+    "wochen": 9,
+    "quellen": [
+     "gtfs-2020"
+    ],
+    "kurz": true,
+    "halte": [
+     "bucheggplatz",
+     "brunnenhof",
+     "berufswahlschule",
+     "nordheimstrasse",
+     "krematorium-nordheim",
+     "maienweg",
+     "althoos",
+     "glaubtenstrasse",
+     "glaubtenstrasse-nord",
+     "staudenbuhl",
+     "friedhof-schwandenholz",
+     "buhnstrasse",
+     "hertensteinstrasse",
+     "seebacherplatz",
+     "seebach"
+    ]
+   },
+   {
+    "von": "2020-07-20",
+    "bis": "2026-12-13",
+    "wochen": 334,
+    "quellen": [
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "bucheggplatz",
+     "brunnenhof",
+     "berufswahlschule",
+     "nordheimstrasse",
+     "krematorium-nordheim",
+     "maienweg",
+     "althoos",
+     "glaubtenstrasse",
+     "glaubtenstrasse-nord",
+     "hurstholz",
+     "staudenbuhl",
+     "friedhof-schwandenholz",
+     "buhnstrasse",
+     "hertensteinstrasse",
+     "seebacherplatz",
+     "seebach"
+    ]
+   }
+  ],
+  "42": [
+   {
+    "von": "2023-12-11",
+    "bis": "2026-05-03",
+    "wochen": 125,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "eth-honggerberg",
+     "lerchenhalde",
+     "schumacherweg",
+     "glaubtenstrasse-sud",
+     "glaubtenstrasse-nord",
+     "hurstholz",
+     "staudenbuhl",
+     "friedhof-schwandenholz",
+     "buhnstrasse",
+     "hertensteinstrasse",
+     "seebacherplatz",
+     "seebach"
+    ]
+   },
+   {
+    "von": "2026-05-04",
+    "bis": "2026-05-10",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "eth-honggerberg",
+     "lerchenhalde",
+     "schumacherweg",
+     "glaubtenstrasse-sud",
+     "glaubtenstrasse-nord",
+     "himmeri",
+     "buhnstrasse",
+     "hertensteinstrasse",
+     "seebacherplatz",
+     "seebach"
+    ]
+   },
+   {
+    "von": "2026-05-11",
+    "bis": "2026-12-13",
+    "wochen": 31,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "eth-honggerberg",
+     "lerchenhalde",
+     "schumacherweg",
+     "glaubtenstrasse-sud",
+     "glaubtenstrasse-nord",
+     "hurstholz",
+     "staudenbuhl",
+     "friedhof-schwandenholz",
+     "buhnstrasse",
+     "hertensteinstrasse",
+     "seebacherplatz",
+     "seebach"
+    ]
+   }
+  ],
+  "44": [
+   {
+    "von": "2025-12-15",
+    "bis": "2026-12-13",
+    "wochen": 52,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "eth-honggerberg",
+     "lerchenhalde",
+     "lerchenrain",
+     "schauenberg",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern",
+     "barenbohlstrasse",
+     "reckenholz"
+    ]
+   }
+  ],
+  "45": [
+   {
+    "von": "2025-12-08",
+    "bis": "2026-04-05",
+    "wochen": 17,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "dunkelholzli",
+     "loogarten",
+     "am-suteracher",
+     "feusisbergli",
+     "neeserweg",
+     "farbhof",
+     "lindenplatz",
+     "solidapark",
+     "bristenstrasse",
+     "bahnhof-altstetten",
+     "grunaustrasse",
+     "bandliweg",
+     "werdholzli"
+    ]
+   },
+   {
+    "von": "2026-04-06",
+    "bis": "2026-09-20",
+    "wochen": 24,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "dunkelholzli",
+     "loogarten",
+     "am-suteracher",
+     "feusisbergli",
+     "neeserweg",
+     "farbhof",
+     "lindenplatz",
+     "solidapark",
+     "bristenstrasse",
+     "bahnhof-altstetten",
+     "grunaustrasse",
+     "grunauring",
+     "bandliweg",
+     "werdholzli"
+    ]
+   },
+   {
+    "von": "2026-09-21",
+    "bis": "2026-12-13",
+    "wochen": 12,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "dunkelholzli",
+     "loogarten",
+     "am-suteracher",
+     "feusisbergli",
+     "neeserweg",
+     "farbhof",
+     "lindenplatz",
+     "bristenstrasse",
+     "bahnhof-altstetten",
+     "grunaustrasse",
+     "grunauring",
+     "bandliweg",
+     "werdholzli"
+    ]
+   }
+  ],
+  "46": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2022-05-01",
+    "wochen": 178,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2022-05-02",
+    "bis": "2022-05-22",
+    "wochen": 3,
+    "quellen": [
+     "gtfs-2022"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "stampfenbachplatz",
+     "nordstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2022-05-23",
+    "bis": "2023-04-02",
+    "wochen": 45,
+    "quellen": [
+     "gtfs-2022",
+     "gtfs-2023"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2023-04-03",
+    "bis": "2023-12-03",
+    "wochen": 35,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "stampfenbachplatz",
+     "nordstrasse",
+     "rotbuchstrasse",
+     "nurenbergstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2023-12-04",
+    "bis": "2024-07-14",
+    "wochen": 32,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2024-07-15",
+    "bis": "2024-08-04",
+    "wochen": 3,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "stampfenbachplatz",
+     "beckenhof",
+     "nordstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2024-08-05",
+    "bis": "2024-10-13",
+    "wochen": 10,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2024-10-14",
+    "bis": "2024-10-20",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "stampfenbachplatz",
+     "beckenhof",
+     "nordstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2024-10-21",
+    "bis": "2025-05-04",
+    "wochen": 28,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2025-05-05",
+    "bis": "2025-05-11",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "stampfenbachplatz",
+     "beckenhof",
+     "nordstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2025-05-12",
+    "bis": "2025-05-18",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2025-05-19",
+    "bis": "2025-05-25",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "stampfenbachplatz",
+     "beckenhof",
+     "nordstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2025-05-26",
+    "bis": "2025-06-01",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2025-06-02",
+    "bis": "2025-07-13",
+    "wochen": 6,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "stampfenbachplatz",
+     "beckenhof",
+     "nordstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2025-07-14",
+    "bis": "2025-08-03",
+    "wochen": 3,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "limmatplatz",
+     "nordstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2025-08-04",
+    "bis": "2026-01-11",
+    "wochen": 23,
+    "quellen": [
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2026-01-12",
+    "bis": "2026-01-18",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "nordstrasse",
+     "rotbuchstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   },
+   {
+    "von": "2026-01-19",
+    "bis": "2026-12-13",
+    "wochen": 47,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "bahnhofquai-hb",
+     "central",
+     "stampfenbachplatz",
+     "okenstrasse",
+     "lettenstrasse",
+     "bahnhof-wipkingen",
+     "rosengartenstrasse",
+     "lehenstrasse",
+     "rebbergsteig",
+     "kempfhofsteig",
+     "schwert",
+     "meierhofplatz",
+     "wieslergasse",
+     "singlistrasse",
+     "segantinistrasse",
+     "giblenstrasse",
+     "heizenholz",
+     "geeringstrasse",
+     "rutihof"
+    ]
+   }
+  ],
+  "61": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "muhlacker",
+     "aspholz",
+     "blumenfeldstrasse",
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "oberwiesenstrasse",
+     "regensbergbrucke",
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "dorflinde",
+     "friedackerstrasse",
+     "waldgarten",
+     "frohburg",
+     "friedrichstrasse",
+     "schwamendingerplatz"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "muhlacker",
+     "aspholz",
+     "blumenfeldstrasse",
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "oberwiesenstrasse",
+     "regensbergbrucke",
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "herzogenmuhlestrasse",
+     "schwamendingerplatz"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "muhlacker",
+     "aspholz",
+     "blumenfeldstrasse",
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "oberwiesenstrasse",
+     "regensbergbrucke",
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "herzogenmuhlestrasse",
+     "schwamendingerplatz"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "muhlacker",
+     "aspholz",
+     "blumenfeldstrasse",
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "oberwiesenstrasse",
+     "regensbergbrucke",
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "herzogenmuhlestrasse",
+     "schwamendingerplatz"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2023-12-10",
+    "wochen": 262,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "muhlacker",
+     "aspholz",
+     "blumenfeldstrasse",
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "oberwiesenstrasse",
+     "regensbergbrucke",
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "herzogenmuhlestrasse",
+     "schwamendingerplatz"
+    ]
+   },
+   {
+    "von": "2023-12-11",
+    "bis": "2024-08-04",
+    "wochen": 34,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "muhlacker",
+     "aspholz",
+     "blumenfeldstrasse",
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "oberwiesenstrasse",
+     "regensbergbrucke",
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "schurgistrasse",
+     "luchswiesen",
+     "altried",
+     "wallisellen-glatt-bus"
+    ]
+   },
+   {
+    "von": "2024-08-05",
+    "bis": "2024-09-22",
+    "wochen": 7,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "muhlacker",
+     "aspholz",
+     "blumenfeldstrasse",
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "oberwiesenstrasse",
+     "regensbergbrucke",
+     "max-bill-platz",
+     "bahnhof-oerlikon-ost",
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "schurgistrasse",
+     "luchswiesen",
+     "altried",
+     "wallisellen-glatt-bus"
+    ]
+   },
+   {
+    "von": "2024-09-23",
+    "bis": "2026-10-18",
+    "wochen": 108,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "muhlacker",
+     "aspholz",
+     "blumenfeldstrasse",
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "oberwiesenstrasse",
+     "regensbergbrucke",
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "schurgistrasse",
+     "luchswiesen",
+     "altried",
+     "wallisellen-glatt-bus"
+    ]
+   },
+   {
+    "von": "2026-10-19",
+    "bis": "2026-12-13",
+    "wochen": 8,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "muhlacker",
+     "aspholz",
+     "blumenfeldstrasse",
+     "bahnhof-affoltern",
+     "zehntenhausplatz",
+     "einfangstrasse",
+     "glaubtenstrasse",
+     "neuaffoltern",
+     "birchdorfli",
+     "regensbergbrucke",
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "schurgistrasse",
+     "luchswiesen",
+     "altried",
+     "wallisellen-glatt-bus"
+    ]
+   }
+  ],
+  "62": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "friedrichstrasse",
+     "frohburg",
+     "waldgarten",
+     "friedackerstrasse",
+     "dorflinde",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon",
+     "regensbergbrucke",
+     "oberwiesenstrasse",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "einfangstrasse",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "herzogenmuhlestrasse",
+     "aubrucke",
+     "dreispitz",
+     "saatlenstrasse",
+     "riedgraben",
+     "hallenbad-oerlikon",
+     "messe-hallenstadion",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon",
+     "regensbergbrucke",
+     "oberwiesenstrasse",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "einfangstrasse",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern",
+     "schwandenholz",
+     "waidhof"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "herzogenmuhlestrasse",
+     "aubrucke",
+     "dreispitz",
+     "saatlenstrasse",
+     "riedgraben",
+     "hallenbad-oerlikon",
+     "messe-hallenstadion",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon",
+     "regensbergbrucke",
+     "oberwiesenstrasse",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "einfangstrasse",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern",
+     "schwandenholz",
+     "waidhof"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "herzogenmuhlestrasse",
+     "aubrucke",
+     "dreispitz",
+     "saatlenstrasse",
+     "riedgraben",
+     "hallenbad-oerlikon",
+     "messe-hallenstadion",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon",
+     "regensbergbrucke",
+     "oberwiesenstrasse",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "einfangstrasse",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern",
+     "schwandenholz",
+     "waidhof"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2024-08-04",
+    "wochen": 296,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "herzogenmuhlestrasse",
+     "aubrucke",
+     "dreispitz",
+     "saatlenstrasse",
+     "riedgraben",
+     "hallenbad-oerlikon",
+     "messe-hallenstadion",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon",
+     "regensbergbrucke",
+     "oberwiesenstrasse",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "einfangstrasse",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern",
+     "schwandenholz",
+     "waidhof"
+    ]
+   },
+   {
+    "von": "2024-08-05",
+    "bis": "2024-09-22",
+    "wochen": 7,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "schwamendingerplatz",
+     "herzogenmuhlestrasse",
+     "aubrucke",
+     "dreispitz",
+     "saatlenstrasse",
+     "riedgraben",
+     "hallenbad-oerlikon",
+     "messe-hallenstadion",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon",
+     "bahnhof-oerlikon-ost",
+     "max-bill-platz",
+     "regensbergbrucke",
+     "oberwiesenstrasse",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "einfangstrasse",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern",
+     "schwandenholz",
+     "waidhof"
+    ]
+   },
+   {
+    "von": "2024-09-23",
+    "bis": "2025-03-02",
+    "wochen": 23,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "herzogenmuhlestrasse",
+     "aubrucke",
+     "dreispitz",
+     "saatlenstrasse",
+     "riedgraben",
+     "hallenbad-oerlikon",
+     "messe-hallenstadion",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon",
+     "regensbergbrucke",
+     "oberwiesenstrasse",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "einfangstrasse",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern",
+     "schwandenholz",
+     "waidhof"
+    ]
+   },
+   {
+    "von": "2025-03-03",
+    "bis": "2025-08-03",
+    "wochen": 22,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "tulpenstrasse",
+     "herbstweg",
+     "saatlenstrasse",
+     "riedgraben",
+     "hallenbad-oerlikon",
+     "messe-hallenstadion",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon",
+     "regensbergbrucke",
+     "oberwiesenstrasse",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "einfangstrasse",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern",
+     "schwandenholz",
+     "waidhof"
+    ]
+   },
+   {
+    "von": "2025-08-04",
+    "bis": "2025-08-10",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "schwamendingerplatz",
+     "herzogenmuhlestrasse",
+     "aubrucke",
+     "dreispitz",
+     "saatlenstrasse",
+     "riedgraben",
+     "messe-hallenstadion",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon",
+     "regensbergbrucke",
+     "oberwiesenstrasse",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "einfangstrasse",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern",
+     "schwandenholz",
+     "waidhof"
+    ]
+   },
+   {
+    "von": "2025-08-11",
+    "bis": "2025-08-24",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "schwamendingerplatz",
+     "tulpenstrasse",
+     "herbstweg",
+     "saatlenstrasse",
+     "riedgraben",
+     "hallenbad-oerlikon",
+     "messe-hallenstadion",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon",
+     "regensbergbrucke",
+     "oberwiesenstrasse",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "einfangstrasse",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern",
+     "schwandenholz",
+     "waidhof"
+    ]
+   },
+   {
+    "von": "2025-08-25",
+    "bis": "2026-12-13",
+    "wochen": 68,
+    "quellen": [
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "schwamendingerplatz",
+     "herzogenmuhlestrasse",
+     "aubrucke",
+     "dreispitz",
+     "saatlenstrasse",
+     "riedgraben",
+     "hallenbad-oerlikon",
+     "messe-hallenstadion",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon",
+     "regensbergbrucke",
+     "oberwiesenstrasse",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "einfangstrasse",
+     "zehntenhausplatz",
+     "bahnhof-affoltern",
+     "fronwald",
+     "unteraffoltern",
+     "schwandenholz",
+     "waidhof"
+    ]
+   }
+  ],
+  "63": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "herzogenmuhlestrasse",
+     "schwamendingerplatz"
+    ]
+   }
+  ],
+  "64": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "stierenried",
+     "maillartstrasse"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "stierenried",
+     "maillartstrasse"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "stierenried",
+     "maillartstrasse"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "stierenried",
+     "maillartstrasse"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2023-12-10",
+    "wochen": 262,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "stierenried",
+     "maillartstrasse"
+    ]
+   },
+   {
+    "von": "2023-12-11",
+    "bis": "2026-12-13",
+    "wochen": 157,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "arnikahof",
+     "maillartstrasse",
+     "stierenried",
+     "neunbrunnen",
+     "bollingerweg",
+     "max-bill-platz",
+     "bahnhof-oerlikon-nord"
+    ]
+   }
+  ],
+  "66": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "morgental",
+     "kalchbuhlweg",
+     "widmerstrasse",
+     "neubuhl"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "morgental",
+     "kalchbuhlweg",
+     "widmerstrasse",
+     "neubuhl"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "morgental",
+     "kalchbuhlweg",
+     "widmerstrasse",
+     "neubuhl"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "morgental",
+     "kalchbuhlweg",
+     "widmerstrasse",
+     "neubuhl"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2023-01-08",
+    "wochen": 214,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023"
+    ],
+    "kurz": false,
+    "halte": [
+     "morgental",
+     "kalchbuhlweg",
+     "widmerstrasse",
+     "neubuhl"
+    ]
+   },
+   {
+    "von": "2023-01-09",
+    "bis": "2023-05-07",
+    "wochen": 17,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "kilchberg-zh-kirche",
+     "kilchberg-zh-alterszentrum",
+     "kilchberg-zh-stockengut",
+     "kilchberg-zh-breitloo",
+     "kilchberg-zh-bachlerstrasse",
+     "obere-hornhalde",
+     "neubuhl",
+     "widmerstrasse",
+     "kalchbuhlweg",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2023-05-08",
+    "bis": "2023-07-02",
+    "wochen": 8,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "morgental",
+     "kalchbuhlweg",
+     "widmerstrasse",
+     "neubuhl"
+    ]
+   },
+   {
+    "von": "2023-07-03",
+    "bis": "2023-07-09",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "kilchberg-zh-kirche",
+     "kilchberg-zh-alterszentrum",
+     "kilchberg-zh-stockengut",
+     "kilchberg-zh-breitloo",
+     "kilchberg-zh-bachlerstrasse",
+     "obere-hornhalde",
+     "neubuhl",
+     "widmerstrasse",
+     "kalchbuhlweg",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2023-07-10",
+    "bis": "2023-12-24",
+    "wochen": 24,
+    "quellen": [
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "morgental",
+     "kalchbuhlweg",
+     "widmerstrasse",
+     "neubuhl"
+    ]
+   },
+   {
+    "von": "2023-12-25",
+    "bis": "2023-12-31",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "kilchberg-zh-kirche",
+     "kilchberg-zh-alterszentrum",
+     "kilchberg-zh-stockengut",
+     "kilchberg-zh-breitloo",
+     "kilchberg-zh-bachlerstrasse",
+     "obere-hornhalde",
+     "neubuhl",
+     "widmerstrasse",
+     "kalchbuhlweg",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2024-01-01",
+    "bis": "2024-12-15",
+    "wochen": 50,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025"
+    ],
+    "kurz": false,
+    "halte": [
+     "morgental",
+     "kalchbuhlweg",
+     "widmerstrasse",
+     "neubuhl"
+    ]
+   },
+   {
+    "von": "2024-12-16",
+    "bis": "2025-05-11",
+    "wochen": 21,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-enge-bederstrasse",
+     "waffenplatz-bederstr",
+     "hugelstrasse",
+     "brunau-mutschellenstr",
+     "thujastrasse",
+     "jugendherberge",
+     "morgental",
+     "kalchbuhlweg",
+     "widmerstrasse",
+     "neubuhl",
+     "obere-hornhalde",
+     "kilchberg-zh-bachlerstrasse",
+     "kilchberg-zh-breitloo",
+     "kilchberg-zh-stockengut",
+     "kilchberg-zh-alterszentrum",
+     "kilchberg-zh-kirche"
+    ]
+   },
+   {
+    "von": "2025-05-12",
+    "bis": "2025-08-31",
+    "wochen": 16,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-enge-bederstrasse",
+     "waffenplatzstrasse",
+     "hugelstrasse",
+     "brunau-mutschellenstr",
+     "thujastrasse",
+     "jugendherberge",
+     "morgental",
+     "kalchbuhlweg",
+     "widmerstrasse",
+     "neubuhl",
+     "obere-hornhalde",
+     "kilchberg-zh-latten",
+     "kilchberg-zh-breitloo",
+     "kilchberg-zh-schlimbergstr",
+     "kilchberg-zh-gottlieb-binder",
+     "kilchberg-zh-alterszentrum"
+    ]
+   },
+   {
+    "von": "2025-09-01",
+    "bis": "2026-12-13",
+    "wochen": 67,
+    "quellen": [
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "bahnhof-enge-bederstrasse",
+     "waffenplatz-bederstr",
+     "hugelstrasse",
+     "brunau-mutschellenstr",
+     "thujastrasse",
+     "jugendherberge",
+     "morgental",
+     "kalchbuhlweg",
+     "widmerstrasse",
+     "neubuhl",
+     "obere-hornhalde",
+     "kilchberg-zh-bachlerstrasse",
+     "kilchberg-zh-breitloo",
+     "kilchberg-zh-stockengut",
+     "kilchberg-zh-alterszentrum",
+     "kilchberg-zh-kirche"
+    ]
+   }
+  ],
+  "67": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "dunkelholzli",
+     "salzweg",
+     "rautihalde",
+     "schulhaus-buchlern",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "fellenbergstrasse",
+     "sackzelg",
+     "langgrutstrasse",
+     "im-gut",
+     "gutstrasse",
+     "goldbrunnenplatz",
+     "schmiede-wiedikon"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "goldbrunnenplatz",
+     "gutstrasse",
+     "im-gut",
+     "langgrutstrasse",
+     "sackzelg",
+     "fellenbergstrasse",
+     "albisriederdorfli",
+     "untermoosstrasse",
+     "rautistrasse",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "goldbrunnenplatz",
+     "gutstrasse",
+     "im-gut",
+     "langgrutstrasse",
+     "sackzelg",
+     "fellenbergstrasse",
+     "albisriederdorfli",
+     "untermoosstrasse",
+     "rautistrasse",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "goldbrunnenplatz",
+     "gutstrasse",
+     "im-gut",
+     "langgrutstrasse",
+     "sackzelg",
+     "fellenbergstrasse",
+     "albisriederdorfli",
+     "untermoosstrasse",
+     "rautistrasse",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2026-12-13",
+    "wochen": 419,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "goldbrunnenplatz",
+     "gutstrasse",
+     "im-gut",
+     "langgrutstrasse",
+     "sackzelg",
+     "fellenbergstrasse",
+     "albisriederdorfli",
+     "untermoosstrasse",
+     "rautistrasse",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli"
+    ]
+   }
+  ],
+  "69": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "eth-honggerberg",
+     "honggerberg",
+     "im-wingert",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital",
+     "weihersteig",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "eth-honggerberg",
+     "honggerberg",
+     "im-wingert",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital",
+     "weihersteig",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "eth-honggerberg",
+     "honggerberg",
+     "im-wingert",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital",
+     "weihersteig",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "eth-honggerberg",
+     "honggerberg",
+     "im-wingert",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital",
+     "weihersteig",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2022-07-17",
+    "wochen": 189,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022"
+    ],
+    "kurz": false,
+    "halte": [
+     "eth-honggerberg",
+     "honggerberg",
+     "im-wingert",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital",
+     "weihersteig",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2022-07-18",
+    "bis": "2022-08-21",
+    "wochen": 5,
+    "quellen": [
+     "gtfs-2022"
+    ],
+    "kurz": true,
+    "halte": [
+     "bucheggplatz",
+     "weihersteig",
+     "waidspital",
+     "kaferberg",
+     "waidbadstrasse",
+     "im-wingert",
+     "honggerberg",
+     "eth-honggerberg"
+    ]
+   },
+   {
+    "von": "2022-08-22",
+    "bis": "2023-07-16",
+    "wochen": 47,
+    "quellen": [
+     "gtfs-2022",
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "eth-honggerberg",
+     "honggerberg",
+     "im-wingert",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital",
+     "weihersteig",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2023-07-17",
+    "bis": "2023-08-20",
+    "wochen": 5,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bucheggplatz",
+     "weihersteig",
+     "waidspital",
+     "kaferberg",
+     "waidbadstrasse",
+     "im-wingert",
+     "honggerberg",
+     "eth-honggerberg"
+    ]
+   },
+   {
+    "von": "2023-08-21",
+    "bis": "2024-07-14",
+    "wochen": 47,
+    "quellen": [
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "eth-honggerberg",
+     "honggerberg",
+     "im-wingert",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital",
+     "weihersteig",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2024-07-15",
+    "bis": "2024-08-18",
+    "wochen": 5,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bucheggplatz",
+     "weihersteig",
+     "waidspital",
+     "kaferberg",
+     "waidbadstrasse",
+     "im-wingert",
+     "honggerberg",
+     "eth-honggerberg"
+    ]
+   },
+   {
+    "von": "2024-08-19",
+    "bis": "2026-12-13",
+    "wochen": 121,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "eth-honggerberg",
+     "honggerberg",
+     "im-wingert",
+     "waidbadstrasse",
+     "kaferberg",
+     "waidspital",
+     "weihersteig",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   }
+  ],
+  "70": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "mittelleimbach",
+     "sihlweidstrasse",
+     "im-husli",
+     "marbachweg",
+     "bahnhof-leimbach",
+     "frymannstrasse",
+     "manegg",
+     "verenastrasse",
+     "butzenstrasse",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "mittelleimbach",
+     "sihlweidstrasse",
+     "im-husli",
+     "marbachweg",
+     "bahnhof-leimbach",
+     "frymannstrasse",
+     "manegg",
+     "verenastrasse",
+     "butzenstrasse",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "mittelleimbach",
+     "sihlweidstrasse",
+     "im-husli",
+     "marbachweg",
+     "bahnhof-leimbach",
+     "frymannstrasse",
+     "manegg",
+     "verenastrasse",
+     "butzenstrasse",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "mittelleimbach",
+     "sihlweidstrasse",
+     "im-husli",
+     "marbachweg",
+     "bahnhof-leimbach",
+     "frymannstrasse",
+     "manegg",
+     "verenastrasse",
+     "butzenstrasse",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2026-12-13",
+    "wochen": 419,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "bahnhof-wollishofen",
+     "bahnhof-wollishofen-staubstrasse",
+     "renggerstrasse",
+     "morgental",
+     "butzenstrasse",
+     "verenastrasse",
+     "manegg",
+     "frymannstrasse",
+     "bahnhof-leimbach",
+     "marbachweg",
+     "im-husli",
+     "sihlweidstrasse",
+     "mittelleimbach"
+    ]
+   }
+  ],
+  "71": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "friedhof-sihlfeld",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse"
+    ]
+   }
+  ],
+  "72": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "milchbuck",
+     "bucheggplatz",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "friedhof-sihlfeld",
+     "bertastrasse",
+     "zwinglihaus",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "sihlcity-nord",
+     "waffenplatzstrasse",
+     "waffenplatz-bederstr",
+     "hugelstrasse",
+     "brunau-mutschellenstr",
+     "thujastrasse",
+     "jugendherberge",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "milchbuck",
+     "bucheggplatz",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "friedhof-sihlfeld",
+     "bertastrasse",
+     "zwinglihaus",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "sihlcity-nord",
+     "waffenplatzstrasse",
+     "waffenplatz-bederstr",
+     "hugelstrasse",
+     "brunau-mutschellenstr",
+     "thujastrasse",
+     "jugendherberge",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "milchbuck",
+     "bucheggplatz",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "friedhof-sihlfeld",
+     "bertastrasse",
+     "zwinglihaus",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "sihlcity-nord",
+     "waffenplatzstrasse",
+     "waffenplatz-bederstr",
+     "hugelstrasse",
+     "brunau-mutschellenstr",
+     "thujastrasse",
+     "jugendherberge",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "milchbuck",
+     "bucheggplatz",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "friedhof-sihlfeld",
+     "bertastrasse",
+     "zwinglihaus",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "sihlcity-nord",
+     "waffenplatzstrasse",
+     "waffenplatz-bederstr",
+     "hugelstrasse",
+     "brunau-mutschellenstr",
+     "thujastrasse",
+     "jugendherberge",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2020-02-09",
+    "wochen": 62,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020"
+    ],
+    "kurz": false,
+    "halte": [
+     "milchbuck",
+     "bucheggplatz",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "friedhof-sihlfeld",
+     "bertastrasse",
+     "zwinglihaus",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "sihlcity-nord",
+     "waffenplatzstrasse",
+     "waffenplatz-bederstr",
+     "hugelstrasse",
+     "brunau-mutschellenstr",
+     "thujastrasse",
+     "jugendherberge",
+     "morgental"
+    ]
+   },
+   {
+    "von": "2020-02-10",
+    "bis": "2026-12-13",
+    "wochen": 357,
+    "quellen": [
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "milchbuck",
+     "bucheggplatz",
+     "rosengartenstrasse",
+     "escher-wyss-platz",
+     "schiffbau",
+     "bahnhof-hardbrucke",
+     "hardplatz",
+     "albisriederplatz",
+     "altes-krematorium",
+     "friedhof-sihlfeld",
+     "bertastrasse",
+     "zwinglihaus",
+     "schmiede-wiedikon",
+     "hertersteg",
+     "manesseplatz",
+     "sihlcity-nord",
+     "waffenplatzstrasse",
+     "waffenplatz-bederstr",
+     "hugelstrasse",
+     "brunau-mutschellenstr",
+     "thujastrasse",
+     "jugendherberge",
+     "morgental"
+    ]
+   }
+  ],
+  "73": [
+   {
+    "von": "2018-12-03",
+    "bis": "2025-09-07",
+    "wochen": 353,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025"
+    ],
+    "halte": [
+     "schweighof",
+     "friesenbergstrasse",
+     "friesenberghalde",
+     "friedhof-uetliberg",
+     "zielweg"
+    ]
+   },
+   {
+    "von": "2025-09-08",
+    "bis": "2025-09-21",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "friesenbergstrasse",
+     "friesenberghalde",
+     "friedhof-uetliberg",
+     "zielweg"
+    ]
+   },
+   {
+    "von": "2025-09-22",
+    "bis": "2026-09-06",
+    "wochen": 50,
+    "quellen": [
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "schweighof",
+     "friesenbergstrasse",
+     "friesenberghalde",
+     "friedhof-uetliberg",
+     "zielweg"
+    ]
+   },
+   {
+    "von": "2026-09-07",
+    "bis": "2026-09-20",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "friesenbergstrasse",
+     "friesenberghalde",
+     "friedhof-uetliberg",
+     "zielweg"
+    ]
+   },
+   {
+    "von": "2026-09-21",
+    "bis": "2026-10-18",
+    "wochen": 4,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "schweighof",
+     "friesenbergstrasse",
+     "friesenberghalde",
+     "friedhof-uetliberg",
+     "zielweg"
+    ]
+   },
+   {
+    "von": "2026-10-19",
+    "bis": "2026-12-13",
+    "wochen": 8,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "friesenbergstrasse",
+     "friesenberghalde",
+     "friedhof-uetliberg",
+     "zielweg"
+    ]
+   }
+  ],
+  "75": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "himmeri",
+     "buhnstrasse",
+     "schonauring",
+     "koschenruti",
+     "kashaldenstrasse",
+     "leimgrubelstrasse",
+     "birch-glatttalstrasse",
+     "ausserdorfstrasse",
+     "seebach",
+     "seebacherplatz"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "friedrichstrasse",
+     "frohburg",
+     "waldgarten",
+     "friedackerstrasse",
+     "dorflinde",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon-ost",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "himmeri",
+     "buhnstrasse",
+     "schonauring",
+     "koschenruti",
+     "kashaldenstrasse",
+     "leimgrubelstrasse",
+     "birch-glatttalstrasse",
+     "ausserdorfstrasse",
+     "seebach",
+     "seebacherplatz"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "friedrichstrasse",
+     "frohburg",
+     "waldgarten",
+     "friedackerstrasse",
+     "dorflinde",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon-ost",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "himmeri",
+     "buhnstrasse",
+     "schonauring",
+     "koschenruti",
+     "kashaldenstrasse",
+     "leimgrubelstrasse",
+     "birch-glatttalstrasse",
+     "ausserdorfstrasse",
+     "seebach",
+     "seebacherplatz"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "friedrichstrasse",
+     "frohburg",
+     "waldgarten",
+     "friedackerstrasse",
+     "dorflinde",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon-ost",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "himmeri",
+     "buhnstrasse",
+     "schonauring",
+     "koschenruti",
+     "kashaldenstrasse",
+     "leimgrubelstrasse",
+     "birch-glatttalstrasse",
+     "ausserdorfstrasse",
+     "seebach",
+     "seebacherplatz"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2024-09-01",
+    "wochen": 300,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "friedrichstrasse",
+     "frohburg",
+     "waldgarten",
+     "friedackerstrasse",
+     "dorflinde",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon-ost",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "himmeri",
+     "buhnstrasse",
+     "schonauring",
+     "koschenruti",
+     "kashaldenstrasse",
+     "leimgrubelstrasse",
+     "birch-glatttalstrasse",
+     "ausserdorfstrasse",
+     "seebach",
+     "seebacherplatz"
+    ]
+   },
+   {
+    "von": "2024-09-02",
+    "bis": "2024-09-08",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "auzelg-ost",
+     "auzelg",
+     "orionstrasse",
+     "aubrucke",
+     "herzogenmuhlestrasse",
+     "schwamendingerplatz",
+     "friedrichstrasse",
+     "frohburg",
+     "waldgarten",
+     "friedackerstrasse",
+     "dorflinde",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon-ost",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "himmeri",
+     "buhnstrasse",
+     "schonauring",
+     "koschenruti",
+     "kashaldenstrasse",
+     "leimgrubelstrasse",
+     "birch-glatttalstrasse",
+     "ausserdorfstrasse",
+     "seebach",
+     "seebacherplatz"
+    ]
+   },
+   {
+    "von": "2024-09-09",
+    "bis": "2026-01-18",
+    "wochen": 71,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "schwamendingerplatz",
+     "friedrichstrasse",
+     "frohburg",
+     "waldgarten",
+     "friedackerstrasse",
+     "dorflinde",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon-ost",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "himmeri",
+     "buhnstrasse",
+     "schonauring",
+     "koschenruti",
+     "kashaldenstrasse",
+     "leimgrubelstrasse",
+     "birch-glatttalstrasse",
+     "ausserdorfstrasse",
+     "seebach",
+     "seebacherplatz"
+    ]
+   },
+   {
+    "von": "2026-01-19",
+    "bis": "2026-02-15",
+    "wochen": 4,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "schwamendingerplatz",
+     "friedrichstrasse",
+     "frohburg",
+     "waldgarten",
+     "friedackerstrasse",
+     "dorflinde",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon-ost",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "seebacherplatz",
+     "hertensteinstrasse",
+     "buhnstrasse",
+     "schonauring",
+     "koschenruti",
+     "kashaldenstrasse",
+     "leimgrubelstrasse",
+     "birch-glatttalstrasse",
+     "ausserdorfstrasse",
+     "seebach",
+     "seebacherplatz"
+    ]
+   },
+   {
+    "von": "2026-02-16",
+    "bis": "2026-12-13",
+    "wochen": 43,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "schwamendingerplatz",
+     "friedrichstrasse",
+     "frohburg",
+     "waldgarten",
+     "friedackerstrasse",
+     "dorflinde",
+     "sternen-oerlikon",
+     "bahnhof-oerlikon-ost",
+     "max-bill-platz",
+     "bollingerweg",
+     "neunbrunnen",
+     "himmeri",
+     "buhnstrasse",
+     "schonauring",
+     "koschenruti",
+     "kashaldenstrasse",
+     "leimgrubelstrasse",
+     "birch-glatttalstrasse",
+     "ausserdorfstrasse",
+     "seebach",
+     "seebacherplatz"
+    ]
+   }
+  ],
+  "76": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "grubenstrasse",
+     "binz-center"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "grubenstrasse",
+     "binz-center"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "grubenstrasse",
+     "binz-center"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "grubenstrasse",
+     "binz-center"
+    ]
+   },
+   {
+    "von": "2018-12-10",
+    "bis": "2020-02-09",
+    "wochen": 61,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "grubenstrasse",
+     "binz-center"
+    ]
+   },
+   {
+    "von": "2020-02-10",
+    "bis": "2020-03-29",
+    "wochen": 7,
+    "quellen": [
+     "gtfs-2020"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "hertersteg",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "binz-center"
+    ]
+   },
+   {
+    "von": "2020-05-04",
+    "bis": "2020-09-20",
+    "wochen": 20,
+    "quellen": [
+     "gtfs-2020"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "hertersteg",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "binz-center"
+    ]
+   },
+   {
+    "von": "2020-09-21",
+    "bis": "2021-12-12",
+    "wochen": 64,
+    "quellen": [
+     "gtfs-2020",
+     "gtfs-2022"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "grubenstrasse",
+     "binz-center"
+    ]
+   },
+   {
+    "von": "2021-12-13",
+    "bis": "2023-07-16",
+    "wochen": 83,
+    "quellen": [
+     "gtfs-2022",
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "hertersteg",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "binz-center"
+    ]
+   },
+   {
+    "von": "2023-07-17",
+    "bis": "2023-10-29",
+    "wochen": 15,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "grubenstrasse",
+     "binz-center"
+    ]
+   },
+   {
+    "von": "2023-10-30",
+    "bis": "2025-12-14",
+    "wochen": 111,
+    "quellen": [
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "hertersteg",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "binz-center"
+    ]
+   },
+   {
+    "von": "2025-12-15",
+    "bis": "2026-12-13",
+    "wochen": 52,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "bahnhof-wiedikon",
+     "schmiede-wiedikon",
+     "manesseplatz",
+     "binz",
+     "raffelstrasse",
+     "grubenstrasse",
+     "binz-center"
+    ]
+   }
+  ],
+  "77": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "hegibachplatz",
+     "botanischer-garten",
+     "altenhofstrasse",
+     "wonnebergstrasse",
+     "fluhgasse",
+     "epi-klinik",
+     "bleulerstrasse",
+     "im-walder"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "hegibachplatz",
+     "botanischer-garten",
+     "altenhofstrasse",
+     "wonnebergstrasse",
+     "fluhgasse",
+     "epi-klinik",
+     "bleulerstrasse",
+     "im-walder"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "hegibachplatz",
+     "botanischer-garten",
+     "altenhofstrasse",
+     "wonnebergstrasse",
+     "fluhgasse",
+     "epi-klinik",
+     "bleulerstrasse",
+     "im-walder"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "hegibachplatz",
+     "botanischer-garten",
+     "altenhofstrasse",
+     "wonnebergstrasse",
+     "fluhgasse",
+     "epi-klinik",
+     "bleulerstrasse",
+     "im-walder"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2022-12-11",
+    "wochen": 210,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023"
+    ],
+    "kurz": false,
+    "halte": [
+     "hegibachplatz",
+     "botanischer-garten",
+     "altenhofstrasse",
+     "wonnebergstrasse",
+     "fluhgasse",
+     "epi-klinik",
+     "bleulerstrasse",
+     "im-walder"
+    ]
+   },
+   {
+    "von": "2022-12-12",
+    "bis": "2026-01-18",
+    "wochen": 162,
+    "quellen": [
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "balgrist",
+     "balgrist-ost",
+     "klinik-hirslanden",
+     "zollikon-niederhofenrain",
+     "im-walder",
+     "epi-klinik",
+     "fluhgasse",
+     "wonnebergstrasse",
+     "altenhofstrasse",
+     "botanischer-garten",
+     "hegibachplatz"
+    ]
+   },
+   {
+    "von": "2026-01-19",
+    "bis": "2026-06-28",
+    "wochen": 23,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "balgrist",
+     "balgrist-ost",
+     "klinik-hirslanden",
+     "zollikon-niederhofenrain",
+     "im-walder",
+     "bleulerstrasse",
+     "epi-klinik",
+     "fluhgasse",
+     "wonnebergstrasse",
+     "altenhofstrasse",
+     "botanischer-garten",
+     "hegibachplatz"
+    ]
+   },
+   {
+    "von": "2026-06-29",
+    "bis": "2026-11-01",
+    "wochen": 18,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "balgrist",
+     "balgrist-ost",
+     "klinik-hirslanden",
+     "zollikon-niederhofenrain",
+     "im-walder",
+     "epi-klinik",
+     "fluhgasse",
+     "wonnebergstrasse",
+     "altenhofstrasse",
+     "botanischer-garten",
+     "hegibachplatz"
+    ]
+   },
+   {
+    "von": "2026-11-02",
+    "bis": "2026-12-13",
+    "wochen": 6,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-tiefenbrunnen",
+     "wildbachstrasse",
+     "altenhofstrasse",
+     "wonnebergstrasse",
+     "fluhgasse",
+     "epi-klinik",
+     "im-walder",
+     "zollikon-niederhofenrain",
+     "klinik-hirslanden",
+     "balgrist-ost",
+     "balgrist"
+    ]
+   }
+  ],
+  "78": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "bandliweg",
+     "grunaustrasse",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "bandliweg",
+     "grunaustrasse",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "bandliweg",
+     "grunaustrasse",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "bandliweg",
+     "grunaustrasse",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2020-07-12",
+    "wochen": 84,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020"
+    ],
+    "kurz": false,
+    "halte": [
+     "bandliweg",
+     "grunaustrasse",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2020-07-13",
+    "bis": "2020-08-16",
+    "wochen": 5,
+    "quellen": [
+     "gtfs-2020"
+    ],
+    "kurz": true,
+    "halte": [
+     "dunkelholzli",
+     "salzweg",
+     "rautihalde",
+     "schulhaus-buchlern",
+     "rautistrasse",
+     "lindenplatz",
+     "bristenstrasse",
+     "bahnhof-altstetten",
+     "bahnhof-altstetten-nord",
+     "grunaustrasse",
+     "bandliweg",
+     "werdholzli"
+    ]
+   },
+   {
+    "von": "2020-08-17",
+    "bis": "2025-12-14",
+    "wochen": 278,
+    "quellen": [
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "bandliweg",
+     "grunaustrasse",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "schulhaus-buchlern",
+     "rautihalde",
+     "salzweg",
+     "dunkelholzli"
+    ]
+   },
+   {
+    "von": "2025-12-15",
+    "bis": "2026-12-13",
+    "wochen": 52,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "dunkelholzli",
+     "salzweg",
+     "rautihalde",
+     "schulhaus-buchlern",
+     "rautistrasse",
+     "lindenplatz",
+     "bristenstrasse",
+     "bahnhof-altstetten",
+     "tuffenwies",
+     "winzerhalde",
+     "hohenklingensteig",
+     "winzerstrasse",
+     "frankental",
+     "riedhofstrasse",
+     "geeringstrasse",
+     "heizenholz"
+    ]
+   }
+  ],
+  "79": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "auzelg-ost",
+     "auzelg",
+     "orionstrasse",
+     "aubrucke",
+     "herzogenmuhlestrasse",
+     "schwamendingerplatz"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "auzelg-ost",
+     "auzelg",
+     "orionstrasse",
+     "aubrucke",
+     "herzogenmuhlestrasse",
+     "schwamendingerplatz"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "auzelg-ost",
+     "auzelg",
+     "orionstrasse",
+     "aubrucke",
+     "herzogenmuhlestrasse",
+     "schwamendingerplatz"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "auzelg-ost",
+     "auzelg",
+     "orionstrasse",
+     "aubrucke",
+     "herzogenmuhlestrasse",
+     "schwamendingerplatz"
+    ]
+   },
+   {
+    "von": "2018-12-10",
+    "bis": "2023-12-10",
+    "wochen": 261,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "halte": [
+     "auzelg-ost",
+     "auzelg",
+     "orionstrasse",
+     "aubrucke",
+     "herzogenmuhlestrasse",
+     "schwamendingerplatz"
+    ]
+   }
+  ],
+  "80": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2018-12-09",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2018-12-10",
+    "bis": "2018-12-23",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2018-12-24",
+    "bis": "2019-01-06",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2019-01-07",
+    "bis": "2019-04-14",
+    "wochen": 14,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2019-04-15",
+    "bis": "2019-04-21",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2019-04-22",
+    "bis": "2019-04-28",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2019-04-29",
+    "bis": "2019-05-05",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2019-05-06",
+    "bis": "2019-05-26",
+    "wochen": 3,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2019-05-27",
+    "bis": "2019-06-02",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2019"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2019-06-03",
+    "bis": "2022-12-25",
+    "wochen": 186,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2022-12-26",
+    "bis": "2023-01-08",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-01-09",
+    "bis": "2023-04-02",
+    "wochen": 12,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-04-03",
+    "bis": "2023-04-16",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-04-17",
+    "bis": "2023-04-30",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-05-01",
+    "bis": "2023-05-07",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-05-08",
+    "bis": "2023-05-14",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-05-15",
+    "bis": "2023-05-21",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-05-22",
+    "bis": "2023-05-28",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-05-29",
+    "bis": "2023-06-04",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-06-05",
+    "bis": "2023-07-30",
+    "wochen": 8,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-07-31",
+    "bis": "2023-08-06",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-08-07",
+    "bis": "2023-12-24",
+    "wochen": 20,
+    "quellen": [
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2023-12-25",
+    "bis": "2024-01-07",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2024-01-08",
+    "bis": "2024-03-24",
+    "wochen": 11,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2024-03-25",
+    "bis": "2024-04-07",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2024-04-08",
+    "bis": "2024-04-28",
+    "wochen": 3,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2024-04-29",
+    "bis": "2024-05-12",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2024-05-13",
+    "bis": "2024-05-19",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2024-05-20",
+    "bis": "2024-05-26",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2024-05-27",
+    "bis": "2024-07-28",
+    "wochen": 9,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2024-07-29",
+    "bis": "2024-08-04",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2024-08-05",
+    "bis": "2024-12-22",
+    "wochen": 20,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2024-12-23",
+    "bis": "2025-01-05",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2025-01-06",
+    "bis": "2025-04-20",
+    "wochen": 15,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2025-04-21",
+    "bis": "2025-04-27",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2025-04-28",
+    "bis": "2025-06-08",
+    "wochen": 6,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2025-06-09",
+    "bis": "2025-06-15",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2025-06-16",
+    "bis": "2025-06-22",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2025-06-23",
+    "bis": "2025-06-29",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2025-06-30",
+    "bis": "2025-07-27",
+    "wochen": 4,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2025-07-28",
+    "bis": "2025-08-03",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2025"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "neuaffoltern",
+     "glaubtenstrasse",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2025-08-04",
+    "bis": "2025-12-14",
+    "wochen": 19,
+    "quellen": [
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2025-12-15",
+    "bis": "2025-12-21",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2025-12-22",
+    "bis": "2026-01-04",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2026-01-05",
+    "bis": "2026-04-05",
+    "wochen": 13,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse-nord",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2026-04-06",
+    "bis": "2026-07-19",
+    "wochen": 15,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2026-07-20",
+    "bis": "2026-08-09",
+    "wochen": 3,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "winzerstrasse",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   },
+   {
+    "von": "2026-08-10",
+    "bis": "2026-12-13",
+    "wochen": 18,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "bahnhof-oerlikon-nord",
+     "max-bill-platz",
+     "birchstrasse",
+     "chaletweg",
+     "motteliweg",
+     "glaubtenstrasse",
+     "glaubtenstrasse-sud",
+     "schumacherweg",
+     "lerchenhalde",
+     "eth-honggerberg",
+     "honggerberg",
+     "meierhofplatz",
+     "zwielplatz",
+     "wartau",
+     "winzerstrasse",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "lindenplatz",
+     "rautistrasse",
+     "untermoosstrasse",
+     "albisriederdorfli",
+     "albisrieden",
+     "goldackerweg",
+     "in-der-ey",
+     "triemli",
+     "triemlispital"
+    ]
+   }
+  ],
+  "83": [
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2018-12-10",
+    "bis": "2022-07-17",
+    "wochen": 188,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2022-07-18",
+    "bis": "2022-08-21",
+    "wochen": 5,
+    "quellen": [
+     "gtfs-2022"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz"
+    ]
+   },
+   {
+    "von": "2022-08-22",
+    "bis": "2023-07-16",
+    "wochen": 47,
+    "quellen": [
+     "gtfs-2022",
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2023-07-17",
+    "bis": "2023-08-20",
+    "wochen": 5,
+    "quellen": [
+     "gtfs-2023"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz"
+    ]
+   },
+   {
+    "von": "2023-08-21",
+    "bis": "2024-04-21",
+    "wochen": 35,
+    "quellen": [
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2024-04-22",
+    "bis": "2024-05-05",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "siemens",
+     "fellenbergstrasse",
+     "sackzelg",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2024-05-06",
+    "bis": "2024-07-14",
+    "wochen": 10,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   },
+   {
+    "von": "2024-07-15",
+    "bis": "2024-08-18",
+    "wochen": 5,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz"
+    ]
+   },
+   {
+    "von": "2024-08-19",
+    "bis": "2026-12-13",
+    "wochen": 121,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "altes-krematorium",
+     "albisriederplatz",
+     "hardplatz",
+     "bahnhof-hardbrucke",
+     "schiffbau",
+     "escher-wyss-platz",
+     "rosengartenstrasse",
+     "bucheggplatz",
+     "milchbuck"
+    ]
+   }
+  ],
+  "89": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "heizenholz",
+     "geeringstrasse",
+     "riedhofstrasse",
+     "frankental",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "im-gut",
+     "schaufelbergerstrasse",
+     "schweighof",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt",
+     "uetlihof",
+     "laubegg",
+     "saalsporthalle",
+     "sihlcity"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "heizenholz",
+     "geeringstrasse",
+     "riedhofstrasse",
+     "frankental",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "im-gut",
+     "schaufelbergerstrasse",
+     "schweighof",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt",
+     "uetlihof",
+     "laubegg",
+     "saalsporthalle",
+     "sihlcity"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "heizenholz",
+     "geeringstrasse",
+     "riedhofstrasse",
+     "frankental",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "im-gut",
+     "schaufelbergerstrasse",
+     "schweighof",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt",
+     "uetlihof",
+     "laubegg",
+     "saalsporthalle",
+     "sihlcity"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "heizenholz",
+     "geeringstrasse",
+     "riedhofstrasse",
+     "frankental",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "im-gut",
+     "schaufelbergerstrasse",
+     "schweighof",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt",
+     "uetlihof",
+     "laubegg",
+     "saalsporthalle",
+     "sihlcity"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2022-05-01",
+    "wochen": 178,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022"
+    ],
+    "kurz": false,
+    "halte": [
+     "heizenholz",
+     "geeringstrasse",
+     "riedhofstrasse",
+     "frankental",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "im-gut",
+     "schaufelbergerstrasse",
+     "schweighof",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt",
+     "uetlihof",
+     "laubegg",
+     "saalsporthalle",
+     "sihlcity"
+    ]
+   },
+   {
+    "von": "2022-05-02",
+    "bis": "2022-05-29",
+    "wochen": 4,
+    "quellen": [
+     "gtfs-2022"
+    ],
+    "kurz": true,
+    "halte": [
+     "geeringstrasse",
+     "riedhofstrasse",
+     "frankental",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "im-gut",
+     "schaufelbergerstrasse",
+     "schweighof",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt",
+     "uetlihof",
+     "laubegg",
+     "saalsporthalle",
+     "sihlcity"
+    ]
+   },
+   {
+    "von": "2022-05-30",
+    "bis": "2024-04-21",
+    "wochen": 99,
+    "quellen": [
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "kurz": false,
+    "halte": [
+     "heizenholz",
+     "geeringstrasse",
+     "riedhofstrasse",
+     "frankental",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "im-gut",
+     "schaufelbergerstrasse",
+     "schweighof",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt",
+     "uetlihof",
+     "laubegg",
+     "saalsporthalle",
+     "sihlcity"
+    ]
+   },
+   {
+    "von": "2024-04-22",
+    "bis": "2024-05-05",
+    "wochen": 2,
+    "quellen": [
+     "gtfs-2024"
+    ],
+    "kurz": true,
+    "halte": [
+     "heizenholz",
+     "geeringstrasse",
+     "riedhofstrasse",
+     "frankental",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "siemens",
+     "fellenbergstrasse",
+     "sackzelg",
+     "hubertus",
+     "im-gut",
+     "schaufelbergerstrasse",
+     "schweighof",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt",
+     "uetlihof",
+     "laubegg",
+     "saalsporthalle",
+     "sihlcity"
+    ]
+   },
+   {
+    "von": "2024-05-06",
+    "bis": "2025-12-14",
+    "wochen": 84,
+    "quellen": [
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "heizenholz",
+     "geeringstrasse",
+     "riedhofstrasse",
+     "frankental",
+     "winzerstrasse-sud",
+     "hohenklingensteig",
+     "winzerhalde",
+     "tuffenwies",
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "hubertus",
+     "im-gut",
+     "schaufelbergerstrasse",
+     "schweighof",
+     "friesenbergstrasse",
+     "im-hagacker",
+     "hegianwandweg",
+     "strassenverkehrsamt",
+     "uetlihof",
+     "laubegg",
+     "saalsporthalle",
+     "sihlcity"
+    ]
+   },
+   {
+    "von": "2025-12-15",
+    "bis": "2026-12-13",
+    "wochen": 52,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "sihlcity",
+     "saalsporthalle",
+     "laubegg",
+     "uetlihof",
+     "strassenverkehrsamt",
+     "hegianwandweg",
+     "im-hagacker",
+     "friesenbergstrasse",
+     "schweighof",
+     "schaufelbergerstrasse",
+     "im-gut",
+     "hubertus",
+     "albisrank",
+     "flurstrasse",
+     "kappeli",
+     "letzipark-west",
+     "baslerstrasse",
+     "bristenstrasse",
+     "bahnhof-altstetten",
+     "tuffenwies",
+     "winzerhalde",
+     "hohenklingensteig",
+     "winzerstrasse",
+     "frankental",
+     "oberengstringen-eggbuhl",
+     "oberengstringen-lanzrain",
+     "oberengstringen-zentrum",
+     "oberengstringen-paradies",
+     "unterengstringen-langacher",
+     "unterengstringen-sennenbuel"
+    ]
+   }
+  ],
+  "94": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "schurgistrasse",
+     "luchswiesen",
+     "altried",
+     "wallisellen-glatt-bus"
+    ]
+   },
+   {
+    "von": "2016-05-02",
+    "bis": "2016-05-08",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2016"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "schurgistrasse",
+     "luchswiesen",
+     "altried",
+     "wallisellen-glatt-bus"
+    ]
+   },
+   {
+    "von": "2017-05-01",
+    "bis": "2017-05-07",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2017"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "schurgistrasse",
+     "luchswiesen",
+     "altried",
+     "wallisellen-glatt-bus"
+    ]
+   },
+   {
+    "von": "2018-04-30",
+    "bis": "2018-05-06",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2018"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "schurgistrasse",
+     "luchswiesen",
+     "altried",
+     "wallisellen-glatt-bus"
+    ]
+   },
+   {
+    "von": "2018-12-03",
+    "bis": "2023-12-10",
+    "wochen": 262,
+    "quellen": [
+     "gtfs-2019",
+     "gtfs-2020",
+     "gtfs-2022",
+     "gtfs-2023",
+     "gtfs-2024"
+    ],
+    "halte": [
+     "bahnhof-oerlikon",
+     "sternen-oerlikon",
+     "messe-hallenstadion",
+     "hallenbad-oerlikon",
+     "riedgraben",
+     "saatlenstrasse",
+     "dreispitz",
+     "aubrucke",
+     "schurgistrasse",
+     "luchswiesen",
+     "altried",
+     "wallisellen-glatt-bus"
+    ]
+   }
+  ],
+  "95": [
+   {
+    "von": "2015-09-28",
+    "bis": "2015-10-04",
+    "wochen": 1,
+    "quellen": [
+     "vbz-fahrzeiten-2015"
+    ],
+    "kurz": false,
+    "halte": [
+     "bahnhof-altstetten",
+     "bristenstrasse",
+     "baslerstrasse",
+     "letzipark-west",
+     "kappeli",
+     "flurstrasse",
+     "albisrank",
+     "siemens",
+     "freilagerstrasse"
+    ]
+   }
+  ],
+  "99": [
+   {
+    "von": "2022-12-05",
+    "bis": "2026-07-12",
+    "wochen": 188,
+    "quellen": [
+     "gtfs-2023",
+     "gtfs-2024",
+     "gtfs-2025",
+     "gtfs-2026"
+    ],
+    "halte": [
+     "balgrist",
+     "kinderspital",
+     "fluhgasse",
+     "epi-klinik",
+     "bleulerstrasse",
+     "zollikon-niederhofenrain",
+     "zollikon-rotfluhstrasse",
+     "zollikon-gemeindehaus",
+     "zollikon-dufourplatz",
+     "zollikon-bahnhof"
+    ]
+   },
+   {
+    "von": "2026-07-13",
+    "bis": "2026-07-19",
+    "wochen": 1,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": true,
+    "halte": [
+     "balgrist",
+     "kinderspital",
+     "fluhgasse",
+     "epi-klinik",
+     "bleulerstrasse",
+     "zollikon-niederhofenrain",
+     "zollikon-rotfluhstrasse",
+     "zollikon-gemeindehaus",
+     "zollikon-goldhaldenplatz"
+    ]
+   },
+   {
+    "von": "2026-07-20",
+    "bis": "2026-10-04",
+    "wochen": 11,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "kurz": false,
+    "halte": [
+     "balgrist",
+     "kinderspital",
+     "fluhgasse",
+     "epi-klinik",
+     "im-walder",
+     "zollikon-niederhofenrain",
+     "zollikon-rotfluhstrasse",
+     "zollikon-gemeindehaus",
+     "zollikon-dufourplatz",
+     "zollikon-bahnhof"
+    ]
+   },
+   {
+    "von": "2026-10-05",
+    "bis": "2026-12-13",
+    "wochen": 10,
+    "quellen": [
+     "gtfs-2026"
+    ],
+    "halte": [
+     "balgrist",
+     "kinderspital",
+     "fluhgasse",
+     "epi-klinik",
+     "bleulerstrasse",
+     "zollikon-niederhofenrain",
+     "zollikon-rotfluhstrasse",
+     "zollikon-gemeindehaus",
+     "zollikon-dufourplatz",
+     "zollikon-bahnhof"
+    ]
+   }
+  ]
+ },
+ "linienInfo": {
+  "31": {
+   "farbe": "#A5A2C6"
+  },
+  "32": {
+   "farbe": "#CCB2D1"
+  },
+  "33": {
+   "farbe": "#DAD69C"
+  },
+  "35": {
+   "farbe": "#FFFFFF"
+  },
+  "37": {
+   "farbe": "#FFFFFF"
+  },
+  "38": {
+   "farbe": "#FFFFFF"
+  },
+  "39": {
+   "farbe": "#FFFFFF"
+  },
+  "40": {
+   "farbe": "#FFFFFF"
+  },
+  "42": {
+   "farbe": "#FFFFFF"
+  },
+  "44": {
+   "farbe": "#FFFFFF"
+  },
+  "45": {
+   "farbe": "#FFFFFF"
+  },
+  "46": {
+   "farbe": "#C1D59F"
+  },
+  "61": {
+   "farbe": "#A9A39B"
+  },
+  "62": {
+   "farbe": "#CAC0B6"
+  },
+  "64": {
+   "farbe": "#FFFFFF"
+  },
+  "66": {
+   "farbe": "#FFFFFF"
+  },
+  "67": {
+   "farbe": "#FFFFFF"
+  },
+  "69": {
+   "farbe": "#FFFFFF"
+  },
+  "70": {
+   "farbe": "#FFFFFF"
+  },
+  "72": {
+   "farbe": "#C6A693"
+  },
+  "73": {
+   "farbe": "#FFFFFF"
+  },
+  "75": {
+   "farbe": "#FFFFFF"
+  },
+  "76": {
+   "farbe": "#FFFFFF"
+  },
+  "77": {
+   "farbe": "#FFFFFF"
+  },
+  "78": {
+   "farbe": "#FFFFFF"
+  },
+  "79": {
+   "farbe": "#FFFFFF"
+  },
+  "80": {
+   "farbe": "#CBCFB3"
+  },
+  "83": {
+   "farbe": "#FFFFFF"
+  },
+  "89": {
+   "farbe": "#CAC0B6"
+  },
+  "94": {
+   "farbe": "#A9A39B"
+  },
+  "99": {
+   "farbe": "#FFFFFF"
+  }
+ }
+}

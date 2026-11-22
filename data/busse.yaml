@@ -1,0 +1,1006 @@
+# Linienarchiv Zürich – VBZ-Buslinien ab 2015
+#
+# Erzeugt mit scripts/import/bus-versionen.mjs aus den Fahrplandaten (data/import/bus/), danach von Hand gepflegt.
+# Aufbau wie data/linien.yaml. Der Linienweg ist eine Haltestellenliste: Tramhaltestellen heissen wie in
+# data/linien.yaml, Bushaltestellen wie in data/bus/haltestellen.json. Fahrwege stehen in data/bus/kanten.json.
+# Quellen (gtfs, vbz-fahrzeiten) sind in data/linien.yaml definiert.
+#
+# Für die Jahre vor 2015 gibt es keine Busdaten; das Archiv zeigt Busse ab 2015.
+
+erfasst_ab: 2015
+
+fahrplan_alias:
+  # Haltestellennamen aus den Fahrplandaten -> unsere Haltestelle (Id), wie in data/linien.yaml
+  "Zollikon, Bleulerstrasse": bleulerstrasse
+  "Zürich, Carl-Spitteler-Strasse": zentrum-witikon
+  "Zürich, Pflegezentr. Käferberg": kaferberg
+  "Zürich, Kindersp. (ab 10/2024)": kinderspital
+
+linien:
+  - id: bus-31
+    nummer: "31"
+    art: bus
+    farbe: "#A5A2C6"
+    versionen:
+      - von: 2021-05-31
+        weg: [
+          "Hermetschloo", "Micafil", "Farbhof", "Seidelhof", "Bahnhof Altstetten", "Letzibach", "Letzipark",
+          "SBB-Werkstätte", "Herdernstrasse", "Hardplatz", "Güterbahnhof", "Bäckeranlage",
+          "Militär-/Langstrasse", "Kanonengasse", "Sihlpost/HB", "Löwenplatz", "Bahnhofplatz/HB", "Central",
+          "Neumarkt", "Kunsthaus", "Sprecherstrasse", "Kreuzplatz", "Signaustrasse", "Hegibachplatz",
+          "Freiestrasse", "Klusplatz", "Kapfstrasse", "Schlyfi", "Drusbergstrasse", "Waserstrasse",
+          "Zentrum Witikon", "Berghaldenstrasse", "Loorenstrasse", "Zweiackerstrasse", "Kienastenwies"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2019-07-15
+        bis: 2021-05-30
+        weg: [
+          "Bahnhof Altstetten", "Letzibach", "Letzipark", "SBB-Werkstätte", "Herdernstrasse", "Hardplatz",
+          "Güterbahnhof", "Bäckeranlage", "Militär-/Langstrasse", "Kanonengasse", "Sihlpost/HB", "Löwenplatz",
+          "Bahnhofplatz/HB", "Central", "Neumarkt", "Kunsthaus", "Sprecherstrasse", "Kreuzplatz",
+          "Signaustrasse", "Hegibachplatz", "Freiestrasse", "Klusplatz", "Kapfstrasse", "Schlyfi",
+          "Drusbergstrasse", "Waserstrasse", "Zentrum Witikon", "Berghaldenstrasse", "Loorenstrasse",
+          "Zweiackerstrasse", "Kienastenwies"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2017-12-10
+        bis: 2019-07-14
+        weg: [
+          "Farbhof", "Seidelhof", "Bahnhof Altstetten", "Letzibach", "Letzipark", "SBB-Werkstätte",
+          "Herdernstrasse", "Hardplatz", "Güterbahnhof", "Bäckeranlage", "Militär-/Langstrasse",
+          "Kanonengasse", "Sihlpost/HB", "Löwenplatz", "Bahnhofplatz/HB", "Central", "Neumarkt", "Kunsthaus",
+          "Sprecherstrasse", "Kreuzplatz", "Signaustrasse", "Hegibachplatz", "Freiestrasse", "Klusplatz",
+          "Kapfstrasse", "Schlyfi", "Drusbergstrasse", "Waserstrasse", "Zentrum Witikon", "Berghaldenstrasse",
+          "Loorenstrasse", "Zweiackerstrasse", "Kienastenwies"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2017-12-10 gesetzt."
+      - von: 2014-12-14
+        bis: 2017-12-09
+        weg: [
+          "Hegibachplatz", "Signaustrasse", "Kreuzplatz", "Sprecherstrasse", "Kunsthaus", "Neumarkt",
+          "Central", "Bahnhofplatz/HB", "Löwenplatz", "Sihlpost/HB", "Kanonengasse", "Militär-/Langstrasse",
+          "Bäckeranlage", "Güterbahnhof", "Hardplatz", "Herdernstrasse", "SBB-Werkstätte", "Letzipark",
+          "Luggwegstrasse", "Bahnhof Altstetten", "Seidelhof", "Farbhof", "Micafil", "Mülligen",
+          "Gasometerbrücke", "Wagonsfabrik", "Schlieren Zentrum/Bahnhof", "Schlieren, Zentrum"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-32
+    nummer: "32"
+    art: bus
+    farbe: "#CCB2D1"
+    versionen:
+      - von: 2014-12-14
+        weg: [
+          "Holzerhurd", "Hungerbergstrasse", "Zehntenhausplatz", "Einfangstrasse", "Glaubtenstrasse",
+          "Neuaffoltern", "Birchdörfli", "Brunnenhof", "Bucheggplatz", "Lägernstrasse", "Rotbuchstrasse",
+          "Nordstrasse", "Limmatplatz", "Röntgenstrasse", "Militär-/Langstrasse", "Helvetiaplatz",
+          "Kernstrasse", "Kalkbreite/Bhf. Wiedikon", "Zwinglihaus", "Goldbrunnenplatz", "Höfliweg",
+          "Friesenberg", "Friesenbergstrasse", "Im Hagacker", "Hegianwandweg", "Strassenverkehrsamt"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-33
+    nummer: "33"
+    art: bus
+    farbe: "#DAD69C"
+    versionen:
+      - von: 2024-07-29
+        weg: [
+          "Bahnhof Tiefenbrunnen", "Wildbachstrasse", "Fröhlichstrasse", "Höschgasse", "Botanischer Garten",
+          "Hegibachplatz", "Freiestrasse", "Klusplatz", "Hölderlinsteig", "Klosbach", "Hofstrasse",
+          "Kirche Fluntern", "Toblerplatz", "Bethanien", "Spyriplatz", "Vogelsangstrasse",
+          "Seilbahn Rigiblick", "Scheuchzerstrasse", "Schaffhauserplatz", "Rotbuchstrasse", "Nürenbergstrasse",
+          "Bahnhof Wipkingen", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke",
+          "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Hubertus", "Sackzelg", "Schulhaus Altweg",
+          "In der Ey", "Triemli"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2023-08-21
+        bis: 2024-07-28
+        weg: [
+          "Bahnhof Tiefenbrunnen", "Wildbachstrasse", "Fröhlichstrasse", "Höschgasse", "Botanischer Garten",
+          "Hegibachplatz", "Klusplatz", "Hölderlinsteig", "Klosbach", "Hofstrasse", "Kirche Fluntern",
+          "Toblerplatz", "Bethanien", "Spyriplatz", "Vogelsangstrasse", "Seilbahn Rigiblick",
+          "Scheuchzerstrasse", "Schaffhauserplatz", "Rotbuchstrasse", "Nürenbergstrasse", "Bahnhof Wipkingen",
+          "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke", "Hardplatz",
+          "Albisriederplatz", "Altes Krematorium", "Hubertus", "Sackzelg", "Schulhaus Altweg", "In der Ey",
+          "Triemli"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2019-07-15
+        bis: 2023-08-20
+        weg: [
+          "Bahnhof Tiefenbrunnen", "Wildbachstrasse", "Fröhlichstrasse", "Höschgasse", "Botanischer Garten",
+          "Hegibachplatz", "Freiestrasse", "Klusplatz", "Hölderlinsteig", "Klosbach", "Hofstrasse",
+          "Kirche Fluntern", "Toblerplatz", "Bethanien", "Spyriplatz", "Vogelsangstrasse",
+          "Seilbahn Rigiblick", "Scheuchzerstrasse", "Schaffhauserplatz", "Rotbuchstrasse", "Nürenbergstrasse",
+          "Bahnhof Wipkingen", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke",
+          "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Hubertus", "Sackzelg", "Schulhaus Altweg",
+          "In der Ey", "Triemli"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2018-12-09
+        bis: 2019-07-14
+        weg: [
+          "Kirche Fluntern", "Toblerplatz", "Bethanien", "Spyriplatz", "Vogelsangstrasse",
+          "Seilbahn Rigiblick", "Scheuchzerstrasse", "Schaffhauserplatz", "Rotbuchstrasse", "Nürenbergstrasse",
+          "Bahnhof Wipkingen", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke",
+          "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Hubertus", "Sackzelg", "Schulhaus Altweg",
+          "In der Ey", "Triemli"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2016-12-11
+        bis: 2018-12-08
+        weg: [
+          "Bahnhof Tiefenbrunnen", "Wildbachstrasse", "Fröhlichstrasse", "Höschgasse", "Botanischer Garten",
+          "Hegibachplatz", "Freiestrasse", "Klusplatz", "Hölderlinsteig", "Klosbach", "Hofstrasse",
+          "Kirche Fluntern", "Toblerplatz", "Bethanien", "Spyriplatz", "Vogelsangstrasse",
+          "Seilbahn Rigiblick", "Scheuchzerstrasse", "Schaffhauserplatz", "Rotbuchstrasse", "Nürenbergstrasse",
+          "Bahnhof Wipkingen", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke",
+          "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Hubertus", "Sackzelg", "Schulhaus Altweg",
+          "In der Ey", "Triemli"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2016-12-11 gesetzt."
+      - von: 2015-12-13
+        bis: 2016-12-10
+        weg: [
+          "Hegibachplatz", "Botanischer Garten", "Hegibachplatz", "Freiestrasse", "Klusplatz",
+          "Hölderlinsteig", "Klosbach", "Hofstrasse", "Kirche Fluntern", "Toblerplatz", "Bethanien",
+          "Spyriplatz", "Vogelsangstrasse", "Seilbahn Rigiblick", "Scheuchzerstrasse", "Schaffhauserplatz",
+          "Rotbuchstrasse", "Nürenbergstrasse", "Bahnhof Wipkingen", "Rosengartenstrasse", "Escher-Wyss-Platz",
+          "Schiffbau", "Bahnhof Hardbrücke", "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Hubertus",
+          "Sackzelg", "Schulhaus Altweg", "In der Ey", "Triemli"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2015-12-13 gesetzt."
+      - von: 2014-12-14
+        bis: 2015-12-12
+        weg: [
+          "Bahnhof Tiefenbrunnen", "Wildbachstrasse", "Fröhlichstrasse", "Höschgasse", "Botanischer Garten",
+          "Hegibachplatz", "Freiestrasse", "Klusplatz", "Hölderlinsteig", "Klosbach", "Hofstrasse",
+          "Kirche Fluntern", "Toblerplatz", "Bethanien", "Spyriplatz", "Vogelsangstrasse",
+          "Seilbahn Rigiblick", "Scheuchzerstrasse", "Schaffhauserplatz", "Rotbuchstrasse", "Nürenbergstrasse",
+          "Bahnhof Wipkingen", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke",
+          "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Hubertus", "Sackzelg", "Schulhaus Altweg",
+          "In der Ey", "Triemli"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-34
+    nummer: "34"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2014-12-14
+        bis: 2017-12-09
+        weg: [
+          "Kienastenwies", "Zweiackerstrasse", "Loorenstrasse", "Berghaldenstrasse", "Zentrum Witikon",
+          "Waserstrasse", "Drusbergstrasse", "Schlyfi", "Kapfstrasse", "Klusplatz"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen. Linie danach eingestellt oder umnummeriert."
+
+  - id: bus-35
+    nummer: "35"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2022-09-05
+        bis: 2025-12-13
+        weg: [
+          "Bahnhof Altstetten", "Bristenstrasse", "Solidapark", "Lindenplatz", "Farbhof", "Neeserweg",
+          "Feusisbergli", "Am Suteracher", "Loogarten", "Dunkelhölzli"
+        ]
+        status: belegt
+        quellen: [gtfs]
+        notiz: "Linie danach eingestellt oder umnummeriert."
+      - von: 2019-07-15
+        bis: 2022-09-04
+        weg: [
+          "Bahnhof Altstetten", "Solidapark", "Lindenplatz", "Farbhof", "Neeserweg", "Feusisbergli",
+          "Am Suteracher", "Loogarten", "Dunkelhölzli"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2018-12-09
+        bis: 2019-07-14
+        weg: [
+          "Friedhof Eichbühl", "Schulhaus Buchlern", "Rautihalde", "Salzweg", "Dunkelhölzli", "Loogarten",
+          "Am Suteracher", "Feusisbergli", "Neeserweg", "Farbhof", "Lindenplatz", "Solidapark"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2017-12-10
+        bis: 2018-12-08
+        weg: [
+          "Farbhof", "Neeserweg", "Feusisbergli", "Am Suteracher", "Loogarten", "Dunkelhölzli", "Salzweg",
+          "Rautihalde", "Schulhaus Buchlern", "Friedhof Eichbühl"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2017-12-10 gesetzt."
+      - von: 2014-12-14
+        bis: 2017-12-09
+        weg: [
+          "Friedhof Eichbühl", "Schulhaus Buchlern", "Rautihalde", "Salzweg", "Dunkelhölzli", "Loogarten",
+          "Am Suteracher", "Feusisbergli", "Neeserweg", "Farbhof", "Lindenplatz", "Solidapark"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-37
+    nummer: "37"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2023-12-10
+        weg: [
+          "ETH Hönggerberg", "Lerchenhalde", "Lerchenrain", "Schauenberg", "Zehntenhausplatz",
+          "Bahnhof Affoltern", "Blumenfeldstrasse", "Aspholz", "Mühlacker"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2015-12-13
+        bis: 2023-12-09
+        weg: [
+          "Bahnhof Affoltern", "Zehntenhausplatz", "Schauenberg", "Lerchenrain", "Lerchenhalde",
+          "ETH Hönggerberg"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2015-12-13 gesetzt."
+      - von: 2014-12-14
+        bis: 2015-12-12
+        weg: [
+          "ETH Hönggerberg", "Lerchenhalde", "Lerchenrain", "Schauenberg", "Zehntenhausplatz",
+          "Bahnhof Affoltern Süd", "Bahnhof Affoltern", "Bärenbohlstrasse", "Unteraffoltern", "Schwandenholz",
+          "Waidhof"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-38
+    nummer: "38"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2014-12-14
+        weg: [
+          "Schützenhaus Höngg", "Friedhof Hönggerberg", "Michelstrasse", "Wieslergasse", "Kappenbühlweg",
+          "Meierhofplatz", "Schwert", "Am Börtli", "Appenzellerstrasse", "Waidbadstrasse", "Käferberg",
+          "Waidspital"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-39
+    nummer: "39"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2019-12-15
+        weg: [
+          "Im Klösterli", "Zoo", "Flobotstrasse", "Heubeeriweg", "Krönleinstrasse", "Spyristeig", "Rigiblick",
+          "Germaniastrasse", "Schäppiweg", "Langensteinenstrasse", "Strickhof", "Universität Irchel",
+          "Letzistrasse"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2018-12-09
+        bis: 2019-12-14
+        weg: [
+          "Im Klösterli", "Zoo", "Flobotstrasse", "Heubeeriweg", "Krönleinstrasse", "Spyristeig", "Rigiblick",
+          "Germaniastrasse", "Schäppiweg", "Langensteinenstrasse", "Schanzackerstrasse", "Letzistrasse"
+        ]
+        status: belegt
+        quellen: [gtfs]
+
+  - id: bus-40
+    nummer: "40"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2016-12-11
+        weg: [
+          "Bucheggplatz", "Brunnenhof", "Berufswahlschule", "Nordheimstrasse", "Krematorium Nordheim",
+          "Maienweg", "Althoos", "Glaubtenstrasse", "Glaubtenstrasse Nord", "Hürstholz", "Staudenbühl",
+          "Friedhof Schwandenholz", "Buhnstrasse", "Hertensteinstrasse", "Seebacherplatz", "Seebach"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2016-12-11 gesetzt."
+      - von: 2015-12-13
+        bis: 2016-12-10
+        weg: [
+          "Bucheggplatz", "Brunnenhof", "Berufswahlschule", "Nordheimstrasse", "Krematorium Nordheim",
+          "Maienweg", "Althoos", "Glaubtenstrasse", "Glaubtenstrasse Nord", "Hürstholz", "Staudenbühl",
+          "Friedhof Schwandenholz", "Buhnstrasse", "Hertensteinstrasse", "Seebacherplatz"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2015-12-13 gesetzt."
+      - von: 2014-12-14
+        bis: 2015-12-12
+        weg: [
+          "Bucheggplatz", "Brunnenhof", "Berufswahlschule", "Nordheimstrasse", "Krematorium Nordheim",
+          "Maienweg", "Althoos", "Glaubtenstrasse"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-42
+    nummer: "42"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2023-12-10
+        weg: [
+          "ETH Hönggerberg", "Lerchenhalde", "Schumacherweg", "Glaubtenstrasse Süd", "Glaubtenstrasse Nord",
+          "Hürstholz", "Staudenbühl", "Friedhof Schwandenholz", "Buhnstrasse", "Hertensteinstrasse",
+          "Seebacherplatz", "Seebach"
+        ]
+        status: belegt
+        quellen: [gtfs]
+
+  - id: bus-44
+    nummer: "44"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2025-12-14
+        weg: [
+          "ETH Hönggerberg", "Lerchenhalde", "Lerchenrain", "Schauenberg", "Zehntenhausplatz",
+          "Bahnhof Affoltern", "Fronwald", "Unteraffoltern", "Bärenbohlstrasse", "Reckenholz"
+        ]
+        status: belegt
+        quellen: [gtfs]
+
+  - id: bus-45
+    nummer: "45"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2026-09-21
+        weg: [
+          "Dunkelhölzli", "Loogarten", "Am Suteracher", "Feusisbergli", "Neeserweg", "Farbhof", "Lindenplatz",
+          "Bristenstrasse", "Bahnhof Altstetten", "Grünaustrasse", "Grünauring", "Bändliweg", "Werdhölzli"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2026-04-06
+        bis: 2026-09-20
+        weg: [
+          "Dunkelhölzli", "Loogarten", "Am Suteracher", "Feusisbergli", "Neeserweg", "Farbhof", "Lindenplatz",
+          "Solidapark", "Bristenstrasse", "Bahnhof Altstetten", "Grünaustrasse", "Grünauring", "Bändliweg",
+          "Werdhölzli"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2025-12-14
+        bis: 2026-04-05
+        weg: [
+          "Dunkelhölzli", "Loogarten", "Am Suteracher", "Feusisbergli", "Neeserweg", "Farbhof", "Lindenplatz",
+          "Solidapark", "Bristenstrasse", "Bahnhof Altstetten", "Grünaustrasse", "Bändliweg", "Werdhölzli"
+        ]
+        status: belegt
+        quellen: [gtfs]
+
+  - id: bus-46
+    nummer: "46"
+    art: bus
+    farbe: "#C1D59F"
+    versionen:
+      - von: 2014-12-14
+        weg: [
+          "Bahnhofquai/HB", "Central", "Stampfenbachplatz", "Okenstrasse", "Lettenstrasse",
+          "Bahnhof Wipkingen", "Rosengartenstrasse", "Lehenstrasse", "Rebbergsteig", "Kempfhofsteig",
+          "Schwert", "Meierhofplatz", "Wieslergasse", "Singlistrasse", "Segantinistrasse", "Giblenstrasse",
+          "Heizenholz", "Geeringstrasse", "Rütihof"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-61
+    nummer: "61"
+    art: bus
+    farbe: "#A9A39B"
+    versionen:
+      - von: 2026-10-19
+        weg: [
+          "Mühlacker", "Aspholz", "Blumenfeldstrasse", "Bahnhof Affoltern", "Zehntenhausplatz",
+          "Einfangstrasse", "Glaubtenstrasse", "Neuaffoltern", "Birchdörfli", "Regensbergbrücke",
+          "Bahnhof Oerlikon", "Sternen Oerlikon", "Messe/Hallenstadion", "Hallenbad Oerlikon", "Riedgraben",
+          "Saatlenstrasse", "Dreispitz", "Aubrücke", "Schürgistrasse", "Luchswiesen", "Altried",
+          "Wallisellen, Glatt (Bus)"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2023-12-10
+        bis: 2026-10-18
+        weg: [
+          "Mühlacker", "Aspholz", "Blumenfeldstrasse", "Bahnhof Affoltern", "Zehntenhausplatz",
+          "Einfangstrasse", "Glaubtenstrasse", "Neuaffoltern", "Oberwiesenstrasse", "Regensbergbrücke",
+          "Bahnhof Oerlikon", "Sternen Oerlikon", "Messe/Hallenstadion", "Hallenbad Oerlikon", "Riedgraben",
+          "Saatlenstrasse", "Dreispitz", "Aubrücke", "Schürgistrasse", "Luchswiesen", "Altried",
+          "Wallisellen, Glatt (Bus)"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2015-12-13
+        bis: 2023-12-09
+        weg: [
+          "Mühlacker", "Aspholz", "Blumenfeldstrasse", "Bahnhof Affoltern", "Zehntenhausplatz",
+          "Einfangstrasse", "Glaubtenstrasse", "Neuaffoltern", "Oberwiesenstrasse", "Regensbergbrücke",
+          "Bahnhof Oerlikon", "Sternen Oerlikon", "Messe/Hallenstadion", "Hallenbad Oerlikon", "Riedgraben",
+          "Saatlenstrasse", "Dreispitz", "Aubrücke", "Herzogenmühlestrasse", "Schwamendingerplatz"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2015-12-13 gesetzt."
+      - von: 2014-12-14
+        bis: 2015-12-12
+        weg: [
+          "Mühlacker", "Aspholz", "Blumenfeldstrasse", "Bahnhof Affoltern", "Zehntenhausplatz",
+          "Einfangstrasse", "Glaubtenstrasse", "Neuaffoltern", "Oberwiesenstrasse", "Regensbergbrücke",
+          "Bahnhof Oerlikon", "Sternen Oerlikon", "Dorflinde", "Friedackerstrasse", "Waldgarten", "Frohburg",
+          "Friedrichstrasse", "Schwamendingerplatz"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-62
+    nummer: "62"
+    art: bus
+    farbe: "#CAC0B6"
+    versionen:
+      - von: 2025-08-25
+        weg: [
+          "Schwamendingerplatz", "Herzogenmühlestrasse", "Aubrücke", "Dreispitz", "Saatlenstrasse",
+          "Riedgraben", "Hallenbad Oerlikon", "Messe/Hallenstadion", "Sternen Oerlikon", "Bahnhof Oerlikon",
+          "Regensbergbrücke", "Oberwiesenstrasse", "Neuaffoltern", "Glaubtenstrasse", "Einfangstrasse",
+          "Zehntenhausplatz", "Bahnhof Affoltern", "Fronwald", "Unteraffoltern", "Schwandenholz", "Waidhof"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2025-03-03
+        bis: 2025-08-24
+        weg: [
+          "Schwamendingerplatz", "Tulpenstrasse", "Herbstweg", "Saatlenstrasse", "Riedgraben",
+          "Hallenbad Oerlikon", "Messe/Hallenstadion", "Sternen Oerlikon", "Bahnhof Oerlikon",
+          "Regensbergbrücke", "Oberwiesenstrasse", "Neuaffoltern", "Glaubtenstrasse", "Einfangstrasse",
+          "Zehntenhausplatz", "Bahnhof Affoltern", "Fronwald", "Unteraffoltern", "Schwandenholz", "Waidhof"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2015-12-13
+        bis: 2025-03-02
+        weg: [
+          "Schwamendingerplatz", "Herzogenmühlestrasse", "Aubrücke", "Dreispitz", "Saatlenstrasse",
+          "Riedgraben", "Hallenbad Oerlikon", "Messe/Hallenstadion", "Sternen Oerlikon", "Bahnhof Oerlikon",
+          "Regensbergbrücke", "Oberwiesenstrasse", "Neuaffoltern", "Glaubtenstrasse", "Einfangstrasse",
+          "Zehntenhausplatz", "Bahnhof Affoltern", "Fronwald", "Unteraffoltern", "Schwandenholz", "Waidhof"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2015-12-13 gesetzt."
+      - von: 2014-12-14
+        bis: 2015-12-12
+        weg: [
+          "Schwamendingerplatz", "Friedrichstrasse", "Frohburg", "Waldgarten", "Friedackerstrasse",
+          "Dorflinde", "Sternen Oerlikon", "Bahnhof Oerlikon", "Regensbergbrücke", "Oberwiesenstrasse",
+          "Neuaffoltern", "Glaubtenstrasse", "Einfangstrasse", "Zehntenhausplatz", "Bahnhof Affoltern",
+          "Fronwald", "Unteraffoltern"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-63
+    nummer: "63"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2014-12-14
+        bis: 2015-12-12
+        weg: [
+          "Bahnhof Oerlikon", "Sternen Oerlikon", "Messe/Hallenstadion", "Hallenbad Oerlikon", "Riedgraben",
+          "Saatlenstrasse", "Dreispitz", "Aubrücke", "Herzogenmühlestrasse", "Schwamendingerplatz"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen. Linie danach eingestellt oder umnummeriert."
+
+  - id: bus-64
+    nummer: "64"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2023-12-10
+        weg: [
+          "Bahnhof Oerlikon Nord", "Max-Bill-Platz", "Birchstrasse", "Chaletweg", "Arnikahof",
+          "Maillartstrasse", "Stierenried", "Neunbrunnen", "Bollingerweg", "Max-Bill-Platz",
+          "Bahnhof Oerlikon Nord"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2014-12-14
+        bis: 2023-12-09
+        weg: [
+          "Bahnhof Oerlikon Nord", "Max-Bill-Platz", "Bollingerweg", "Neunbrunnen", "Stierenried",
+          "Maillartstrasse"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-66
+    nummer: "66"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2024-12-15
+        weg: [
+          "Bahnhof Enge/Bederstrasse", "Waffenplatz-/Bederstr.", "Hügelstrasse", "Brunau/Mutschellenstr.",
+          "Thujastrasse", "Jugendherberge", "Morgental", "Kalchbühlweg", "Widmerstrasse", "Neubühl",
+          "Obere Hornhalde", "Kilchberg ZH, Bächlerstrasse", "Kilchberg ZH, Breitloo",
+          "Kilchberg ZH, Stockengut", "Kilchberg ZH, Alterszentrum", "Kilchberg ZH, Kirche"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2014-12-14
+        bis: 2024-12-14
+        weg: [
+          "Morgental", "Kalchbühlweg", "Widmerstrasse", "Neubühl"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-67
+    nummer: "67"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2015-12-13
+        weg: [
+          "Bahnhof Wiedikon", "Schmiede Wiedikon", "Goldbrunnenplatz", "Gutstrasse", "Im Gut",
+          "Langgrütstrasse", "Sackzelg", "Fellenbergstrasse", "Albisriederdörfli", "Untermoosstrasse",
+          "Rautistrasse", "Schulhaus Buchlern", "Rautihalde", "Salzweg", "Dunkelhölzli"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2015-12-13 gesetzt."
+      - von: 2014-12-14
+        bis: 2015-12-12
+        weg: [
+          "Dunkelhölzli", "Salzweg", "Rautihalde", "Schulhaus Buchlern", "Rautistrasse", "Untermoosstrasse",
+          "Albisriederdörfli", "Fellenbergstrasse", "Sackzelg", "Langgrütstrasse", "Im Gut", "Gutstrasse",
+          "Goldbrunnenplatz", "Schmiede Wiedikon"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-69
+    nummer: "69"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2014-12-14
+        weg: [
+          "ETH Hönggerberg", "Hönggerberg", "Im Wingert", "Waidbadstrasse", "Käferberg", "Waidspital",
+          "Weihersteig", "Bucheggplatz", "Milchbuck"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-70
+    nummer: "70"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2018-12-09
+        weg: [
+          "Bahnhof Wollishofen", "Bahnhof Wollishofen/Staubstrasse", "Renggerstrasse", "Morgental",
+          "Butzenstrasse", "Verenastrasse", "Manegg", "Frymannstrasse", "Bahnhof Leimbach", "Marbachweg",
+          "Im Hüsli", "Sihlweidstrasse", "Mittelleimbach"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2014-12-14
+        bis: 2018-12-08
+        weg: [
+          "Mittelleimbach", "Sihlweidstrasse", "Im Hüsli", "Marbachweg", "Bahnhof Leimbach", "Frymannstrasse",
+          "Manegg", "Verenastrasse", "Butzenstrasse", "Morgental"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-71
+    nummer: "71"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2014-12-14
+        bis: 2015-12-12
+        weg: [
+          "Friedhof Sihlfeld", "Altes Krematorium", "Albisriederplatz", "Hardplatz", "Bahnhof Hardbrücke",
+          "Schiffbau", "Escher-Wyss-Platz", "Rosengartenstrasse"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen. Linie danach eingestellt oder umnummeriert."
+
+  - id: bus-72
+    nummer: "72"
+    art: bus
+    farbe: "#C6A693"
+    versionen:
+      - von: 2020-02-10
+        weg: [
+          "Milchbuck", "Bucheggplatz", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau",
+          "Bahnhof Hardbrücke", "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Friedhof Sihlfeld",
+          "Bertastrasse", "Zwinglihaus", "Schmiede Wiedikon", "Hertersteg", "Manesseplatz", "Sihlcity Nord",
+          "Waffenplatzstrasse", "Waffenplatz-/Bederstr.", "Hügelstrasse", "Brunau/Mutschellenstr.",
+          "Thujastrasse", "Jugendherberge", "Morgental"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2014-12-14
+        bis: 2020-02-09
+        weg: [
+          "Milchbuck", "Bucheggplatz", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau",
+          "Bahnhof Hardbrücke", "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Friedhof Sihlfeld",
+          "Bertastrasse", "Zwinglihaus", "Schmiede Wiedikon", "Manesseplatz", "Sihlcity Nord",
+          "Waffenplatzstrasse", "Waffenplatz-/Bederstr.", "Hügelstrasse", "Brunau/Mutschellenstr.",
+          "Thujastrasse", "Jugendherberge", "Morgental"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-73
+    nummer: "73"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2026-10-19
+        weg: [
+          "Friesenbergstrasse", "Friesenberghalde", "Friedhof Uetliberg", "Zielweg"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2018-12-09
+        bis: 2026-10-18
+        weg: [
+          "Schweighof", "Friesenbergstrasse", "Friesenberghalde", "Friedhof Uetliberg", "Zielweg"
+        ]
+        status: belegt
+        quellen: [gtfs]
+
+  - id: bus-75
+    nummer: "75"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2015-12-13
+        weg: [
+          "Schwamendingerplatz", "Friedrichstrasse", "Frohburg", "Waldgarten", "Friedackerstrasse",
+          "Dorflinde", "Sternen Oerlikon", "Bahnhof Oerlikon Ost", "Max-Bill-Platz", "Bollingerweg",
+          "Neunbrunnen", "Himmeri", "Buhnstrasse", "Schönauring", "Köschenrüti", "Käshaldenstrasse",
+          "Leimgrübelstrasse", "Birch-/Glatttalstrasse", "Ausserdorfstrasse", "Seebach", "Seebacherplatz"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2015-12-13 gesetzt."
+      - von: 2014-12-14
+        bis: 2015-12-12
+        weg: [
+          "Bahnhof Oerlikon Nord", "Max-Bill-Platz", "Bollingerweg", "Neunbrunnen", "Himmeri", "Buhnstrasse",
+          "Schönauring", "Köschenrüti", "Käshaldenstrasse", "Leimgrübelstrasse", "Birch-/Glatttalstrasse",
+          "Ausserdorfstrasse", "Seebach", "Seebacherplatz"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-76
+    nummer: "76"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2025-12-14
+        weg: [
+          "Bahnhof Wiedikon", "Schmiede Wiedikon", "Manesseplatz", "Binz", "Räffelstrasse", "Grubenstrasse",
+          "Binz Center"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2020-05-04
+        bis: 2025-12-13
+        weg: [
+          "Bahnhof Wiedikon", "Schmiede Wiedikon", "Hertersteg", "Manesseplatz", "Binz", "Räffelstrasse",
+          "Binz Center"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2014-12-14
+        bis: 2020-05-03
+        weg: [
+          "Bahnhof Wiedikon", "Schmiede Wiedikon", "Manesseplatz", "Binz", "Räffelstrasse", "Grubenstrasse",
+          "Binz Center"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-77
+    nummer: "77"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2022-12-11
+        weg: [
+          "Balgrist", "Balgrist Ost", "Klinik Hirslanden", "Zollikon, Niederhofenrain", "Im Walder",
+          "EPI-Klinik", "Flühgasse", "Wonnebergstrasse", "Altenhofstrasse", "Botanischer Garten",
+          "Hegibachplatz"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2014-12-14
+        bis: 2022-12-10
+        weg: [
+          "Hegibachplatz", "Botanischer Garten", "Altenhofstrasse", "Wonnebergstrasse", "Flühgasse",
+          "EPI-Klinik", "Bleulerstrasse", "Im Walder"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-78
+    nummer: "78"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2025-12-14
+        weg: [
+          "Dunkelhölzli", "Salzweg", "Rautihalde", "Schulhaus Buchlern", "Rautistrasse", "Lindenplatz",
+          "Bristenstrasse", "Bahnhof Altstetten", "Tüffenwies", "Winzerhalde", "Hohenklingensteig",
+          "Winzerstrasse", "Frankental", "Riedhofstrasse", "Geeringstrasse", "Heizenholz"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2014-12-14
+        bis: 2025-12-13
+        weg: [
+          "Bändliweg", "Grünaustrasse", "Bahnhof Altstetten", "Bristenstrasse", "Lindenplatz", "Rautistrasse",
+          "Schulhaus Buchlern", "Rautihalde", "Salzweg", "Dunkelhölzli"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-79
+    nummer: "79"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2014-12-14
+        bis: 2023-12-09
+        weg: [
+          "Auzelg Ost", "Auzelg", "Orionstrasse", "Aubrücke", "Herzogenmühlestrasse", "Schwamendingerplatz"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen. Linie danach eingestellt oder umnummeriert."
+
+  - id: bus-80
+    nummer: "80"
+    art: bus
+    farbe: "#CBCFB3"
+    versionen:
+      - von: 2026-04-06
+        weg: [
+          "Bahnhof Oerlikon Nord", "Max-Bill-Platz", "Birchstrasse", "Chaletweg", "Mötteliweg",
+          "Glaubtenstrasse", "Glaubtenstrasse Süd", "Schumacherweg", "Lerchenhalde", "ETH Hönggerberg",
+          "Hönggerberg", "Meierhofplatz", "Zwielplatz", "Wartau", "Winzerstrasse", "Hohenklingensteig",
+          "Winzerhalde", "Tüffenwies", "Bahnhof Altstetten", "Bristenstrasse", "Lindenplatz", "Rautistrasse",
+          "Untermoosstrasse", "Albisriederdörfli", "Albisrieden", "Goldackerweg", "In der Ey", "Triemli",
+          "Triemlispital"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2026-01-05
+        bis: 2026-04-05
+        weg: [
+          "Bahnhof Oerlikon Nord", "Max-Bill-Platz", "Birchstrasse", "Chaletweg", "Mötteliweg",
+          "Glaubtenstrasse Nord", "Schumacherweg", "Lerchenhalde", "ETH Hönggerberg", "Hönggerberg",
+          "Meierhofplatz", "Zwielplatz", "Wartau", "Winzerstrasse", "Hohenklingensteig", "Winzerhalde",
+          "Tüffenwies", "Bahnhof Altstetten", "Bristenstrasse", "Lindenplatz", "Rautistrasse",
+          "Untermoosstrasse", "Albisriederdörfli", "Albisrieden", "Goldackerweg", "In der Ey", "Triemli",
+          "Triemlispital"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2025-01-06
+        bis: 2026-01-04
+        weg: [
+          "Bahnhof Oerlikon Nord", "Max-Bill-Platz", "Birchstrasse", "Chaletweg", "Mötteliweg",
+          "Glaubtenstrasse Nord", "Schumacherweg", "Lerchenhalde", "ETH Hönggerberg", "Hönggerberg",
+          "Meierhofplatz", "Zwielplatz", "Wartau", "Winzerstrasse", "Winzerstrasse Süd", "Hohenklingensteig",
+          "Winzerhalde", "Tüffenwies", "Bahnhof Altstetten", "Bristenstrasse", "Lindenplatz", "Rautistrasse",
+          "Untermoosstrasse", "Albisriederdörfli", "Albisrieden", "Goldackerweg", "In der Ey", "Triemli",
+          "Triemlispital"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2017-12-10
+        bis: 2025-01-05
+        weg: [
+          "Bahnhof Oerlikon Nord", "Max-Bill-Platz", "Birchstrasse", "Chaletweg", "Mötteliweg",
+          "Glaubtenstrasse", "Glaubtenstrasse Süd", "Schumacherweg", "Lerchenhalde", "ETH Hönggerberg",
+          "Hönggerberg", "Meierhofplatz", "Zwielplatz", "Wartau", "Winzerstrasse Süd", "Hohenklingensteig",
+          "Winzerhalde", "Tüffenwies", "Bahnhof Altstetten", "Bristenstrasse", "Lindenplatz", "Rautistrasse",
+          "Untermoosstrasse", "Albisriederdörfli", "Albisrieden", "Goldackerweg", "In der Ey", "Triemli",
+          "Triemlispital"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2017-12-10 gesetzt."
+      - von: 2015-12-13
+        bis: 2017-12-09
+        weg: [
+          "Bahnhof Oerlikon Nord", "Max-Bill-Platz", "Birchstrasse", "Chaletweg", "Mötteliweg",
+          "Glaubtenstrasse Nord", "Schumacherweg", "Lerchenhalde", "ETH Hönggerberg", "Hönggerberg",
+          "Meierhofplatz", "Zwielplatz", "Wartau", "Winzerstrasse", "Winzerstrasse Süd", "Hohenklingensteig",
+          "Winzerhalde", "Tüffenwies", "Bahnhof Altstetten", "Bristenstrasse", "Lindenplatz", "Rautistrasse",
+          "Untermoosstrasse", "Albisriederdörfli", "Albisrieden", "Goldackerweg", "In der Ey", "Triemli",
+          "Triemlispital"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2015-12-13 gesetzt."
+      - von: 2014-12-14
+        bis: 2015-12-12
+        weg: [
+          "Bahnhof Oerlikon Nord", "Max-Bill-Platz", "Birchstrasse", "Chaletweg", "Mötteliweg",
+          "Glaubtenstrasse", "Glaubtenstrasse Süd", "Schumacherweg", "Lerchenhalde", "ETH Hönggerberg",
+          "Hönggerberg", "Meierhofplatz", "Zwielplatz", "Wartau", "Winzerstrasse", "Hohenklingensteig",
+          "Winzerhalde", "Tüffenwies", "Bahnhof Altstetten", "Bristenstrasse", "Lindenplatz", "Rautistrasse",
+          "Untermoosstrasse", "Albisriederdörfli", "Albisrieden", "Goldackerweg", "In der Ey", "Triemli",
+          "Triemlispital"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-83
+    nummer: "83"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2015-12-13
+        weg: [
+          "Bahnhof Altstetten", "Bristenstrasse", "Baslerstrasse", "Letzipark West", "Kappeli", "Flurstrasse",
+          "Albisrank", "Hubertus", "Altes Krematorium", "Albisriederplatz", "Hardplatz", "Bahnhof Hardbrücke",
+          "Schiffbau", "Escher-Wyss-Platz", "Rosengartenstrasse", "Bucheggplatz", "Milchbuck"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Wechsel zwischen zwei Stichwochen, auf den Fahrplanwechsel 2015-12-13 gesetzt."
+
+  - id: bus-89
+    nummer: "89"
+    art: bus
+    farbe: "#CAC0B6"
+    versionen:
+      - von: 2025-12-14
+        weg: [
+          "Sihlcity", "Saalsporthalle", "Laubegg", "Uetlihof", "Strassenverkehrsamt", "Hegianwandweg",
+          "Im Hagacker", "Friesenbergstrasse", "Schweighof", "Schaufelbergerstrasse", "Im Gut", "Hubertus",
+          "Albisrank", "Flurstrasse", "Kappeli", "Letzipark West", "Baslerstrasse", "Bristenstrasse",
+          "Bahnhof Altstetten", "Tüffenwies", "Winzerhalde", "Hohenklingensteig", "Winzerstrasse",
+          "Frankental", "Oberengstringen, Eggbühl", "Oberengstringen, Lanzrain", "Oberengstringen, Zentrum",
+          "Oberengstringen, Paradies", "Unterengstringen, Langacher", "Unterengstringen, Sennenbüel"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2014-12-14
+        bis: 2025-12-13
+        weg: [
+          "Heizenholz", "Geeringstrasse", "Riedhofstrasse", "Frankental", "Winzerstrasse Süd",
+          "Hohenklingensteig", "Winzerhalde", "Tüffenwies", "Bahnhof Altstetten", "Bristenstrasse",
+          "Baslerstrasse", "Letzipark West", "Kappeli", "Flurstrasse", "Albisrank", "Hubertus", "Im Gut",
+          "Schaufelbergerstrasse", "Schweighof", "Friesenbergstrasse", "Im Hagacker", "Hegianwandweg",
+          "Strassenverkehrsamt", "Uetlihof", "Laubegg", "Saalsporthalle", "Sihlcity"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen."
+
+  - id: bus-94
+    nummer: "94"
+    art: bus
+    farbe: "#A9A39B"
+    versionen:
+      - von: 2014-12-14
+        bis: 2023-12-09
+        weg: [
+          "Bahnhof Oerlikon", "Sternen Oerlikon", "Messe/Hallenstadion", "Hallenbad Oerlikon", "Riedgraben",
+          "Saatlenstrasse", "Dreispitz", "Aubrücke", "Schürgistrasse", "Luchswiesen", "Altried",
+          "Wallisellen, Glatt (Bus)"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten, gtfs]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen. Linie danach eingestellt oder umnummeriert."
+
+  - id: bus-95
+    nummer: "95"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2014-12-14
+        bis: 2015-12-12
+        weg: [
+          "Bahnhof Altstetten", "Bristenstrasse", "Baslerstrasse", "Letzipark West", "Kappeli", "Flurstrasse",
+          "Albisrank", "Siemens", "Freilagerstrasse"
+        ]
+        status: belegt
+        quellen: [vbz-fahrzeiten]
+        notiz: "Weg aus der Stichwoche Oktober 2015, ab dem Fahrplanwechsel Dezember 2014 angenommen. Linie danach eingestellt oder umnummeriert."
+
+  - id: bus-99
+    nummer: "99"
+    art: bus
+    farbe: "#FFFFFF"
+    versionen:
+      - von: 2026-10-05
+        weg: [
+          "Balgrist", "Kinderspital", "Flühgasse", "EPI-Klinik", "Bleulerstrasse", "Zollikon, Niederhofenrain",
+          "Zollikon, Rotfluhstrasse", "Zollikon, Gemeindehaus", "Zollikon, Dufourplatz", "Zollikon, Bahnhof"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2026-07-20
+        bis: 2026-10-04
+        weg: [
+          "Balgrist", "Kinderspital", "Flühgasse", "EPI-Klinik", "Im Walder", "Zollikon, Niederhofenrain",
+          "Zollikon, Rotfluhstrasse", "Zollikon, Gemeindehaus", "Zollikon, Dufourplatz", "Zollikon, Bahnhof"
+        ]
+        status: belegt
+        quellen: [gtfs]
+      - von: 2022-12-11
+        bis: 2026-07-19
+        weg: [
+          "Balgrist", "Kinderspital", "Flühgasse", "EPI-Klinik", "Bleulerstrasse", "Zollikon, Niederhofenrain",
+          "Zollikon, Rotfluhstrasse", "Zollikon, Gemeindehaus", "Zollikon, Dufourplatz", "Zollikon, Bahnhof"
+        ]
+        status: belegt
+        quellen: [gtfs]
