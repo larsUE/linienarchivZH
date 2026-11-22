@@ -44,6 +44,8 @@ FEST = {
     "bahnhof-stadelhofen": (499.4, 818.0),
     "seebach": (585.1, 250.0),
     "seebacherplatz": (565.9, 267.9),
+    # die Zuordnung landet sonst östlich der Hardbrücke; die Haltestelle liegt zwischen Schiffbau und Hardplatz
+    "bahnhof-hardbrucke": (268.0, 613.9),
 }
 
 TRAM = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "17", "20", "50", "51"}
