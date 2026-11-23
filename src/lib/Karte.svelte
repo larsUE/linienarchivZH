@@ -45,21 +45,107 @@
     const ts = [...new Set([...tg, ...tp].map((x) => Math.round(x * 1e5) / 1e5))].sort((a, b) => a - b);
     return { g: abtasten(g, tg, ts), p: abtasten(p, tp, ts) };
   }
-  const geom = new Map(netz.kanten.map((k) => [k.id, { ...angleichen(k.coords, k.planCoords ?? k.coords), geschaetzt: !!k.planGeschaetzt }]));
+  const roh = new Map(netz.kanten.map((k) => [k.id, { g: k.coords, p: k.planCoords ?? k.coords, geschaetzt: !!k.planGeschaetzt }]));
   const lage = new Map(netz.haltestellen.map((h) => [h.id, { g: [h.lon, h.lat], p: h.plan ?? [h.lon, h.lat] }]));
 
   // Überblendungsgrad: 0 = geografisch, 1 = Plan
   let t = ansicht === 'plan' ? 1 : 0;
   const mischen = (a, b) => (t === 0 ? a : t === 1 ? b : [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]);
-  function linienzug(id, rueck = false) {
-    const { g, p } = geom.get(id);
-    const c = t === 0 ? g : t === 1 ? p : g.map((x, i) => mischen(x, p[i]));
-    return rueck ? [...c].reverse() : c;
-  }
-  const punkt = (id) => {
+  /** Linienzug einer angeglichenen Geometrie {g, p} beim aktuellen Überblendungsgrad */
+  const linienzug = ({ g, p }) => (t === 0 ? g : t === 1 ? p : g.map((x, i) => mischen(x, p[i])));
+  // Im Plan kann eine Haltestelle auf die Mitte eines Bogens rücken (siehe «Abgerundete Ecken»)
+  const punkt = (id, planLage) => {
     const l = lage.get(id);
-    return mischen(l.g, l.p);
+    return mischen(l.g, planLage ?? l.p);
   };
+
+  // ---------- Abgerundete Ecken im Plan ----------
+  // Im Plan liegen die Knicke an den Haltestellen. Jede Linie biegt dort in einem Kreisbogen ab, wie im ZVV-Plan:
+  // die eine Hälfte des Bogens gehört zum ankommenden, die andere zum abgehenden Abschnitt.
+  // Der Radius wächst mit der Bündelbreite, damit auch die inneren Linien eines Bündels noch einen Bogen haben,
+  // und ist durch die halbe Länge der beiden Abschnitte begrenzt.
+  const KOS = Math.cos((47.37 * Math.PI) / 180);
+  const MPG = 111320; // Meter pro Breitengrad
+  const zuM = ([x, y]) => [x * KOS * MPG, y * MPG];
+  const ausM = ([x, y]) => [x / (KOS * MPG), y / MPG];
+  const R_GRUND = 160; // Radius in Metern für eine einzelne Linie
+  const R_PRO_LINIE = 70; // zusätzlich je Linie neben der Mitte des Bündels
+  const BOGEN_SCHRITT = Math.PI / 36; // ein Stützpunkt je 5°
+
+  // Richtung (Einheitsvektor in Metern) und Länge des ersten Stücks von Abschnitt kid ab Haltestelle h
+  function abgang(kid, h) {
+    const c = roh.get(kid).p;
+    const [p, q] = netz.kanteById.get(kid).a === h ? [c[0], c[1]] : [c.at(-1), c.at(-2)];
+    return abgangPunkte(p, q);
+  }
+  function abgangPunkte(p, q) {
+    const [px, py] = zuM(p), [qx, qy] = zuM(q);
+    const L = Math.hypot(qx - px, qy - py) || 1;
+    return { d: [(qx - px) / L, (qy - py) / L], L };
+  }
+  // Halber Bogen an der Ecke S (Grad), von der Tangente auf dem eigenen Stück bis zur Bogenmitte.
+  // eigen/ander: Abgänge von S; laenge: höchstens nutzbare Länge des eigenen und des anderen Stücks.
+  function halbbogen(S, eigen, ander, R) {
+    const knick = Math.PI - Math.acos(Math.max(-1, Math.min(1, eigen.d[0] * ander.d[0] + eigen.d[1] * ander.d[1])));
+    if (knick < 0.02 || knick > Math.PI - 0.05) return null; // geradeaus oder Wende
+    const tanH = Math.tan(knick / 2);
+    const r = Math.min(R, eigen.L / tanH, ander.L / tanH);
+    const s = zuM(S);
+    const bx = eigen.d[0] + ander.d[0], by = eigen.d[1] + ander.d[1];
+    const bl = Math.hypot(bx, by);
+    const bis = [bx / bl, by / bl]; // ins Innere der Ecke
+    const m = r / Math.cos(knick / 2);
+    const C = [s[0] + bis[0] * m, s[1] + bis[1] * m];
+    const T = [s[0] + eigen.d[0] * r * tanH, s[1] + eigen.d[1] * r * tanH];
+    const Mi = [C[0] - bis[0] * r, C[1] - bis[1] * r];
+    const a0 = Math.atan2(T[1] - C[1], T[0] - C[0]);
+    let da = Math.atan2(Mi[1] - C[1], Mi[0] - C[0]) - a0;
+    da = Math.atan2(Math.sin(da), Math.cos(da));
+    const n = Math.max(2, Math.ceil(Math.abs(da) / BOGEN_SCHRITT));
+    return Array.from({ length: n + 1 }, (_, i) => ausM([C[0] + r * Math.cos(a0 + (da * i) / n), C[1] + r * Math.sin(a0 + (da * i) / n)]));
+  }
+  // Radius für den Übergang zwischen zwei Abschnitten an einer Haltestelle (symmetrisch, damit beide Hälften passen)
+  const radius = (nK, nK2) => R_GRUND + (R_PRO_LINIE * (Math.max(nK, nK2) - 1)) / 2;
+
+  /**
+   * Plan-Linienzug eines Abschnitts (Richtung a -> b) mit Bögen an den Enden und an inneren Ecken.
+   * ende: { nachbar, R } je Ende oder null (Endhalt, geradeaus).
+   */
+  function planZug(kid, endeA, endeB) {
+    const k = netz.kanteById.get(kid);
+    const c = roh.get(kid).p;
+    const aussen = (h, ende, S) => {
+      if (!ende) return null;
+      const eigen = abgang(kid, h), ander = abgang(ende.nachbar, h);
+      // nur die halbe Länge jedes Stücks, damit die Bögen an beiden Enden Platz haben
+      return halbbogen(S, { ...eigen, L: eigen.L / 2 }, { ...ander, L: ander.L / 2 }, ende.R);
+    };
+    const anfang = aussen(k.a, endeA, c[0]);
+    const schluss = aussen(k.b, endeB, c.at(-1));
+    const out = anfang ? [...anfang].reverse() : [c[0]];
+    for (let i = 1; i < c.length - 1; i++) {
+      const vor = abgangPunkte(c[i], c[i - 1]), nach = abgangPunkte(c[i], c[i + 1]);
+      const halb = (x) => ({ ...x, L: x.L / 2 });
+      const h1 = halbbogen(c[i], halb(vor), halb(nach), R_GRUND);
+      const h2 = halbbogen(c[i], halb(nach), halb(vor), R_GRUND);
+      if (h1 && h2) out.push(...h1, ...[...h2].reverse().slice(1));
+      else out.push(c[i]);
+    }
+    out.push(...(schluss ?? [c.at(-1)]));
+    return out;
+  }
+
+  // Angeglichene Geometrien {g, p, geschaetzt}, je Abschnitt und Bögen an den Enden zwischengespeichert
+  const geoCache = new Map();
+  function geometrie(kid, endeA = null, endeB = null) {
+    const schluessel = (e) => (e ? `${e.nachbar}@${Math.round(e.R)}` : '');
+    const key = `${kid}|${schluessel(endeA)}|${schluessel(endeB)}`;
+    if (!geoCache.has(key)) {
+      const r = roh.get(kid);
+      geoCache.set(key, { ...angleichen(r.g, planZug(kid, endeA, endeB)), geschaetzt: r.geschaetzt });
+    }
+    return geoCache.get(key);
+  }
 
   // ---------- Inhalt je Stichtag (unabhängig von der Ansicht) ----------
   let inhalt = null;
@@ -68,7 +154,6 @@
   // Auf jedem Abschnitt liegen die Linien so nebeneinander, wie sie später auseinanderlaufen:
   // wer an der nächsten Verzweigung nach links abbiegt, liegt links (sonst rückwärts gesucht, sonst Linienrang).
   // So bleibt die Reihenfolge entlang gemeinsamer Strecken gleich, und Linien kreuzen sich nur, wo es nötig ist.
-  const KOS = Math.cos((47.37 * Math.PI) / 180);
   const planXY = (id) => {
     const [x, y] = lage.get(id).p;
     return [x * KOS, y];
@@ -112,7 +197,16 @@
         // weiterer Weg in Richtung a -> b und zurück ab a
         const vorwaerts = folge[i] === k.a;
         const nach = folge.slice(i + 2), vor = folge.slice(0, i).reverse();
-        liste.push({ linie: v.linie, vor: vorwaerts ? nach : vor, zur: vorwaerts ? vor : nach });
+        // Abschnitte, in die die Linie an a und an b weiterfährt
+        const ohne = (s) => s?.replace(/^-/, '') ?? null;
+        const [kVor, kNach] = [ohne(v.kanten[i - 1]), ohne(v.kanten[i + 1])];
+        liste.push({
+          linie: v.linie,
+          vor: vorwaerts ? nach : vor,
+          zur: vorwaerts ? vor : nach,
+          nachbarA: vorwaerts ? kVor : kNach,
+          nachbarB: vorwaerts ? kNach : kVor,
+        });
       });
     }
     const eintraege = [];
@@ -125,12 +219,17 @@
         const l = netz.linieById.get(e.linie);
         eintraege.push({
           kante: id,
-          rueck: false,
-          properties: { kante: id, linie: l.id, nummer: l.nummer, farbe: l.farbe, art: l.art, slot: i - (n - 1) / 2, gs: geom.get(id).geschaetzt },
+          nachbarA: e.nachbarA,
+          nachbarB: e.nachbarB,
+          properties: { kante: id, linie: l.id, nummer: l.nummer, farbe: l.farbe, art: l.art, slot: i - (n - 1) / 2, gs: roh.get(id).geschaetzt },
         });
       });
     }
-    return { eintraege, kanten: new Set(proKante.keys()), breite: new Map([...proKante].map(([id, l]) => [id, l.length])) };
+    const breite = new Map([...proKante].map(([id, l]) => [id, l.length]));
+    // Geometrie mit Bögen je Linie: der Radius hängt von beiden beteiligten Bündeln ab
+    const ende = (id, nachbar) => (nachbar && breite.has(nachbar) ? { nachbar, R: radius(breite.get(id), breite.get(nachbar)) } : null);
+    for (const e of eintraege) e.geo = geometrie(e.kante, ende(e.kante, e.nachbarA), ende(e.kante, e.nachbarB));
+    return { eintraege, kanten: new Set(proKante.keys()), breite };
   }
 
   function inhaltBerechnen() {
@@ -150,17 +249,44 @@
         halte.set(id, h);
       });
     }
+    // Lage jeder Haltestelle im Plan: Biegen alle Linien dort gleich ab, rückt sie auf die Mitte ihres Bogens
+    const enden = new Map(); // Haltestelle -> [{ geo, amAnfang }]
+    const proKanteGeo = new Map();
+    for (const e of eintraege) {
+      const k = netz.kanteById.get(e.kante);
+      for (const [h, amAnfang] of [[k.a, true], [k.b, false]]) {
+        if (!enden.has(h)) enden.set(h, []);
+        enden.get(h).push({ geo: e.geo, amAnfang, kante: e.kante });
+      }
+      if (!proKanteGeo.has(e.kante)) proKanteGeo.set(e.kante, e.geo);
+    }
+    const endpunkt = (x) => (x.amAnfang ? x.geo.p[0] : x.geo.p.at(-1));
+    const gleich = (a, b) => Math.abs(a[0] - b[0]) < 1e-7 && Math.abs(a[1] - b[1]) < 1e-7;
+
     inhalt = {
       linien: eintraege,
-      neu: [...kanten].filter((k) => !vorherKanten.has(k)),
-      weg: [...vorherKanten].filter((k) => !kanten.has(k)),
+      neu: [...kanten].filter((k) => !vorherKanten.has(k)).map((k) => proKanteGeo.get(k)),
+      weg: [...vorherKanten].filter((k) => !kanten.has(k)).map((k) => geometrie(k)),
       halte: [...halte].map(([id, h]) => {
         // Balken quer über das breiteste Bündel an der Haltestelle
         let kante = null, n = 1;
         for (const k of kantenAn.get(id) ?? []) {
           if ((buendel.get(k.id) ?? 0) > n || (!kante && buendel.has(k.id))) [kante, n] = [k, buendel.get(k.id)];
         }
-        return { id, kante, properties: { id, name: netz.haltestelleById.get(id).name, end: h.end, linien: h.linien.join(' '), bild: `balken-${Math.min(n, MAXBUENDEL)}` } };
+        const an = enden.get(id) ?? [];
+        const p0 = an.length ? endpunkt(an[0]) : null;
+        const planLage = p0 && an.every((x) => gleich(endpunkt(x), p0)) ? p0 : null;
+        // Ausrichtung des Balkens: ein Linienzug des breitesten Bündels, der genau an der Haltestelle endet
+        const ziel = planLage ?? lage.get(id).p;
+        const fuerWinkel =
+          an.find((x) => x.kante === kante?.id && gleich(endpunkt(x), ziel)) ??
+          (kante ? { geo: geometrie(kante.id), amAnfang: kante.a === id } : null);
+        return {
+          id,
+          planLage,
+          fuerWinkel,
+          properties: { id, name: netz.haltestelleById.get(id).name, end: h.end, linien: h.linien.join(' '), bild: `balken-${Math.min(n, MAXBUENDEL)}` },
+        };
       }),
     };
   }
@@ -175,9 +301,9 @@
   }
   // Drehung des Balkens (Grad im Uhrzeigersinn, Bildschirm): quer zur Richtung des Abschnitts an der Haltestelle
   function balkenWinkel(h) {
-    if (!h.kante) return 0;
-    const c = linienzug(h.kante.id);
-    const [p, q] = h.kante.a === h.id ? [c[0], c[1]] : [c.at(-2), c.at(-1)];
+    if (!h.fuerWinkel) return 0;
+    const c = linienzug(h.fuerWinkel.geo);
+    const [p, q] = h.fuerWinkel.amAnfang ? [c[0], c[1]] : [c.at(-2), c.at(-1)];
     const breitengrad = (p[1] * Math.PI) / 180;
     return (Math.atan2(-(q[1] - p[1]) / Math.cos(breitengrad), q[0] - p[0]) * 180) / Math.PI + 90;
   }
@@ -233,16 +359,16 @@
   function zeichnen() {
     if (!bereit || !inhalt) return;
     const fc = (features) => ({ type: 'FeatureCollection', features });
-    const linie = (id, rueck, properties = {}) => ({ type: 'Feature', properties, geometry: { type: 'LineString', coordinates: linienzug(id, rueck) } });
-    map.getSource('linien').setData(fc(inhalt.linien.map((e) => linie(e.kante, e.rueck, e.properties))));
-    map.getSource('neu').setData(fc(inhalt.neu.map((id) => linie(id))));
-    map.getSource('weg').setData(fc(inhalt.weg.map((id) => linie(id))));
+    const linie = (geo, properties = {}) => ({ type: 'Feature', properties, geometry: { type: 'LineString', coordinates: linienzug(geo) } });
+    map.getSource('linien').setData(fc(inhalt.linien.map((e) => linie(e.geo, e.properties))));
+    map.getSource('neu').setData(fc(inhalt.neu.map((geo) => linie(geo))));
+    map.getSource('weg').setData(fc(inhalt.weg.map((geo) => linie(geo))));
     map.getSource('halte').setData(
       fc(
         inhalt.halte.map((h) => ({
           type: 'Feature',
           properties: { ...h.properties, winkel: balkenWinkel(h) },
-          geometry: { type: 'Point', coordinates: punkt(h.id) },
+          geometry: { type: 'Point', coordinates: punkt(h.id, h.planLage) },
         })),
       ),
     );
