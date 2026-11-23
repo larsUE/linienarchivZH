@@ -1,12 +1,17 @@
 <script>
   import LinienBadge from './LinienBadge.svelte';
-  import { zustand, halteAm } from './netz.js';
+  import { zustand, halteAm, erfasst, GRUPPEN } from './netz.js';
 
-  let { netz, jahr, datum, aenderungen, onlinie } = $props();
+  let { netz, jahr, datum, filter, gruppen, ansicht, aenderungen, onfilter, onkarte, onlinie } = $props();
 
-  const aktiv = $derived(zustand(netz, datum));
+  const aktiv = $derived(zustand(netz, datum, gruppen));
   const linien = $derived(netz.linien.filter((l) => aktiv.has(l.id)));
   const anzahlHalte = $derived(new Set([...aktiv.values()].flatMap((v) => halteAm(v, datum))).size);
+  const TITEL = { tram: 'Tramnetz', bus: 'Busnetz', alle: 'Tram- und Busnetz' };
+  const mitBus = $derived(!!netz.erfasstAb.bus);
+  const busFehlt = $derived(gruppen.includes('bus') && !erfasst(netz, 'bus', jahr));
+  // Im Vorjahr noch nicht erfasste Verkehrsmittel: kein Vergleich möglich
+  const ohneVergleich = $derived(gruppen.filter((g) => !erfasst(netz, g, jahr - 1)));
 
   // Änderungen nach Art gruppiert, damit die Art nur einmal dasteht
   const ARTEN = [
@@ -14,30 +19,53 @@
     ['eingestellt', 'Eingestellt'],
     ['geändert', 'Linienweg geändert'],
   ];
-  const gruppen = $derived(
+  const arten = $derived(
     ARTEN.map(([art, titel]) => ({ art, titel, liste: aenderungen.filter((a) => a.art === art) })).filter((g) => g.liste.length),
   );
 </script>
 
 <section class="panel">
   <div class="block">
-    <h2>Am 1. Juli {jahr}</h2>
+    {#if mitBus}
+      <div class="umschalter" role="group" aria-label="Verkehrsmittel">
+        {#each [['tram', 'Tram'], ['bus', 'Bus'], ['alle', 'Tram und Bus']] as [wert, text] (wert)}
+          <button aria-pressed={filter === wert} onclick={() => onfilter(wert)}>{text}</button>
+        {/each}
+      </div>
+    {/if}
+    <h2>{TITEL[filter]} am 1. Juli {jahr}</h2>
     <p class="still">{linien.length} Linien, {anzahlHalte} Haltestellen</p>
-    <div class="badges">
-      {#each linien as l (l.id)}
-        <button onclick={() => onlinie(l.id)} aria-label="Linie {l.nummer} öffnen"><LinienBadge linie={l} /></button>
-      {/each}
-    </div>
+    {#if busFehlt}
+      <p class="hinweis">Busse sind erst ab {netz.erfasstAb.bus} erfasst. Für frühere Jahre fehlen offene Fahrplandaten.</p>
+    {:else if gruppen.includes('bus') && ansicht === 'plan' && !netz.meta.plan?.busse}
+      <p class="hinweis">
+        Busse haben noch keine Lage im Liniennetzplan und erscheinen nur in der geografischen Karte.
+        <button class="link" onclick={onkarte}>Geografisch zeigen</button>
+      </p>
+    {/if}
+    {#each gruppen as g (g)}
+      {@const liste = linien.filter((l) => l.gruppe === g)}
+      {#if liste.length}
+        {#if gruppen.length > 1}<h3>{GRUPPEN[g]}</h3>{/if}
+        <div class="badges">
+          {#each liste as l (l.id)}
+            <button onclick={() => onlinie(l.id)} aria-label="{GRUPPEN[l.gruppe]} {l.nummer} öffnen"><LinienBadge linie={l} /></button>
+          {/each}
+        </div>
+      {/if}
+    {/each}
   </div>
 
   <div class="block">
     <h2>Gegenüber {jahr - 1}</h2>
-    {#if jahr === netz.jahre[0]}
+    {#if ohneVergleich.length === gruppen.length}
       <p class="still">Beginn des Erfassungszeitraums.</p>
-    {:else if aenderungen.length === 0}
-      <p class="still">Keine Änderungen am Linienweg.</p>
     {:else}
-      {#each gruppen as g (g.art)}
+      {#if ohneVergleich.length}<p class="still">{ohneVergleich.map((g) => GRUPPEN[g]).join(', ')} erst ab {jahr} erfasst, kein Vergleich.</p>{/if}
+      {#if aenderungen.length === 0}
+        <p class="still">Keine Änderungen am Linienweg.</p>
+      {/if}
+      {#each arten as g (g.art)}
         <h3>{g.titel}</h3>
         <ul class="aenderungen">
           {#each g.liste as a (a.linie)}
@@ -59,7 +87,8 @@
     <p><span class="muster neu"></span>Neu seit dem Vorjahr</p>
     <p><span class="muster weg"></span>Seit dem Vorjahr nicht mehr befahren</p>
     <p><span class="muster bau"></span>Baulinie</p>
-    <p class="hinweis">Linie anklicken für ihren Verlauf. Pfeiltasten wechseln das Jahr, P und G die Ansicht.</p>
+    {#if mitBus}<p><span class="muster bus"></span>Buslinie, Trolleybusse in eigener Farbe</p>{/if}
+    <p class="tastenhinweis">Linie anklicken für ihren Verlauf. Pfeiltasten wechseln das Jahr, P und G die Ansicht.</p>
   </div>
 </section>
 
@@ -88,11 +117,54 @@
   .still {
     color: var(--grau);
   }
+  /* Verkehrsmittel: Wörter wie der Ansichtsumschalter, das gewählte unterstrichen */
+  .umschalter {
+    display: flex;
+    gap: 14px;
+    margin: 4px 0 14px;
+  }
+  .umschalter button {
+    border: 0;
+    background: none;
+    padding: 1px 0;
+    font: 500 14px var(--schrift);
+    color: var(--grau);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+  }
+  .umschalter button:hover {
+    color: var(--tinte);
+  }
+  .umschalter button[aria-pressed='true'] {
+    color: var(--tinte);
+    border-bottom-color: var(--tinte);
+  }
+  .hinweis {
+    margin-top: 8px;
+    color: var(--grau);
+    line-height: 1.4;
+  }
+  .link {
+    border: 0;
+    background: none;
+    padding: 0;
+    font: 500 13px var(--schrift);
+    color: var(--tinte);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+  }
   .badges {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 30px);
+    display: flex;
+    flex-wrap: wrap;
     gap: 6px;
     margin-top: 12px;
+  }
+  h3 + .badges {
+    margin-top: 0;
+  }
+  .badges button :global(.badge) {
+    min-width: 30px;
   }
   .badges button,
   .aenderungen button {
@@ -104,9 +176,6 @@
     color: inherit;
     text-align: left;
   }
-  .badges button :global(.badge) {
-    width: 100%;
-  }
   .aenderungen {
     list-style: none;
     margin: 0;
@@ -116,8 +185,8 @@
   }
   .aenderungen button {
     display: grid;
-    grid-template-columns: 30px 1fr;
-    gap: 10px;
+    grid-template-columns: 34px 1fr;
+    gap: 8px;
     align-items: start;
     width: 100%;
     font-size: 13px;
@@ -134,11 +203,9 @@
   .legende {
     display: grid;
     gap: 4px;
-    padding-top: 16px;
-    border-top: 1px solid var(--rand);
+    padding: 16px 0 0;
     margin: 0 var(--innen);
-    padding-left: 0;
-    padding-right: 0;
+    border-top: 1px solid var(--rand);
     color: var(--grau);
   }
   .muster {
@@ -163,7 +230,11 @@
     border-top: 3px dashed var(--grau);
     border-radius: 0;
   }
-  .hinweis {
+  .muster.bus {
+    height: 4px;
+    background: #75bee9;
+  }
+  .tastenhinweis {
     margin-top: 8px;
     font-size: 12px;
   }

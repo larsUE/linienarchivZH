@@ -11,30 +11,46 @@
   let jahr = $state(null);
   let auswahl = $state(null);
   let ansicht = $state('plan'); // 'plan' oder 'karte'
+  let filter = $state('tram'); // 'tram', 'bus' oder 'alle'
   let spielt = $state(false);
+  const gruppen = $derived(filter === 'alle' ? ['tram', 'bus'] : [filter]);
 
   const datum = $derived(netz && jahr ? stichtag(netz, jahr) : null);
   const vorjahrDatum = $derived(netz && jahr && jahr > netz.jahre[0] ? stichtag(netz, jahr - 1) : null);
-  const aenderungenJahr = $derived(netz && jahr ? aenderungen(netz, jahr) : []);
+  const aenderungenJahr = $derived(netz && jahr ? aenderungen(netz, jahr, gruppen) : []);
   const anzahlAenderungen = $derived(
-    netz ? new Map(netz.jahre.slice(1).map((j) => [j, aenderungen(netz, j).length])) : new Map(),
+    netz ? new Map(netz.jahre.slice(1).map((j) => [j, aenderungen(netz, j, gruppen).length])) : new Map(),
   );
+  const mitBus = $derived(!!netz?.erfasstAb.bus);
 
-  // Zustand in der URL: #/plan/2018 oder #/karte/2018/tram-8 (ältere Links ohne Ansicht: #/2018/tram-8)
+  // Zustand in der URL: #/plan/2018, #/karte/bus/2018/bus-33 (Tram ohne Filterteil; ältere Links ohne Ansicht: #/2018/tram-8)
   const ANSICHTEN = ['plan', 'karte'];
+  const FILTER = ['tram', 'bus', 'alle'];
   function ausHash() {
     const teile = location.hash.split('/').slice(1);
     if (ANSICHTEN.includes(teile[0])) ansicht = teile.shift();
+    filter = FILTER.includes(teile[0]) ? teile.shift() : 'tram';
+    if (!mitBus) filter = 'tram';
     const [j, l] = teile;
     const n = Number(j);
     jahr = netz.jahre.includes(n) ? n : netz.jahre.at(-1);
-    auswahl = l && netz.linieById.has(l) ? l : null;
+    auswahl = null;
+    if (l && netz.linieById.has(l)) waehle(l);
   }
   $effect(() => {
     if (!netz || !jahr) return;
-    const ziel = `#/${ansicht}/${jahr}${auswahl ? '/' + auswahl : ''}`;
+    const ziel = `#/${ansicht}${filter === 'tram' ? '' : '/' + filter}/${jahr}${auswahl ? '/' + auswahl : ''}`;
     if (location.hash !== ziel) history.replaceState(null, '', ziel);
   });
+
+  // Eine Linie öffnen und den Filter erweitern. Busse ohne Planlage (ältere Daten) geografisch zeigen.
+  function waehle(id) {
+    auswahl = id;
+    if (!id) return;
+    const g = netz.linieById.get(id).gruppe;
+    if (!gruppen.includes(g)) filter = 'alle';
+    if (g === 'bus' && !netz.meta.plan?.busse) ansicht = 'karte';
+  }
 
   let timer;
   function spielen() {
@@ -83,14 +99,14 @@
 {:else if netz && jahr}
   <div class="app">
     <main class="kartenflaeche">
-      <Karte {netz} {datum} {vorjahrDatum} {auswahl} {ansicht} onlinie={(id) => (auswahl = id)} />
+      <Karte {netz} {datum} {vorjahrDatum} {auswahl} {ansicht} {gruppen} onlinie={waehle} />
     </main>
 
     <aside class="seitenleiste">
       <div class="kopf">
         <div>
           <h1>Linienarchiv Zürich</h1>
-          <p>Tramnetz {netz.jahre[0]}–{netz.jahre.at(-1)}, Pilot</p>
+          <p>Tram {netz.jahre[0]}–{netz.jahre.at(-1)}{#if mitBus}, Bus ab {netz.erfasstAb.bus}{/if}, Pilot</p>
         </div>
         <div class="ansicht" role="group" aria-label="Kartenansicht">
           <button aria-pressed={ansicht === 'plan'} onclick={() => (ansicht = 'plan')} title="Taste P">Plan</button>
@@ -101,7 +117,18 @@
         {#if auswahl}
           <LinienPanel {netz} linieId={auswahl} {jahr} {datum} onjahr={setzeJahr} onschliessen={() => (auswahl = null)} />
         {:else}
-          <Uebersicht {netz} {jahr} {datum} aenderungen={aenderungenJahr} onlinie={(id) => (auswahl = id)} />
+          <Uebersicht
+            {netz}
+            {jahr}
+            {datum}
+            {filter}
+            {gruppen}
+            {ansicht}
+            aenderungen={aenderungenJahr}
+            onfilter={(f) => (filter = f)}
+            onkarte={() => (ansicht = 'karte')}
+            onlinie={waehle}
+          />
         {/if}
       </div>
     </aside>

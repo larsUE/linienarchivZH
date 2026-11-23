@@ -1,10 +1,12 @@
 <script>
   import LinienBadge from './LinienBadge.svelte';
-  import { istAktiv, halteAm, stichtag, vergleicheFolgen, zeitraumText, STATUS } from './netz.js';
+  import { istAktiv, halteAm, stichtag, vergleicheFolgen, zeitraumText, istHell, STATUS } from './netz.js';
 
   let { netz, linieId, jahr, datum, onjahr, onschliessen } = $props();
 
   const linie = $derived(netz.linieById.get(linieId));
+  // Helle Busfarben: Versionsband und Linienweg mit dunklem Rand wie das Badge, sonst verschwinden sie auf dem Papier
+  const kontur = $derived(linie.art === 'bus' && istHell(linie.farbe) ? '#55524c' : 'transparent');
   const versionen = $derived(netz.versionenProLinie.get(linieId) ?? []);
   const aktuell = $derived(versionen.find((v) => istAktiv(v, datum)) ?? null);
   const vorgaenger = $derived(aktuell ? versionen[versionen.indexOf(aktuell) - 1] ?? null : null);
@@ -44,7 +46,7 @@
     <button class="zurueck" onclick={onschliessen} aria-label="Zurück zur Übersicht">←</button>
     <LinienBadge {linie} gross />
     <div class="titel">
-      <h2>{linie.art === 'baulinie' ? 'Baulinie' : 'Tram'} {linie.nummer}</h2>
+      <h2>{{ baulinie: 'Baulinie', bus: 'Bus' }[linie.art] ?? 'Tram'} {linie.nummer}</h2>
       {#if endpunkte}
         <p>{endpunkte[0]} – {endpunkte[1]}</p>
       {:else}
@@ -61,7 +63,11 @@
         <button disabled={naechsterWechsel === undefined} onclick={() => onjahr(naechsterWechsel)} aria-label="Spätere Version">später ›</button>
       </div>
     </div>
-    <div class="band" aria-label="Versionen im Zeitverlauf" style:--n={netz.jahre.length}>
+    <div class="band" aria-label="Versionen im Zeitverlauf" style:--n={netz.jahre.length} style:--kontur={kontur}>
+      {#if (netz.erfasstAb[linie.gruppe] ?? start) > start}
+        <!-- Jahre ohne Daten für dieses Verkehrsmittel (Busse vor 2015) -->
+        <span class="nicht-erfasst" style:width="{pos(`${netz.erfasstAb[linie.gruppe]}-01-01`, 0) * 100}%" title="vor {netz.erfasstAb[linie.gruppe]} nicht erfasst"></span>
+      {/if}
       {#each versionen as v (v.id)}
         {@const a = pos(v.von, 0)}
         {@const b = pos(v.bis, 1)}
@@ -88,7 +94,12 @@
       {#if aktuell.notiz}<p class="notiz">{aktuell.notiz}</p>{/if}
       <p class="status {aktuell.status}">
         <span class="punkt-status" aria-hidden="true"></span>
-        <span><b>{STATUS[aktuell.status].text.replace(/^./, (c) => c.toUpperCase())}.</b> <span class="still">{STATUS[aktuell.status].erklaerung}</span></span>
+        <span
+          ><b>{STATUS[aktuell.status].text.replace(/^./, (c) => c.toUpperCase())}.</b>
+          <span class="still"
+            >{linie.art === 'bus' && aktuell.status === 'belegt' ? 'Linienweg und Haltestellen aus den Fahrplandaten.' : STATUS[aktuell.status].erklaerung}</span
+          ></span
+        >
       </p>
       <h3>Quellen</h3>
       <ul class="quellen">
@@ -106,7 +117,7 @@
           <span class="still klein">gegenüber {zeitraumText(vorgaenger)}: {anzahl.neu} neu, {anzahl.entfallen} entfallen</span>
         {/if}
       </div>
-      <ol class="linienband" style:--farbe={linie.farbe}>
+      <ol class="linienband" style:--farbe={linie.farbe} style:--kontur={kontur}>
         {#each folge as f, i (f.id + f.art + i)}
           <li class={f.art}>
             <span class="punkt"></span>
@@ -206,6 +217,7 @@
     cursor: pointer;
     padding: 0;
     border-right: 2px solid var(--papier);
+    box-shadow: inset 0 0 0 1.5px var(--kontur);
   }
   .segment.unsicher {
     background: repeating-linear-gradient(135deg, var(--farbe) 0 4px, transparent 4px 7px);
@@ -214,6 +226,13 @@
     opacity: 1;
     top: 1px;
     bottom: 1px;
+  }
+  .nicht-erfasst {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: repeating-linear-gradient(135deg, transparent 0 4px, rgb(0 0 0 / 0.08) 4px 5px);
   }
   .marke {
     position: absolute;
@@ -307,6 +326,7 @@
     bottom: 0;
     width: 5px;
     background: var(--farbe);
+    box-shadow: inset 1.5px 0 var(--kontur), inset -1.5px 0 var(--kontur);
   }
   .linienband li:first-child::before { top: 50%; }
   .linienband li:last-child::before { bottom: 50%; }
@@ -339,6 +359,7 @@
     background: repeating-linear-gradient(var(--hell) 0 3px, transparent 3px 6px);
     width: 2px;
     left: 9.5px;
+    box-shadow: none;
   }
   .linienband .entfallen .punkt {
     border-color: var(--hell);

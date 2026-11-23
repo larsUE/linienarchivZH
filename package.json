@@ -3,15 +3,19 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "engines": {
+    "node": ">=26"
+  },
   "scripts": {
     "daten:osm": "node scripts/fetch-osm.mjs",
     "daten": "node scripts/build-data.mjs",
     "glyphen": "node scripts/build-glyphs.mjs",
-    "plan": "node scripts/plan/layout.mjs && npm run daten && npm run hintergrund",
+    "plan": "node scripts/plan/layout.mjs && node scripts/plan/layout-bus.mjs && npm run daten && npm run hintergrund",
     "hintergrund": "node scripts/plan/hintergrund.mjs",
     "dev": "vite",
     "build": "npm run daten && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test tests/"
   },
   "devDependencies": {
     "@mapbox/tiny-sdf": "^2.3.0",

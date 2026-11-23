@@ -26,6 +26,10 @@ import highsLaden from 'highs';
 
 const root = new URL('../../', import.meta.url);
 const netz = JSON.parse(await readFile(new URL('public/data/netz.json', root), 'utf8'));
+// Nur das Tramnetz: Busse haben (noch) keine Planlage
+netz.haltestellen = netz.haltestellen.filter((h) => !h.nurBus);
+netz.kanten = netz.kanten.filter((k) => !k.bus);
+netz.versionen = netz.versionen.filter((v) => !v.linie.startsWith('bus-'));
 let vorlage = null;
 try {
   vorlage = JSON.parse(await readFile(new URL('data/plan.json', root), 'utf8'));
