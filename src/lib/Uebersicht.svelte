@@ -1,32 +1,62 @@
 <script>
   import LinienBadge from './LinienBadge.svelte';
-  import { zustand, halteAm } from './netz.js';
+  import { zustand, halteAm, erfasst, GRUPPEN } from './netz.js';
 
-  let { netz, jahr, datum, aenderungen, onlinie } = $props();
+  let { netz, jahr, datum, filter, gruppen, ansicht, aenderungen, onfilter, onkarte, onlinie } = $props();
 
-  const aktiv = $derived(zustand(netz, datum));
+  const aktiv = $derived(zustand(netz, datum, gruppen));
   const linien = $derived(netz.linien.filter((l) => aktiv.has(l.id)));
   const anzahlHalte = $derived(new Set([...aktiv.values()].flatMap((v) => halteAm(v, datum))).size);
   const TEXT = { neu: 'neue Linie', eingestellt: 'eingestellt', 'geändert': 'Linienweg geändert' };
+  const TITEL = { tram: 'Tramnetz', bus: 'Busnetz', alle: 'Tram- und Busnetz' };
+  const mitBus = $derived(!!netz.erfasstAb.bus);
+  const busFehlt = $derived(gruppen.includes('bus') && !erfasst(netz, 'bus', jahr));
+  // Im Vorjahr noch nicht erfasste Verkehrsmittel: kein Vergleich möglich
+  const ohneVergleich = $derived(gruppen.filter((g) => !erfasst(netz, g, jahr - 1)));
 </script>
 
 <section class="panel">
-  <div class="block">
-    <h2>Tramnetz am 1. Juli {jahr}</h2>
-    <p class="still">{linien.length} Linien · {anzahlHalte} Haltestellen</p>
-    <div class="badges">
-      {#each linien as l (l.id)}
-        <button onclick={() => onlinie(l.id)} aria-label="Linie {l.nummer} öffnen"><LinienBadge linie={l} /></button>
-      {/each}
+  {#if mitBus}
+    <div class="block filter">
+      <div class="umschalter" role="group" aria-label="Verkehrsmittel">
+        {#each [['tram', 'Tram'], ['bus', 'Bus'], ['alle', 'Beide']] as [wert, text] (wert)}
+          <button aria-pressed={filter === wert} class:aktiv={filter === wert} onclick={() => onfilter(wert)}>{text}</button>
+        {/each}
+      </div>
     </div>
+  {/if}
+
+  <div class="block">
+    <h2>{TITEL[filter]} am 1. Juli {jahr}</h2>
+    <p class="still">{linien.length} Linien · {anzahlHalte} Haltestellen</p>
+    {#if busFehlt}
+      <p class="hinweis">Busse sind erst ab {netz.erfasstAb.bus} erfasst. Für frühere Jahre fehlen offene Fahrplandaten.</p>
+    {:else if gruppen.includes('bus') && ansicht === 'plan' && !netz.meta.plan?.busse}
+      <p class="hinweis">
+        Busse haben noch keine Lage im Liniennetzplan und erscheinen nur in der geografischen Karte.
+        <button class="link" onclick={onkarte}>Geografisch zeigen</button>
+      </p>
+    {/if}
+    {#each gruppen as g (g)}
+      {@const liste = linien.filter((l) => l.gruppe === g)}
+      {#if liste.length}
+        {#if gruppen.length > 1}<h3 class="gruppe">{GRUPPEN[g]}</h3>{/if}
+        <div class="badges">
+          {#each liste as l (l.id)}
+            <button onclick={() => onlinie(l.id)} aria-label="{GRUPPEN[l.gruppe]} {l.nummer} öffnen"><LinienBadge linie={l} /></button>
+          {/each}
+        </div>
+      {/if}
+    {/each}
   </div>
 
   <div class="block">
     <h3>Gegenüber {jahr - 1}</h3>
-    {#if jahr === netz.jahre[0]}
+    {#if ohneVergleich.length === gruppen.length}
       <p class="still">Beginn des Erfassungszeitraums.</p>
     {:else if aenderungen.length === 0}
       <p class="still">Keine Änderungen am Linienweg.</p>
+      {#if ohneVergleich.length}<p class="still klein">{ohneVergleich.map((g) => GRUPPEN[g]).join(', ')}: erst ab {jahr} erfasst, kein Vergleich.</p>{/if}
     {:else}
       <ul class="aenderungen">
         {#each aenderungen as a (a.linie)}
@@ -49,6 +79,7 @@
     <p><span class="muster neu"></span> neuer Abschnitt seit dem Vorjahr</p>
     <p><span class="muster weg"></span> seit dem Vorjahr nicht mehr befahren</p>
     <p><span class="muster bau"></span> Baulinie</p>
+    {#if mitBus}<p><span class="muster bus"></span> Buslinie (Trolleybusse in eigener Farbe)</p>{/if}
     <p class="still klein">Klick auf eine Linie öffnet ihren Verlauf. Pfeiltasten blättern durch die Jahre, P und G wechseln zwischen Plan und Karte.</p>
   </div>
 </section>
@@ -78,6 +109,53 @@
   }
   .klein {
     font-size: 12px;
+  }
+  .umschalter {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: #ebe8e1;
+    border-radius: 6px;
+    padding: 3px;
+  }
+  .umschalter button {
+    border: 0;
+    background: none;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font: 600 13px var(--schrift);
+    color: var(--tinte);
+    cursor: pointer;
+  }
+  .umschalter button.aktiv {
+    background: white;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+  }
+  .umschalter button:not(.aktiv):hover {
+    background: rgb(255 255 255 / 0.5);
+  }
+  .filter {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .hinweis {
+    margin: 10px 0 0;
+    padding: 8px 10px;
+    background: #f3efe4;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .link {
+    border: 0;
+    background: none;
+    padding: 0;
+    font: 600 13px var(--schrift);
+    color: var(--tinte);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  h3.gruppe {
+    margin: 14px 0 0;
   }
   .badges {
     display: flex;
@@ -131,6 +209,11 @@
     height: 0;
     border-top: 2px dashed #7d7a73;
     border-radius: 0;
+  }
+  .muster.bus {
+    height: 5px;
+    background: #75bee9;
+    border-radius: 3px;
   }
   .muster.bau {
     height: 0;

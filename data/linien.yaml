@@ -1,4 +1,5 @@
 # Linienarchiv Zürich – Tramnetz 2010–2026
+# (Buslinien ab 2015 stehen in data/busse.yaml; Quellen und fahrplan_alias hier gelten auch dort.)
 #
 # Jede Linie hat Versionen mit Gültigkeit (von/bis, beide inklusive, null = offen).
 # Der Linienweg ("weg") ist eine Folge von Bausteinen:

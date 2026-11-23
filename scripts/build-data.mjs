@@ -1,10 +1,11 @@
-// Baut aus data/linien.yaml und den OSM-Rohdaten die Datei public/data/netz.json.
+// Baut aus data/linien.yaml (Tram), data/busse.yaml (Bus) und den OSM-Rohdaten die Datei public/data/netz.json.
 //
 // Ablauf:
-//  1. Haltestellen aus OSM-Haltepunkten bilden (gruppiert nach Namen)
+//  1. Haltestellen aus OSM-Haltepunkten bilden (gruppiert nach Namen), dazu die Bushaltestellen aus data/bus/
 //  2. Gleisgraph aus den OSM-Gleisen bilden
-//  3. Für jede Linienversion den Weg auflösen: OSM-Ausschnitte + Wegpunkte,
-//     Lücken über den kürzesten Weg im Gleisnetz füllen
+//  3. Für jede Tramversion den Weg auflösen: OSM-Ausschnitte + Wegpunkte,
+//     Lücken über den kürzesten Weg im Gleisnetz füllen.
+//     Busversionen sind Haltestellenlisten; der Fahrweg je Abschnitt kommt aus data/bus/kanten.json (GTFS).
 //  4. Abschnitte (Kanten zwischen zwei Haltestellen) mit Geometrie ausgeben
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
@@ -13,6 +14,19 @@ import { parse } from 'yaml';
 const root = new URL('..', import.meta.url);
 const osm = JSON.parse(await readFile(new URL('data/raw/osm-tram.json', root), 'utf8'));
 const cfg = parse(await readFile(new URL('data/linien.yaml', root), 'utf8'));
+const lesen = async (p, fn, ersatz) => {
+  try {
+    return fn(await readFile(new URL(p, root), 'utf8'));
+  } catch (e) {
+    if (e.code !== 'ENOENT') throw e;
+    return ersatz;
+  }
+};
+// Busse (optional): Linien, Haltestellen ohne Tram und Fahrwege aus scripts/import/import-fahrplan.mjs --bus
+const busCfg = await lesen('data/busse.yaml', parse, { linien: [] });
+const busHalte = await lesen('data/bus/haltestellen.json', JSON.parse, []);
+const busKanten = await lesen('data/bus/kanten.json', JSON.parse, {});
+const gruppe = (l) => (l.art === 'bus' ? 'bus' : 'tram');
 
 const warnungen = [];
 const warn = (msg) => warnungen.push(msg);
@@ -84,6 +98,11 @@ for (const z of cfg.zusatz_haltestellen ?? []) {
     if (!n) throw new Error(`Zusatzhaltestelle ${z.name}: OSM-Knoten ${id} fehlt in den Rohdaten`);
     addStopNode(n, z.name);
   }
+}
+// Bushaltestellen, die keine Tramhaltestelle sind: feste Lage aus den Fahrplandaten
+for (const h of busHalte) {
+  if (stations.has(h.name)) continue;
+  stations.set(h.name, { id: h.id, name: h.name, ort: h.ort, knoten: new Set(), lage: [h.lon, h.lat] });
 }
 const station = (name) => {
   const st = stations.get(name);
@@ -164,7 +183,7 @@ function bausteinZuNamen(b) {
   return i <= j ? alle.slice(i, j + 1) : alle.slice(j, i + 1).reverse();
 }
 
-const kanten = new Map(); // key -> {id, a, b, coords, imBau}
+const kanten = new Map(); // key -> {id, a, b, coords, imBau} (Bus: id "bus:a~b", bus: true)
 function kanteFuer(stA, stB, pfad) {
   const [a, b] = [stA.id, stB.id].sort();
   const key = `${a}~${b}`;
@@ -210,24 +229,54 @@ function loeseWeg(weg, label, von) {
   return { halte, kantenListe, halteAb };
 }
 
+// Buswege: Haltestellenliste, Fahrweg je Abschnitt aus GTFS, sonst Gerade (geschätzt)
+const lage = (st) => st.lage ?? mittel([...st.knoten].map((id) => coord.get(id)));
+const mittel = (pts) => [pts.reduce((a, p) => a + p[0], 0) / pts.length, pts.reduce((a, p) => a + p[1], 0) / pts.length];
+const ohneFahrweg = [];
+function loeseBusWeg(weg, label) {
+  const halte = weg.map((b) => {
+    if (typeof b !== 'string') throw new Error(`${label}: Busweg nur als Haltestellenliste`);
+    return station(b);
+  });
+  const kantenListe = [];
+  for (let i = 1; i < halte.length; i++) {
+    const [stA, stB] = [halte[i - 1], halte[i]];
+    const [a, b] = [stA.id, stB.id].sort();
+    const id = `bus:${a}~${b}`;
+    if (!kanten.has(id)) {
+      const weg = busKanten[`${a}~${b}`];
+      if (!weg) ohneFahrweg.push(`${stA.name} – ${stB.name}`);
+      const [la, lb] = [stA.id === a ? stA : stB, stA.id === a ? stB : stA].map(lage);
+      kanten.set(id, { id, a, b, coords: weg?.coords ?? [la, lb], imBau: false, bus: true, ...(weg ? {} : { geoGeschaetzt: true }) });
+    }
+    kantenListe.push({ id, vorwaerts: stA.id === a });
+  }
+  return { halte, kantenListe, halteAb: {} };
+}
+
 // ---------- Linien und Versionen ----------
 const farbeAusOsm = new Map();
 for (const r of relations.values()) if (r.tags.colour) farbeAusOsm.set(r.tags.ref, r.tags.colour);
 
 const linien = [];
 const versionen = [];
-for (const l of cfg.linien) {
+const ids = new Set();
+for (const l of [...cfg.linien, ...busCfg.linien]) {
+  if (ids.has(l.id)) throw new Error(`Linie ${l.id} doppelt`);
+  ids.add(l.id);
+  const art = l.art ?? 'tram';
   linien.push({
     id: l.id,
-    nummer: l.nummer,
-    art: l.art ?? 'tram',
-    farbe: l.farbe ?? farbeAusOsm.get(l.nummer.replace(/\D+$/, '')) ?? '#666666',
+    nummer: String(l.nummer),
+    art,
+    gruppe: gruppe({ art }),
+    farbe: l.farbe ?? (art === 'bus' ? '#FFFFFF' : farbeAusOsm.get(l.nummer.replace(/\D+$/, '')) ?? '#666666'),
   });
   for (const v of l.versionen) {
     const von = v.von ? isoDate(v.von) : null;
     const bis = v.bis ? isoDate(v.bis) : null;
     const label = `Linie ${l.nummer} (${von ?? '…'} – ${bis ?? '…'})`;
-    const { halte, kantenListe, halteAb } = loeseWeg(v.weg, label, von);
+    const { halte, kantenListe, halteAb } = art === 'bus' ? loeseBusWeg(v.weg, label) : loeseWeg(v.weg, label, von);
     versionen.push({
       id: `${l.id}@${von ?? 'anfang'}`,
       linie: l.id,
@@ -257,15 +306,20 @@ for (const l of linien) {
 }
 
 // ---------- Ausgabe ----------
+if (ohneFahrweg.length) warn(`Bus: ${ohneFahrweg.length} Abschnitte ohne Fahrweg, als Gerade gezeichnet: ${ohneFahrweg.join(', ')}`);
+const istBusVersion = (v) => v.linie.startsWith('bus-');
 const benutzt = new Set(versionen.flatMap((v) => v.haltestellen));
+const vonTram = new Set(versionen.filter((v) => !istBusVersion(v)).flatMap((v) => v.haltestellen));
 const haltestellen = [...stations.values()]
   .filter((s) => benutzt.has(s.id))
   .map((s) => {
-    const pts = [...s.knoten].map((id) => coord.get(id));
-    const lon = pts.reduce((a, p) => a + p[0], 0) / pts.length;
-    const lat = pts.reduce((a, p) => a + p[1], 0) / pts.length;
-    return { id: s.id, name: s.name, ort: s.ort, lon: +lon.toFixed(6), lat: +lat.toFixed(6) };
+    const [lon, lat] = lage(s);
+    return { id: s.id, name: s.name, ort: s.ort, lon: +lon.toFixed(6), lat: +lat.toFixed(6), ...(vonTram.has(s.id) ? {} : { nurBus: true }) };
   });
+{
+  const doppelt = haltestellen.map((h) => h.id).filter((id, i, a) => a.indexOf(id) !== i);
+  if (doppelt.length) throw new Error(`Haltestellen-Id mehrfach: ${doppelt.join(', ')}`);
+}
 const round = (c) => [+c[0].toFixed(6), +c[1].toFixed(6)];
 
 // ---------- Schema-Lage aus dem Liniennetzplan ----------
@@ -291,7 +345,8 @@ if (plan) {
   const ausPlan = ([x, y]) => [x, -y];
   const ausGeo = (h) => [h.lon * k, h.lat];
   const paare = haltestellen
-    .filter((h) => plan.haltestellen[h.id] && !plan.herkunft.haltestellen[h.id])
+    // nur Tramhaltestellen bestimmen die Lage des Plans über der Karte
+    .filter((h) => plan.haltestellen[h.id] && !plan.herkunft.haltestellen[h.id] && !h.nurBus)
     .map((h) => [ausPlan(plan.haltestellen[h.id]), ausGeo(h)]);
   // Kleinste Quadrate für w = a·z + b
   const n = paare.length;
@@ -315,6 +370,12 @@ if (plan) {
   };
   for (const h of haltestellen) {
     const p = plan.haltestellen[h.id];
+    // Busse ohne Planlage (scripts/plan/layout.mjs --busse nicht gelaufen) bleiben geografisch und blenden im Plan aus
+    if (h.nurBus && !p) {
+      h.plan = [h.lon, h.lat];
+      h.planGeschaetzt = true;
+      continue;
+    }
     if (!p) warn(`Plan: ${h.name} fehlt in ${planDatei} (scripts/plan/layout.mjs neu laufen lassen)`);
     h.plan = p ? zuKarte(p) : [h.lon, h.lat];
     if (!p || plan.herkunft.haltestellen[h.id]) h.planGeschaetzt = true;
@@ -322,11 +383,16 @@ if (plan) {
   const hById = new Map(haltestellen.map((h) => [h.id, h]));
   for (const kante of kantenListe) {
     const pts = plan.kanten[kante.id];
+    if (kante.bus && !pts) {
+      kante.planGeschaetzt = true;
+      continue;
+    }
     kante.planCoords = pts ? pts.map(zuKarte) : [hById.get(kante.a).plan, hById.get(kante.b).plan];
     if (!pts || plan.herkunft.kanten[kante.id]) kante.planGeschaetzt = true;
   }
   const bbox = plan.groesse;
-  plan = { quelle: plan.quelle, rahmen: [zuKarte([0, bbox[1]]), zuKarte([bbox[0], 0])] };
+  const mitBussen = haltestellen.some((h) => h.nurBus && plan.haltestellen[h.id]);
+  plan = { quelle: plan.quelle, rahmen: [zuKarte([0, bbox[1]]), zuKarte([bbox[0], 0])], busse: mitBussen };
 }
 
 const out = {
@@ -335,6 +401,8 @@ const out = {
     osmStand: osm.osm3s?.timestamp_osm_base ?? null,
     stichtag: cfg.stichtag,
     zeitraum: cfg.zeitraum,
+    // Erstes erfasstes Jahr je Verkehrsmittel (Busse erst ab den Fahrplandaten 2015)
+    erfasstAb: { tram: cfg.zeitraum[0], ...(busCfg.linien.length ? { bus: busCfg.erfasst_ab ?? cfg.zeitraum[0] } : {}) },
     plan,
   },
   quellen: Object.fromEntries(
@@ -347,7 +415,13 @@ const out = {
 };
 
 await mkdir(new URL('public/data/', root), { recursive: true });
-await writeFile(new URL('public/data/netz.json', root), JSON.stringify(out));
+// Inhaltlich gleiche Datei nicht neu schreiben: So bleibt der Build reproduzierbar (CI prüft das),
+// und meta.erstellt zeigt, wann sich die Daten zuletzt geändert haben.
+const ziel = new URL('public/data/netz.json', root);
+const ohneZeit = (n) => JSON.stringify({ ...n, meta: { ...n.meta, erstellt: null } });
+const bisher = await readFile(ziel, 'utf8').then(JSON.parse, () => null);
+if (bisher && ohneZeit(bisher) === ohneZeit(out)) console.log('public/data/netz.json unverändert');
+else await writeFile(ziel, JSON.stringify(out));
 console.log(
   `${linien.length} Linien, ${versionen.length} Versionen, ${haltestellen.length} Haltestellen, ${out.kanten.length} Abschnitte`,
 );

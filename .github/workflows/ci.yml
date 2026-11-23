@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pruefen:
+    name: Daten, Tests und Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          # dieselbe Node-Version wie lokal: layout-bus.mjs ist nur damit bitgenau reproduzierbar
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # Busstufe und Build sind schnell und reproduzierbar. Das Tramlayout (MIP, Minuten) und der
+      # Hintergrund (Overpass) laufen hier nicht; ihre Ergebnisse sind eingecheckt.
+      - name: Daten neu erzeugen
+        run: |
+          node scripts/plan/layout-bus.mjs
+          npm run daten
+
+      - name: Eingecheckte Daten sind aktuell
+        run: node scripts/pruefen-aktuell.mjs
+
+      - name: Datentests
+        run: npm test
+
+      - name: Vite-Build
+        run: npx vite build
