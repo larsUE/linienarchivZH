@@ -27,12 +27,7 @@ jobs:
           npm run daten
 
       - name: Eingecheckte Daten sind aktuell
-        run: |
-          if ! git diff --quiet -- data/layout.json public/data/netz.json; then
-            git diff --stat -- data/layout.json public/data/netz.json
-            echo "::error::data/layout.json oder public/data/netz.json passt nicht zu den Quellen. Lokal 'node scripts/plan/layout-bus.mjs && npm run daten' ausführen und committen."
-            exit 1
-          fi
+        run: node scripts/pruefen-aktuell.mjs
 
       - name: Datentests
         run: npm test
