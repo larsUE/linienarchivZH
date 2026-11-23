@@ -6,13 +6,14 @@
 </script>
 
 <div class="zeitstrahl" role="group" aria-label="Zeitstrahl">
-  <div class="steuerung">
-    <button class="rund" onclick={() => onjahr(jahre[Math.max(0, index - 1)])} disabled={index <= 0} aria-label="Vorheriges Jahr">‹</button>
-    <button class="rund spielen" onclick={onspielen} aria-label={spielt ? 'Anhalten' : 'Abspielen'}>{spielt ? '❚❚' : '▶'}</button>
-    <button class="rund" onclick={() => onjahr(jahre[Math.min(jahre.length - 1, index + 1)])} disabled={index >= jahre.length - 1} aria-label="Nächstes Jahr">›</button>
+  <div class="links">
+    <div class="jahr-gross" aria-live="polite">{jahr}</div>
+    <div class="steuerung">
+      <button onclick={() => onjahr(jahre[Math.max(0, index - 1)])} disabled={index <= 0} aria-label="Vorheriges Jahr">‹</button>
+      <button class="spielen" onclick={onspielen} aria-label={spielt ? 'Anhalten' : 'Abspielen'}>{spielt ? '❚❚' : '▶'}</button>
+      <button onclick={() => onjahr(jahre[Math.min(jahre.length - 1, index + 1)])} disabled={index >= jahre.length - 1} aria-label="Nächstes Jahr">›</button>
+    </div>
   </div>
-
-  <div class="jahr-gross" aria-live="polite">{jahr}</div>
 
   <ol class="skala">
     {#each jahre as j}
@@ -30,52 +31,58 @@
 <style>
   .zeitstrahl {
     display: grid;
-    grid-template-columns: auto auto 1fr;
-    align-items: end;
-    gap: 20px;
-    padding: 14px 20px 12px;
+    grid-template-columns: var(--seite) 1fr;
+    align-items: stretch;
     background: var(--papier);
     border-top: 1px solid var(--rand);
   }
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px var(--innen);
+    border-right: 1px solid var(--rand);
+  }
+  .jahr-gross {
+    font: 600 34px/1 var(--schrift);
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
   .steuerung {
     display: flex;
-    gap: 6px;
-    align-self: center;
+    align-items: center;
+    gap: 2px;
   }
-  .rund {
-    width: 34px;
-    height: 34px;
+  .steuerung button {
+    width: 32px;
+    height: 32px;
+    border: 0;
     border-radius: 50%;
-    border: 1px solid var(--rand);
-    background: white;
-    font-size: 16px;
+    background: none;
+    font-size: 18px;
     line-height: 1;
     color: var(--tinte);
     cursor: pointer;
   }
-  .rund.spielen {
-    background: var(--tinte);
-    color: white;
-    border-color: var(--tinte);
-    font-size: 12px;
+  .steuerung button:hover:not(:disabled) {
+    background: var(--rand);
   }
-  .rund:disabled {
-    opacity: 0.35;
+  .steuerung button:disabled {
+    color: var(--hell);
     cursor: default;
   }
-  .jahr-gross {
-    font: 700 44px/1 var(--schrift);
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
-    min-width: 2.6em;
+  .steuerung .spielen {
+    font-size: 11px;
+    border: 1.5px solid var(--tinte);
   }
   .skala {
     display: flex;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 12px 40px 10px;
     gap: 2px;
-    height: 52px;
+    height: 44px;
   }
   .skala li {
     flex: 1;
@@ -87,23 +94,25 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     border: 0;
     background: none;
     cursor: pointer;
     padding: 0;
-    color: var(--grau);
-    border-radius: 4px;
+    color: var(--hell);
   }
   .jahr:hover {
-    background: rgb(0 0 0 / 0.04);
+    color: var(--tinte);
   }
   .balken {
-    width: 60%;
-    max-width: 18px;
+    width: 40%;
+    max-width: 12px;
     min-height: 2px;
     background: var(--rand);
-    border-radius: 2px 2px 0 0;
+    border-radius: 1px;
+  }
+  .jahr:hover .balken {
+    background: var(--hell);
   }
   .zahl {
     font: 500 12px/1 var(--schrift);
@@ -120,15 +129,17 @@
   }
   @media (max-width: 700px) {
     .zeitstrahl {
-      grid-template-columns: auto 1fr;
-      gap: 10px 14px;
+      grid-template-columns: 1fr;
+    }
+    .links {
+      border-right: 0;
+      padding-bottom: 0;
     }
     .jahr-gross {
-      font-size: 32px;
-      justify-self: end;
+      font-size: 28px;
     }
     .skala {
-      grid-column: 1 / -1;
+      padding: 10px var(--innen);
     }
   }
 </style>

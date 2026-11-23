@@ -7,13 +7,22 @@
   const aktiv = $derived(zustand(netz, datum));
   const linien = $derived(netz.linien.filter((l) => aktiv.has(l.id)));
   const anzahlHalte = $derived(new Set([...aktiv.values()].flatMap((v) => halteAm(v, datum))).size);
-  const TEXT = { neu: 'neue Linie', eingestellt: 'eingestellt', 'geändert': 'Linienweg geändert' };
+
+  // Änderungen nach Art gruppiert, damit die Art nur einmal dasteht
+  const ARTEN = [
+    ['neu', 'Neue Linien'],
+    ['eingestellt', 'Eingestellt'],
+    ['geändert', 'Linienweg geändert'],
+  ];
+  const gruppen = $derived(
+    ARTEN.map(([art, titel]) => ({ art, titel, liste: aenderungen.filter((a) => a.art === art) })).filter((g) => g.liste.length),
+  );
 </script>
 
 <section class="panel">
   <div class="block">
-    <h2>Tramnetz am 1. Juli {jahr}</h2>
-    <p class="still">{linien.length} Linien · {anzahlHalte} Haltestellen</p>
+    <h2>Am 1. Juli {jahr}</h2>
+    <p class="still">{linien.length} Linien, {anzahlHalte} Haltestellen</p>
     <div class="badges">
       {#each linien as l (l.id)}
         <button onclick={() => onlinie(l.id)} aria-label="Linie {l.nummer} öffnen"><LinienBadge linie={l} /></button>
@@ -22,68 +31,68 @@
   </div>
 
   <div class="block">
-    <h3>Gegenüber {jahr - 1}</h3>
+    <h2>Gegenüber {jahr - 1}</h2>
     {#if jahr === netz.jahre[0]}
       <p class="still">Beginn des Erfassungszeitraums.</p>
     {:else if aenderungen.length === 0}
       <p class="still">Keine Änderungen am Linienweg.</p>
     {:else}
-      <ul class="aenderungen">
-        {#each aenderungen as a (a.linie)}
-          <li>
-            <button onclick={() => onlinie(a.linie)}>
-              <LinienBadge linie={netz.linieById.get(a.linie)} />
-              <span>
-                <b>{TEXT[a.art]}</b>
-                {#if a.art !== 'eingestellt' && a.version.notiz}<br /><span class="still">{a.version.notiz}</span>{/if}
-              </span>
-            </button>
-          </li>
-        {/each}
-      </ul>
+      {#each gruppen as g (g.art)}
+        <h3>{g.titel}</h3>
+        <ul class="aenderungen">
+          {#each g.liste as a (a.linie)}
+            <li>
+              <button onclick={() => onlinie(a.linie)}>
+                <LinienBadge linie={netz.linieById.get(a.linie)} />
+                <span class="notiz">
+                  {#if a.art !== 'eingestellt' && a.version.notiz}{a.version.notiz}{/if}
+                </span>
+              </button>
+            </li>
+          {/each}
+        </ul>
+      {/each}
     {/if}
   </div>
 
   <div class="block legende">
-    <h3>Legende</h3>
-    <p><span class="muster neu"></span> neuer Abschnitt seit dem Vorjahr</p>
-    <p><span class="muster weg"></span> seit dem Vorjahr nicht mehr befahren</p>
-    <p><span class="muster bau"></span> Baulinie</p>
-    <p class="still klein">Klick auf eine Linie öffnet ihren Verlauf. Pfeiltasten blättern durch die Jahre, P und G wechseln zwischen Plan und Karte.</p>
+    <p><span class="muster neu"></span>Neu seit dem Vorjahr</p>
+    <p><span class="muster weg"></span>Seit dem Vorjahr nicht mehr befahren</p>
+    <p><span class="muster bau"></span>Baulinie</p>
+    <p class="hinweis">Linie anklicken für ihren Verlauf. Pfeiltasten wechseln das Jahr, P und G die Ansicht.</p>
   </div>
 </section>
 
 <style>
+  .panel {
+    padding-bottom: 8px;
+  }
   .block {
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--rand);
+    padding: 0 var(--innen) 24px;
   }
   h2 {
-    margin: 0 0 2px;
-    font-size: 17px;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
   }
   h3 {
-    margin: 0 0 10px;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    margin: 14px 0 8px;
+    font-size: 13px;
+    font-weight: 500;
     color: var(--grau);
   }
   p {
-    margin: 0 0 6px;
+    margin: 0;
     font-size: 13px;
   }
   .still {
     color: var(--grau);
   }
-  .klein {
-    font-size: 12px;
-  }
   .badges {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 30px);
     gap: 6px;
-    margin-top: 10px;
+    margin-top: 12px;
   }
   .badges button,
   .aenderungen button {
@@ -95,46 +104,67 @@
     color: inherit;
     text-align: left;
   }
-  .badges button:hover {
-    transform: translateY(-1px);
+  .badges button :global(.badge) {
+    width: 100%;
   }
   .aenderungen {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 10px;
+    gap: 8px;
   }
   .aenderungen button {
-    display: flex;
+    display: grid;
+    grid-template-columns: 30px 1fr;
     gap: 10px;
-    align-items: flex-start;
+    align-items: start;
+    width: 100%;
     font-size: 13px;
     line-height: 1.4;
   }
-  .aenderungen button:hover b {
+  .notiz {
+    padding-top: 1px;
+  }
+  .aenderungen button:hover .notiz {
     text-decoration: underline;
+    text-decoration-color: var(--hell);
+    text-underline-offset: 2px;
+  }
+  .legende {
+    display: grid;
+    gap: 4px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rand);
+    margin: 0 var(--innen);
+    padding-left: 0;
+    padding-right: 0;
+    color: var(--grau);
   }
   .muster {
     display: inline-block;
-    width: 26px;
-    height: 8px;
+    width: 22px;
+    height: 6px;
     vertical-align: middle;
-    margin-right: 6px;
-    border-radius: 4px;
+    margin-right: 8px;
+    border-radius: 3px;
   }
   .muster.neu {
-    background: #f2c94c;
+    background: var(--neu);
     opacity: 0.7;
   }
   .muster.weg {
     height: 0;
-    border-top: 2px dashed #7d7a73;
+    border-top: 2px dashed var(--hell);
     border-radius: 0;
   }
   .muster.bau {
     height: 0;
-    border-top: 4px dashed var(--tinte);
+    border-top: 3px dashed var(--grau);
     border-radius: 0;
+  }
+  .hinweis {
+    margin-top: 8px;
+    font-size: 12px;
   }
 </style>

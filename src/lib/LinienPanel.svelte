@@ -57,8 +57,8 @@
     <div class="zeile">
       <h3>Versionen</h3>
       <div class="blaettern">
-        <button disabled={vorherigerWechsel === undefined} onclick={() => onjahr(vorherigerWechsel)}>‹ frühere</button>
-        <button disabled={naechsterWechsel === undefined} onclick={() => onjahr(naechsterWechsel)}>spätere ›</button>
+        <button disabled={vorherigerWechsel === undefined} onclick={() => onjahr(vorherigerWechsel)} aria-label="Frühere Version">‹ früher</button>
+        <button disabled={naechsterWechsel === undefined} onclick={() => onjahr(naechsterWechsel)} aria-label="Spätere Version">später ›</button>
       </div>
     </div>
     <div class="band" aria-label="Versionen im Zeitverlauf" style:--n={netz.jahre.length}>
@@ -85,18 +85,18 @@
   {#if aktuell}
     <div class="block meta">
       <p class="zeitraum">{zeitraumText(aktuell)}</p>
-      <p>
-        <span class="status {aktuell.status}">{STATUS[aktuell.status].text}</span>
-        <span class="still">{STATUS[aktuell.status].erklaerung}</span>
+      {#if aktuell.notiz}<p class="notiz">{aktuell.notiz}</p>{/if}
+      <p class="status {aktuell.status}">
+        <span class="punkt-status" aria-hidden="true"></span>
+        <span><b>{STATUS[aktuell.status].text.replace(/^./, (c) => c.toUpperCase())}.</b> <span class="still">{STATUS[aktuell.status].erklaerung}</span></span>
       </p>
-      {#if aktuell.notiz}<p>{aktuell.notiz}</p>{/if}
-      <p class="quellen">
-        Quellen:
-        {#each aktuell.quellen as q, i}
+      <h3>Quellen</h3>
+      <ul class="quellen">
+        {#each aktuell.quellen as q}
           {@const quelle = netz.quellen[q]}
-          <a href={quelle.url} target="_blank" rel="noreferrer">{quelle.titel}</a>{i < aktuell.quellen.length - 1 ? ', ' : ''}
+          <li><a href={quelle.url} target="_blank" rel="noreferrer">{quelle.titel}</a></li>
         {/each}
-      </p>
+      </ul>
     </div>
 
     <div class="block">
@@ -111,8 +111,8 @@
           <li class={f.art}>
             <span class="punkt"></span>
             <span class="name">{netz.haltestelleById.get(f.id).name}</span>
-            {#if f.art === 'neu' && vorgaenger}<span class="marker">neu</span>{/if}
-            {#if f.art === 'entfallen'}<span class="marker">entfallen</span>{/if}
+            {#if f.art === 'neu'}<span class="sr">(neu)</span>{/if}
+            {#if f.art === 'entfallen'}<span class="sr">(entfallen)</span>{/if}
           </li>
         {/each}
       </ol>
@@ -125,44 +125,43 @@
 </section>
 
 <style>
-  .panel {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
   header {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 16px 18px;
-    border-bottom: 1px solid var(--rand);
+    padding: 0 var(--innen) 20px;
   }
   .zurueck {
     border: 0;
     background: none;
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1;
     cursor: pointer;
     padding: 4px;
+    margin-left: -4px;
     color: var(--grau);
+  }
+  .zurueck:hover {
+    color: var(--tinte);
   }
   h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.2;
   }
   header p {
     margin: 2px 0 0;
-    font-size: 14px;
+    font-size: 13px;
   }
   h3 {
     margin: 0;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    font-size: 13px;
+    font-weight: 500;
     color: var(--grau);
   }
   .block {
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--rand);
+    padding: 0 var(--innen) 24px;
   }
   .zeile {
     display: flex;
@@ -171,32 +170,39 @@
     gap: 8px;
     margin-bottom: 10px;
   }
+  .blaettern {
+    display: flex;
+    gap: 12px;
+  }
   .blaettern button {
-    border: 1px solid var(--rand);
-    background: white;
-    border-radius: 4px;
-    padding: 3px 8px;
-    font: 500 12px var(--schrift);
+    border: 0;
+    background: none;
+    padding: 0;
+    font: 500 13px var(--schrift);
+    color: var(--tinte);
     cursor: pointer;
   }
+  .blaettern button:hover:not(:disabled) {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
   .blaettern button:disabled {
-    opacity: 0.4;
+    color: var(--hell);
     cursor: default;
   }
   .band {
     position: relative;
-    height: 22px;
+    height: 16px;
     background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--n) - 1px), var(--rand) calc(100% / var(--n) - 1px) calc(100% / var(--n)));
-    border-radius: 3px;
   }
   .segment {
     position: absolute;
-    top: 3px;
-    bottom: 3px;
+    top: 4px;
+    bottom: 4px;
     border: 0;
-    border-radius: 3px;
+    border-radius: 2px;
     background: var(--farbe);
-    opacity: 0.45;
+    opacity: 0.35;
     cursor: pointer;
     padding: 0;
     border-right: 2px solid var(--papier);
@@ -206,13 +212,13 @@
   }
   .segment.aktiv {
     opacity: 1;
-    top: 0;
-    bottom: 0;
+    top: 1px;
+    bottom: 1px;
   }
   .marke {
     position: absolute;
-    top: -4px;
-    bottom: -4px;
+    top: -3px;
+    bottom: -3px;
     width: 2px;
     margin-left: -1px;
     background: var(--tinte);
@@ -221,35 +227,58 @@
   .band-skala {
     display: flex;
     justify-content: space-between;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--grau);
     margin-top: 4px;
+    font-variant-numeric: tabular-nums;
   }
   .meta p {
-    margin: 0 0 6px;
+    margin: 0 0 8px;
     font-size: 13px;
     line-height: 1.45;
   }
-  .zeitraum {
-    font-weight: 700;
-    font-size: 14px !important;
+  .meta .zeitraum {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .meta h3 {
+    margin: 14px 0 4px;
   }
   .status {
-    display: inline-block;
-    padding: 1px 6px;
-    border-radius: 3px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin-right: 4px;
-    color: white;
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
   }
-  .status.belegt { background: var(--belegt); }
-  .status.abgeleitet { background: var(--abgeleitet); }
-  .status.unsicher { background: var(--unsicher); }
+  .status b {
+    font-weight: 500;
+  }
+  .punkt-status {
+    flex: none;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--farbe-status);
+    transform: translateY(-1px);
+  }
+  .status.belegt { --farbe-status: var(--belegt); }
+  .status.abgeleitet { --farbe-status: var(--abgeleitet); }
+  .status.unsicher { --farbe-status: var(--unsicher); }
+  .quellen {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    display: grid;
+    gap: 2px;
+  }
   .quellen a {
     color: inherit;
+    text-decoration-color: var(--hell);
+    text-underline-offset: 2px;
+  }
+  .quellen a:hover {
+    text-decoration-color: currentColor;
   }
   .still {
     color: var(--grau);
@@ -299,30 +328,24 @@
   }
   .linienband li:first-child .name,
   .linienband li:last-child .name {
-    font-weight: 700;
+    font-weight: 600;
   }
+  /* Neue Halte: dezente Unterlegung in der Farbe der neuen Abschnitte auf der Karte */
   .linienband .neu .name {
-    background: #fbefc4;
-    padding: 0 3px;
-    margin-left: -3px;
+    background: var(--neu-flaeche);
+    box-shadow: -3px 0 0 var(--neu-flaeche), 3px 0 0 var(--neu-flaeche);
   }
   .linienband .entfallen::before {
-    background: repeating-linear-gradient(var(--grau) 0 3px, transparent 3px 6px);
+    background: repeating-linear-gradient(var(--hell) 0 3px, transparent 3px 6px);
     width: 2px;
     left: 9.5px;
   }
   .linienband .entfallen .punkt {
-    border-color: var(--grau);
-    border-style: dashed;
+    border-color: var(--hell);
   }
   .linienband .entfallen .name {
     color: var(--grau);
     text-decoration: line-through;
-  }
-  .marker {
-    font-size: 11px;
-    color: var(--grau);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    text-decoration-color: var(--hell);
   }
 </style>

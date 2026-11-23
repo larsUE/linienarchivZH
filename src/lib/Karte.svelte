@@ -9,9 +9,8 @@
   let map = $state(null);
   let bereit = $state(false);
 
-  // Platz für die Seitenleiste lassen (nur bei breitem Layout überlagert sie die Karte)
-  const polster = () =>
-    container.clientWidth > 700 ? { top: 30, bottom: 30, left: 390, right: 30 } : { top: 20, bottom: 20, left: 20, right: 20 };
+  // Rand um das Netz; die Seitenleiste liegt neben der Karte, nicht darüber
+  const polster = () => (container.clientWidth > 700 ? 40 : 20);
 
   const STIL = 'https://vectortiles.geo.admin.ch/styles/ch.swisstopo.lightbasemap.vt/style.json';
   const leer = { type: 'FeatureCollection', features: [] };
@@ -210,11 +209,11 @@
   let hintergrund = null;
   const HINTERGRUND = [
     // Ebene, Eigenschaft, Deckkraft im Plan
-    ['flaeche-stadt', 'fill-opacity', 0.75],
-    ['flaeche-wald', 'fill-opacity', 1],
+    ['flaeche-stadt', 'fill-opacity', 1],
+    ['flaeche-wald', 'fill-opacity', 0.55],
     ['flaeche-see', 'fill-opacity', 1],
     ['fluss', 'line-opacity', 1],
-    ['stadtgrenze', 'line-opacity', 1],
+    ['stadtgrenze', 'line-opacity', 0.8],
   ];
   function hintergrundZeichnen() {
     if (!hintergrund) return;
@@ -354,7 +353,7 @@
       for (const id of ['linien', 'neu', 'weg', 'halte']) map.addSource(id, { type: 'geojson', data: leer });
 
       // Papier über der Grundkarte: im Plan deckend, in der Karte unsichtbar
-      map.addLayer({ id: 'papier', type: 'background', paint: { 'background-color': '#f8f6f1', 'background-opacity': t } });
+      map.addLayer({ id: 'papier', type: 'background', paint: { 'background-color': '#f5f5f2', 'background-opacity': t } });
 
       // Hintergrundflächen des Plans, vereinfacht und mit den Linien überblendet
       map.addSource('flaechen', { type: 'geojson', data: leer });
@@ -362,7 +361,7 @@
       const flaeche = (art, farbe) =>
         map.addLayer({ id: `flaeche-${art}`, type: 'fill', source: 'flaechen', filter: ['==', ['get', 'art'], art], paint: { 'fill-color': farbe, 'fill-opacity': 0 } });
       flaeche('stadt', '#ffffff');
-      flaeche('wald', '#e0ead3');
+      flaeche('wald', '#e4e9de');
       flaeche('see', '#d3e5ef');
       map.addLayer({
         id: 'fluss', type: 'line', source: 'fluesse',
@@ -372,7 +371,7 @@
       map.addLayer({
         id: 'stadtgrenze', type: 'line', source: 'flaechen', filter: ['==', ['get', 'art'], 'stadt'],
         layout: { 'line-join': 'round' },
-        paint: { 'line-color': '#b3ad9f', 'line-width': ['interpolate', ['linear'], ['zoom'], 11, 1, 16, 2], 'line-dasharray': [4, 2], 'line-opacity': 0 },
+        paint: { 'line-color': '#d6d6d0', 'line-width': ['interpolate', ['linear'], ['zoom'], 11, 1, 16, 2], 'line-opacity': 0 },
       });
       fetch(`${import.meta.env.BASE_URL}data/hintergrund.json`)
         .then((r) => (r.ok ? r.json() : null))

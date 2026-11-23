@@ -88,11 +88,13 @@
 
     <aside class="seitenleiste">
       <div class="kopf">
-        <h1>Linienarchiv Zürich</h1>
-        <p>Tramnetz {netz.jahre[0]}–{netz.jahre.at(-1)} · Pilot</p>
+        <div>
+          <h1>Linienarchiv Zürich</h1>
+          <p>Tramnetz {netz.jahre[0]}–{netz.jahre.at(-1)}, Pilot</p>
+        </div>
         <div class="ansicht" role="group" aria-label="Kartenansicht">
-          <button aria-pressed={ansicht === 'plan'} class:aktiv={ansicht === 'plan'} onclick={() => (ansicht = 'plan')}>Liniennetzplan</button>
-          <button aria-pressed={ansicht === 'karte'} class:aktiv={ansicht === 'karte'} onclick={() => (ansicht = 'karte')}>Geografisch</button>
+          <button aria-pressed={ansicht === 'plan'} onclick={() => (ansicht = 'plan')} title="Taste P">Plan</button>
+          <button aria-pressed={ansicht === 'karte'} onclick={() => (ansicht = 'karte')} title="Taste G">Karte</button>
         </div>
       </div>
       <div class="inhalt">
@@ -117,75 +119,69 @@
     position: fixed;
     inset: 0;
     display: grid;
-    grid-template-columns: 360px 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-columns: var(--seite) 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
     grid-template-areas: 'seite karte' 'zeit zeit';
   }
   .kartenflaeche {
     grid-area: karte;
     position: relative;
-    grid-column: 1 / -1;
-    grid-row: 1;
   }
   .seitenleiste {
     grid-area: seite;
-    z-index: 2;
-    margin: 12px 0 12px 12px;
     background: var(--papier);
-    border: 1px solid var(--rand);
-    border-radius: 8px;
-    box-shadow: 0 4px 18px rgb(0 0 0 / 0.08);
+    border-right: 1px solid var(--rand);
     display: flex;
     flex-direction: column;
     min-height: 0;
-    overflow: hidden;
   }
   .kopf {
-    padding: 16px 18px 14px;
-    border-bottom: 1px solid var(--rand);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px var(--innen) 16px;
   }
   h1 {
     margin: 0;
-    font-size: 20px;
-    letter-spacing: -0.01em;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
   }
   .kopf p {
-    margin: 2px 0 12px;
+    margin: 2px 0 0;
     color: var(--grau);
     font-size: 13px;
   }
+  /* Ansicht: zwei Wörter, das gewählte unterstrichen */
   .ansicht {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: #ebe8e1;
-    border-radius: 6px;
-    padding: 3px;
+    display: flex;
+    gap: 14px;
+    padding-top: 2px;
   }
   .ansicht button {
     border: 0;
     background: none;
-    padding: 6px 8px;
-    border-radius: 4px;
-    font: 600 13px var(--schrift);
+    padding: 2px 0;
+    font: 500 14px var(--schrift);
+    color: var(--grau);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+  }
+  .ansicht button:hover {
     color: var(--tinte);
   }
-  .ansicht button.aktiv {
-    background: white;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
-  }
-  .ansicht button {
-    cursor: pointer;
-  }
-  .ansicht button:not(.aktiv):hover {
-    background: rgb(255 255 255 / 0.5);
+  .ansicht button[aria-pressed='true'] {
+    color: var(--tinte);
+    border-bottom-color: var(--tinte);
   }
   .inhalt {
     overflow-y: auto;
     min-height: 0;
+    flex: 1;
   }
   .zeitleiste {
     grid-area: zeit;
-    z-index: 2;
   }
   .laden,
   .fehler {
@@ -197,18 +193,12 @@
   @media (max-width: 700px) {
     .app {
       grid-template-columns: 1fr;
-      grid-template-rows: 45vh 1fr auto;
+      grid-template-rows: 45vh minmax(0, 1fr) auto;
       grid-template-areas: 'karte' 'seite' 'zeit';
     }
-    .kartenflaeche {
-      grid-column: 1;
-      grid-row: 1;
-    }
     .seitenleiste {
-      margin: 0;
-      border-radius: 0;
-      border-width: 1px 0 0;
-      box-shadow: none;
+      border-right: 0;
+      border-top: 1px solid var(--rand);
     }
   }
 </style>
