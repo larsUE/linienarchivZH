@@ -7,7 +7,7 @@
     "daten:osm": "node scripts/fetch-osm.mjs",
     "daten": "node scripts/build-data.mjs",
     "glyphen": "node scripts/build-glyphs.mjs",
-    "plan": "node scripts/plan/layout.mjs && npm run daten && npm run hintergrund",
+    "plan": "node scripts/plan/layout.mjs && node scripts/plan/layout-bus.mjs && npm run daten && npm run hintergrund",
     "hintergrund": "node scripts/plan/hintergrund.mjs",
     "dev": "vite",
     "build": "npm run daten && vite build",

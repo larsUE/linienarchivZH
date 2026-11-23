@@ -1360,6 +1360,16 @@
   ]
  },
  {
+  "id": "maienweg-zurich",
+  "name": "Maienweg (Zürich)",
+  "ort": "Zürich",
+  "lon": 8.52649,
+  "lat": 47.407616,
+  "fahrplan": [
+   "Zürich, Maienweg"
+  ]
+ },
+ {
   "id": "maillartstrasse",
   "name": "Maillartstrasse",
   "ort": "Zürich",

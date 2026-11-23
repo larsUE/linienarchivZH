@@ -31,7 +31,7 @@
     <p class="still">{linien.length} Linien · {anzahlHalte} Haltestellen</p>
     {#if busFehlt}
       <p class="hinweis">Busse sind erst ab {netz.erfasstAb.bus} erfasst. Für frühere Jahre fehlen offene Fahrplandaten.</p>
-    {:else if gruppen.includes('bus') && ansicht === 'plan'}
+    {:else if gruppen.includes('bus') && ansicht === 'plan' && !netz.meta.plan?.busse}
       <p class="hinweis">
         Busse haben noch keine Lage im Liniennetzplan und erscheinen nur in der geografischen Karte.
         <button class="link" onclick={onkarte}>Geografisch zeigen</button>

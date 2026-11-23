@@ -43,13 +43,13 @@
     if (location.hash !== ziel) history.replaceState(null, '', ziel);
   });
 
-  // Eine Linie öffnen. Busse haben noch keine Planlage: dann geografisch zeigen und den Filter erweitern.
+  // Eine Linie öffnen und den Filter erweitern. Busse ohne Planlage (ältere Daten) geografisch zeigen.
   function waehle(id) {
     auswahl = id;
     if (!id) return;
     const g = netz.linieById.get(id).gruppe;
     if (!gruppen.includes(g)) filter = 'alle';
-    if (g === 'bus') ansicht = 'karte';
+    if (g === 'bus' && !netz.meta.plan?.busse) ansicht = 'karte';
   }
 
   let timer;

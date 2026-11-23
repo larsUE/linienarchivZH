@@ -59,11 +59,22 @@ const slug = (s) =>
     .replace(/str\./g, 'str')
     .replace(/\bbhf\.?/g, 'bahnhof')
     .replace(/[^a-z0-9]/g, '');
+// Nur Tramhaltestellen: Bushaltestellen in netz.json stammen aus einem früheren Import und entstehen hier neu.
+const tramHalte = netz.haltestellen.filter((h) => !h.nurBus);
 const unsere = new Map();
-for (const h of netz.haltestellen) {
+const ortVon = new Map(tramHalte.map((h) => [h.id, h.ort]));
+for (const h of tramHalte) {
   unsere.set(slug(h.name), h.id);
   unsere.set(slug(`${h.ort} ${h.name}`), h.id);
 }
+// «Zürich, Maienweg» (Bus 40) ist nicht «Maienweg» in Dietikon (Limmattalbahn):
+// Steht im Fahrplan ein Ort und liegt unsere Haltestelle auf der anderen Seite der Stadtgrenze, passt der Name nicht.
+const ersterOrt = (o) => ((o ?? '').split(/[ ,]/)[0] === 'Zch' ? 'Zürich' : (o ?? '').split(/[ ,]/)[0]);
+const ortPasst = (ort, id) => {
+  const unser = ersterOrt(ortVon.get(id));
+  if (!ort || !unser || ersterOrt(ort) === unser) return true;
+  return ersterOrt(ort) !== 'Zürich' && unser !== 'Zürich';
+};
 // Umbenennungen und Schreibweisen, die sich nicht automatisch zuordnen lassen: Fahrplanname -> unsere id
 const ALIAS = Object.fromEntries(
   Object.entries({ ...cfg.fahrplan_alias, ...(BUS ? busCfg.fahrplan_alias : {}) }).map(([k, v]) => [slug(k), v]),
@@ -80,7 +91,7 @@ function haltestelle(roh) {
   const ortKurz = ort.split(' ').at(-1);
   for (const k of [slug(name), slug(ohneOrt), slug(`${ort} ${rest}`), slug(`${rest} ${ortKurz}`), slug(rest)]) {
     if (ALIAS[k]) return ALIAS[k];
-    if (unsere.has(k)) return unsere.get(k);
+    if (unsere.has(k) && ortPasst(ort, unsere.get(k))) return unsere.get(k);
   }
   return BUS ? busHaltestelle(name) : `?${name}`;
 }
@@ -92,7 +103,9 @@ const idAus = (s) =>
 const busHalte = new Map(); // id -> {id, name, ort, fahrplanNamen:Set, lage: Map(quelle -> Map(punkt -> [lon, lat]))}
 function busHaltestelle(name) {
   const [ort, rest] = name.includes(',') ? name.split(/,\s*/, 2) : ['Zürich', name];
-  const anzeige = ort === 'Zürich' ? rest : `${ort}, ${rest}`;
+  let anzeige = ort === 'Zürich' ? rest : `${ort}, ${rest}`;
+  // gleichnamige Tramhaltestelle anderswo: Ort dazuschreiben, z.B. «Maienweg (Zürich)»
+  if (tramHalte.some((h) => (h.name === anzeige || h.id === idAus(anzeige)))) anzeige = `${rest} (${ort})`;
   const id = idAus(anzeige);
   if (!busHalte.has(id)) busHalte.set(id, { id, name: anzeige, ort, fahrplanNamen: new Set(), lage: new Map() });
   busHalte.get(id).fahrplanNamen.add(name);

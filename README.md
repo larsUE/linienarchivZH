@@ -27,7 +27,7 @@ python3 scripts/plan/extract-plan.py ~/Downloads/Liniennetzplan.pdf && npm run p
 ## Funktionen
 
 - **Zwei Ansichten**: Liniennetzplan und geografische Karte. Beim Umschalten wandern Linien und Haltestellen von der einen Lage in die andere. Tasten P und G.
-- **Tram und Bus**: Die Übersicht filtert nach Tram (Standard), Bus oder beiden. Busse erscheinen nur in der geografischen Karte; im Plan blenden sie aus, und wer eine Buslinie öffnet, landet in der Karte.
+- **Tram und Bus**: Die Übersicht filtert nach Tram (Standard), Bus oder beiden. Busse erscheinen in beiden Ansichten, schmaler als Trams und mit Rand.
 - **Zeitstrahl**: Netzstand am 1. Juli jedes Jahres. Die Balken zeigen, wie viele Linien sich gegenüber dem Vorjahr geändert haben. Bedienung mit Klick, Pfeiltasten oder Abspielen.
 - **Vergleich zum Vorjahr**: Neue Abschnitte sind gelb unterlegt, weggefallene gestrichelt. Die Seitenleiste listet die geänderten Linien.
 - **Linienansicht** (Klick auf eine Linie): Versionsband über alle Jahre, Blättern zur früheren oder späteren Version, Linienweg mit Vergleich zur Vorversion, Status und Quellen.
@@ -76,6 +76,16 @@ Für einzelne Haltestellen, bei denen die Zuordnung danebenliegt, gibt es im Skr
 
 In der Darstellung liegen parallele Linien so nebeneinander, wie sie später auseinanderlaufen: Wer an der nächsten Verzweigung links abbiegt, liegt links. So kreuzen sie sich nur, wo es nötig ist. Haltestellen sind weisse Balken quer über das ganze Bündel.
 
+### Busse im Plan
+
+[`scripts/plan/layout-bus.mjs`](scripts/plan/layout-bus.mjs) legt die Busse über das fertige Tramlayout und ergänzt `data/layout.json`. `npm run plan` ruft es nach `layout.mjs` auf. Ein gemeinsames MIP mit festem Tramnetz war zu gross und fand keine Lösung, darum ein schnelles Verfahren:
+
+- Tramhaltestellen bleiben, wo sie sind. Reine Bushaltestellen bekommen ihre Lage über eine Thin-Plate-Spline durch die Tramhaltestellen ([`scripts/plan/tps.mjs`](scripts/plan/tps.mjs), wie beim Hintergrund). Wo der Plan ein Gebiet staucht, rücken sie danach auseinander und von den Tramstrecken weg.
+- Busabschnitte zwischen denselben Haltestellen wie ein Tram oder entlang einer Tramfolge laufen über den Tramabschnitt. Die Karte legt sie dort neben das Trambündel.
+- Jede übrige Kette zwischen zwei Knoten wird ein oktilinearer Zug mit höchstens einem Knick, auf der Seite, auf der der Fahrweg verläuft. Die Zwischenhalte liegen gleichmässig darauf.
+
+Das Ergebnis ist ordentlich, aber nicht optimiert: Buszüge können sich kreuzen oder eng nebeneinander laufen, und Beschriftungen überlappen in dichten Gebieten.
+
 ### Hintergrund
 
 [`scripts/plan/hintergrund.mjs`](scripts/plan/hintergrund.mjs) holt Zürichsee, Limmat, Sihl, Wald und die Stadtgrenze aus OpenStreetMap (Overpass, zwischengespeichert in `data/raw/osm/`). Die Formen werden vereinfacht und geglättet. Eine Thin-Plate-Spline durch alle Haltestellen (geografische Lage → Planlage) verzerrt sie in den Plan. Ergebnis ist [`public/data/hintergrund.json`](public/data/hintergrund.json) mit beiden Lagen je Punkt. Im Plan blenden die Flächen mit den Linien über, in der geografischen Karte zeigt die Grundkarte das Original.
@@ -121,7 +131,7 @@ Grenzen:
 - Abschnitte, die nur 2015–2018 befahren wurden, haben keinen Fahrweg und sind als Gerade gezeichnet.
 - Ein Abschnitt hat einen Fahrweg für beide Richtungen, auch wo Busse in der Gegenrichtung eine andere Strasse nehmen.
 - Busse liegen nicht im Bündel mit Trams auf derselben Strasse, sondern daneben.
-- Im Liniennetzplan fehlen Busse. Ein gemeinsames Layout wäre eine eigene Etappe: Das Tramlayout bleibt fest, die Busse werden als zweite Ebene in `scripts/plan/layout.mjs` dazugerechnet. Bis dahin lassen `layout.mjs` und `hintergrund.mjs` Busse weg.
+- Im Liniennetzplan sind die Busse heuristisch dazugelegt (siehe [Busse im Plan](#busse-im-plan)), nicht mit dem Tram zusammen optimiert.
 
 ## Fahrplandaten-Import
 

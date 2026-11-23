@@ -325,7 +325,7 @@ linien:
       - von: 2016-12-11
         weg: [
           "Bucheggplatz", "Brunnenhof", "Berufswahlschule", "Nordheimstrasse", "Krematorium Nordheim",
-          "Maienweg", "Althoos", "Glaubtenstrasse", "Glaubtenstrasse Nord", "Hürstholz", "Staudenbühl",
+          "Maienweg (Zürich)", "Althoos", "Glaubtenstrasse", "Glaubtenstrasse Nord", "Hürstholz", "Staudenbühl",
           "Friedhof Schwandenholz", "Buhnstrasse", "Hertensteinstrasse", "Seebacherplatz", "Seebach"
         ]
         status: belegt
@@ -335,7 +335,7 @@ linien:
         bis: 2016-12-10
         weg: [
           "Bucheggplatz", "Brunnenhof", "Berufswahlschule", "Nordheimstrasse", "Krematorium Nordheim",
-          "Maienweg", "Althoos", "Glaubtenstrasse", "Glaubtenstrasse Nord", "Hürstholz", "Staudenbühl",
+          "Maienweg (Zürich)", "Althoos", "Glaubtenstrasse", "Glaubtenstrasse Nord", "Hürstholz", "Staudenbühl",
           "Friedhof Schwandenholz", "Buhnstrasse", "Hertensteinstrasse", "Seebacherplatz"
         ]
         status: belegt
@@ -345,7 +345,7 @@ linien:
         bis: 2015-12-12
         weg: [
           "Bucheggplatz", "Brunnenhof", "Berufswahlschule", "Nordheimstrasse", "Krematorium Nordheim",
-          "Maienweg", "Althoos", "Glaubtenstrasse"
+          "Maienweg (Zürich)", "Althoos", "Glaubtenstrasse"
         ]
         status: belegt
         quellen: [vbz-fahrzeiten]

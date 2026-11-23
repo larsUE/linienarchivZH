@@ -345,7 +345,8 @@ if (plan) {
   const ausPlan = ([x, y]) => [x, -y];
   const ausGeo = (h) => [h.lon * k, h.lat];
   const paare = haltestellen
-    .filter((h) => plan.haltestellen[h.id] && !plan.herkunft.haltestellen[h.id])
+    // nur Tramhaltestellen bestimmen die Lage des Plans über der Karte
+    .filter((h) => plan.haltestellen[h.id] && !plan.herkunft.haltestellen[h.id] && !h.nurBus)
     .map((h) => [ausPlan(plan.haltestellen[h.id]), ausGeo(h)]);
   // Kleinste Quadrate für w = a·z + b
   const n = paare.length;
@@ -369,8 +370,8 @@ if (plan) {
   };
   for (const h of haltestellen) {
     const p = plan.haltestellen[h.id];
-    // Busse haben (noch) keine Planlage: Sie bleiben geografisch und werden im Plan ausgeblendet
-    if (h.nurBus) {
+    // Busse ohne Planlage (scripts/plan/layout.mjs --busse nicht gelaufen) bleiben geografisch und blenden im Plan aus
+    if (h.nurBus && !p) {
       h.plan = [h.lon, h.lat];
       h.planGeschaetzt = true;
       continue;
@@ -381,16 +382,17 @@ if (plan) {
   }
   const hById = new Map(haltestellen.map((h) => [h.id, h]));
   for (const kante of kantenListe) {
-    if (kante.bus) {
+    const pts = plan.kanten[kante.id];
+    if (kante.bus && !pts) {
       kante.planGeschaetzt = true;
       continue;
     }
-    const pts = plan.kanten[kante.id];
     kante.planCoords = pts ? pts.map(zuKarte) : [hById.get(kante.a).plan, hById.get(kante.b).plan];
     if (!pts || plan.herkunft.kanten[kante.id]) kante.planGeschaetzt = true;
   }
   const bbox = plan.groesse;
-  plan = { quelle: plan.quelle, rahmen: [zuKarte([0, bbox[1]]), zuKarte([bbox[0], 0])] };
+  const mitBussen = haltestellen.some((h) => h.nurBus && plan.haltestellen[h.id]);
+  plan = { quelle: plan.quelle, rahmen: [zuKarte([0, bbox[1]]), zuKarte([bbox[0], 0])], busse: mitBussen };
 }
 
 const out = {
