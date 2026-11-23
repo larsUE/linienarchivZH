@@ -24,6 +24,21 @@ Ausgangslage aus dem ZVV-Plan neu ableiten (nur bei neuem Plan; braucht Python m
 python3 scripts/plan/extract-plan.py ~/Downloads/Liniennetzplan.pdf && npm run plan
 ```
 
+Prüfen:
+
+```bash
+npm test             # Datentests auf public/data/netz.json (tests/)
+```
+
+Die CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) läuft bei jedem Pull Request und auf `main`. Sie erzeugt Busstufe und `netz.json` neu und bricht ab, wenn die eingecheckten Dateien nicht dazu passen. Danach laufen die Datentests und der Vite-Build. Das Tramlayout und der Hintergrund werden dort nicht neu gerechnet. `npm run daten` schreibt `netz.json` nur, wenn sich der Inhalt ändert, sonst bleibt auch der Zeitstempel `meta.erstellt` stehen.
+
+Die Datentests prüfen:
+
+- Ids sind eindeutig, und Versionen verweisen nur auf bestehende Linien, Haltestellen und Abschnitte.
+- Linienwege sind lückenlos.
+- Fahrwege enden bei ihren Haltestellen. So fallen verwechselte gleichnamige Haltestellen auf.
+- Im Plan hat alles eine Lage, Striche sind waagrecht, senkrecht oder diagonal, und keine zwei Haltestellen liegen aufeinander.
+
 ## Funktionen
 
 - **Zwei Ansichten**: Liniennetzplan und geografische Karte. Beim Umschalten wandern Linien und Haltestellen von der einen Lage in die andere. Tasten P und G.

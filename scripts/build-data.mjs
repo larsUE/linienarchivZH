@@ -415,7 +415,13 @@ const out = {
 };
 
 await mkdir(new URL('public/data/', root), { recursive: true });
-await writeFile(new URL('public/data/netz.json', root), JSON.stringify(out));
+// Inhaltlich gleiche Datei nicht neu schreiben: So bleibt der Build reproduzierbar (CI prüft das),
+// und meta.erstellt zeigt, wann sich die Daten zuletzt geändert haben.
+const ziel = new URL('public/data/netz.json', root);
+const ohneZeit = (n) => JSON.stringify({ ...n, meta: { ...n.meta, erstellt: null } });
+const bisher = await readFile(ziel, 'utf8').then(JSON.parse, () => null);
+if (bisher && ohneZeit(bisher) === ohneZeit(out)) console.log('public/data/netz.json unverändert');
+else await writeFile(ziel, JSON.stringify(out));
 console.log(
   `${linien.length} Linien, ${versionen.length} Versionen, ${haltestellen.length} Haltestellen, ${out.kanten.length} Abschnitte`,
 );

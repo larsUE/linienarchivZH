@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pruefen:
+    name: Daten, Tests und Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # Busstufe und Build sind schnell und reproduzierbar. Das Tramlayout (MIP, Minuten) und der
+      # Hintergrund (Overpass) laufen hier nicht; ihre Ergebnisse sind eingecheckt.
+      - name: Daten neu erzeugen
+        run: |
+          node scripts/plan/layout-bus.mjs
+          npm run daten
+
+      - name: Eingecheckte Daten sind aktuell
+        run: |
+          if ! git diff --quiet -- data/layout.json public/data/netz.json; then
+            git diff --stat -- data/layout.json public/data/netz.json
+            echo "::error::data/layout.json oder public/data/netz.json passt nicht zu den Quellen. Lokal 'node scripts/plan/layout-bus.mjs && npm run daten' ausführen und committen."
+            exit 1
+          fi
+
+      - name: Datentests
+        run: npm test
+
+      - name: Vite-Build
+        run: npx vite build

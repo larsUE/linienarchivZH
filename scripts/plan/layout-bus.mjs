@@ -265,7 +265,18 @@ const aus = (p) => [Math.round(p[0] * EINHEIT * 10) / 10, Math.round(-p[1] * EIN
 for (const h of netz.haltestellen) if (h.nurBus && lage.has(h.id)) layout.haltestellen[h.id] = aus(lage.get(h.id));
 for (const k of netz.kanten) {
   if (!k.bus) continue;
-  if (ueber.has(k.id)) layout.kanten[k.id] = ueber.get(k.id).map((h) => layout.haltestellen[h]);
+  if (ueber.has(k.id)) {
+    // dem Tramstrich folgen, samt seinen Knicken
+    const pfad = ueber.get(k.id);
+    const weg = [];
+    for (let i = 1; i < pfad.length; i++) {
+      const [x, y] = [pfad[i - 1], pfad[i]];
+      const vor = layout.kanten[`${x}~${y}`], rueck = layout.kanten[`${y}~${x}`];
+      const stueck = vor ?? [...rueck].reverse();
+      weg.push(...(weg.length ? stueck.slice(1) : stueck));
+    }
+    layout.kanten[k.id] = weg;
+  }
   else layout.kanten[k.id] = busWege.get(k.id).map(aus);
 }
 layout.quelle = layout.quelle.replace(/; Busse.*$/, '') + '; Busse: scripts/plan/layout-bus.mjs';

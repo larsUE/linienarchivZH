@@ -11,7 +11,8 @@
     "hintergrund": "node scripts/plan/hintergrund.mjs",
     "dev": "vite",
     "build": "npm run daten && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test tests/"
   },
   "devDependencies": {
     "@mapbox/tiny-sdf": "^2.3.0",
