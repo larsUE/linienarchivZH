@@ -112,8 +112,13 @@ export const STATUS = {
   unsicher: { text: 'unsicher', erklaerung: 'Quellen widersprüchlich oder nur sinngemäss geprüft.' },
 };
 
-// Helle Linienfarben (meist weisse Busse) brauchen dunkle Schrift und einen dunklen Rand
+// Busblau des ZVV-Liniennetzplans (Buslinien ohne eigene Farbe)
+export const BUSBLAU = '#75BEE9';
+
+// Helle Linienfarben (helle Trolleybusse) brauchen dunkle Schrift und einen dunklen Rand.
+// Das Busblau ist zwar hell, trägt aber wie im ZVV-Plan weisse Schrift ohne Rand.
 export function istHell(farbe) {
+  if (farbe.toUpperCase() === BUSBLAU) return false;
   const h = farbe.replace('#', '');
   const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
   return 0.299 * r + 0.587 * g + 0.114 * b > 160;

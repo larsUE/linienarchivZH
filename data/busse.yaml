@@ -4,6 +4,8 @@
 # Aufbau wie data/linien.yaml. Der Linienweg ist eine Haltestellenliste: Tramhaltestellen heissen wie in
 # data/linien.yaml, Bushaltestellen wie in data/bus/haltestellen.json. Fahrwege stehen in data/bus/kanten.json.
 # Quellen (gtfs, vbz-fahrzeiten) sind in data/linien.yaml definiert.
+# Farben: Linien mit eigener Farbe (z.B. Trolleybusse) wie in den Fahrplandaten, alle anderen im Busblau
+# des ZVV-Liniennetzplans (#75BEE9). In den Fahrplandaten sind sie weiss.
 #
 # Für die Jahre vor 2015 gibt es keine Busdaten; das Archiv zeigt Busse ab 2015.
 
@@ -187,7 +189,7 @@ linien:
   - id: bus-34
     nummer: "34"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2014-12-14
         bis: 2017-12-09
@@ -202,7 +204,7 @@ linien:
   - id: bus-35
     nummer: "35"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2022-09-05
         bis: 2025-12-13
@@ -251,7 +253,7 @@ linien:
   - id: bus-37
     nummer: "37"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2023-12-10
         weg: [
@@ -283,7 +285,7 @@ linien:
   - id: bus-38
     nummer: "38"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2014-12-14
         weg: [
@@ -298,7 +300,7 @@ linien:
   - id: bus-39
     nummer: "39"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2019-12-15
         weg: [
@@ -320,7 +322,7 @@ linien:
   - id: bus-40
     nummer: "40"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2016-12-11
         weg: [
@@ -354,7 +356,7 @@ linien:
   - id: bus-42
     nummer: "42"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2023-12-10
         weg: [
@@ -368,7 +370,7 @@ linien:
   - id: bus-44
     nummer: "44"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2025-12-14
         weg: [
@@ -381,7 +383,7 @@ linien:
   - id: bus-45
     nummer: "45"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2026-09-21
         weg: [
@@ -523,7 +525,7 @@ linien:
   - id: bus-63
     nummer: "63"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2014-12-14
         bis: 2015-12-12
@@ -538,7 +540,7 @@ linien:
   - id: bus-64
     nummer: "64"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2023-12-10
         weg: [
@@ -561,7 +563,7 @@ linien:
   - id: bus-66
     nummer: "66"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2024-12-15
         weg: [
@@ -584,7 +586,7 @@ linien:
   - id: bus-67
     nummer: "67"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2015-12-13
         weg: [
@@ -609,7 +611,7 @@ linien:
   - id: bus-69
     nummer: "69"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2014-12-14
         weg: [
@@ -623,7 +625,7 @@ linien:
   - id: bus-70
     nummer: "70"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2018-12-09
         weg: [
@@ -646,7 +648,7 @@ linien:
   - id: bus-71
     nummer: "71"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2014-12-14
         bis: 2015-12-12
@@ -689,7 +691,7 @@ linien:
   - id: bus-73
     nummer: "73"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2026-10-19
         weg: [
@@ -708,7 +710,7 @@ linien:
   - id: bus-75
     nummer: "75"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2015-12-13
         weg: [
@@ -734,7 +736,7 @@ linien:
   - id: bus-76
     nummer: "76"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2025-12-14
         weg: [
@@ -764,7 +766,7 @@ linien:
   - id: bus-77
     nummer: "77"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2022-12-11
         weg: [
@@ -787,7 +789,7 @@ linien:
   - id: bus-78
     nummer: "78"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2025-12-14
         weg: [
@@ -810,7 +812,7 @@ linien:
   - id: bus-79
     nummer: "79"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2014-12-14
         bis: 2023-12-09
@@ -904,7 +906,7 @@ linien:
   - id: bus-83
     nummer: "83"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2015-12-13
         weg: [
@@ -964,7 +966,7 @@ linien:
   - id: bus-95
     nummer: "95"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2014-12-14
         bis: 2015-12-12
@@ -979,7 +981,7 @@ linien:
   - id: bus-99
     nummer: "99"
     art: bus
-    farbe: "#FFFFFF"
+    farbe: "#75BEE9"
     versionen:
       - von: 2026-10-05
         weg: [

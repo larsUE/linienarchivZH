@@ -19,7 +19,7 @@
 
   // Linienbreite und Versatz paralleler Linien in Pixeln, abhängig vom Zoom
   const breite = ['interpolate', ['linear'], ['zoom'], 11, 2, 13, 3.5, 16, 7];
-  // Busse schmaler, mit dunklem Rand (die meisten VBZ-Buslinien sind weiss, Trolleybusse farbig)
+  // Busse schmaler, in der Karte mit dunklem Rand (Busblau wie im ZVV-Plan, Trolleybusse in eigener Farbe)
   const BUS = [1.4, 2.2, 4.4]; // Strichbreite bei Zoom 11, 13, 16
   const busBreite = (plus = 0) => ['interpolate', ['linear'], ['zoom'], 11, BUS[0] + plus, 13, BUS[1] + plus, 16, BUS[2] + plus];
   const istBus = ['==', ['get', 'gruppe'], 'bus'];
@@ -322,7 +322,10 @@
     // Im Plan sind geschätzte Abschnitte (ausserhalb des Plans) blasser
     const basis = ansicht === 'plan' ? ['case', ['get', 'gs'], 0.45, 1] : 1;
     map.setPaintProperty('linien', 'line-opacity', hat ? ['case', istGewaehlt, basis, 0.12] : basis);
-    for (const id of ['busse-rand', 'busse']) map.setPaintProperty(id, 'line-opacity', hat ? ['case', istGewaehlt, b, 0.12 * b] : b);
+    map.setPaintProperty('busse', 'line-opacity', hat ? ['case', istGewaehlt, b, 0.12 * b] : b);
+    // Dunkler Rand nur in der geografischen Karte (hebt die Busse von der Grundkarte ab), im Plan ohne
+    const r = b * (1 - t);
+    map.setPaintProperty('busse-rand', 'line-opacity', hat ? ['case', istGewaehlt, r, 0.12 * r] : r);
     const haltGewaehlt = ['in', auswahl ?? '§', ['get', 'linien']];
     const haltBasis = ['case', ['get', 'bus'], b, 1];
     map.setPaintProperty('halte', 'icon-opacity', hat ? ['case', haltGewaehlt, haltBasis, ['*', 0.25, haltBasis]] : haltBasis);

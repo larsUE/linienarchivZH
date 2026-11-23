@@ -5,7 +5,7 @@
   let { netz, linieId, jahr, datum, onjahr, onschliessen } = $props();
 
   const linie = $derived(netz.linieById.get(linieId));
-  // Weisse Busse: Versionsband und Linienweg mit dunklem Rand, sonst verschwinden sie auf dem Papier
+  // Helle Busfarben: Versionsband und Linienweg mit dunklem Rand wie das Badge, sonst verschwinden sie auf dem Papier
   const kontur = $derived(linie.art === 'bus' && istHell(linie.farbe) ? '#55524c' : 'transparent');
   const versionen = $derived(netz.versionenProLinie.get(linieId) ?? []);
   const aktuell = $derived(versionen.find((v) => istAktiv(v, datum)) ?? null);

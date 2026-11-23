@@ -120,6 +120,7 @@ const zeilen = [
   '',
   'linien:',
 ];
+const BUSBLAU = '#75BEE9';
 const nummern = Object.keys(linien).sort((a, b) => Number(a) - Number(b));
 const ohne = [];
 for (const n of nummern) {
@@ -129,7 +130,9 @@ for (const n of nummern) {
     continue;
   }
   zeilen.push(`  - id: bus-${n}`, `    nummer: ${str(n)}`, '    art: bus');
-  zeilen.push(`    farbe: ${str(linienInfo[n]?.farbe ?? '#FFFFFF')}`);
+  // Linien ohne eigene Farbe (in GTFS weiss) im Busblau des ZVV-Liniennetzplans
+  const farbe = linienInfo[n]?.farbe;
+  zeilen.push(`    farbe: ${str(farbe && farbe.toUpperCase() !== '#FFFFFF' ? farbe : BUSBLAU)}`);
   zeilen.push('    versionen:');
   for (const v of [...vs].reverse()) {
     zeilen.push(`      - von: ${v.von}`);

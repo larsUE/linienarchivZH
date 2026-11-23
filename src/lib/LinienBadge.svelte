@@ -39,7 +39,7 @@
   .bau {
     border-style: dashed;
   }
-  /* Busse: abgerundet, helle Linienfarben (meist weiss) mit dunklem Rand */
+  /* Busse: abgerundet, helle Linienfarben (helle Trolleybusse) mit dunklem Rand */
   .bus {
     border-radius: 10px;
     border-width: 1.5px;
