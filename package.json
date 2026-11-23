@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "engines": {
+    "node": ">=26"
+  },
   "scripts": {
     "daten:osm": "node scripts/fetch-osm.mjs",
     "daten": "node scripts/build-data.mjs",

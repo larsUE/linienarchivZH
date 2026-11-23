@@ -30,7 +30,7 @@ Prüfen:
 npm test             # Datentests auf public/data/netz.json (tests/)
 ```
 
-Die CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) läuft bei jedem Pull Request und auf `main`. Sie erzeugt Busstufe und `netz.json` neu und bricht ab, wenn die eingecheckten Dateien nicht dazu passen ([`scripts/pruefen-aktuell.mjs`](scripts/pruefen-aktuell.mjs); Zahlen mit kleiner Toleranz, weil Fliesskomma-Ergebnisse je nach Plattform minimal abweichen). Danach laufen die Datentests und der Vite-Build. Das Tramlayout und der Hintergrund werden dort nicht neu gerechnet. `npm run daten` schreibt `netz.json` nur, wenn sich der Inhalt ändert, sonst bleibt auch der Zeitstempel `meta.erstellt` stehen.
+Die CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) läuft bei jedem Pull Request und auf `main`. Sie erzeugt Busstufe und `netz.json` neu und bricht ab, wenn die eingecheckten Dateien nicht dazu passen ([`scripts/pruefen-aktuell.mjs`](scripts/pruefen-aktuell.mjs); Zahlen mit kleiner Toleranz). Sie nutzt die Node-Version aus `.nvmrc`; mit einer anderen Version rechnet `layout-bus.mjs` nicht bitgenau gleich, und das Entspannen der Bushaltestellen verstärkt solche Unterschiede bis zu ganzen Rasterstufen. Danach laufen die Datentests und der Vite-Build. Das Tramlayout und der Hintergrund werden dort nicht neu gerechnet. `npm run daten` schreibt `netz.json` nur, wenn sich der Inhalt ändert, sonst bleibt auch der Zeitstempel `meta.erstellt` stehen.
 
 Die Datentests prüfen:
 

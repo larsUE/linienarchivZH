@@ -14,7 +14,8 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: 24
+          # dieselbe Node-Version wie lokal: layout-bus.mjs ist nur damit bitgenau reproduzierbar
+          node-version-file: .nvmrc
           cache: npm
 
       - run: npm ci
