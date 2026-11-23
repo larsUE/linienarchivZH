@@ -111,3 +111,10 @@ export const STATUS = {
   abgeleitet: { text: 'abgeleitet', erklaerung: 'Endpunkte belegt, Zwischenhalte rekonstruiert.' },
   unsicher: { text: 'unsicher', erklaerung: 'Quellen widersprüchlich oder nur sinngemäss geprüft.' },
 };
+
+// Helle Linienfarben (meist weisse Busse) brauchen dunkle Schrift und einen dunklen Rand
+export function istHell(farbe) {
+  const h = farbe.replace('#', '');
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
+  return 0.299 * r + 0.587 * g + 0.114 * b > 160;
+}

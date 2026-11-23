@@ -1,11 +1,9 @@
 <script>
+  import { istHell } from './netz.js';
+
   let { linie, gross = false } = $props();
   // Helle Linienfarben brauchen dunkle Schrift
-  const hell = $derived.by(() => {
-    const h = linie.farbe.replace('#', '');
-    const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
-    return 0.299 * r + 0.587 * g + 0.114 * b > 160;
-  });
+  const hell = $derived(istHell(linie.farbe));
 </script>
 
 <span

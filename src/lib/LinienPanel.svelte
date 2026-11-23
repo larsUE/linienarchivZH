@@ -1,10 +1,12 @@
 <script>
   import LinienBadge from './LinienBadge.svelte';
-  import { istAktiv, halteAm, stichtag, vergleicheFolgen, zeitraumText, STATUS } from './netz.js';
+  import { istAktiv, halteAm, stichtag, vergleicheFolgen, zeitraumText, istHell, STATUS } from './netz.js';
 
   let { netz, linieId, jahr, datum, onjahr, onschliessen } = $props();
 
   const linie = $derived(netz.linieById.get(linieId));
+  // Weisse Busse: Versionsband und Linienweg mit dunklem Rand, sonst verschwinden sie auf dem Papier
+  const kontur = $derived(linie.art === 'bus' && istHell(linie.farbe) ? '#55524c' : 'transparent');
   const versionen = $derived(netz.versionenProLinie.get(linieId) ?? []);
   const aktuell = $derived(versionen.find((v) => istAktiv(v, datum)) ?? null);
   const vorgaenger = $derived(aktuell ? versionen[versionen.indexOf(aktuell) - 1] ?? null : null);
@@ -61,7 +63,7 @@
         <button disabled={naechsterWechsel === undefined} onclick={() => onjahr(naechsterWechsel)}>spätere ›</button>
       </div>
     </div>
-    <div class="band" aria-label="Versionen im Zeitverlauf" style:--n={netz.jahre.length}>
+    <div class="band" aria-label="Versionen im Zeitverlauf" style:--n={netz.jahre.length} style:--kontur={kontur}>
       {#if (netz.erfasstAb[linie.gruppe] ?? start) > start}
         <!-- Jahre ohne Daten für dieses Verkehrsmittel (Busse vor 2015) -->
         <span class="nicht-erfasst" style:width="{pos(`${netz.erfasstAb[linie.gruppe]}-01-01`, 0) * 100}%" title="vor {netz.erfasstAb[linie.gruppe]} nicht erfasst"></span>
@@ -110,7 +112,7 @@
           <span class="still klein">gegenüber {zeitraumText(vorgaenger)}: {anzahl.neu} neu, {anzahl.entfallen} entfallen</span>
         {/if}
       </div>
-      <ol class="linienband" style:--farbe={linie.farbe}>
+      <ol class="linienband" style:--farbe={linie.farbe} style:--kontur={kontur}>
         {#each folge as f, i (f.id + f.art + i)}
           <li class={f.art}>
             <span class="punkt"></span>
@@ -204,6 +206,7 @@
     cursor: pointer;
     padding: 0;
     border-right: 2px solid var(--papier);
+    box-shadow: inset 0 0 0 1.5px var(--kontur);
   }
   .segment.unsicher {
     background: repeating-linear-gradient(135deg, var(--farbe) 0 4px, transparent 4px 7px);
@@ -289,6 +292,7 @@
     bottom: 0;
     width: 5px;
     background: var(--farbe);
+    box-shadow: inset 1.5px 0 var(--kontur), inset -1.5px 0 var(--kontur);
   }
   .linienband li:first-child::before { top: 50%; }
   .linienband li:last-child::before { bottom: 50%; }
@@ -321,6 +325,7 @@
     background: repeating-linear-gradient(var(--grau) 0 3px, transparent 3px 6px);
     width: 2px;
     left: 9.5px;
+    box-shadow: none;
   }
   .linienband .entfallen .punkt {
     border-color: var(--grau);
