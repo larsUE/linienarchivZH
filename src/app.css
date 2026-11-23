@@ -1,13 +1,21 @@
 :root {
   --schrift: 'Barlow', 'Helvetica Neue', Arial, system-ui, sans-serif;
-  --papier: #f8f6f1;
+  /* Neutrales Papier: die Linienfarben sind die einzige Farbe im Bild */
+  --papier: #f5f5f2;
+  --weiss: #ffffff;
   --tinte: #1d1d1b;
-  --grau: #77746d;
-  --rand: #e0dcd2;
+  --grau: #6e6d68;
+  --hell: #a9a8a2;
+  --rand: #e3e3de;
   --akzent: #1d1d1b;
+  --neu: #f2c94c;
+  --neu-flaeche: #fbf0cc;
   --belegt: #2f7d4f;
   --abgeleitet: #a86a12;
   --unsicher: #b83a3a;
+  /* Breite der Seitenspalte; die Zeitleiste übernimmt diese Kante */
+  --seite: 340px;
+  --innen: 20px;
   color-scheme: light;
 }
 html,
@@ -17,6 +25,8 @@ body {
   background: var(--papier);
   color: var(--tinte);
   font-family: var(--schrift);
+  font-size: 14px;
+  line-height: 1.45;
   -webkit-font-smoothing: antialiased;
 }
 button {
@@ -26,8 +36,25 @@ button {
 .maplibregl-map {
   font-family: var(--schrift);
 }
+/* Zoomknöpfe ruhig: Haarlinie statt Schatten */
+.maplibregl-ctrl-group:not(:empty) {
+  box-shadow: none;
+  border: 1px solid var(--rand);
+  border-radius: 4px;
+}
+.maplibregl-ctrl-group button + button {
+  border-top-color: var(--rand);
+}
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid #2b6cb0;
+  outline: 2px solid var(--tinte);
   outline-offset: 2px;
+}
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
