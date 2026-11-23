@@ -34,11 +34,15 @@ for (const id of Object.keys(layout.kanten)) if (id.startsWith('bus:')) delete l
 const FIX = new Map(Object.entries(layout.haltestellen).map(([id, [x, y]]) => [id, [x / EINHEIT, -y / EINHEIT]]));
 const fehlt = netz.haltestellen.filter((h) => !h.nurBus && !FIX.has(h.id));
 if (fehlt.length) throw new Error(`Tramhaltestellen ohne Lage in data/layout.json (zuerst scripts/plan/layout.mjs): ${fehlt.map((h) => h.name).join(', ')}`);
-const KOS = Math.cos((47.37 * Math.PI) / 180);
+// Fest statt Math.cos(47.37°): Winkelfunktionen rechnen je nach Plattform (Linux-x64 / Apple Silicon) in der
+// letzten Stelle anders, und das Entspannen unten verstärkt solche Unterschiede. Die CI braucht bitgleiche Ergebnisse.
+const KOS = 0.6772612964138943;
+// Auf 1e-6 Einheiten runden: Reste von Rechenunterschieden fallen weg, bevor sie sich aufschaukeln.
+const glatt = ([x, y]) => [Math.round(x * 1e6) / 1e6, Math.round(y * 1e6) / 1e6];
 const km = ([lon, lat]) => [lon * KOS * 111.32, lat * 110.574];
 const tram = netz.haltestellen.filter((h) => !h.nurBus);
 const verzerren = tps(tram.map((h) => km([h.lon, h.lat])), tram.map((h) => FIX.get(h.id)), 0.05);
-const P = new Map(netz.haltestellen.map((h) => [h.id, h.nurBus ? verzerren(km([h.lon, h.lat])) : FIX.get(h.id)]));
+const P = new Map(netz.haltestellen.map((h) => [h.id, h.nurBus ? glatt(verzerren(km([h.lon, h.lat]))) : FIX.get(h.id)]));
 
 // Entspannen: Wo der Plan das Gebiet staucht (Affoltern zwischen Oerlikon und Seebach), rücken Bushaltestellen
 // zusammen und auf Tramstrecken. Sie bleiben nahe an der verzerrten Lage, halten aber Abstand.
@@ -65,13 +69,13 @@ const P = new Map(netz.haltestellen.map((h) => [h.id, h.nurBus ? verzerren(km([h
         const dx = p[0] - q[0], dy = p[1] - q[1];
         const d = Math.hypot(dx, dy);
         if (d >= d0) return;
-        const r = d > 1e-6 ? [dx / d, dy / d] : [Math.cos(id.length), Math.sin(id.length)];
+        const r = d > 1e-6 ? [dx / d, dy / d] : [[1, 0], [0, 1], [-1, 0], [0, -1]][id.length % 4];
         f[0] += 0.5 * (d0 - d) * r[0];
         f[1] += 0.5 * (d0 - d) * r[1];
       };
       for (const [id2, q] of P) if (id2 !== id) schieben(q, ABSTAND);
       for (const s of tramStuecke) schieben(naechster(p, s), 0.7);
-      neu.set(id, [p[0] + f[0], p[1] + f[1]]);
+      neu.set(id, glatt([p[0] + f[0], p[1] + f[1]]));
     }
     for (const [id, p] of neu) P.set(id, p);
   }
@@ -234,7 +238,7 @@ for (const kette of alle) {
   for (let i = 1; i < kette.length; i++) {
     const k = kanteZwischen.get(`${kette[i - 1]}>${kette[i]}`);
     const c = k.coords;
-    for (let j = 0; j < c.length; j += Math.max(1, Math.floor(c.length / 6))) proben.push(verzerren(km(c[j])));
+    for (let j = 0; j < c.length; j += Math.max(1, Math.floor(c.length / 6))) proben.push(glatt(verzerren(km(c[j]))));
   }
   for (const h of kette.slice(1, -1)) proben.push(P.get(h));
   const varianten = zuege(a, b);
