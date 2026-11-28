@@ -1,6 +1,6 @@
 <script>
   import LinienBadge from './LinienBadge.svelte';
-  import { zustand, halteAm, erfasst, GRUPPEN } from './netz.js';
+  import { zustand, halteAm, erfasst, GRUPPEN, trolleybusAm } from './netz.js';
 
   let { netz, jahr, datum, filter, gruppen, ansicht, aenderungen, onfilter, onkarte, onlinie } = $props();
 
@@ -18,7 +18,16 @@
     ['neu', 'Neue Linien'],
     ['eingestellt', 'Eingestellt'],
     ['geändert', 'Linienweg geändert'],
+    ['umgestellt', 'Umgestellt'],
   ];
+  // Buslinien getrennt nach Trolleybus und Autobus
+  const unterGruppen = (g, liste) =>
+    g !== 'bus'
+      ? [{ titel: GRUPPEN[g], liste }]
+      : [
+          { titel: 'Trolleybus', liste: liste.filter((l) => trolleybusAm(l, datum)) },
+          { titel: 'Autobus', liste: liste.filter((l) => !trolleybusAm(l, datum)) },
+        ].filter((u) => u.liste.length);
   const arten = $derived(
     ARTEN.map(([art, titel]) => ({ art, titel, liste: aenderungen.filter((a) => a.art === art) })).filter((g) => g.liste.length),
   );
@@ -46,12 +55,15 @@
     {#each gruppen as g (g)}
       {@const liste = linien.filter((l) => l.gruppe === g)}
       {#if liste.length}
-        {#if gruppen.length > 1}<h3>{GRUPPEN[g]}</h3>{/if}
-        <div class="badges">
-          {#each liste as l (l.id)}
-            <button onclick={() => onlinie(l.id)} aria-label="{GRUPPEN[l.gruppe]} {l.nummer} öffnen"><LinienBadge linie={l} /></button>
-          {/each}
-        </div>
+        {@const teile = unterGruppen(g, liste)}
+        {#each teile as u (u.titel)}
+          {#if gruppen.length > 1 || teile.length > 1}<h3>{u.titel}</h3>{/if}
+          <div class="badges">
+            {#each u.liste as l (l.id)}
+              <button onclick={() => onlinie(l.id)} aria-label="{u.titel} {l.nummer} öffnen"><LinienBadge linie={l} /></button>
+            {/each}
+          </div>
+        {/each}
       {/if}
     {/each}
   </div>
@@ -73,7 +85,7 @@
               <button onclick={() => onlinie(a.linie)}>
                 <LinienBadge linie={netz.linieById.get(a.linie)} />
                 <span class="notiz">
-                  {#if a.art !== 'eingestellt' && a.version.notiz}{a.version.notiz}{/if}
+                  {#if a.art === 'umgestellt'}Auf {a.zu} umgestellt.{:else if a.art !== 'eingestellt' && a.version.notiz}{a.version.notiz}{/if}
                 </span>
               </button>
             </li>
@@ -87,7 +99,11 @@
     <p><span class="muster neu"></span>Neu seit dem Vorjahr</p>
     <p><span class="muster weg"></span>Seit dem Vorjahr nicht mehr befahren</p>
     <p><span class="muster bau"></span>Baulinie</p>
-    {#if mitBus}<p><span class="muster bus"></span>Buslinie, Trolleybusse in eigener Farbe</p>{/if}
+    {#if mitBus}
+      <p><span class="muster bus"></span>Autobus</p>
+      <p><span class="muster trolley"></span>Trolleybus, Strich in der Mitte: Fahrleitung</p>
+      <p><span class="muster trolley akku"></span>Trolleybus ohne Fahrleitung, mit Akku</p>
+    {/if}
     <p class="tastenhinweis">Linie anklicken für ihren Verlauf. Pfeiltasten wechseln das Jahr, P und G die Ansicht.</p>
   </div>
 </section>
@@ -233,6 +249,18 @@
   .muster.bus {
     height: 4px;
     background: #75bee9;
+  }
+  /* Trolleybus: Linienfarbe (hier die der 31) mit dunklem Mittelstrich wie in der Karte */
+  .muster.trolley {
+    height: 5px;
+    border-radius: 2.5px;
+    background: linear-gradient(transparent 2px, #3a3833 2px 3px, transparent 3px), #a5a2c6;
+  }
+  .muster.trolley.akku {
+    background:
+      linear-gradient(90deg, #a5a2c6 0 2.5px, transparent 2.5px) 0 2px / 5px 1px repeat-x,
+      linear-gradient(transparent 2px, #3a3833 2px 3px, transparent 3px),
+      #a5a2c6;
   }
   .tastenhinweis {
     margin-top: 8px;
