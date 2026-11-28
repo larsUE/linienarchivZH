@@ -1,6 +1,6 @@
 # Linienarchiv Zürich – Pilot
 
-Archiv des Zürcher Tram- und Busnetzes mit Zeitstrahl: Tram 1882–2026 (von der Pferdebahn an), VBZ-Stadtbuslinien 2015–2026, als Liniennetzplan und als geografische Karte.
+Archiv des Zürcher Tram- und Busnetzes mit Zeitstrahl: Tram 1882–2026 (von der Pferdebahn an), VBZ-Stadtbuslinien 2015–2026 (Trolleybusse ab 1939), als Liniennetzplan und als geografische Karte.
 
 ```bash
 npm install
@@ -113,7 +113,7 @@ Jede Version trägt einen **Status**:
 
 ## Busse
 
-Die VBZ-Stadtbuslinien 31–99 (Autobus, Trolleybus und die von Auftragsunternehmen gefahrenen Linien) sind ab 2015 erfasst. Nachtnetz und Regionallinien gehören nicht dazu.
+Die VBZ-Stadtbuslinien 31–99 (Autobus, Trolleybus und die von Auftragsunternehmen gefahrenen Linien) sind ab 2015 erfasst, die Trolleybuslinien nach der Chronik schon ab 1939 (siehe [Trolleybusse](#trolleybusse)). Nachtnetz und Regionallinien gehören nicht dazu.
 
 | Datei | Inhalt |
 |---|---|
@@ -145,6 +145,8 @@ In [`data/busse.yaml`](data/busse.yaml):
 
 Quellen sind der Wikipedia-Artikel *Trolleybus Zürich* und die GTFS-Daten: Dort beginnt die `route_id` der Trolleybuslinien mit `2-`, die der Autobuslinien mit `3-`. Danach ist die Linie 83 ab dem Fahrplanwechsel am 15.12.2019 Trolleybus (Wikipedia: Batterie-Trolleybusse ab Frühling 2020). Die Linie 69 fährt seit dem 19.10.2026 als Trolleybus. Das ist nach dem Stichtag 1. Juli, deshalb zeigen Karte und Übersicht sie erst ab dem Stand 2027; bis dahin steht die Umstellung nur in der Linienansicht. Auch die für Ende 2027 geplante Umstellung der Linie 80 steht nur in der Chronik.
 
+Vor 2015 zeigt das Archiv nur die Trolleybuslinien, nach dem Wikipedia-Artikel: 32 (ab 1939 als Linie B), 33 (A, ab 1942), 34 (C, ab 1946), 31 (ab 1956), 73 (1974–1975), 74 (1975–1999, danach Teil der 32), 72 (ab 1994), 46 (ab 1995) und 71 (ab 2013). Daten und Endpunkte stammen aus der Chronik, den Weg dazwischen übernehmen die Versionen aus dem Weg der ersten Fahrplandaten vom Dezember 2014 (Status `abgeleitet`; `unsicher`, wo die Chronik dem widerspricht oder Daten fehlen). Die Linie 33 fuhr 1967–1975 mit Autobussen und erscheint in diesen Jahren als Autobus. Abschnitte, die es in den Busdaten nicht gibt (Hegibachplatz–Burgwies bis 1979, Helvetiaplatz–Bezirksgebäude bis 1948), sind als Gerade über die Tramhaltestellen gezeichnet. Je Linie steht das erste erfasste Jahr in `netz.json` unter `erfasstAb`. Verglichen mit dem Vorjahr werden nur Linien, die im Vorjahr erfasst sind; 2015 also nur die Trolleybusse.
+
 Die fahrleitungslosen Abschnitte sind aus dem Text der Chronik geschlossen. Zwischen Hardplatz und Albisriederplatz gilt der Abschnitt ab Beginn der Busdaten, weil der Umbau des Albisriederplatzes 2015 nicht taggenau bekannt ist. Den Akku-Abschnitt am Bucheggplatz (ebenfalls seit 2015) kennt das Archiv nicht genauer und zeichnet ihn nicht.
 
 Regeln beim Erzeugen der Versionen:
@@ -155,7 +157,7 @@ Regeln beim Erzeugen der Versionen:
 
 Grenzen:
 
-- **Vor 2015 gibt es keine Busdaten.** Die Übersicht zeigt das, und der Zeitstrahl zählt 2015 keine Busse als neue Linien.
+- **Vor 2015 gibt es keine Busdaten.** Die Übersicht zeigt das, und der Zeitstrahl zählt 2015 keine Busse als neue Linien. Nur die Trolleybuslinien reichen nach der Chronik weiter zurück.
 - Der Busstand 2015 stammt aus der Stichwoche im Oktober, das Archiv zeigt ihn für den 1. Juli.
 - Die Linien 39 und 73 fehlen in den VBZ-Fahrzeiten und sind erst ab Dezember 2018 (GTFS) erfasst.
 - Der häufigste Weg verdeckt Äste und Teilstrecken, wie beim Tram.

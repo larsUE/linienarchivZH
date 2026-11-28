@@ -45,6 +45,17 @@ export function ohneFahrleitung(netz, datum) {
 /** Ist das Verkehrsmittel im Jahr erfasst? (Busse erst ab 2015) */
 export const erfasst = (netz, gruppe, jahr) => netz.erfasstAb[gruppe] !== undefined && jahr >= netz.erfasstAb[gruppe];
 
+/** Ist die Linie im Jahr erfasst? Trolleybuslinien reichen nach der Chronik vor 2015 zurück. */
+export const linieErfasst = (netz, linie, jahr) => erfasst(netz, linie.gruppe, jahr) || (linie.erfasstAb !== undefined && jahr >= linie.erfasstAb);
+
+/** Sind im Jahr von den Bussen nur die Trolleybuslinien erfasst (vor den Fahrplandaten)? */
+export const nurTrolleybusse = (netz, jahr) =>
+  netz.erfasstAb.trolleybus !== undefined && jahr >= netz.erfasstAb.trolleybus && !erfasst(netz, 'bus', jahr);
+
+/** Lässt sich das Netz des Verkehrsmittels mit dem Vorjahr vergleichen? Nur bei gleichem Erfassungsumfang in beiden Jahren. */
+export const netzVergleichbar = (netz, gruppe, jahr) =>
+  erfasst(netz, gruppe, jahr - 1) || (gruppe === 'bus' && nurTrolleybusse(netz, jahr - 1) && nurTrolleybusse(netz, jahr));
+
 /** Alle gültigen Versionen an einem Datum, je Linie höchstens eine; optional nur die gezeigten Verkehrsmittel. */
 export function zustand(netz, datum, gruppen = null) {
   const proLinie = new Map();
@@ -68,15 +79,15 @@ const gleicherWeg = (a, b, datumA, datumB) => {
   return ha === hb.join('|') || ha === [...hb].reverse().join('|');
 };
 
-/** Änderungen zwischen dem Stand des Vorjahres und dem Stand des Jahres (nur Verkehrsmittel, die im Vorjahr schon erfasst sind). */
+/** Änderungen zwischen dem Stand des Vorjahres und dem Stand des Jahres (nur Linien, die im Vorjahr schon erfasst sind). */
 export function aenderungen(netz, jahr, gruppen = ['tram']) {
   const d1 = stichtag(netz, jahr - 1);
   const d2 = stichtag(netz, jahr);
-  const vergleichbar = gruppen.filter((g) => erfasst(netz, g, jahr - 1));
-  const vorher = zustand(netz, d1, vergleichbar);
-  const nachher = zustand(netz, d2, vergleichbar);
+  const vorher = zustand(netz, d1, gruppen);
+  const nachher = zustand(netz, d2, gruppen);
   const liste = [];
   for (const l of netz.linien) {
+    if (!linieErfasst(netz, l, jahr - 1)) continue;
     const a = vorher.get(l.id);
     const b = nachher.get(l.id);
     if (!a && b) liste.push({ linie: l.id, art: 'neu', version: b });

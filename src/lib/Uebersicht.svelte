@@ -1,6 +1,6 @@
 <script>
   import LinienBadge from './LinienBadge.svelte';
-  import { zustand, halteAm, erfasst, GRUPPEN, trolleybusAm } from './netz.js';
+  import { zustand, halteAm, erfasst, nurTrolleybusse, GRUPPEN, trolleybusAm } from './netz.js';
 
   let { netz, jahr, datum, filter, gruppen, ansicht, aenderungen, onfilter, onkarte, onlinie } = $props();
 
@@ -9,9 +9,13 @@
   const anzahlHalte = $derived(new Set([...aktiv.values()].flatMap((v) => halteAm(v, datum))).size);
   const TITEL = { tram: 'Tramnetz', bus: 'Busnetz', alle: 'Tram- und Busnetz' };
   const mitBus = $derived(!!netz.erfasstAb.bus);
-  const busFehlt = $derived(gruppen.includes('bus') && !erfasst(netz, 'bus', jahr));
-  // Im Vorjahr noch nicht erfasste Verkehrsmittel: kein Vergleich möglich
-  const ohneVergleich = $derived(gruppen.filter((g) => !erfasst(netz, g, jahr - 1)));
+  const nurTrolley = $derived(gruppen.includes('bus') && nurTrolleybusse(netz, jahr));
+  const busFehlt = $derived(gruppen.includes('bus') && !erfasst(netz, 'bus', jahr) && !nurTrolley);
+  // Im Vorjahr noch nicht erfasste Verkehrsmittel: kein Vergleich möglich (Busse: davor nur Trolleybusse)
+  const imVorjahr = (g) => erfasst(netz, g, jahr - 1) || (g === 'bus' && nurTrolleybusse(netz, jahr - 1));
+  const ohneVergleich = $derived(gruppen.filter((g) => !imVorjahr(g)));
+  // Erstes Jahr mit allen Bussen: verglichen werden nur die Trolleybusse
+  const nurTrolleyVerglichen = $derived(gruppen.includes('bus') && jahr === netz.erfasstAb.bus && nurTrolleybusse(netz, jahr - 1));
 
   // Änderungen nach Art gruppiert, damit die Art nur einmal dasteht
   const ARTEN = [
@@ -45,7 +49,12 @@
     <h2>{TITEL[filter]} am 1. Juli {jahr}</h2>
     <p class="still">{linien.length} Linien, {anzahlHalte} Haltestellen</p>
     {#if busFehlt}
-      <p class="hinweis">Busse sind erst ab {netz.erfasstAb.bus} erfasst. Für frühere Jahre fehlen offene Fahrplandaten.</p>
+      <p class="hinweis">
+        Busse sind erst ab {netz.erfasstAb.bus} erfasst. Für frühere Jahre fehlen offene Fahrplandaten.
+        {#if netz.erfasstAb.trolleybus}Die Trolleybusse reichen nach der Linienchronik bis {netz.erfasstAb.trolleybus} zurück.{/if}
+      </p>
+    {:else if nurTrolley}
+      <p class="hinweis">Vor {netz.erfasstAb.bus} sind nur die Trolleybuslinien erfasst, nach der Linienchronik auf Wikipedia. Die Autobusse fehlen.</p>
     {:else if gruppen.includes('bus') && ansicht === 'plan' && !netz.meta.plan?.busse}
       <p class="hinweis">
         Busse haben noch keine Lage im Liniennetzplan und erscheinen nur in der geografischen Karte.
@@ -74,6 +83,7 @@
       <p class="still">Beginn des Erfassungszeitraums.</p>
     {:else}
       {#if ohneVergleich.length}<p class="still">{ohneVergleich.map((g) => GRUPPEN[g]).join(', ')} erst ab {jahr} erfasst, kein Vergleich.</p>{/if}
+      {#if nurTrolleyVerglichen}<p class="still">Autobusse erst ab {jahr} erfasst, verglichen sind nur die Trolleybusse.</p>{/if}
       {#if aenderungen.length === 0}
         <p class="still">Keine Änderungen am Linienweg.</p>
       {/if}

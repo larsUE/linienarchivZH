@@ -445,6 +445,7 @@ for (const l of [...tramLinien, ...busCfg.linien]) {
     farbe: l.farbe ?? (art === 'bus' ? '#FFFFFF' : farbeAusOsm.get(l.nummer.replace(/\D+$/, '')) ?? '#666666'),
     ...(l.trolleybus ? { trolleybus: l.trolleybus.map(zeitraum) } : {}),
     ...(l.chronik ? { chronik: l.chronik.map(chronikEintrag).sort((a, b) => (a.datum ?? '9999').localeCompare(b.datum ?? '9999')) } : {}),
+    ...(frueherErfasst(l, art) ? { erfasstAb: frueherErfasst(l, art) } : {}),
   });
   for (const v of l.versionen) {
     const { von, bis, halte, kantenListe, halteAb } = aufgeloest.get(v);
@@ -461,6 +462,14 @@ for (const l of [...tramLinien, ...busCfg.linien]) {
       ...(Object.keys(halteAb).length ? { halteAb } : {}),
     });
   }
+}
+// Buslinien mit Versionen vor dem Beginn der Fahrplandaten (Trolleybusse nach der Chronik): erstes erfasstes Jahr
+function frueherErfasst(l, art) {
+  if (art !== 'bus') return null;
+  // erstes Jahr, dessen Stichtag (1. Juli) eine Version trifft
+  const jahre = l.versionen.map((v) => aufgeloest.get(v).von).filter(Boolean).map((d) => Number(d.slice(0, 4)) + (d.slice(5) > cfg.stichtag ? 1 : 0));
+  const erstes = Math.min(...jahre);
+  return erstes < (busCfg.erfasst_ab ?? cfg.zeitraum[0]) ? erstes : null;
 }
 function isoDate(d) {
   return d instanceof Date ? d.toISOString().slice(0, 10) : String(d);
@@ -586,7 +595,9 @@ if (plan) {
   const hById = new Map(haltestellen.map((h) => [h.id, h]));
   for (const kante of kantenListe) {
     const pts = plan.kanten[kante.id];
-    if (kante.bus && !pts) {
+    // Busabschnitte ohne Planlage: Gerade zwischen den Haltestellen, wenn beide eine eigene Planlage haben
+    // (z.B. frühere Trolleybuswege über Tramhaltestellen), sonst nur geografisch
+    if (kante.bus && !pts && [kante.a, kante.b].some((id) => hById.get(id).planGeschaetzt)) {
       kante.planGeschaetzt = true;
       continue;
     }
@@ -605,7 +616,12 @@ const out = {
     stichtag: cfg.stichtag,
     zeitraum: cfg.zeitraum,
     // Erstes erfasstes Jahr je Verkehrsmittel (Busse erst ab den Fahrplandaten 2015)
-    erfasstAb: { tram: cfg.zeitraum[0], ...(busCfg.linien.length ? { bus: busCfg.erfasst_ab ?? cfg.zeitraum[0] } : {}) },
+    // Trolleybusse reichen nach der Chronik weiter zurück (erfasstAb je Linie)
+    erfasstAb: {
+      tram: cfg.zeitraum[0],
+      ...(busCfg.linien.length ? { bus: busCfg.erfasst_ab ?? cfg.zeitraum[0] } : {}),
+      ...(linien.some((l) => l.erfasstAb) ? { trolleybus: Math.min(...linien.filter((l) => l.erfasstAb).map((l) => l.erfasstAb)) } : {}),
+    },
     plan,
   },
   quellen: Object.fromEntries(

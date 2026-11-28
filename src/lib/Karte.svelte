@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import maplibregl from 'maplibre-gl';
-  import { zustand, halteAm, erfasst, trolleybusAm, ohneFahrleitung } from './netz.js';
+  import { zustand, halteAm, netzVergleichbar, trolleybusAm, ohneFahrleitung } from './netz.js';
 
   let { netz, datum, vorjahrDatum, auswahl = null, ansicht = 'plan', gruppen = ['tram'], onlinie } = $props();
 
@@ -318,8 +318,8 @@
 
   function inhaltBerechnen() {
     const jetzt = zustand(netz, datum, gruppen);
-    // Vergleich nur für Verkehrsmittel, die im Vorjahr schon erfasst sind (Busse ab 2015)
-    const vergleichbar = vorjahrDatum ? gruppen.filter((g) => erfasst(netz, g, Number(vorjahrDatum.slice(0, 4)))) : [];
+    // Vergleich nur bei gleichem Erfassungsumfang (Busse ab 2015, davor nur Trolleybusse)
+    const vergleichbar = vorjahrDatum ? gruppen.filter((g) => netzVergleichbar(netz, g, Number(vorjahrDatum.slice(0, 4)) + 1)) : [];
     const vorher = vorjahrDatum ? zustand(netz, vorjahrDatum, gruppen) : null;
     const istBusKante = (id) => netz.kanteById.get(id).bus;
     const { eintraege, kanten, breite: buendel } = linienEintraege(jetzt, datum);

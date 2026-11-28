@@ -106,7 +106,7 @@
       <div class="kopf">
         <div>
           <h1>Linienarchiv Zürich</h1>
-          <p>Tram {netz.jahre[0]}–{netz.jahre.at(-1)}{#if mitBus}, Bus ab {netz.erfasstAb.bus}{/if}, Pilot</p>
+          <p>Tram {netz.jahre[0]}–{netz.jahre.at(-1)}{#if mitBus}{#if netz.erfasstAb.trolleybus}, Trolleybus ab {netz.erfasstAb.trolleybus}{/if}, Bus ab {netz.erfasstAb.bus}{/if}, Pilot</p>
         </div>
         <div class="ansicht" role="group" aria-label="Kartenansicht">
           <button aria-pressed={ansicht === 'plan'} onclick={() => (ansicht = 'plan')} title="Taste P">Plan</button>

@@ -42,6 +42,8 @@
   });
   // Trolleybus: Zeitraum am Datum, Abschnitte ohne Fahrleitung (Akku) als Haltestellenpaare
   const trolley = $derived(trolleybusAm(linie, datum));
+  // Erstes erfasstes Jahr der Linie (Trolleybusse nach der Chronik früher als die übrigen Busse)
+  const erfasstAb = $derived(linie.erfasstAb ?? netz.erfasstAb[linie.gruppe] ?? start);
   const akkuPaare = $derived.by(() => {
     const s = new Set();
     if (!aktuell || !trolley) return s;
@@ -110,9 +112,9 @@
       {#each zehner ?? [] as j (j)}
         <span class="strich" class:hundert={j % 50 === 0} style:left="{pos(`${j}-01-01`, 0) * 100}%"></span>
       {/each}
-      {#if (netz.erfasstAb[linie.gruppe] ?? start) > start}
-        <!-- Jahre ohne Daten für dieses Verkehrsmittel (Busse vor 2015) -->
-        <span class="nicht-erfasst" style:width="{pos(`${netz.erfasstAb[linie.gruppe]}-01-01`, 0) * 100}%" title="vor {netz.erfasstAb[linie.gruppe]} nicht erfasst"></span>
+      {#if erfasstAb > start}
+        <!-- Jahre ohne Daten für diese Linie (Autobusse vor 2015, Trolleybusse vor ihrer Chronik) -->
+        <span class="nicht-erfasst" style:width="{pos(`${erfasstAb}-01-01`, 0) * 100}%" title="vor {erfasstAb} nicht erfasst"></span>
       {/if}
       {#each versionen as v (v.id)}
         {@const a = pos(v.von, 0)}
@@ -135,7 +137,7 @@
       <!-- Zeiträume als Trolleybus: dunkler Strich wie die Fahrleitung in der Karte -->
       <div class="betrieb" aria-label="Zeiträume als Trolleybus">
         {#each linie.trolleybus as z, i (i)}
-          {@const a = pos(z.von ?? `${netz.erfasstAb[linie.gruppe] ?? start}-01-01`, 0)}
+          {@const a = pos(z.von ?? `${erfasstAb}-01-01`, 0)}
           <span class="draht" style:left="{a * 100}%" style:width="max(3px, {(pos(z.bis, 1) - a) * 100}%)" title="Trolleybus {zeitraumText(z)}"></span>
         {/each}
       </div>

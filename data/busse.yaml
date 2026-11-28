@@ -7,7 +7,8 @@
 # Farben: Linien mit eigener Farbe (z.B. Trolleybusse) wie in den Fahrplandaten, alle anderen im Busblau
 # des ZVV-Liniennetzplans (#75BEE9). In den Fahrplandaten sind sie weiss.
 #
-# Für die Jahre vor 2015 gibt es keine Busdaten; das Archiv zeigt Busse ab 2015.
+# Für die Jahre vor 2015 gibt es keine Busdaten; das Archiv zeigt Autobusse ab 2015. Die Trolleybuslinien reichen
+# nach der Wikipedia-Chronik weiter zurück (Versionen mit Quelle wp-trolleybus, Status abgeleitet oder unsicher).
 
 erfasst_ab: 2015
 
@@ -53,16 +54,45 @@ linien:
     art: bus
     farbe: "#A5A2C6"
     trolleybus:
-      - von: null
+      - von: 1956-01-01
         bis: null
         quellen: [wp-trolleybus, gtfs]
     chronik:
-      - {datum: 2007, text: "Endet am Hegibachplatz; den Abschnitt zum Klusplatz befährt nur noch die Linie 33."}
+      - {datum: 1956-01-01, text: "Trolleybus Burgwies–Hegibachplatz–Hauptbahnhof–Hardplatz, ersetzt die Autobuslinie 31 (bis 1954 Tram 1)."}
+      - {datum: 1957-01-07, text: "Verlängert über die Hohlstrasse bis Farbhof."}
+      - {datum: 1958-04-08, text: "Verlängert bis Schlieren Zentrum, ersetzt die Autobuslinie 2 (bis 1955 Tram 2)."}
+      - {datum: 1965, text: "Wegen des Baus des Shopville umfährt die Linie den Bahnhofplatz über Usteri-, Werdmühle- und Waisenhausstrasse, bis 1971."}
+      - {datum: 1979-05-25, text: "Abschnitt Burgwies–Hegibachplatz eingestellt."}
+      - {datum: 2007, text: "Betriebsstrecke Hegibachplatz–Klusplatz abgebaut, ersetzt durch Fahrleitungsweichen zur Linie 33 am Klusplatz."}
       - {datum: 2017-08-27, text: "Abschnitt Bahnhof Altstetten–Micafil wegen des Baus der Limmattalbahn vorübergehend eingestellt, ersetzt durch den Autobus 31E."}
       - {datum: 2017-12-10, text: "Linie 34 geht in der 31 auf: Durchmesserlinie über die Hegibachstrasse nach Witikon, Kienastenwies."}
       - {datum: 2019-07-15, text: "Endet am Bahnhof Altstetten; nach Schlieren fährt die Limmattalbahn (Tram 2). Bis dahin war die 31 die einzige Trolleybuslinie über die Stadtgrenze."}
       - {datum: 2021-05-31, text: "Wieder bis Hermetschloo, über die Hermetschloostrasse."}
     versionen:
+      - von: 1979-05-25
+        bis: 2014-12-13
+        weg: ["Hegibachplatz", "Signaustrasse", "Kreuzplatz", "Sprecherstrasse", "Kunsthaus", "Neumarkt", "Central", "Bahnhofplatz/HB", "Löwenplatz", "Sihlpost/HB", "Kanonengasse", "Militär-/Langstrasse", "Bäckeranlage", "Güterbahnhof", "Hardplatz", "Herdernstrasse", "SBB-Werkstätte", "Letzipark", "Luggwegstrasse", "Bahnhof Altstetten", "Seidelhof", "Farbhof", "Micafil", "Mülligen", "Gasometerbrücke", "Wagonsfabrik", "Schlieren Zentrum/Bahnhof", "Schlieren, Zentrum"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Weg wie in den ersten Fahrplandaten (Dezember 2014) angenommen."
+      - von: 1958-04-08
+        bis: 1979-05-24
+        weg: ["Burgwies", "Wetlistrasse", "Hedwigsteig", "Hegibachplatz", "Signaustrasse", "Kreuzplatz", "Sprecherstrasse", "Kunsthaus", "Neumarkt", "Central", "Bahnhofplatz/HB", "Löwenplatz", "Sihlpost/HB", "Kanonengasse", "Militär-/Langstrasse", "Bäckeranlage", "Güterbahnhof", "Hardplatz", "Herdernstrasse", "SBB-Werkstätte", "Letzipark", "Luggwegstrasse", "Bahnhof Altstetten", "Seidelhof", "Farbhof", "Micafil", "Mülligen", "Gasometerbrücke", "Wagonsfabrik", "Schlieren Zentrum/Bahnhof", "Schlieren, Zentrum"]
+        status: unsicher
+        quellen: [wp-trolleybus]
+        notiz: "Bis Burgwies (Weinegg), Halte dort wie beim Tram. Weg sonst wie 2014 angenommen. 1965–1971 umfuhr die Linie den Bahnhofplatz über Usteri-, Werdmühle- und Waisenhausstrasse (nicht gezeichnet)."
+      - von: 1957-01-07
+        bis: 1958-04-07
+        weg: ["Burgwies", "Wetlistrasse", "Hedwigsteig", "Hegibachplatz", "Signaustrasse", "Kreuzplatz", "Sprecherstrasse", "Kunsthaus", "Neumarkt", "Central", "Bahnhofplatz/HB", "Löwenplatz", "Sihlpost/HB", "Kanonengasse", "Militär-/Langstrasse", "Bäckeranlage", "Güterbahnhof", "Hardplatz", "Herdernstrasse", "SBB-Werkstätte", "Letzipark", "Luggwegstrasse", "Bahnhof Altstetten", "Seidelhof", "Farbhof"]
+        status: unsicher
+        quellen: [wp-trolleybus]
+        notiz: "Bis Burgwies (Weinegg), Halte dort wie beim Tram. Weg sonst wie 2014 angenommen."
+      - von: 1956-01-01
+        bis: 1957-01-06
+        weg: ["Burgwies", "Wetlistrasse", "Hedwigsteig", "Hegibachplatz", "Signaustrasse", "Kreuzplatz", "Sprecherstrasse", "Kunsthaus", "Neumarkt", "Central", "Bahnhofplatz/HB", "Löwenplatz", "Sihlpost/HB", "Kanonengasse", "Militär-/Langstrasse", "Bäckeranlage", "Güterbahnhof", "Hardplatz", "Herdernstrasse"]
+        status: unsicher
+        quellen: [wp-trolleybus]
+        notiz: "Ersetzt die Autobuslinie 31 (bis 1954 Tram 1). Westlicher Endpunkt laut Chronik Hardplatz oder Herdernstrasse."
       - von: 2021-05-31
         weg: [
           "Hermetschloo", "Micafil", "Farbhof", "Seidelhof", "Bahnhof Altstetten", "Letzibach", "Letzipark",
@@ -117,7 +147,7 @@ linien:
     art: bus
     farbe: "#CCB2D1"
     trolleybus:
-      - von: null
+      - von: 1939-05-27
         bis: null
         quellen: [wp-trolleybus, gtfs]
     chronik:
@@ -132,6 +162,30 @@ linien:
       - {datum: 2015, text: "Fahrleitung am Bucheggplatz abgebaut; die Kreuzung wird mit Akku befahren."}
       - {datum: 2031, geplant: true, text: "Das Tram nach Affoltern ersetzt den Abschnitt Bucheggplatz–Holzerhurd; die 32 fährt dann in den Hauptverkehrszeiten zur ETH Hönggerberg."}
     versionen:
+      - von: 1999-05-30
+        bis: 2014-12-13
+        weg: ["Holzerhurd", "Hungerbergstrasse", "Zehntenhausplatz", "Einfangstrasse", "Glaubtenstrasse", "Neuaffoltern", "Birchdörfli", "Brunnenhof", "Bucheggplatz", "Lägernstrasse", "Rotbuchstrasse", "Nordstrasse", "Limmatplatz", "Röntgenstrasse", "Militär-/Langstrasse", "Helvetiaplatz", "Kernstrasse", "Kalkbreite/Bhf. Wiedikon", "Zwinglihaus", "Goldbrunnenplatz", "Höfliweg", "Friesenberg", "Friesenbergstrasse", "Im Hagacker", "Hegianwandweg", "Strassenverkehrsamt"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Weg wie in den ersten Fahrplandaten (Dezember 2014) angenommen."
+      - von: 1952-02-04
+        bis: 1999-05-29
+        weg: ["Bucheggplatz", "Lägernstrasse", "Rotbuchstrasse", "Nordstrasse", "Limmatplatz", "Röntgenstrasse", "Militär-/Langstrasse", "Helvetiaplatz", "Kernstrasse", "Kalkbreite/Bhf. Wiedikon", "Zwinglihaus", "Goldbrunnenplatz", "Höfliweg", "Friesenberg", "Friesenbergstrasse", "Im Hagacker", "Hegianwandweg", "Strassenverkehrsamt"]
+        status: unsicher
+        quellen: [wp-trolleybus]
+        notiz: "Weg zwischen Militär-/Langstrasse und Goldbrunnenplatz wie heute angenommen; bis 1948 endete die Linie beim Bezirksgebäude. Bis 1954 Linie B."
+      - von: 1948-04-26
+        bis: 1952-02-03
+        weg: ["Bucheggplatz", "Lägernstrasse", "Rotbuchstrasse", "Nordstrasse", "Limmatplatz", "Röntgenstrasse", "Militär-/Langstrasse", "Helvetiaplatz", "Kernstrasse", "Kalkbreite/Bhf. Wiedikon", "Zwinglihaus", "Goldbrunnenplatz"]
+        status: unsicher
+        quellen: [wp-trolleybus]
+        notiz: "Linie B. Weg zwischen Militär-/Langstrasse und Goldbrunnenplatz wie heute angenommen."
+      - von: 1939-05-27
+        bis: 1948-04-25
+        weg: ["Bucheggplatz", "Lägernstrasse", "Rotbuchstrasse", "Nordstrasse", "Limmatplatz", "Röntgenstrasse", "Militär-/Langstrasse", "Helvetiaplatz", "Bezirksgebäude"]
+        status: unsicher
+        quellen: [wp-trolleybus]
+        notiz: "Linie B, erste Trolleybuslinie Zürichs. Weg zwischen Limmatplatz und Bezirksgebäude angenommen."
       - von: 2014-12-14
         weg: [
           "Holzerhurd", "Hungerbergstrasse", "Zehntenhausplatz", "Einfangstrasse", "Glaubtenstrasse",
@@ -149,7 +203,10 @@ linien:
     art: bus
     farbe: "#DAD69C"
     trolleybus:
-      - von: null
+      - von: 1942-06-19
+        bis: 1967-10-29
+        quellen: [wp-trolleybus]
+      - von: 1975-06-01
         bis: null
         quellen: [wp-trolleybus, gtfs]
     chronik:
@@ -163,6 +220,36 @@ linien:
       - {datum: 2015, text: "Umbau Albisriederplatz: Zwischen Hardplatz und Albisriederplatz ohne Fahrleitung, mit Akku."}
       - {datum: 2027, geplant: true, text: "Mit der Umstellung der Linie 80 fährt die 33 bis zum Triemlispital."}
     versionen:
+      - von: 2013-12-15
+        bis: 2014-12-13
+        weg: ["Bahnhof Tiefenbrunnen", "Wildbachstrasse", "Fröhlichstrasse", "Höschgasse", "Botanischer Garten", "Hegibachplatz", "Freiestrasse", "Klusplatz", "Hölderlinsteig", "Klosbach", "Hofstrasse", "Kirche Fluntern", "Toblerplatz", "Bethanien", "Spyriplatz", "Vogelsangstrasse", "Seilbahn Rigiblick", "Scheuchzerstrasse", "Schaffhauserplatz", "Rotbuchstrasse", "Nürenbergstrasse", "Bahnhof Wipkingen", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke", "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Hubertus", "Sackzelg", "Schulhaus Altweg", "In der Ey", "Triemli"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Tag des Streckentauschs mit der 72 nicht genannt; Fahrplanwechsel im Dezember 2013 angenommen."
+      - von: 1998-10-24
+        bis: 2013-12-14
+        weg: ["Bahnhof Tiefenbrunnen", "Wildbachstrasse", "Fröhlichstrasse", "Höschgasse", "Botanischer Garten", "Hegibachplatz", "Freiestrasse", "Klusplatz", "Hölderlinsteig", "Klosbach", "Hofstrasse", "Kirche Fluntern", "Toblerplatz", "Bethanien", "Spyriplatz", "Vogelsangstrasse", "Seilbahn Rigiblick", "Scheuchzerstrasse", "Schaffhauserplatz", "Rotbuchstrasse", "Nürenbergstrasse", "Bahnhof Wipkingen", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke", "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Friedhof Sihlfeld", "Bertastrasse", "Zwinglihaus", "Schmiede Wiedikon", "Manesseplatz", "Sihlcity Nord", "Waffenplatzstrasse", "Waffenplatz-/Bederstr.", "Hügelstrasse", "Brunau/Mutschellenstr.", "Thujastrasse", "Jugendherberge", "Morgental"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Weg zum Morgental wie die 72 im Dezember 2014 angenommen."
+      - von: 1975-06-01
+        bis: 1998-10-23
+        weg: ["Kirche Fluntern", "Toblerplatz", "Bethanien", "Spyriplatz", "Vogelsangstrasse", "Seilbahn Rigiblick", "Scheuchzerstrasse", "Schaffhauserplatz", "Rotbuchstrasse", "Nürenbergstrasse", "Bahnhof Wipkingen", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke", "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Friedhof Sihlfeld", "Bertastrasse", "Zwinglihaus", "Schmiede Wiedikon", "Manesseplatz", "Sihlcity Nord", "Waffenplatzstrasse", "Waffenplatz-/Bederstr.", "Hügelstrasse", "Brunau/Mutschellenstr.", "Thujastrasse", "Jugendherberge", "Morgental"]
+        status: unsicher
+        quellen: [wp-trolleybus]
+        notiz: "Tag der Vereinigung mit der Linie 73 nicht genannt; mit der Wiederaufnahme des Trolleybusbetriebs angenommen."
+      - von: 1947-10-20
+        bis: 1975-05-31
+        weg: ["Kirche Fluntern", "Toblerplatz", "Bethanien", "Spyriplatz", "Vogelsangstrasse", "Seilbahn Rigiblick", "Scheuchzerstrasse", "Schaffhauserplatz", "Rotbuchstrasse", "Nürenbergstrasse", "Bahnhof Wipkingen", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke", "Hardplatz", "Albisriederplatz"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Bis 1954 Linie A. 1967–1975 mit Autobussen wegen des Neubaus der Hardbrücke. Weg wie 2014 angenommen."
+      - von: 1942-06-19
+        bis: 1947-10-19
+        weg: ["Spyriplatz", "Vogelsangstrasse", "Seilbahn Rigiblick", "Scheuchzerstrasse", "Schaffhauserplatz", "Rotbuchstrasse", "Nürenbergstrasse", "Bahnhof Wipkingen", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke", "Hardplatz", "Albisriederplatz"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Linie A. Weg wie 2014 angenommen."
       - von: 2024-07-29
         weg: [
           "Bahnhof Tiefenbrunnen", "Wildbachstrasse", "Fröhlichstrasse", "Höschgasse", "Botanischer Garten",
@@ -259,7 +346,7 @@ linien:
     art: bus
     farbe: "#75BEE9"
     trolleybus:
-      - von: null
+      - von: 1946-10-14
         bis: 2017-12-09
         quellen: [wp-trolleybus]
     chronik:
@@ -270,6 +357,24 @@ linien:
       - {datum: 1980-10-30, text: "Verlängert bis Kienastenwies."}
       - {datum: 2017-12-10, text: "Geht in der Linie 31 auf."}
     versionen:
+      - von: 1980-10-30
+        bis: 2014-12-13
+        weg: ["Kienastenwies", "Zweiackerstrasse", "Loorenstrasse", "Berghaldenstrasse", "Zentrum Witikon", "Waserstrasse", "Drusbergstrasse", "Schlyfi", "Kapfstrasse", "Klusplatz"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Weg wie in den ersten Fahrplandaten (Dezember 2014) angenommen."
+      - von: 1971-05-03
+        bis: 1980-10-29
+        weg: ["Loorenstrasse", "Berghaldenstrasse", "Zentrum Witikon", "Waserstrasse", "Drusbergstrasse", "Schlyfi", "Kapfstrasse", "Klusplatz"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Weg wie 2014 angenommen."
+      - von: 1946-10-14
+        bis: 1971-05-02
+        weg: ["Berghaldenstrasse", "Zentrum Witikon", "Waserstrasse", "Drusbergstrasse", "Schlyfi", "Kapfstrasse", "Klusplatz"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Bis 1954 Linie C. Weg wie 2014 angenommen."
       - von: 2014-12-14
         bis: 2017-12-09
         weg: [
@@ -494,12 +599,18 @@ linien:
     art: bus
     farbe: "#C1D59F"
     trolleybus:
-      - von: null
+      - von: 1995-05-28
         bis: null
         quellen: [wp-trolleybus, gtfs]
     chronik:
       - {datum: 1995-05-28, text: "Trolleybus Bahnhofquai/HB–Rütihof ersetzt die Autobuslinie 46."}
     versionen:
+      - von: 1995-05-28
+        bis: 2014-12-13
+        weg: ["Bahnhofquai/HB", "Central", "Stampfenbachplatz", "Okenstrasse", "Lettenstrasse", "Bahnhof Wipkingen", "Rosengartenstrasse", "Lehenstrasse", "Rebbergsteig", "Kempfhofsteig", "Schwert", "Meierhofplatz", "Wieslergasse", "Singlistrasse", "Segantinistrasse", "Giblenstrasse", "Heizenholz", "Geeringstrasse", "Rütihof"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Weg wie in den ersten Fahrplandaten (Dezember 2014) angenommen."
       - von: 2014-12-14
         weg: [
           "Bahnhofquai/HB", "Central", "Stampfenbachplatz", "Okenstrasse", "Lettenstrasse",
@@ -743,7 +854,7 @@ linien:
     art: bus
     farbe: "#75BEE9"
     trolleybus:
-      - von: null
+      - von: 2013-12-15
         bis: 2015-11-19
         quellen: [wp-trolleybus]
     chronik:
@@ -751,6 +862,12 @@ linien:
       - {datum: 2015-11-20, text: "Nur noch mit Autobussen."}
       - {datum: 2015-12-13, text: "Eingestellt, ersetzt durch die Buslinie 83."}
     versionen:
+      - von: 2013-12-15
+        bis: 2014-12-13
+        weg: ["Friedhof Sihlfeld", "Altes Krematorium", "Albisriederplatz", "Hardplatz", "Bahnhof Hardbrücke", "Schiffbau", "Escher-Wyss-Platz", "Rosengartenstrasse"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Weg wie in den ersten Fahrplandaten (Dezember 2014) angenommen."
       - von: 2014-12-14
         bis: 2015-12-12
         weg: [
@@ -766,7 +883,7 @@ linien:
     art: bus
     farbe: "#C6A693"
     trolleybus:
-      - von: null
+      - von: 1994-09-01
         bis: null
         quellen: [wp-trolleybus, gtfs]
     chronik:
@@ -777,6 +894,18 @@ linien:
       - {datum: 2015, text: "Fahrleitung am Bucheggplatz und am Albisriederplatz abgebaut; dort fährt sie mit Akku."}
       - {geplant: true, text: "Verlängerung nach Adliswil (Netzentwicklungsstrategie, ohne Termin)."}
     versionen:
+      - von: 2013-12-15
+        bis: 2014-12-13
+        weg: ["Milchbuck", "Bucheggplatz", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke", "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Friedhof Sihlfeld", "Bertastrasse", "Zwinglihaus", "Schmiede Wiedikon", "Manesseplatz", "Sihlcity Nord", "Waffenplatzstrasse", "Waffenplatz-/Bederstr.", "Hügelstrasse", "Brunau/Mutschellenstr.", "Thujastrasse", "Jugendherberge", "Morgental"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Tag des Streckentauschs mit der 33 nicht genannt; Fahrplanwechsel im Dezember 2013 angenommen."
+      - von: 1994-09-01
+        bis: 2013-12-14
+        weg: ["Milchbuck", "Bucheggplatz", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau", "Bahnhof Hardbrücke", "Hardplatz", "Albisriederplatz", "Altes Krematorium", "Hubertus", "Sackzelg", "Schulhaus Altweg", "In der Ey", "Triemli"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Weg zum Triemli wie die 33 im Dezember 2014 angenommen."
       - von: 2020-02-10
         weg: [
           "Milchbuck", "Bucheggplatz", "Rosengartenstrasse", "Escher-Wyss-Platz", "Schiffbau",
@@ -804,7 +933,20 @@ linien:
     nummer: "73"
     art: bus
     farbe: "#75BEE9"
+    trolleybus:
+      - von: 1974-09-02
+        bis: 1975-05-31
+        quellen: [wp-trolleybus]
+    chronik:
+      - {datum: 1974-09-02, text: "Trolleybus Albisriederplatz–Morgental, ersetzt die Autobuslinie 73."}
+      - {datum: 1975, text: "Geht in der Linie 33 auf (Kirche Fluntern–Morgental)."}
     versionen:
+      - von: 1974-09-02
+        bis: 1975-05-31
+        weg: ["Albisriederplatz", "Altes Krematorium", "Friedhof Sihlfeld", "Bertastrasse", "Zwinglihaus", "Schmiede Wiedikon", "Manesseplatz", "Sihlcity Nord", "Waffenplatzstrasse", "Waffenplatz-/Bederstr.", "Hügelstrasse", "Brunau/Mutschellenstr.", "Thujastrasse", "Jugendherberge", "Morgental"]
+        status: unsicher
+        quellen: [wp-trolleybus]
+        notiz: "Trolleybus. Tag der Vereinigung mit der 33 nicht genannt; mit der Wiederaufnahme des Trolleybusbetriebs der 33 angenommen. Weg wie die 72 im Dezember 2014 angenommen."
       - von: 2026-10-19
         weg: [
           "Friesenbergstrasse", "Friesenberghalde", "Friedhof Uetliberg", "Zielweg"
@@ -819,6 +961,31 @@ linien:
         status: belegt
         quellen: [gtfs]
 
+  - id: bus-74
+    nummer: "74"
+    art: bus
+    farbe: "#75BEE9"
+    trolleybus:
+      - von: 1975-04-02
+        bis: 1999-05-29
+        quellen: [wp-trolleybus]
+    chronik:
+      - {datum: 1975-04-02, text: "Trolleybus Bucheggplatz–Hungerbergstrasse (Affoltern)."}
+      - {datum: 1986-12-13, text: "Verlängert bis Holzerhurd."}
+      - {datum: 1999-05-30, text: "Geht in der Linie 32 auf (Holzerhurd–Strassenverkehrsamt)."}
+    versionen:
+      - von: 1986-12-13
+        bis: 1999-05-29
+        weg: ["Bucheggplatz", "Brunnenhof", "Birchdörfli", "Neuaffoltern", "Glaubtenstrasse", "Einfangstrasse", "Zehntenhausplatz", "Hungerbergstrasse", "Holzerhurd"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Weg wie die 32 im Dezember 2014 angenommen."
+      - von: 1975-04-02
+        bis: 1986-12-12
+        weg: ["Bucheggplatz", "Brunnenhof", "Birchdörfli", "Neuaffoltern", "Glaubtenstrasse", "Einfangstrasse", "Zehntenhausplatz", "Hungerbergstrasse"]
+        status: abgeleitet
+        quellen: [wp-trolleybus]
+        notiz: "Weg wie die 32 im Dezember 2014 angenommen."
   - id: bus-75
     nummer: "75"
     art: bus
