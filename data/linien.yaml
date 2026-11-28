@@ -1,4 +1,4 @@
-# Linienarchiv Zürich – Tramnetz 2010–2026
+# Linienarchiv Zürich – Tramnetz 1882–2026
 # (Buslinien ab 2015 stehen in data/busse.yaml; Quellen und fahrplan_alias hier gelten auch dort.)
 #
 # Jede Linie hat Versionen mit Gültigkeit (von/bis, beide inklusive, null = offen).
@@ -13,11 +13,15 @@
 #   unsicher    Quellen widersprüchlich oder nur sinngemäss geprüft
 #
 # Fahrplandaten (scripts/import/, Bericht in data/import/bericht.md) belegen die Linienwege
-# ab 2015 (Stichwochen) bzw. lückenlos ab Dezember 2018 (GTFS). Für 2010–2014 gibt es keine
-# Fahrplandaten; Versionen, die vor 2015 beginnen, sind für diese Jahre nur angenommen.
+# ab 2015 (Stichwochen) bzw. lückenlos ab Dezember 2018 (GTFS). Vor 2015 stützen sich die
+# Versionen auf die Linienchronik (wp-chronik): Beginn und Endpunkte sind belegt, der Weg ist
+# der heutige, soweit die Chronik keine Änderung nennt.
+#
+# Ältere Linienversionen (vor dem Beginn der hier erfassten), aufgehobene Linien, Strecken und
+# Haltestellen stehen in data/linien-historisch.yaml.
 
 stichtag: "07-01"          # Netzstand pro Jahr: 1. Juli
-zeitraum: [2010, 2026]
+zeitraum: [1882, 2026]
 
 quellen:
   osm:
@@ -81,7 +85,8 @@ linien:
         status: belegt
         quellen: [gtfs, wp-strab, wp-chronik]
         notiz: "Verlängerung Farbhof – Schlieren Geissweid (1. Etappe Limmattalbahn)."
-      - bis: 2019-09-01
+      - von: 1956-01-01
+        bis: 2019-09-01
         weg:
           - {osm: 2807115, von: Bahnhof Tiefenbrunnen, bis: Bellevue}
           - {osm: 2807094, von: Bellevue, bis: Farbhof}
@@ -92,10 +97,11 @@ linien:
   - id: tram-3
     nummer: "3"
     versionen:
-      - weg: [{osm: 48681}]
+      - von: 1939-10-08
+        weg: [{osm: 48681}]
         status: belegt
         quellen: [osm, vbz-fahrzeiten, gtfs, wp-strab]
-        notiz: "Fahrplandaten 2015–2026 zeigen denselben Weg; für 2010–2014 als unverändert angenommen."
+        notiz: "Fahrplandaten 2015–2026 zeigen denselben Weg; vor 2015 laut Linienchronik unverändert."
 
   - id: tram-4
     nummer: "4"
@@ -114,7 +120,8 @@ linien:
         status: belegt
         quellen: [vbz-fahrzeiten, gtfs, wp-strab, wp-chronik]
         notiz: "Neubaustrecke Tram Zürich West bis Bahnhof Altstetten Nord."
-      - bis: 2011-12-10
+      - von: 1976-12-18
+        bis: 2011-12-10
         weg:
           - {osm: 2807115, von: Bahnhof Tiefenbrunnen, bis: Central}
           - "Bahnhofquai/HB"
@@ -126,7 +133,8 @@ linien:
   - id: tram-4e
     nummer: "4E"
     versionen:
-      - bis: 2011-12-10
+      - von: 2008-12-14
+        bis: 2011-12-10
         weg:
           - "Bahnhofquai/HB"
           - {osm: 1903834, von: Museum für Gestaltung, bis: Hardturm}
@@ -177,7 +185,8 @@ linien:
         status: belegt
         quellen: [gtfs, wp-strab]
         notiz: "Übernimmt den Abschnitt HB – Werdhölzli der eingestellten Linie 17 (verspätete Flexity-Trams). Juni bis November 2021 baustellenbedingt nur bis Hardturm."
-      - bis: 2019-11-24
+      - von: 1986-02-01
+        bis: 2019-11-24
         weg: *tram6-enge
         status: belegt
         quellen: [vbz-fahrzeiten, gtfs, wp-strab]
@@ -186,10 +195,11 @@ linien:
   - id: tram-7
     nummer: "7"
     versionen:
-      - weg: [{osm: 2807029}]
+      - von: 1986-02-01
+        weg: [{osm: 2807029}]
         status: belegt
         quellen: [osm, vbz-fahrzeiten, gtfs, wp-strab]
-        notiz: "Fahrplandaten 2015–2026 zeigen denselben Weg; für 2010–2014 als unverändert angenommen."
+        notiz: "Fahrplandaten 2015–2026 zeigen denselben Weg; vor 2015 laut Linienchronik unverändert."
 
   - id: tram-8
     nummer: "8"
@@ -208,7 +218,8 @@ linien:
         status: belegt
         quellen: [vbz-fahrzeiten, gtfs, wp-strab, wp-chronik]
         notiz: "Neubaustrecke über die Hardbrücke, verlängert bis Hardturm. Ab Bellevue über Stadelhofen und Kreuzplatz."
-      - bis: 2017-12-09
+      - von: 1937-10-15
+        bis: 2017-12-09
         weg:
           - {osm: 2807116, von: Hardplatz, bis: Bahnhof Selnau}
           - "Paradeplatz"
@@ -221,10 +232,11 @@ linien:
   - id: tram-9
     nummer: "9"
     versionen:
-      - weg: [{osm: 2807032}]
+      - von: 1986-02-01
+        weg: [{osm: 2807032}]
         status: belegt
         quellen: [osm, vbz-fahrzeiten, gtfs, wp-strab]
-        notiz: "Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Für 2010–2014 als unverändert angenommen."
+        notiz: "Fahrplandaten 2015–2026 zeigen denselben Weg; ein Teil der Kurse wendet in Heuried. Vor 2015 laut Linienchronik unverändert."
 
   - id: tram-10
     nummer: "10"
@@ -259,7 +271,8 @@ linien:
         status: belegt
         quellen: [gtfs]
         notiz: "Verlängert zum Bahnhof Enge, solange Linie 6 nach Werdhölzli fährt. Im Frühling 2020 und Sommer 2021 zeitweise nur ab HB."
-      - bis: 2019-11-24
+      - von: 2008-12-14
+        bis: 2019-11-24
         weg: *tram10-hb
         status: belegt
         quellen: [vbz-fahrzeiten, gtfs]
@@ -305,7 +318,8 @@ linien:
         status: belegt
         quellen: [osm, gtfs, wp-strab]
         notiz: "Durchgebunden mit Linie 4 an der Bahnhofstrasse/HB."
-      - bis: 2025-12-13
+      - von: 1954-08-16
+        bis: 2025-12-13
         weg:
           - {osm: 2807066, von: Albisgütli, bis: Bahnhofstrasse/HB}
           - "Bahnhofquai/HB"
@@ -322,7 +336,8 @@ linien:
         status: belegt
         quellen: [osm, gtfs, wp-strab]
         notiz: "Durchgebunden mit Linie 6. Der Ast nach Seebach fährt neu als Baulinie 51."
-      - bis: 2025-12-13
+      - von: 1957-04-15
+        bis: 2025-12-13
         weg: [
           "Triemli", "Schaufelbergerstrasse", "Heuried", "Talwiesenstrasse", "Goldbrunnenplatz",
           "Schmiede Wiedikon", "Bahnhof Wiedikon", "Werd", "Stauffacher", "Sihlpost/HB", "Löwenplatz",
@@ -333,7 +348,7 @@ linien:
         ]
         status: belegt
         quellen: [vbz-fahrzeiten, gtfs, wp-strab]
-        notiz: "Laut Fahrplandaten über Bahnhofquai/HB, nicht über Central. Für 2010–2014 als unverändert angenommen."
+        notiz: "Laut Fahrplandaten über Bahnhofquai/HB, nicht über Central. Vor 2015 laut Linienchronik unverändert."
 
   - id: tram-15
     nummer: "15"
@@ -353,7 +368,8 @@ linien:
         status: belegt
         quellen: [vbz-fahrzeiten, gtfs, wp-strab]
         notiz: "Wendet neu am Bahnhof Stadelhofen (längere Fahrzeuge auf Linie 8). August bis Dezember 2025 vorübergehend bis Milchbuck statt Bucheggplatz."
-      - bis: 2017-12-09
+      - von: 1951-07-16
+        bis: 2017-12-09
         weg: [
           "Bucheggplatz", "Laubiweg", "Schaffhauserplatz", "Röslistrasse", "Ottikerstrasse",
           "Sonneggstrasse", "Haldenegg", "Central", "Rudolf-Brun-Brücke", "Rathaus", "Helmhaus",
@@ -362,7 +378,7 @@ linien:
         ]
         status: belegt
         quellen: [vbz-fahrzeiten, wp-strab]
-        notiz: "Stichwochen 2015–2017 belegen Weg und Endpunkt Klusplatz; für 2010–2014 angenommen."
+        notiz: "Stichwochen 2015–2017 belegen Weg und Endpunkt Klusplatz; vorher laut Linienchronik unverändert."
 
   - id: tram-17
     nummer: "17"

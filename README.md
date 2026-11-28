@@ -1,6 +1,6 @@
 # Linienarchiv Zürich – Pilot
 
-Archiv des Zürcher Tram- und Busnetzes mit Zeitstrahl: Tram 2010–2026, VBZ-Stadtbuslinien 2015–2026, als Liniennetzplan und als geografische Karte.
+Archiv des Zürcher Tram- und Busnetzes mit Zeitstrahl: Tram 1882–2026 (von der Pferdebahn an), VBZ-Stadtbuslinien 2015–2026, als Liniennetzplan und als geografische Karte.
 
 ```bash
 npm install
@@ -35,7 +35,7 @@ Die CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) läuft bei jedem
 Die Datentests prüfen:
 
 - Ids sind eindeutig, und Versionen verweisen nur auf bestehende Linien, Haltestellen und Abschnitte.
-- Linienwege sind lückenlos.
+- Linienwege sind lückenlos, und die Versionen einer Linie überlappen sich nicht.
 - Fahrwege enden bei ihren Haltestellen. So fallen verwechselte gleichnamige Haltestellen auf.
 - Im Plan hat alles eine Lage, Striche sind waagrecht, senkrecht oder diagonal, und keine zwei Haltestellen liegen aufeinander.
 
@@ -168,11 +168,26 @@ Das Importskript macht aus jeder Tramfahrt (mit `--bus` jeder Busfahrt, siehe [B
 - [`data/import/bericht.md`](data/import/bericht.md): Zeiträume je Linie, Abgleich mit der erfassten Version, Linien ohne Erfassung und unbekannte Haltestellennamen.
 - `data/import/fahrplan.json`: dieselben Zeiträume mit Haltestellenfolgen, maschinenlesbar.
 
+### Frühere Linien und aufgehobene Strecken
+
+Die Zeit vor den in `linien.yaml` erfassten Versionen steht in [`data/linien-historisch.yaml`](data/linien-historisch.yaml), nach der Wikipedia-[Linienchronik](https://de.wikipedia.org/wiki/Linienchronik_der_Strassenbahn_Z%C3%BCrich):
+
+- `linien`: frühere Versionen der heutigen Nummern (werden an die Linie aus `linien.yaml` angehängt), aufgehobene Nummern (1, 21–24, die städtische 12 von 1928–1964) und die Linien vor der Nummerierung von 1906: Pferdebahn, Privatbahnen (ZZB, ZOS, IStB, Höngg, LSB, AGB) und die farbigen Linien der Städtischen Strassenbahn. Diese haben statt einer Nummer einen Namen (`name`).
+- `gleise_zeiten`: Eröffnung heutiger Gleisabschnitte, angegeben als Folge von Haltestellen. Der Build markiert die Gleise zwischen ihnen (beide Richtungsgleise) mit dem Zeitraum, und der Router benutzt sie nur in Versionen innerhalb dieses Zeitraums. So fährt eine Linie von 1920 nicht durch Schwamendingen oder über die Hardbrücke. Überdecken sich zwei Einträge, gilt die frühere Eröffnung.
+- `historische_strecken`: aufgehobene Strecken (Münsterbrücke, Militärstrasse, Nordbrücke, Limmattal-Strassenbahn nach Dietikon und Weiningen, ZOS nach Glattbrugg und Schwamendingen). [`scripts/historisch/strecken.mjs`](scripts/historisch/strecken.mjs) legt sie über das heutige OSM-Strassennetz (kürzester Weg, bevorzugt über die genannten Strassen) und schreibt [`data/historisch/gleise.json`](data/historisch/gleise.json). Der Build hängt sie mit ihrem Betriebszeitraum ans Gleisnetz.
+- `historische_haltestellen`: Halte an aufgehobenen Strecken, mit Lage und Betriebszeit.
+- `haltestellen_seit`: heutige Halte an alten Strecken, die erst später eröffnet wurden. Der Router fügt sie in ältere Versionen nicht ein.
+
+```bash
+node scripts/historisch/strecken.mjs        # nach Änderungen an historische_strecken (Strassen aus dem Zwischenspeicher)
+node scripts/historisch/strecken.mjs --neu  # Strassen neu aus Overpass laden
+```
+
 Haltestellennamen, die sich umbenannt haben oder anders heissen als in OSM, stehen in `linien.yaml` unter `fahrplan_alias`. Der Wert `null` blendet einen Halt aus, z.B. eine Wendeschlaufe. Die Versionen werden von Hand in `linien.yaml` nachgeführt. Belegte Wege stehen dort als Haltestellenliste mit dem Status `belegt` und den Quellen `gtfs` oder `vbz-fahrzeiten`.
 
 Grenzen:
 
-- **2010–2014 haben keine Fahrplandaten.** Versionen, die vor 2015 beginnen, sind für diese Jahre angenommen.
+- **Vor 2015 gibt es keine Fahrplandaten.** Die Versionen davor stützen sich auf die Linienchronik.
 - 2015–2018 gibt es nur Stichwochen. Ein Wechsel zwischen zwei Stichwochen ist nur auf das Jahr genau eingegrenzt.
 - Als vorübergehend gelten Zeiträume unter 8 Wochen oder solche zwischen zwei Zeiträumen mit gleichem Weg. Sie werden nicht als Version übernommen, z.B. die Linie 13 bis Hardturm von Juli 2022 bis August 2023.
 - Die Wochen beginnen am Montag. Wechsel am Fahrplanwechsel werden auf das offizielle Datum gesetzt.
@@ -182,9 +197,11 @@ Grenzen:
 ## Quellen und Grenzen des Pilots
 
 - Haltestellen und Gleise stammen aus OpenStreetMap (Stand November 2026, ODbL). Bushaltestellen, Buswege und Busfahrwege stammen aus den Fahrplandaten der Stadt Zürich (CC0). Die Linienwege stammen aus den Wikipedia-Artikeln *Strassenbahn Zürich* und *Linienchronik der Strassenbahn Zürich*.
-- Ab 2015 sind die Linienwege mit Fahrplandaten belegt (siehe [Fahrplandaten-Import](#fahrplandaten-import)). **Die Stände 2010–2014 sind nicht mit Primärquellen geprüft.** Für diese Jahre fehlen noch historische Netzpläne oder Fahrpläne.
-- Strecken, die es heute nicht mehr gibt, können nicht dargestellt werden, weil der Router nur das heutige Gleisnetz kennt. Ausnahme: Gleise, die in OSM als «im Bau» erfasst sind, z.B. am Bahnhofquai.
-- Linienfarben sind die heutigen. Kurse in der Hauptverkehrszeit, Teilstrecken und temporäre Linien sind nicht erfasst, z.B. Linie 16 im Jahr 2026.
+- Ab 2015 sind die Linienwege mit Fahrplandaten belegt (siehe [Fahrplandaten-Import](#fahrplandaten-import)). **Die Stände vor 2015 sind nicht mit Primärquellen geprüft.** Sie folgen der Linienchronik auf Wikipedia: Daten und Endpunkte sind dort genannt, den Weg dazwischen und die Zwischenhalte ergänzt der Router über das Gleisnetz des jeweiligen Datums (Status `abgeleitet`). Wo die Chronik den Weg offenlässt oder eine Schlaufe vereinfacht ist, steht `unsicher`.
+- Die Haltestellen tragen die heutigen Namen und liegen an den heutigen Orten. Frühere Halte an bestehenden Strecken sind nicht erfasst, nur jene an aufgehobenen Strecken.
+- Aufgehobene Strecken sind über das heutige Strassennetz rekonstruiert, nicht nach historischen Plänen. Weitere aufgehobene Gleise im Netz (z.B. Wendeschlaufen, Verbindungen in der Innenstadt) fehlen. Wo eine Linie über sie fuhr, nimmt der Router den nächsten heutigen Weg.
+- Bei den heutigen Gleisen ist nur die Eröffnung der grösseren Neubaustrecken seit 1899 erfasst. Was nicht in `gleise_zeiten` steht, gilt als immer vorhanden.
+- Linienfarben sind die heutigen, auch für frühere Versionen derselben Nummer. Kurse in der Hauptverkehrszeit, Teilstrecken und temporäre Linien sind nicht erfasst, z.B. Linie 16 im Jahr 2026 und das Liniensignal E.
 - Die Grundkarte ist die Light Base Map von swisstopo.
 - Schrift ist Barlow (OFL). Die Kartenbeschriftungen nutzen eigene Glyphen in `public/fonts/`, erzeugt mit `npm run glyphen`.
 - Die Planlage ist ein eigenes oktilineares Layout mit dem ZVV-Liniennetzplan (gültig ab 14.12.2025) als Ausgangslage.
@@ -193,5 +210,5 @@ Grenzen:
 ## Nächste Etappen
 
 1. Liniennetzplan verfeinern: historische Pläne als weitere Planstände, Beschriftungen wie im Plan.
-2. Erfassungswerkzeug für Versionen und Quellen, historische Gleisabschnitte mit Gültigkeit.
+2. Erfassungswerkzeug für Versionen und Quellen. Historische Gleise nach alten Plänen statt über das Strassennetz.
 3. Busse im Liniennetzplan (gemeinsames Layout), weiter zurückliegende Jahre, historische Grundkarten (swisstopo Zeitreise).

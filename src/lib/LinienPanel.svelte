@@ -25,6 +25,8 @@
     const j = d.getFullYear() + (d - new Date(d.getFullYear(), 0, 1)) / 3.156e10;
     return Math.min(1, Math.max(0, (j - start) / (ende + 1 - start)));
   };
+  // Über viele Jahrzehnte nur Striche bei den Zehnerjahren, sonst einer pro Jahr
+  const zehner = $derived(netz.jahre.length > 40 ? netz.jahre.filter((j) => j % 10 === 0) : null);
   const ersteJahr = (v) => netz.jahre.find((j) => istAktiv(v, stichtag(netz, j)));
 
   const folge = $derived(
@@ -46,7 +48,7 @@
     <button class="zurueck" onclick={onschliessen} aria-label="Zurück zur Übersicht">←</button>
     <LinienBadge {linie} gross />
     <div class="titel">
-      <h2>{{ baulinie: 'Baulinie', bus: 'Bus' }[linie.art] ?? 'Tram'} {linie.nummer}</h2>
+      <h2>{linie.name ?? `${{ baulinie: 'Baulinie', bus: 'Bus' }[linie.art] ?? 'Tram'} ${linie.nummer}`}</h2>
       {#if endpunkte}
         <p>{endpunkte[0]} – {endpunkte[1]}</p>
       {:else}
@@ -63,7 +65,10 @@
         <button disabled={naechsterWechsel === undefined} onclick={() => onjahr(naechsterWechsel)} aria-label="Spätere Version">später ›</button>
       </div>
     </div>
-    <div class="band" aria-label="Versionen im Zeitverlauf" style:--n={netz.jahre.length} style:--kontur={kontur}>
+    <div class="band" class:zehner aria-label="Versionen im Zeitverlauf" style:--n={netz.jahre.length} style:--kontur={kontur}>
+      {#each zehner ?? [] as j (j)}
+        <span class="strich" class:hundert={j % 50 === 0} style:left="{pos(`${j}-01-01`, 0) * 100}%"></span>
+      {/each}
       {#if (netz.erfasstAb[linie.gruppe] ?? start) > start}
         <!-- Jahre ohne Daten für dieses Verkehrsmittel (Busse vor 2015) -->
         <span class="nicht-erfasst" style:width="{pos(`${netz.erfasstAb[linie.gruppe]}-01-01`, 0) * 100}%" title="vor {netz.erfasstAb[linie.gruppe]} nicht erfasst"></span>
@@ -85,7 +90,13 @@
       {/each}
       <span class="marke" style:left="{pos(datum, 0) * 100}%"></span>
     </div>
-    <div class="band-skala"><span>{start}</span><span>{ende}</span></div>
+    <div class="band-skala">
+      <span>{start}</span>
+      {#each (zehner ?? []).filter((j) => j % 50 === 0 && pos(`${j}-01-01`, 0) > 0.15 && pos(`${j}-01-01`, 0) < 0.85) as j (j)}
+        <span class="mitte" style:left="{pos(`${j}-01-01`, 0) * 100}%">{j}</span>
+      {/each}
+      <span>{ende}</span>
+    </div>
   </div>
 
   {#if aktuell}
@@ -206,6 +217,19 @@
     height: 16px;
     background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--n) - 1px), var(--rand) calc(100% / var(--n) - 1px) calc(100% / var(--n)));
   }
+  .band.zehner {
+    background: none;
+  }
+  .strich {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--rand);
+  }
+  .strich.hundert {
+    background: var(--hell);
+  }
   .segment {
     position: absolute;
     top: 4px;
@@ -243,7 +267,12 @@
     background: var(--tinte);
     pointer-events: none;
   }
+  .band-skala .mitte {
+    position: absolute;
+    transform: translateX(-50%);
+  }
   .band-skala {
+    position: relative;
     display: flex;
     justify-content: space-between;
     font-size: 12px;

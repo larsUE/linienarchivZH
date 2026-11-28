@@ -157,6 +157,35 @@
     return geoCache.get(key);
   }
 
+  // ---------- Anschluss an Haltestellen mit mehreren Haltekanten ----------
+  // Ein Abschnitt hat eine Gleislage und endet an einer Haltekante. Fährt eine Linie an einer Haltestelle mit
+  // getrennten Kanten (z.B. Stauffacher) in einen Abschnitt weiter, der an einer anderen Kante beginnt, bliebe in
+  // der Karte eine Lücke. Beide Linienstücke werden darum bis zur Mitte zwischen den zwei Enden verlängert.
+  // Im Plan liegen die Enden ohnehin auf der Haltestelle (der Punkt wird dort verdoppelt).
+  const ANSCHLUSS_MAX = 150; // Meter; weiter auseinander: keine gerade Verbindung quer durchs Quartier
+  function anschliessen(geo, k, nachbarA, nachbarB) {
+    const nachbarEnde = (nachbar, h) => {
+      const k2 = nachbar && netz.kanteById.get(nachbar);
+      if (!k2) return null;
+      const g = roh.get(nachbar).g;
+      return k2.a === h ? g[0] : k2.b === h ? g.at(-1) : null;
+    };
+    const mitte = (p, q) => {
+      if (!q) return null;
+      const [a, b] = [zuM(p), zuM(q)];
+      const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+      return d > 2 && d < ANSCHLUSS_MAX ? [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2] : null;
+    };
+    const vorn = mitte(geo.g[0], nachbarEnde(nachbarA, k.a));
+    const hinten = mitte(geo.g.at(-1), nachbarEnde(nachbarB, k.b));
+    if (!vorn && !hinten) return geo;
+    return {
+      ...geo,
+      g: [...(vorn ? [vorn] : []), ...geo.g, ...(hinten ? [hinten] : [])],
+      p: [...(vorn ? [geo.p[0]] : []), ...geo.p, ...(hinten ? [geo.p.at(-1)] : [])],
+    };
+  }
+
   // ---------- Inhalt je Stichtag (unabhängig von der Ansicht) ----------
   let inhalt = null;
 
@@ -276,6 +305,7 @@
     for (const e of eintraege) {
       const k = netz.kanteById.get(e.kante);
       e.geo = geometrie(e.kante, ende(e.kante, k.a, e.nachbarA), ende(e.kante, k.b, e.nachbarB));
+      e.geoLinie = anschliessen(e.geo, k, e.nachbarA, e.nachbarB);
     }
     return { eintraege, kanten: new Set([...proKante.values()].flatMap((l) => l.map((e) => e.kante))), breite };
   }
@@ -292,7 +322,7 @@
     // Geometrie je Abschnitt (mit Bögen) für die Hervorhebung neuer und weggefallener Abschnitte
     const geoJe = (liste) => {
       const m = new Map();
-      for (const e of liste) if (!m.has(e.kante)) m.set(e.kante, e.geo);
+      for (const e of liste) if (!m.has(e.kante)) m.set(e.kante, e.geoLinie);
       return m;
     };
     const geoJetzt = geoJe(eintraege);
@@ -441,7 +471,7 @@
       fc(
         inhalt.linien.map((e) => {
           const [aT, aB] = t === 0 ? e.getrennt : t === 1 ? e.gemeinsam : mix(e.getrennt, e.gemeinsam);
-          return linie(e.geo, { ...e.properties, aT, aB });
+          return linie(e.geoLinie, { ...e.properties, aT, aB });
         }),
       ),
     );

@@ -3,6 +3,9 @@
 
   const max = $derived(Math.max(1, ...jahre.map((j) => anzahlAenderungen.get(j) ?? 0)));
   const index = $derived(jahre.indexOf(jahr));
+  // Über viele Jahrzehnte: schmale Balken, beschriftet sind nur die Zehnerjahre
+  const dicht = $derived(jahre.length > 40);
+  const beschriftung = (j) => (!dicht ? String(j).slice(2) : j % 10 === 0 ? String(j) : '');
 </script>
 
 <div class="zeitstrahl" role="group" aria-label="Zeitstrahl">
@@ -15,13 +18,13 @@
     </div>
   </div>
 
-  <ol class="skala">
+  <ol class="skala" class:dicht>
     {#each jahre as j}
       {@const n = anzahlAenderungen.get(j) ?? 0}
-      <li>
+      <li class:zehner={j % 10 === 0} class:fuenfzig={j % 50 === 0}>
         <button class="jahr" class:aktiv={j === jahr} onclick={() => onjahr(j)} aria-label="{j}, {n} Änderungen" aria-current={j === jahr}>
           <span class="balken" style:height="{(n / max) * 100}%" title="{n} Linien geändert"></span>
-          <span class="zahl">{String(j).slice(2)}</span>
+          <span class="zahl">{beschriftung(j)}</span>
         </button>
       </li>
     {/each}
@@ -86,6 +89,29 @@
   }
   .skala li {
     flex: 1;
+    min-width: 0;
+  }
+  .skala.dicht {
+    gap: 0;
+  }
+  .skala.dicht .balken {
+    width: 70%;
+    max-width: 6px;
+  }
+  /* Zehnerjahre: Beschriftung ragt über die schmalen Nachbarn hinaus */
+  .skala.dicht .zahl {
+    /* Breite 0: die Beschriftung zählt nicht zur Mindestbreite und steht mittig über ihrem Jahr */
+    width: 0;
+    height: 12px;
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+  }
+  .skala.dicht .zehner .balken {
+    background: var(--hell);
+  }
+  .skala.dicht .jahr.aktiv .balken {
+    background: var(--akzent);
   }
   .jahr {
     width: 100%;
@@ -140,6 +166,10 @@
     }
     .skala {
       padding: 10px var(--innen);
+    }
+    /* Auf schmalen Bildschirmen nur 1900, 1950, 2000 beschriften */
+    .skala.dicht li:not(.fuenfzig) .zahl {
+      visibility: hidden;
     }
   }
 </style>

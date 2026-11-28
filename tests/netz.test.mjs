@@ -119,3 +119,14 @@ test('Keine zwei Haltestellen liegen im Plan aufeinander', { skip: !netz.meta.pl
       if (meter(mit[i].plan, mit[j].plan) < 5) fehler.push(`${mit[i].name} / ${mit[j].name}`);
   assert.deepEqual(fehler, [], kurz(fehler));
 });
+
+test('Versionen einer Linie überlappen sich nicht', () => {
+  const fehler = [];
+  const proLinie = Map.groupBy(netz.versionen, (v) => v.linie);
+  for (const [linie, vs] of proLinie) {
+    vs.sort((a, b) => (a.von ?? '').localeCompare(b.von ?? ''));
+    for (let i = 1; i < vs.length; i++)
+      if (!vs[i - 1].bis || vs[i - 1].bis >= vs[i].von) fehler.push(`${linie}: ${vs[i - 1].id} und ${vs[i].id}`);
+  }
+  assert.deepEqual(fehler, []);
+});
