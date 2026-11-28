@@ -431,10 +431,12 @@ for (const [linie, proWoche] of [...wertung].sort((a, b) => Number(a[0]) - Numbe
 const name = (id) =>
   id.startsWith('?') ? `${id.slice(1)} (unbekannt)` : netz.haltestellen.find((h) => h.id === id)?.name ?? busHalte.get(id)?.name ?? id;
 const istBus = (l) => l.art === 'bus';
-const linieZuId = new Map(netz.linien.filter((l) => istBus(l) === BUS).map((l) => [l.nummer, l.id]));
+// Nummer -> Linien-Ids; eine Nummer kann mehrere Linien tragen (z.B. die städtische 12 von 1928 und die heutige 12)
+const linieZuId = new Map();
+for (const l of netz.linien.filter((l) => istBus(l) === BUS)) linieZuId.set(l.nummer, [...(linieZuId.get(l.nummer) ?? []), l.id]);
 function unsereVersion(linie, datum) {
-  const id = linieZuId.get(linie);
-  return netz.versionen.find((v) => v.linie === id && (!v.von || v.von <= datum) && (!v.bis || v.bis >= datum));
+  const ids = linieZuId.get(linie) ?? [];
+  return netz.versionen.find((v) => ids.includes(v.linie) && (!v.von || v.von <= datum) && (!v.bis || v.bis >= datum));
 }
 function vergleich(a, b) {
   const A = new Set(a), B = new Set(b);
