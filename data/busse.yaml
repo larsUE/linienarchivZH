@@ -37,6 +37,7 @@ quellen:
 #   strecke: aufeinanderfolgende Haltestellen; gilt für jeden Trolleybus, der dort fährt.
 fahrleitungslos:
   - strecke: ["Hardplatz", "Albisriederplatz"]
+    von: 2014-12-14  # Umbau 2015 nicht taggenau bekannt: ab Beginn der Busdaten
     notiz: "Seit dem Umbau des Albisriederplatzes 2015 kreuzt die Fahrleitung die Tramlinien nicht mehr. Die Trolleybusse senken die Stromabnehmer und fahren mit Akku bis zur nächsten Haltestelle."
     quellen: [wp-trolleybus]
   - strecke: ["Bahnhof Altstetten", "Bristenstrasse", "Baslerstrasse", "Letzipark West", "Kappeli", "Flurstrasse", "Albisrank", "Hubertus"]

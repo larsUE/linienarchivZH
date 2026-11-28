@@ -87,7 +87,8 @@ export function aenderungen(netz, jahr, gruppen = ['tram']) {
   const nachher = zustand(netz, d2, gruppen);
   const liste = [];
   for (const l of netz.linien) {
-    if (!linieErfasst(netz, l, jahr - 1)) continue;
+    // Linien, die im Vorjahr noch nicht erfasst sind, nur dann, wenn das ganze Netz vergleichbar ist (wie in der Karte)
+    if (!linieErfasst(netz, l, jahr - 1) && !netzVergleichbar(netz, l.gruppe, jahr)) continue;
     const a = vorher.get(l.id);
     const b = nachher.get(l.id);
     if (!a && b) liste.push({ linie: l.id, art: 'neu', version: b });

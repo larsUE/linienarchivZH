@@ -216,7 +216,7 @@ historische_strecken:
 #
 # Vor 1906 hatten die Linien keine Nummern: Die Privatbahnen tragen hier ihr Kürzel, die städtischen
 # Linien ihren Namen (bis 1900) bzw. ihre Farbe (1900–1905). Ihre Farbe ist die Wagenfarbe bzw. die
-# Linienfarbe laut Chronik. Für eingestellte Liniennummern (1, 21–24) ist die Farbe frei gewählt.
+# Linienfarbe laut Chronik. Für eingestellte Liniennummern (1, 21–24, die städtische 12 und die 20 der LSB) ist die Farbe frei gewählt.
 # Die Liniennummern gelten hier ab 1.1.1906 (Chronik: «1905/1906»).
 #
 # Ein Weg ist eine Folge von Wegpunkten in Fahrtrichtung der Chronik. Schlaufen und Rundkurse sind
@@ -1065,7 +1065,10 @@ linien:
         quellen: [wp-chronik, wp-strab]
         notiz: "Verlängert bis Messe/Hallenstadion."
 
-  - id: tram-12
+  # Eigene Linie, nicht an die heutige 12 (Glattalbahn) angehängt
+  - id: tram-12-staedtisch
+    nummer: "12"
+    farbe: "#B07A3B"
     versionen:
       - von: 1928-07-01
         bis: 1931-09-30
@@ -1190,7 +1193,10 @@ linien:
         quellen: [wp-chronik]
         notiz: "Römerhof – Kreuzplatz – Bellevue – Limmatquai – Hauptbahnhof."
 
-  - id: tram-20
+  # Eigene Linie, nicht an die heutige 20 (Limmattalbahn) angehängt
+  - id: tram-20-lsb
+    nummer: "20"
+    farbe: "#6E8B5E"
     versionen:
       - von: 1927-04-22
         bis: 1928-01-31

@@ -32,7 +32,8 @@ for (const id of Object.keys(layout.kanten)) if (id.startsWith('bus:')) delete l
 
 // ---------- Lage in Einheiten (y nach oben) ----------
 const FIX = new Map(Object.entries(layout.haltestellen).map(([id, [x, y]]) => [id, [x / EINHEIT, -y / EINHEIT]]));
-const fehlt = netz.haltestellen.filter((h) => !h.nurBus && !FIX.has(h.id));
+// Halte an aufgehobenen Tramstrecken (historisch) haben keine Planlage und tragen keine Busse
+const fehlt = netz.haltestellen.filter((h) => !h.nurBus && !h.historisch && !FIX.has(h.id));
 if (fehlt.length) throw new Error(`Tramhaltestellen ohne Lage in data/layout.json (zuerst scripts/plan/layout.mjs): ${fehlt.map((h) => h.name).join(', ')}`);
 // Fest statt Math.cos(47.37°): Winkelfunktionen rechnen je nach Plattform (Linux-x64 / Apple Silicon) in der
 // letzten Stelle anders, und das Entspannen unten verstärkt solche Unterschiede. Die CI braucht bitgleiche Ergebnisse.
@@ -40,9 +41,9 @@ const KOS = 0.6772612964138943;
 // Auf 1e-6 Einheiten runden: Reste von Rechenunterschieden fallen weg, bevor sie sich aufschaukeln.
 const glatt = ([x, y]) => [Math.round(x * 1e6) / 1e6, Math.round(y * 1e6) / 1e6];
 const km = ([lon, lat]) => [lon * KOS * 111.32, lat * 110.574];
-const tram = netz.haltestellen.filter((h) => !h.nurBus);
+const tram = netz.haltestellen.filter((h) => !h.nurBus && !h.historisch);
 const verzerren = tps(tram.map((h) => km([h.lon, h.lat])), tram.map((h) => FIX.get(h.id)), 0.05);
-const P = new Map(netz.haltestellen.map((h) => [h.id, h.nurBus ? glatt(verzerren(km([h.lon, h.lat]))) : FIX.get(h.id)]));
+const P = new Map(netz.haltestellen.filter((h) => !h.historisch).map((h) => [h.id, h.nurBus ? glatt(verzerren(km([h.lon, h.lat]))) : FIX.get(h.id)]));
 
 // Entspannen: Wo der Plan das Gebiet staucht (Affoltern zwischen Oerlikon und Seebach), rücken Bushaltestellen
 // zusammen und auf Tramstrecken. Sie bleiben nahe an der verzerrten Lage, halten aber Abstand.
@@ -97,7 +98,8 @@ function abstandZuLinie(p, linie) {
   return best;
 }
 const tramNachbarn = new Map();
-for (const k of netz.kanten.filter((k) => !k.bus)) {
+// nur Tramabschnitte mit Planlage (aufgehobene Strecken haben keine)
+for (const k of netz.kanten.filter((k) => !k.bus && layout.kanten[k.id])) {
   for (const [x, y] of [[k.a, k.b], [k.b, k.a]]) {
     if (!tramNachbarn.has(x)) tramNachbarn.set(x, []);
     tramNachbarn.get(x).push({ nach: y, kante: k });
@@ -105,7 +107,7 @@ for (const k of netz.kanten.filter((k) => !k.bus)) {
 }
 const ueber = new Map(); // Busabschnitt -> Haltestellenfolge über Tramabschnitte
 for (const k of netz.kanten.filter((k) => k.bus)) {
-  if (K.has(`${k.a}~${k.b}`)) {
+  if (K.has(`${k.a}~${k.b}`) && layout.kanten[`${k.a}~${k.b}`]) {
     ueber.set(k.id, [k.a, k.b]);
     continue;
   }
@@ -142,8 +144,10 @@ for (const k of busKanten) {
   }
 }
 const knoten = new Set([...nachbarn.keys()].filter((v) => FIX.has(v) || nachbarn.get(v).size !== 2));
+// Endpunkte nur aus den Fahrplandaten: frühere Trolleybus-Endpunkte (vor 2015) sollen den heutigen Plan nicht verschieben
+const busdatenAb = `${netz.meta.erfasstAb?.bus ?? 0}-01-01`;
 for (const v of netz.versionen) {
-  if (!v.linie.startsWith('bus-')) continue;
+  if (!v.linie.startsWith('bus-') || (v.bis && v.bis < busdatenAb)) continue;
   for (const h of [v.haltestellen[0], v.haltestellen.at(-1)]) if (nachbarn.has(h)) knoten.add(h);
 }
 function ketten() {
