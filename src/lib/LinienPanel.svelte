@@ -1,6 +1,9 @@
 <script>
   import LinienBadge from './LinienBadge.svelte';
-  import { istAktiv, halteAm, stichtag, vergleicheFolgen, zeitraumText, istHell, STATUS } from './netz.js';
+  import {
+    istAktiv, halteAm, stichtag, vergleicheFolgen, zeitraumText, istHell, STATUS,
+    artName, trolleybusAm, ohneFahrleitung, chronikDatum, datum as tagText,
+  } from './netz.js';
 
   let { netz, linieId, jahr, datum, onjahr, onschliessen } = $props();
 
@@ -25,6 +28,8 @@
     const j = d.getFullYear() + (d - new Date(d.getFullYear(), 0, 1)) / 3.156e10;
     return Math.min(1, Math.max(0, (j - start) / (ende + 1 - start)));
   };
+  // Über viele Jahrzehnte nur Striche bei den Zehnerjahren, sonst einer pro Jahr
+  const zehner = $derived(netz.jahre.length > 40 ? netz.jahre.filter((j) => j % 10 === 0) : null);
   const ersteJahr = (v) => netz.jahre.find((j) => istAktiv(v, stichtag(netz, j)));
 
   const folge = $derived(
@@ -35,6 +40,46 @@
     const h = halteAm(aktuell, datum);
     return [netz.haltestelleById.get(h[0]).name, netz.haltestelleById.get(h.at(-1)).name];
   });
+  // Trolleybus: Zeitraum am Datum, Abschnitte ohne Fahrleitung (Akku) als Haltestellenpaare
+  const trolley = $derived(trolleybusAm(linie, datum));
+  // Erstes erfasstes Jahr der Linie (Trolleybusse nach der Chronik früher als die übrigen Busse)
+  const erfasstAb = $derived(linie.erfasstAb ?? netz.erfasstAb[linie.gruppe] ?? start);
+  const akkuPaare = $derived.by(() => {
+    const s = new Set();
+    if (!aktuell || !trolley) return s;
+    const ohne = ohneFahrleitung(netz, datum);
+    const h = aktuell.haltestellen;
+    aktuell.kanten.forEach((k, i) => {
+      if (ohne.has(k.replace(/^-/, ''))) s.add(`${h[i]}|${h[i + 1]}`).add(`${h[i + 1]}|${h[i]}`);
+    });
+    return s;
+  });
+  // Zusammenhängende Akku-Abschnitte für den Text: [[von, bis], …]
+  const akkuStrecken = $derived.by(() => {
+    if (!aktuell || !akkuPaare.size) return [];
+    const h = aktuell.haltestellen, name = (id) => netz.haltestelleById.get(id).name;
+    const out = [];
+    for (let i = 1; i < h.length; i++) {
+      if (!akkuPaare.has(`${h[i - 1]}|${h[i]}`)) continue;
+      if (out.length && out.at(-1).bis === h[i - 1]) out.at(-1).bis = h[i];
+      else out.push({ von: h[i - 1], bis: h[i] });
+    }
+    return out.map((s) => `${name(s.von)} – ${name(s.bis)}`);
+  });
+  // Linienweg: Fahrleitung je Halbabschnitt oberhalb und unterhalb einer Haltestelle ('', 'draht' oder 'akku')
+  const leitung = $derived.by(() => {
+    const m = new Map();
+    if (!trolley) return m;
+    const idx = folge.map((f, i) => (f.art === 'entfallen' ? -1 : i)).filter((i) => i >= 0);
+    idx.forEach((i, n) => {
+      const vor = n > 0 ? idx[n - 1] : -1, nach = n < idx.length - 1 ? idx[n + 1] : -1;
+      const art = (j) => (j < 0 ? '' : akkuPaare.has(`${folge[i].id}|${folge[j].id}`) ? 'akku' : 'draht');
+      m.set(i, { oben: art(vor), unten: art(nach) });
+    });
+    return m;
+  });
+  const quellenListe = $derived([...new Set([...(aktuell?.quellen ?? []), ...(trolley?.quellen ?? [])])]);
+  const heute = new Date().toISOString().slice(0, 10);
   const anzahl = $derived.by(() => ({
     neu: folge.filter((f) => f.art === 'neu').length,
     entfallen: folge.filter((f) => f.art === 'entfallen').length,
@@ -46,7 +91,7 @@
     <button class="zurueck" onclick={onschliessen} aria-label="Zurück zur Übersicht">←</button>
     <LinienBadge {linie} gross />
     <div class="titel">
-      <h2>{{ baulinie: 'Baulinie', bus: 'Bus' }[linie.art] ?? 'Tram'} {linie.nummer}</h2>
+      <h2>{linie.name ?? `${artName(linie, datum)} ${linie.nummer}`}</h2>
       {#if endpunkte}
         <p>{endpunkte[0]} – {endpunkte[1]}</p>
       {:else}
@@ -63,10 +108,13 @@
         <button disabled={naechsterWechsel === undefined} onclick={() => onjahr(naechsterWechsel)} aria-label="Spätere Version">später ›</button>
       </div>
     </div>
-    <div class="band" aria-label="Versionen im Zeitverlauf" style:--n={netz.jahre.length} style:--kontur={kontur}>
-      {#if (netz.erfasstAb[linie.gruppe] ?? start) > start}
-        <!-- Jahre ohne Daten für dieses Verkehrsmittel (Busse vor 2015) -->
-        <span class="nicht-erfasst" style:width="{pos(`${netz.erfasstAb[linie.gruppe]}-01-01`, 0) * 100}%" title="vor {netz.erfasstAb[linie.gruppe]} nicht erfasst"></span>
+    <div class="band" class:zehner aria-label="Versionen im Zeitverlauf" style:--n={netz.jahre.length} style:--kontur={kontur}>
+      {#each zehner ?? [] as j (j)}
+        <span class="strich" class:hundert={j % 50 === 0} style:left="{pos(`${j}-01-01`, 0) * 100}%"></span>
+      {/each}
+      {#if erfasstAb > start}
+        <!-- Jahre ohne Daten für diese Linie (Autobusse vor 2015, Trolleybusse vor ihrer Chronik) -->
+        <span class="nicht-erfasst" style:width="{pos(`${erfasstAb}-01-01`, 0) * 100}%" title="vor {erfasstAb} nicht erfasst"></span>
       {/if}
       {#each versionen as v (v.id)}
         {@const a = pos(v.von, 0)}
@@ -85,13 +133,44 @@
       {/each}
       <span class="marke" style:left="{pos(datum, 0) * 100}%"></span>
     </div>
-    <div class="band-skala"><span>{start}</span><span>{ende}</span></div>
+    {#if linie.trolleybus}
+      <!-- Zeiträume als Trolleybus: dunkler Strich wie die Fahrleitung in der Karte -->
+      <div class="betrieb" aria-label="Zeiträume als Trolleybus">
+        {#each linie.trolleybus as z, i (i)}
+          {@const a = pos(z.von ?? `${erfasstAb}-01-01`, 0)}
+          <span class="draht" style:left="{a * 100}%" style:width="max(3px, {(pos(z.bis, 1) - a) * 100}%)" title="Trolleybus {zeitraumText(z)}"></span>
+        {/each}
+      </div>
+    {/if}
+    <div class="band-skala">
+      <span>{start}</span>
+      {#each (zehner ?? []).filter((j) => j % 50 === 0 && pos(`${j}-01-01`, 0) > 0.15 && pos(`${j}-01-01`, 0) < 0.85) as j (j)}
+        <span class="mitte" style:left="{pos(`${j}-01-01`, 0) * 100}%">{j}</span>
+      {/each}
+      <span>{ende}</span>
+    </div>
+    {#if linie.trolleybus}<p class="band-skala legende"><span class="draht-muster"></span>Trolleybus</p>{/if}
   </div>
 
   {#if aktuell}
     <div class="block meta">
       <p class="zeitraum">{zeitraumText(aktuell)}</p>
       {#if aktuell.notiz}<p class="notiz">{aktuell.notiz}</p>{/if}
+      {#if trolley}
+        <p>
+          <b>Trolleybus</b> {zeitraumText(trolley) === 'ganzer Erfassungszeitraum' ? 'im ganzen Erfassungszeitraum' : zeitraumText(trolley)}.
+          {#if trolley.notiz}{trolley.notiz}{/if}
+        </p>
+        {#if akkuStrecken.length}
+          <p class="still">Ohne Fahrleitung, mit Akku: {akkuStrecken.join(', ')}.</p>
+        {/if}
+      {:else if linie.trolleybus}
+        {@const spaeter = linie.trolleybus.find((z) => z.von && z.von > datum)}
+        {@const frueher = [...linie.trolleybus].reverse().find((z) => z.bis && z.bis < datum)}
+        <p class="still">
+          {#if spaeter}Autobus, ab {tagText(spaeter.von)} Trolleybus.{:else if frueher}Autobus, bis {tagText(frueher.bis)} Trolleybus.{/if}
+        </p>
+      {/if}
       <p class="status {aktuell.status}">
         <span class="punkt-status" aria-hidden="true"></span>
         <span
@@ -103,7 +182,7 @@
       </p>
       <h3>Quellen</h3>
       <ul class="quellen">
-        {#each aktuell.quellen as q}
+        {#each quellenListe as q}
           {@const quelle = netz.quellen[q]}
           <li><a href={quelle.url} target="_blank" rel="noreferrer">{quelle.titel}</a></li>
         {/each}
@@ -119,7 +198,8 @@
       </div>
       <ol class="linienband" style:--farbe={linie.farbe} style:--kontur={kontur}>
         {#each folge as f, i (f.id + f.art + i)}
-          <li class={f.art}>
+          {@const l = leitung.get(i)}
+          <li class={f.art} class:oben-draht={l?.oben === 'draht'} class:oben-akku={l?.oben === 'akku'} class:unten-draht={l?.unten === 'draht'} class:unten-akku={l?.unten === 'akku'}>
             <span class="punkt"></span>
             <span class="name">{netz.haltestelleById.get(f.id).name}</span>
             {#if f.art === 'neu'}<span class="sr">(neu)</span>{/if}
@@ -131,6 +211,22 @@
   {:else}
     <div class="block">
       <p class="still">Wähle eine Version im Band oben, um zu ihrem Netzstand zu springen.</p>
+    </div>
+  {/if}
+
+  {#if linie.chronik}
+    <div class="block">
+      <h3 class="chronik-titel">Chronik</h3>
+      <ol class="chronik">
+        {#each linie.chronik as c, i (i)}
+          {@const kommend = c.geplant || (c.datum ?? '9999') > heute}
+          <li class:kommend class:vorher={!kommend && c.datum && c.datum <= datum.slice(0, c.datum.length)}>
+            <span class="wann">{chronikDatum(c.datum)}{#if kommend}<span class="geplant"> geplant</span>{/if}</span>
+            <span class="was">{c.text}</span>
+          </li>
+        {/each}
+      </ol>
+      <p class="still klein">Aus Wikipedia: Trolleybus Zürich.</p>
     </div>
   {/if}
 </section>
@@ -206,6 +302,19 @@
     height: 16px;
     background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--n) - 1px), var(--rand) calc(100% / var(--n) - 1px) calc(100% / var(--n)));
   }
+  .band.zehner {
+    background: none;
+  }
+  .strich {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--rand);
+  }
+  .strich.hundert {
+    background: var(--hell);
+  }
   .segment {
     position: absolute;
     top: 4px;
@@ -243,7 +352,64 @@
     background: var(--tinte);
     pointer-events: none;
   }
+  .band-skala .mitte {
+    position: absolute;
+    transform: translateX(-50%);
+  }
+  .betrieb {
+    position: relative;
+    height: 6px;
+    margin-top: 3px;
+  }
+  .draht {
+    position: absolute;
+    top: 2px;
+    height: 2px;
+    background: #3a3833;
+    border-radius: 1px;
+  }
+  .band-skala.legende {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    margin: 2px 0 0;
+  }
+  .draht-muster {
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    background: #3a3833;
+  }
+  .chronik-titel {
+    margin-bottom: 10px;
+  }
+  .chronik {
+    list-style: none;
+    margin: 0 0 10px;
+    padding: 0;
+    display: grid;
+    gap: 7px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .chronik li {
+    display: grid;
+    grid-template-columns: 86px 1fr;
+    gap: 10px;
+  }
+  .chronik .wann {
+    color: var(--grau);
+    font-variant-numeric: tabular-nums;
+  }
+  /* Bis zum gezeigten Datum Geschehenes in voller Tinte, Späteres zurückhaltend */
+  .chronik li:not(.vorher) .was {
+    color: var(--grau);
+  }
+  .chronik .geplant {
+    font-style: italic;
+  }
   .band-skala {
+    position: relative;
     display: flex;
     justify-content: space-between;
     font-size: 12px;
@@ -327,6 +493,26 @@
     width: 5px;
     background: var(--farbe);
     box-shadow: inset 1.5px 0 var(--kontur), inset -1.5px 0 var(--kontur);
+  }
+  /* Trolleybus: Fahrleitung als dunkler Mittelstrich, gestrichelt auf Abschnitten mit Akku */
+  .linienband li {
+    --draht: linear-gradient(#3a3833, #3a3833);
+    --akku: repeating-linear-gradient(#3a3833 0 2px, transparent 2px 4.5px);
+    --oben: none;
+    --unten: none;
+  }
+  .linienband li.oben-draht { --oben: var(--draht); }
+  .linienband li.oben-akku { --oben: var(--akku); }
+  .linienband li.unten-draht { --unten: var(--draht); }
+  .linienband li.unten-akku { --unten: var(--akku); }
+  .linienband li::after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--oben) top / 100% 50% no-repeat, var(--unten) bottom / 100% 50% no-repeat;
   }
   .linienband li:first-child::before { top: 50%; }
   .linienband li:last-child::before { bottom: 50%; }

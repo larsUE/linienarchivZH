@@ -11,6 +11,7 @@
   class:gross
   class:bau={linie.art === 'baulinie'}
   class:bus={linie.art === 'bus'}
+  class:lang={linie.nummer.length > 3}
   style:background={linie.art === 'baulinie' ? 'white' : linie.farbe}
   style:color={linie.art === 'baulinie' ? linie.farbe : hell ? '#1d1d1b' : 'white'}
   style:border-color={linie.art === 'bus' && hell ? '#55524c' : linie.farbe}>{linie.nummer}</span
@@ -35,6 +36,14 @@
     height: 34px;
     font-size: 20px;
     border-radius: 5px;
+  }
+  /* Namen statt Nummern (Linien vor 1906): kleinere Schrift */
+  .lang {
+    font-size: 11px;
+    letter-spacing: 0.01em;
+  }
+  .gross.lang {
+    font-size: 15px;
   }
   .bau {
     border-style: dashed;

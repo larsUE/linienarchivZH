@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import maplibregl from 'maplibre-gl';
-  import { zustand, halteAm, erfasst } from './netz.js';
+  import { zustand, halteAm, netzVergleichbar, trolleybusAm, ohneFahrleitung } from './netz.js';
 
   let { netz, datum, vorjahrDatum, auswahl = null, ansicht = 'plan', gruppen = ['tram'], onlinie } = $props();
 
@@ -22,6 +22,8 @@
   const BUS = [1.4, 2.2, 4.4]; // Strichbreite bei Zoom 11, 13, 16
   const busBreite = (plus = 0) => ['interpolate', ['linear'], ['zoom'], 11, BUS[0] + plus, 13, BUS[1] + plus, 16, BUS[2] + plus];
   const istBus = ['==', ['get', 'gruppe'], 'bus'];
+  // Trolleybusse: dünner dunkler Mittelstrich wie eine Fahrleitung, gestrichelt auf Abschnitten mit Akku
+  const fahrleitungBreite = ['interpolate', ['linear'], ['zoom'], 11, 0.55, 13, 0.75, 16, 1.3];
   // Versatz aus Anteilen von Tram- und Busbreiten (aT, aB): so können Busse im Plan neben dem Trambündel laufen
   const TRAMSCHRITT = [2, 3.5, 7];
   const BUSSCHRITT = [BUS[0] + 1, BUS[1] + 1.2, BUS[2] + 1.6];
@@ -157,6 +159,35 @@
     return geoCache.get(key);
   }
 
+  // ---------- Anschluss an Haltestellen mit mehreren Haltekanten ----------
+  // Ein Abschnitt hat eine Gleislage und endet an einer Haltekante. Fährt eine Linie an einer Haltestelle mit
+  // getrennten Kanten (z.B. Stauffacher) in einen Abschnitt weiter, der an einer anderen Kante beginnt, bliebe in
+  // der Karte eine Lücke. Beide Linienstücke werden darum bis zur Mitte zwischen den zwei Enden verlängert.
+  // Im Plan liegen die Enden ohnehin auf der Haltestelle (der Punkt wird dort verdoppelt).
+  const ANSCHLUSS_MAX = 150; // Meter; weiter auseinander: keine gerade Verbindung quer durchs Quartier
+  function anschliessen(geo, k, nachbarA, nachbarB) {
+    const nachbarEnde = (nachbar, h) => {
+      const k2 = nachbar && netz.kanteById.get(nachbar);
+      if (!k2) return null;
+      const g = roh.get(nachbar).g;
+      return k2.a === h ? g[0] : k2.b === h ? g.at(-1) : null;
+    };
+    const mitte = (p, q) => {
+      if (!q) return null;
+      const [a, b] = [zuM(p), zuM(q)];
+      const d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+      return d > 2 && d < ANSCHLUSS_MAX ? [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2] : null;
+    };
+    const vorn = mitte(geo.g[0], nachbarEnde(nachbarA, k.a));
+    const hinten = mitte(geo.g.at(-1), nachbarEnde(nachbarB, k.b));
+    if (!vorn && !hinten) return geo;
+    return {
+      ...geo,
+      g: [...(vorn ? [vorn] : []), ...geo.g, ...(hinten ? [hinten] : [])],
+      p: [...(vorn ? [geo.p[0]] : []), ...geo.p, ...(hinten ? [geo.p.at(-1)] : [])],
+    };
+  }
+
   // ---------- Inhalt je Stichtag (unabhängig von der Ansicht) ----------
   let inhalt = null;
 
@@ -201,7 +232,8 @@
   };
 
   /** Ein Eintrag pro (Abschnitt, Linie). Linien auf demselben Abschnitt liegen nebeneinander. */
-  function linienEintraege(proLinie) {
+  function linienEintraege(proLinie, tag) {
+    const akku = new Set([...ohneFahrleitung(netz, tag)].map(buendelVon));
     const proKante = new Map();
     for (const v of proLinie.values()) {
       const folge = knotenFolge(v);
@@ -251,7 +283,10 @@
           nachbarB: e.nachbarB,
           getrennt,
           gemeinsam,
-          properties: { kante: e.kante, linie: l.id, nummer: l.nummer, farbe: l.farbe, art: l.art, gruppe: l.gruppe, gs: roh.get(e.kante).geschaetzt },
+          properties: {
+            kante: e.kante, linie: l.id, nummer: l.nummer, farbe: l.farbe, art: l.art, gruppe: l.gruppe, gs: roh.get(e.kante).geschaetzt,
+            trolley: !!trolleybusAm(l, tag), akku: akku.has(e.kante),
+          },
         });
       });
     }
@@ -276,23 +311,24 @@
     for (const e of eintraege) {
       const k = netz.kanteById.get(e.kante);
       e.geo = geometrie(e.kante, ende(e.kante, k.a, e.nachbarA), ende(e.kante, k.b, e.nachbarB));
+      e.geoLinie = anschliessen(e.geo, k, e.nachbarA, e.nachbarB);
     }
     return { eintraege, kanten: new Set([...proKante.values()].flatMap((l) => l.map((e) => e.kante))), breite };
   }
 
   function inhaltBerechnen() {
     const jetzt = zustand(netz, datum, gruppen);
-    // Vergleich nur für Verkehrsmittel, die im Vorjahr schon erfasst sind (Busse ab 2015)
-    const vergleichbar = vorjahrDatum ? gruppen.filter((g) => erfasst(netz, g, Number(vorjahrDatum.slice(0, 4)))) : [];
+    // Vergleich nur bei gleichem Erfassungsumfang (Busse ab 2015, davor nur Trolleybusse)
+    const vergleichbar = vorjahrDatum ? gruppen.filter((g) => netzVergleichbar(netz, g, Number(vorjahrDatum.slice(0, 4)) + 1)) : [];
     const vorher = vorjahrDatum ? zustand(netz, vorjahrDatum, gruppen) : null;
     const istBusKante = (id) => netz.kanteById.get(id).bus;
-    const { eintraege, kanten, breite: buendel } = linienEintraege(jetzt);
-    const vorherInhalt = vorher ? linienEintraege(vorher) : null;
+    const { eintraege, kanten, breite: buendel } = linienEintraege(jetzt, datum);
+    const vorherInhalt = vorher ? linienEintraege(vorher, vorjahrDatum) : null;
     const vorherKanten = vorherInhalt ? vorherInhalt.kanten : kanten;
     // Geometrie je Abschnitt (mit Bögen) für die Hervorhebung neuer und weggefallener Abschnitte
     const geoJe = (liste) => {
       const m = new Map();
-      for (const e of liste) if (!m.has(e.kante)) m.set(e.kante, e.geo);
+      for (const e of liste) if (!m.has(e.kante)) m.set(e.kante, e.geoLinie);
       return m;
     };
     const geoJetzt = geoJe(eintraege);
@@ -441,7 +477,7 @@
       fc(
         inhalt.linien.map((e) => {
           const [aT, aB] = t === 0 ? e.getrennt : t === 1 ? e.gemeinsam : mix(e.getrennt, e.gemeinsam);
-          return linie(e.geo, { ...e.properties, aT, aB });
+          return linie(e.geoLinie, { ...e.properties, aT, aB });
         }),
       ),
     );
@@ -471,6 +507,7 @@
     const basis = ansicht === 'plan' ? ['case', ['get', 'gs'], 0.45, 1] : 1;
     map.setPaintProperty('linien', 'line-opacity', hat ? ['case', istGewaehlt, basis, 0.12] : basis);
     map.setPaintProperty('busse', 'line-opacity', hat ? ['case', istGewaehlt, b, 0.12 * b] : b);
+    for (const id of ['fahrleitung', 'fahrleitung-akku']) map.setPaintProperty(id, 'line-opacity', hat ? ['case', istGewaehlt, 0.85 * b, 0.1 * b] : 0.85 * b);
     // Dunkler Rand nur in der geografischen Karte (hebt die Busse von der Grundkarte ab), im Plan ohne
     const r = b * (1 - t);
     map.setPaintProperty('busse-rand', 'line-opacity', hat ? ['case', istGewaehlt, r, 0.12 * r] : r);
@@ -486,7 +523,7 @@
     if (!bereit) return;
     const hat = !!auswahl;
     const istGewaehlt = ['==', ['get', 'linie'], auswahl ?? ''];
-    for (const id of ['linien', 'busse-rand', 'busse']) map.setLayoutProperty(id, 'line-sort-key', hat ? ['case', istGewaehlt, 1, 0] : 0);
+    for (const id of ['linien', 'busse-rand', 'busse', 'fahrleitung', 'fahrleitung-akku']) map.setLayoutProperty(id, 'line-sort-key', hat ? ['case', istGewaehlt, 1, 0] : 0);
     const haltGewaehlt = ['in', auswahl ?? '§', ['get', 'linien']];
     map.setFilter('halte-name', hat ? haltGewaehlt : ['==', ['get', 'end'], true]);
     deckkraft();
@@ -625,6 +662,16 @@
         id: 'busse', type: 'line', source: 'linien', filter: istBus,
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: { 'line-color': ['get', 'farbe'], 'line-width': busBreite(), 'line-offset': versatzMisch },
+      });
+      map.addLayer({
+        id: 'fahrleitung', type: 'line', source: 'linien', filter: ['all', istBus, ['get', 'trolley'], ['!', ['get', 'akku']]],
+        layout: { 'line-cap': 'butt', 'line-join': 'round' },
+        paint: { 'line-color': '#3a3833', 'line-width': fahrleitungBreite, 'line-offset': versatzMisch },
+      });
+      map.addLayer({
+        id: 'fahrleitung-akku', type: 'line', source: 'linien', filter: ['all', istBus, ['get', 'trolley'], ['get', 'akku']],
+        layout: { 'line-cap': 'butt', 'line-join': 'round' },
+        paint: { 'line-color': '#3a3833', 'line-width': fahrleitungBreite, 'line-offset': versatzMisch, 'line-dasharray': [2.5, 2.5] },
       });
       map.addLayer({
         id: 'linien', type: 'line', source: 'linien', filter: ['!', istBus],

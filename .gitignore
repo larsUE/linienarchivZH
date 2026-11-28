@@ -3,3 +3,6 @@ dist
 .DS_Store
 data/raw/gtfs/
 data/raw/fahrzeiten/
+
+# Alte Liniennetzpläne (nicht zur Veröffentlichung)
+alte_liniennetze/

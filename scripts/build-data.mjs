@@ -1,10 +1,13 @@
-// Baut aus data/linien.yaml (Tram), data/busse.yaml (Bus) und den OSM-Rohdaten die Datei public/data/netz.json.
+// Baut aus data/linien.yaml und data/linien-historisch.yaml (Tram), data/busse.yaml (Bus) und den
+// OSM-Rohdaten die Datei public/data/netz.json.
 //
 // Ablauf:
-//  1. Haltestellen aus OSM-Haltepunkten bilden (gruppiert nach Namen), dazu die Bushaltestellen aus data/bus/
-//  2. Gleisgraph aus den OSM-Gleisen bilden
+//  1. Gleisgraph aus den OSM-Gleisen bilden, dazu die aufgehobenen Strecken aus data/historisch/gleise.json;
+//     Gleise mit Betriebszeiten versehen (gleise_zeiten, historische_strecken)
+//  2. Haltestellen aus OSM-Haltepunkten bilden (gruppiert nach Namen), dazu die historischen Haltestellen
+//     und die Bushaltestellen aus data/bus/
 //  3. Für jede Tramversion den Weg auflösen: OSM-Ausschnitte + Wegpunkte,
-//     Lücken über den kürzesten Weg im Gleisnetz füllen.
+//     Lücken über den kürzesten Weg im Gleisnetz füllen, das am ersten Tag der Version in Betrieb war.
 //     Busversionen sind Haltestellenlisten; der Fahrweg je Abschnitt kommt aus data/bus/kanten.json (GTFS).
 //  4. Abschnitte (Kanten zwischen zwei Haltestellen) mit Geometrie ausgeben
 
@@ -14,6 +17,9 @@ import { parse } from 'yaml';
 const root = new URL('..', import.meta.url);
 const osm = JSON.parse(await readFile(new URL('data/raw/osm-tram.json', root), 'utf8'));
 const cfg = parse(await readFile(new URL('data/linien.yaml', root), 'utf8'));
+// Tramnetz vor 2010: Versionen bestehender Linien, frühere Linien, aufgehobene Strecken und Haltestellen
+const hist = parse(await readFile(new URL('data/linien-historisch.yaml', root), 'utf8'));
+const histGleise = JSON.parse(await readFile(new URL('data/historisch/gleise.json', root), 'utf8'));
 const lesen = async (p, fn, ersatz) => {
   try {
     return fn(await readFile(new URL(p, root), 'utf8'));
@@ -27,6 +33,8 @@ const busCfg = await lesen('data/busse.yaml', parse, { linien: [] });
 const busHalte = await lesen('data/bus/haltestellen.json', JSON.parse, []);
 const busKanten = await lesen('data/bus/kanten.json', JSON.parse, {});
 const gruppe = (l) => (l.art === 'bus' ? 'bus' : 'tram');
+// Quellen aus data/linien.yaml, ergänzt um die aus data/busse.yaml (z.B. Wikipedia: Trolleybus Zürich)
+const quellen = { ...cfg.quellen, ...(busCfg.quellen ?? {}) };
 
 const warnungen = [];
 const warn = (msg) => warnungen.push(msg);
@@ -42,9 +50,12 @@ for (const e of osm.elements) {
 }
 
 // ---------- Gleisgraph ----------
+// Jede Gleiskante {a, b, w, zeiten} hängt in beiden Richtungen in adj. zeiten: Betriebszeiträume
+// [[von, bis], …] (Tage inklusive, null = offen); ohne zeiten immer befahrbar.
 const coord = new Map(); // node id -> [lon, lat]
-const adj = new Map(); // node id -> [{to, w}]
+const adj = new Map(); // node id -> [{to, e}]
 const imBauKnoten = new Set();
+const historischKnoten = new Set();
 const dist = ([lon1, lat1], [lon2, lat2]) => {
   const R = 6371000, toRad = Math.PI / 180;
   const dLat = (lat2 - lat1) * toRad, dLon = (lon2 - lon1) * toRad;
@@ -59,12 +70,61 @@ for (const w of ways) {
     if (imBau) imBauKnoten.add(id);
     if (!adj.has(id)) adj.set(id, []);
   });
-  for (let i = 1; i < w.nodes.length; i++) {
-    const a = w.nodes[i - 1], b = w.nodes[i];
-    const d = dist(coord.get(a), coord.get(b));
-    adj.get(a).push({ to: b, w: d });
-    adj.get(b).push({ to: a, w: d });
+  for (let i = 1; i < w.nodes.length; i++) verbinde(w.nodes[i - 1], w.nodes[i]);
+}
+function verbinde(a, b, zeiten) {
+  const e = { a, b, w: dist(coord.get(a), coord.get(b)), zeiten };
+  adj.get(a).push({ to: b, e });
+  adj.get(b).push({ to: a, e });
+  return e;
+}
+const gilt = (zeiten, datum) => !zeiten || zeiten.some(([v, b]) => (!v || v <= datum) && (!b || datum <= b));
+const zeitraeume = (z) => z.map(([v, b]) => [v ? isoDate(v) : null, b ? isoDate(b) : null]);
+
+// Nächster Gleisknoten (heute oder historisch) zu einem Punkt
+function naechsterGleisknoten(p, filter = () => true) {
+  let best = null;
+  for (const [id, c] of coord) {
+    if (!filter(id)) continue;
+    const d = dist(p, c);
+    if (!best || d < best.d) best = { id, d };
   }
+  return best;
+}
+
+// Aufgehobene Strecken: Linie aus data/historisch/gleise.json, Enden an den nächsten Gleisknoten
+const historischeWege = [];
+for (const s of hist.historische_strecken ?? []) {
+  const roh = histGleise.strecken[s.id];
+  if (!roh) throw new Error(`Historische Strecke ${s.id} fehlt in data/historisch/gleise.json (node scripts/historisch/strecken.mjs)`);
+  // alle 20 m ein Knoten, damit Haltestellen und Anschlüsse einen nahen Knoten finden
+  const linie = [roh[0]];
+  for (let i = 1; i < roh.length; i++) {
+    const n = Math.ceil(dist(roh[i - 1], roh[i]) / 20);
+    for (let k = 1; k <= n; k++) linie.push([roh[i - 1][0] + ((roh[i][0] - roh[i - 1][0]) * k) / n, roh[i - 1][1] + ((roh[i][1] - roh[i - 1][1]) * k) / n]);
+  }
+  const zeiten = zeitraeume(s.zeiten);
+  const ids = linie.map((p, i) => {
+    const id = `h:${s.id}:${i}`;
+    coord.set(id, p);
+    adj.set(id, []);
+    historischKnoten.add(id);
+    return id;
+  });
+  for (let i = 1; i < ids.length; i++) verbinde(ids[i - 1], ids[i], zeiten);
+  // Jedes Ende an den nächsten Knoten jedes Gleises im Umkreis von 60 m (beide Richtungsgleise,
+  // andere aufgehobene Strecken); weiter entfernt bleibt es ein Stumpfende (z.B. Endstation Glattbrugg).
+  for (const i of [0, ids.length - 1]) {
+    for (const w of [...ways.map((w) => w.nodes), ...historischeWege]) {
+      let best = null;
+      for (const id of w) {
+        const d = dist(linie[i], coord.get(id));
+        if (!best || d < best.d) best = { id, d };
+      }
+      if (best && best.d < 60) verbinde(ids[i], best.id, zeiten);
+    }
+  }
+  historischeWege.push(ids);
 }
 
 // ---------- Haltestellen ----------
@@ -99,6 +159,30 @@ for (const z of cfg.zusatz_haltestellen ?? []) {
     addStopNode(n, z.name);
   }
 }
+// Historische Haltestellen: an den nächsten Knoten jedes Gleises in der Nähe (beide Richtungsgleise)
+for (const h of hist.historische_haltestellen ?? []) {
+  if (stations.has(h.name) || busHalte.some((b) => b.name === h.name)) throw new Error(`Historische Haltestelle ${h.name} gibt es schon (heutiger Name)`);
+  const st = { id: slug(h.name), name: h.name, ort: h.ort ?? null, knoten: new Set(), historisch: true, seit: h.seit ? isoDate(h.seit) : null, bis: h.bis ? isoDate(h.bis) : null };
+  const naechst = naechsterGleisknoten(h.lage);
+  if (!naechst || naechst.d > 80) throw new Error(`Historische Haltestelle ${h.name}: ${Math.round(naechst?.d)} m vom nächsten Gleis`);
+  for (const w of [...ways.map((w) => w.nodes), ...historischeWege]) {
+    let best = null;
+    for (const id of w) {
+      if (!coord.has(id)) continue;
+      const d = dist(h.lage, coord.get(id));
+      if (!best || d < best.d) best = { id, d };
+    }
+    if (best && best.d <= naechst.d + 15 && best.d < 80) st.knoten.add(best.id);
+  }
+  for (const id of st.knoten) knotenZuStation.set(id, st);
+  stations.set(h.name, st);
+}
+// Heutige Haltestellen, die erst später eröffnet wurden
+for (const [name, seit] of Object.entries(hist.haltestellen_seit ?? {})) {
+  const st = stations.get(name);
+  if (!st) throw new Error(`haltestellen_seit: unbekannte Haltestelle "${name}"`);
+  st.ab = isoDate(seit);
+}
 // Bushaltestellen, die keine Tramhaltestelle sind: feste Lage aus den Fahrplandaten
 for (const h of busHalte) {
   if (stations.has(h.name)) continue;
@@ -111,7 +195,7 @@ const station = (name) => {
 };
 
 // ---------- Router: kürzester Weg zwischen zwei Haltestellen ----------
-function route(von, bis) {
+function route(von, bis, datum = null, ohne = null) {
   const D = new Map(), prev = new Map();
   const heap = [];
   const push = (id, d) => {
@@ -147,15 +231,57 @@ function route(von, bis) {
     if (d > D.get(u)) continue;
     if (bis.knoten.has(u)) {
       const pfad = [u];
-      while (prev.has(pfad[0])) pfad.unshift(prev.get(pfad[0]));
-      return { pfad, laenge: d };
+      const kanten = [];
+      while (prev.has(pfad[0])) {
+        const [v, e] = prev.get(pfad[0]);
+        pfad.unshift(v);
+        kanten.unshift(e);
+      }
+      return { pfad, kanten, laenge: d };
     }
-    for (const { to, w } of adj.get(u)) {
-      const nd = d + w;
-      if (nd < (D.get(to) ?? Infinity)) { D.set(to, nd); prev.set(to, u); push(to, nd); }
+    for (const { to, e } of adj.get(u)) {
+      if (datum && !gilt(e.zeiten, datum)) continue;
+      if (ohne?.has(e)) continue;
+      const nd = d + e.w;
+      if (nd < (D.get(to) ?? Infinity)) { D.set(to, nd); prev.set(to, [u, e]); push(to, nd); }
     }
   }
   return null;
+}
+
+// ---------- Betriebszeiten heutiger Gleise ----------
+// Weg durch die Wegpunkte suchen und markieren, danach dasselbe ohne die markierten Gleise, um das
+// Gleis der Gegenrichtung zu finden: Es muss überall höchstens 25 m neben dem ersten Weg liegen.
+function abstandZuLinie(p, linie) {
+  const kx = 111320 * Math.cos((p[1] * Math.PI) / 180), ky = 110574;
+  let best = Infinity;
+  for (let i = 1; i < linie.length; i++) {
+    const [ax, ay] = [(linie[i - 1][0] - p[0]) * kx, (linie[i - 1][1] - p[1]) * ky];
+    const [bx, by] = [(linie[i][0] - p[0]) * kx, (linie[i][1] - p[1]) * ky];
+    const [dx, dy] = [bx - ax, by - ay];
+    const l2 = dx * dx + dy * dy;
+    const t = l2 ? Math.max(0, Math.min(1, -(ax * dx + ay * dy) / l2)) : 0;
+    best = Math.min(best, Math.hypot(ax + t * dx, ay + t * dy));
+  }
+  return best;
+}
+for (const g of hist.gleise_zeiten ?? []) {
+  const zeiten = g.zeiten ? zeitraeume(g.zeiten) : [[isoDate(g.eroeffnet), g.stillgelegt ? isoDate(g.stillgelegt) : null]];
+  const halte = g.strecke.map(station);
+  const markiert = new Set();
+  for (let k = 1; k < halte.length; k++) {
+    const erste = route(halte[k - 1], halte[k], null, markiert);
+    if (!erste) throw new Error(`gleise_zeiten: kein Gleisweg ${halte[k - 1].name} → ${halte[k].name}`);
+    const linie = erste.pfad.map((id) => coord.get(id));
+    for (const e of erste.kanten) markiert.add(e);
+    for (let runde = 0; runde < 3; runde++) {
+      const r = route(halte[k - 1], halte[k], null, markiert);
+      if (!r || r.laenge > 1.25 * erste.laenge || r.pfad.some((id) => abstandZuLinie(coord.get(id), linie) > 25)) break;
+      for (const e of r.kanten) markiert.add(e);
+    }
+  }
+  // Gemeinsame Stücke zweier Einträge (Weichen, Haltestellenbereiche) gelten ab der früheren Eröffnung
+  for (const e of markiert) if (!e.zeiten || (e.zeiten[0][0] ?? '') > (zeiten[0][0] ?? '')) e.zeiten = zeiten;
 }
 
 // ---------- Linienwege auflösen ----------
@@ -184,19 +310,34 @@ function bausteinZuNamen(b) {
 }
 
 const kanten = new Map(); // key -> {id, a, b, coords, imBau} (Bus: id "bus:a~b", bus: true)
+const laengeVon = (coords) => coords.reduce((s, p, i) => (i ? s + dist(coords[i - 1], p) : 0), 0);
 function kanteFuer(stA, stB, pfad) {
   const [a, b] = [stA.id, stB.id].sort();
-  const key = `${a}~${b}`;
-  if (!kanten.has(key)) {
-    let coords = pfad.map((id) => coord.get(id));
-    if (stA.id !== a) coords = coords.reverse();
-    const imBau = pfad.some((id) => imBauKnoten.has(id));
-    kanten.set(key, { id: key, a, b, coords, imBau });
+  let coords = pfad.map((id) => coord.get(id));
+  if (stA.id !== a) coords = coords.reverse();
+  const laenge = laengeVon(coords);
+  // Dasselbe Haltestellenpaar über ein anderes Gleis (z.B. früher über eine aufgehobene Strecke):
+  // eigener Abschnitt mit Zusatz ~2, ~3 …
+  for (let n = 1; ; n++) {
+    const key = n === 1 ? `${a}~${b}` : `${a}~${b}~${n}`;
+    const k = kanten.get(key);
+    if (k && Math.abs(laengeVon(k.coords) - laenge) > Math.max(100, 0.2 * laenge)) continue;
+    if (!k) {
+      const imBau = pfad.some((id) => imBauKnoten.has(id));
+      const historisch = pfad.some((id) => historischKnoten.has(id));
+      kanten.set(key, { id: key, a, b, coords, imBau, ...(historisch ? { historisch: true } : {}) });
+    }
+    return { id: key, vorwaerts: stA.id === a };
   }
-  return { id: key, vorwaerts: stA.id === a };
 }
 
-function loeseWeg(weg, label, von) {
+// Haltestelle während der Version in Betrieb? (historische Haltestellen; OSM-start_date siehe halteAb)
+const inBetrieb = (st, von, bis) =>
+  (!st.ab || !bis || st.ab <= bis) && (!st.historisch || ((!st.bis || von <= st.bis) && (!st.seit || !bis || st.seit <= bis)));
+
+function loeseWeg(weg, label, von, bis) {
+  // Gleise und historische Haltestellen am ersten Tag der Version; ohne Beginn wie heute
+  const datum = von ?? bis ?? '9999-12-31';
   const namen = [];
   for (const b of weg) for (const n of bausteinZuNamen(b)) if (namen.at(-1) !== n) namen.push(n);
   const wegpunkte = namen.map(station);
@@ -209,17 +350,18 @@ function loeseWeg(weg, label, von) {
   // nur die neue Lage des Haltepunkts, nicht die erste Bedienung.)
   const halteAb = {};
   for (let k = 1; k < wegpunkte.length; k++) {
-    const r = route(halte.at(-1), wegpunkte[k]);
+    const r = route(halte.at(-1), wegpunkte[k], datum);
     if (!r) throw new Error(`${label}: kein Gleisweg ${halte.at(-1).name} → ${wegpunkte[k].name}`);
     // Haltestellen, an denen der Weg unterwegs vorbeiführt, werden eingefügt
     let start = 0;
     for (let i = 1; i < r.pfad.length - 1; i++) {
       const st = knotenZuStation.get(r.pfad[i]);
-      if (!st || st === halte.at(-1) || st === wegpunkte[k]) continue;
+      if (!st || st === halte.at(-1) || st === wegpunkte[k] || !inBetrieb(st, datum, bis)) continue;
       kantenListe.push(kanteFuer(halte.at(-1), st, r.pfad.slice(start, i + 1)));
       halte.push(st);
       eingefuegt.push(st.name);
-      if (st.seit && (!von || st.seit > von)) halteAb[st.id] = st.seit;
+      const ab = st.ab ?? st.seit;
+      if (ab && (!von || ab > von)) halteAb[st.id] = ab;
       start = i;
     }
     kantenListe.push(kanteFuer(halte.at(-1), wegpunkte[k], r.pfad.slice(start)));
@@ -258,10 +400,39 @@ function loeseBusWeg(weg, label) {
 const farbeAusOsm = new Map();
 for (const r of relations.values()) if (r.tags.colour) farbeAusOsm.set(r.tags.ref, r.tags.colour);
 
+// Historische Versionen an die Linien aus linien.yaml anhängen, frühere Linien dazunehmen
+const tramLinien = cfg.linien.map((l) => ({ ...l, versionen: [...l.versionen] }));
+const historischeVersionen = new Set();
+for (const h of hist.linien ?? []) {
+  h.versionen.forEach((v) => historischeVersionen.add(v));
+  const l = tramLinien.find((x) => x.id === h.id);
+  if (l) l.versionen.push(...h.versionen);
+  else tramLinien.push(h);
+}
+const alleLinien = [...tramLinien, ...busCfg.linien];
+
+// Linienwege auflösen. Ein Abschnitt übernimmt die Geometrie der ersten Version, die ihn befährt
+// (Richtungsgleis, Haltekante). Darum zuerst die heutigen Versionen, dann die historischen: sonst
+// bekäme ein heutiger Abschnitt die Gleislage einer alten Linie, und die Fahrwege passten an den
+// Haltestellen nicht mehr aneinander.
+const aufgeloest = new Map();
+const loese = (l, v) => {
+  const art = l.art ?? 'tram';
+  const von = v.von ? isoDate(v.von) : null;
+  const bis = v.bis ? isoDate(v.bis) : null;
+  const label = `Linie ${l.nummer} (${von ?? '…'} – ${bis ?? '…'})`;
+  aufgeloest.set(v, { von, bis, ...(art === 'bus' ? loeseBusWeg(v.weg, label) : loeseWeg(v.weg, label, von, bis)) });
+};
+for (const l of alleLinien) for (const v of l.versionen) if (!historischeVersionen.has(v)) loese(l, v);
+for (const l of alleLinien) for (const v of l.versionen) if (historischeVersionen.has(v)) loese(l, v);
+
+// Ausgabe: nummerierte Linien nach Nummer (4 vor 4E vor 5), die benannten (vor 1906) dahinter in Dateireihenfolge
+const nr = (l) => (/^\d/.test(l.nummer ?? '') ? parseInt(l.nummer, 10) : Infinity);
+tramLinien.sort((a, b) => nr(a) - nr(b) || (nr(a) < Infinity ? a.nummer.localeCompare(b.nummer) : 0));
 const linien = [];
 const versionen = [];
 const ids = new Set();
-for (const l of [...cfg.linien, ...busCfg.linien]) {
+for (const l of [...tramLinien, ...busCfg.linien]) {
   if (ids.has(l.id)) throw new Error(`Linie ${l.id} doppelt`);
   ids.add(l.id);
   const art = l.art ?? 'tram';
@@ -270,13 +441,14 @@ for (const l of [...cfg.linien, ...busCfg.linien]) {
     nummer: String(l.nummer),
     art,
     gruppe: gruppe({ art }),
+    ...(l.name ? { name: l.name } : {}),
     farbe: l.farbe ?? (art === 'bus' ? '#FFFFFF' : farbeAusOsm.get(l.nummer.replace(/\D+$/, '')) ?? '#666666'),
+    ...(l.trolleybus ? { trolleybus: l.trolleybus.map(zeitraum) } : {}),
+    ...(l.chronik ? { chronik: l.chronik.map(chronikEintrag).sort((a, b) => (a.datum ?? '9999').localeCompare(b.datum ?? '9999')) } : {}),
+    ...(frueherErfasst(l, art) ? { erfasstAb: frueherErfasst(l, art) } : {}),
   });
   for (const v of l.versionen) {
-    const von = v.von ? isoDate(v.von) : null;
-    const bis = v.bis ? isoDate(v.bis) : null;
-    const label = `Linie ${l.nummer} (${von ?? '…'} – ${bis ?? '…'})`;
-    const { halte, kantenListe, halteAb } = art === 'bus' ? loeseBusWeg(v.weg, label) : loeseWeg(v.weg, label, von);
+    const { von, bis, halte, kantenListe, halteAb } = aufgeloest.get(v);
     versionen.push({
       id: `${l.id}@${von ?? 'anfang'}`,
       linie: l.id,
@@ -291,8 +463,26 @@ for (const l of [...cfg.linien, ...busCfg.linien]) {
     });
   }
 }
+// Buslinien mit Versionen vor dem Beginn der Fahrplandaten (Trolleybusse nach der Chronik): erstes erfasstes Jahr
+function frueherErfasst(l, art) {
+  if (art !== 'bus') return null;
+  // erstes Jahr, dessen Stichtag (1. Juli) eine Version trifft
+  const jahre = l.versionen.map((v) => aufgeloest.get(v).von).filter(Boolean).map((d) => Number(d.slice(0, 4)) + (d.slice(5) > cfg.stichtag ? 1 : 0));
+  const erstes = Math.min(...jahre);
+  return erstes < (busCfg.erfasst_ab ?? cfg.zeitraum[0]) ? erstes : null;
+}
 function isoDate(d) {
   return d instanceof Date ? d.toISOString().slice(0, 10) : String(d);
+}
+// Trolleybus-Zeiträume und fahrleitungslose Abschnitte (data/busse.yaml)
+function zeitraum(z) {
+  for (const q of z.quellen ?? []) if (!quellen[q]) throw new Error(`Unbekannte Quelle ${q}`);
+  return { von: z.von ? isoDate(z.von) : null, bis: z.bis ? isoDate(z.bis) : null, quellen: z.quellen ?? [], notiz: z.notiz ?? null };
+}
+// Chronik: datum als Tag, Monat oder Jahr (String), ohne datum nur bei Vorhaben
+function chronikEintrag(c) {
+  if (!c.text || (!c.datum && !c.geplant)) throw new Error(`Chronikeintrag unvollständig: ${JSON.stringify(c)}`);
+  return { datum: c.datum ? isoDate(c.datum) : null, text: c.text, ...(c.geplant ? { geplant: true } : {}) };
 }
 
 // Überlappende Gültigkeiten derselben Linie verhindern
@@ -305,6 +495,27 @@ for (const l of linien) {
   }
 }
 
+// Trolleybus-Zeiträume einer Linie dürfen sich nicht überschneiden
+for (const l of linien) {
+  const z = l.trolleybus ?? [];
+  for (const a of z) for (const b of z) {
+    if (a !== b && (a.von ?? '0000') <= (b.bis ?? '9999') && (b.von ?? '0000') <= (a.bis ?? '9999'))
+      throw new Error(`Linie ${l.nummer}: Trolleybus-Zeiträume überlappen`);
+  }
+}
+
+// Fahrleitungslose Abschnitte: Haltestellenfolge -> Busabschnitte (müssen von einer Linie befahren werden)
+const fahrleitungslos = (busCfg.fahrleitungslos ?? []).map((f) => {
+  const halte = f.strecke.map(station);
+  const ids = [];
+  for (let i = 1; i < halte.length; i++) {
+    const id = `bus:${[halte[i - 1].id, halte[i].id].sort().join('~')}`;
+    if (!kanten.has(id)) throw new Error(`fahrleitungslos: kein Busabschnitt ${halte[i - 1].name} – ${halte[i].name}`);
+    ids.push(id);
+  }
+  return { kanten: ids, ...zeitraum(f) };
+});
+
 // ---------- Ausgabe ----------
 if (ohneFahrweg.length) warn(`Bus: ${ohneFahrweg.length} Abschnitte ohne Fahrweg, als Gerade gezeichnet: ${ohneFahrweg.join(', ')}`);
 const istBusVersion = (v) => v.linie.startsWith('bus-');
@@ -314,7 +525,8 @@ const haltestellen = [...stations.values()]
   .filter((s) => benutzt.has(s.id))
   .map((s) => {
     const [lon, lat] = lage(s);
-    return { id: s.id, name: s.name, ort: s.ort, lon: +lon.toFixed(6), lat: +lat.toFixed(6), ...(vonTram.has(s.id) ? {} : { nurBus: true }) };
+    const zeit = s.historisch ? { historisch: true, ...(s.seit ? { seit: s.seit } : {}), ...(s.bis ? { bis: s.bis } : {}) } : {};
+    return { id: s.id, name: s.name, ort: s.ort, lon: +lon.toFixed(6), lat: +lat.toFixed(6), ...zeit, ...(vonTram.has(s.id) ? {} : { nurBus: true }) };
   });
 {
   const doppelt = haltestellen.map((h) => h.id).filter((id, i, a) => a.indexOf(id) !== i);
@@ -383,7 +595,9 @@ if (plan) {
   const hById = new Map(haltestellen.map((h) => [h.id, h]));
   for (const kante of kantenListe) {
     const pts = plan.kanten[kante.id];
-    if (kante.bus && !pts) {
+    // Busabschnitte ohne Planlage: Gerade zwischen den Haltestellen, wenn beide eine eigene Planlage haben
+    // (z.B. frühere Trolleybuswege über Tramhaltestellen), sonst nur geografisch
+    if (kante.bus && !pts && [kante.a, kante.b].some((id) => hById.get(id).planGeschaetzt)) {
       kante.planGeschaetzt = true;
       continue;
     }
@@ -402,13 +616,19 @@ const out = {
     stichtag: cfg.stichtag,
     zeitraum: cfg.zeitraum,
     // Erstes erfasstes Jahr je Verkehrsmittel (Busse erst ab den Fahrplandaten 2015)
-    erfasstAb: { tram: cfg.zeitraum[0], ...(busCfg.linien.length ? { bus: busCfg.erfasst_ab ?? cfg.zeitraum[0] } : {}) },
+    // Trolleybusse reichen nach der Chronik weiter zurück (erfasstAb je Linie)
+    erfasstAb: {
+      tram: cfg.zeitraum[0],
+      ...(busCfg.linien.length ? { bus: busCfg.erfasst_ab ?? cfg.zeitraum[0] } : {}),
+      ...(linien.some((l) => l.erfasstAb) ? { trolleybus: Math.min(...linien.filter((l) => l.erfasstAb).map((l) => l.erfasstAb)) } : {}),
+    },
     plan,
   },
   quellen: Object.fromEntries(
-    Object.entries(cfg.quellen).map(([k, q]) => [k, { ...q, abgerufen: q.abgerufen ? isoDate(q.abgerufen) : null }]),
+    Object.entries(quellen).map(([k, q]) => [k, { ...q, abgerufen: q.abgerufen ? isoDate(q.abgerufen) : null }]),
   ),
   linien,
+  fahrleitungslos,
   versionen,
   haltestellen,
   kanten: kantenListe.map((k) => ({ ...k, coords: k.coords.map(round) })),
