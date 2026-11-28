@@ -33,6 +33,8 @@ const busCfg = await lesen('data/busse.yaml', parse, { linien: [] });
 const busHalte = await lesen('data/bus/haltestellen.json', JSON.parse, []);
 const busKanten = await lesen('data/bus/kanten.json', JSON.parse, {});
 const gruppe = (l) => (l.art === 'bus' ? 'bus' : 'tram');
+// Quellen aus data/linien.yaml, ergänzt um die aus data/busse.yaml (z.B. Wikipedia: Trolleybus Zürich)
+const quellen = { ...cfg.quellen, ...(busCfg.quellen ?? {}) };
 
 const warnungen = [];
 const warn = (msg) => warnungen.push(msg);
@@ -441,6 +443,8 @@ for (const l of [...tramLinien, ...busCfg.linien]) {
     gruppe: gruppe({ art }),
     ...(l.name ? { name: l.name } : {}),
     farbe: l.farbe ?? (art === 'bus' ? '#FFFFFF' : farbeAusOsm.get(l.nummer.replace(/\D+$/, '')) ?? '#666666'),
+    ...(l.trolleybus ? { trolleybus: l.trolleybus.map(zeitraum) } : {}),
+    ...(l.chronik ? { chronik: l.chronik.map(chronikEintrag).sort((a, b) => (a.datum ?? '9999').localeCompare(b.datum ?? '9999')) } : {}),
   });
   for (const v of l.versionen) {
     const { von, bis, halte, kantenListe, halteAb } = aufgeloest.get(v);
@@ -461,6 +465,16 @@ for (const l of [...tramLinien, ...busCfg.linien]) {
 function isoDate(d) {
   return d instanceof Date ? d.toISOString().slice(0, 10) : String(d);
 }
+// Trolleybus-Zeiträume und fahrleitungslose Abschnitte (data/busse.yaml)
+function zeitraum(z) {
+  for (const q of z.quellen ?? []) if (!quellen[q]) throw new Error(`Unbekannte Quelle ${q}`);
+  return { von: z.von ? isoDate(z.von) : null, bis: z.bis ? isoDate(z.bis) : null, quellen: z.quellen ?? [], notiz: z.notiz ?? null };
+}
+// Chronik: datum als Tag, Monat oder Jahr (String), ohne datum nur bei Vorhaben
+function chronikEintrag(c) {
+  if (!c.text || (!c.datum && !c.geplant)) throw new Error(`Chronikeintrag unvollständig: ${JSON.stringify(c)}`);
+  return { datum: c.datum ? isoDate(c.datum) : null, text: c.text, ...(c.geplant ? { geplant: true } : {}) };
+}
 
 // Überlappende Gültigkeiten derselben Linie verhindern
 for (const l of linien) {
@@ -471,6 +485,27 @@ for (const l of linien) {
     if (overlap) throw new Error(`Linie ${l.nummer}: Versionen ${a.id} und ${b.id} überlappen`);
   }
 }
+
+// Trolleybus-Zeiträume einer Linie dürfen sich nicht überschneiden
+for (const l of linien) {
+  const z = l.trolleybus ?? [];
+  for (const a of z) for (const b of z) {
+    if (a !== b && (a.von ?? '0000') <= (b.bis ?? '9999') && (b.von ?? '0000') <= (a.bis ?? '9999'))
+      throw new Error(`Linie ${l.nummer}: Trolleybus-Zeiträume überlappen`);
+  }
+}
+
+// Fahrleitungslose Abschnitte: Haltestellenfolge -> Busabschnitte (müssen von einer Linie befahren werden)
+const fahrleitungslos = (busCfg.fahrleitungslos ?? []).map((f) => {
+  const halte = f.strecke.map(station);
+  const ids = [];
+  for (let i = 1; i < halte.length; i++) {
+    const id = `bus:${[halte[i - 1].id, halte[i].id].sort().join('~')}`;
+    if (!kanten.has(id)) throw new Error(`fahrleitungslos: kein Busabschnitt ${halte[i - 1].name} – ${halte[i].name}`);
+    ids.push(id);
+  }
+  return { kanten: ids, ...zeitraum(f) };
+});
 
 // ---------- Ausgabe ----------
 if (ohneFahrweg.length) warn(`Bus: ${ohneFahrweg.length} Abschnitte ohne Fahrweg, als Gerade gezeichnet: ${ohneFahrweg.join(', ')}`);
@@ -574,9 +609,10 @@ const out = {
     plan,
   },
   quellen: Object.fromEntries(
-    Object.entries(cfg.quellen).map(([k, q]) => [k, { ...q, abgerufen: q.abgerufen ? isoDate(q.abgerufen) : null }]),
+    Object.entries(quellen).map(([k, q]) => [k, { ...q, abgerufen: q.abgerufen ? isoDate(q.abgerufen) : null }]),
   ),
   linien,
+  fahrleitungslos,
   versionen,
   haltestellen,
   kanten: kantenListe.map((k) => ({ ...k, coords: k.coords.map(round) })),

@@ -18,11 +18,50 @@ fahrplan_alias:
   "Zürich, Pflegezentr. Käferberg": kaferberg
   "Zürich, Kindersp. (ab 10/2024)": kinderspital
 
+quellen:
+  # zusätzlich zu den Quellen in data/linien.yaml
+  wp-trolleybus:
+    titel: "Wikipedia: Trolleybus Zürich"
+    url: "https://de.wikipedia.org/wiki/Trolleybus_Z%C3%BCrich"
+    abgerufen: 2026-11-28
+
+# Trolleybusse
+# Je Linie:
+#   trolleybus: Zeiträume, in denen die Linie als Trolleybus verkehrt (von/bis taggenau, null = offen).
+#               Ohne Eintrag ist die Linie ein Autobus. Belegt durch Wikipedia und die Fahrplandaten
+#               (GTFS: route_id mit Präfix 2 = VBZ-Trolleybus, 3 = VBZ-Bus).
+#   chronik:    Ereignisse aus der Linienchronik (Wikipedia: Trolleybus Zürich), auch vor 2015 und geplante.
+#               datum: Tag, Monat (2020-04) oder Jahr (2015); geplant: true für Vorhaben.
+# fahrleitungslos: Abschnitte, auf denen die Trolleybusse ohne Fahrleitung mit Akku fahren.
+#   strecke: aufeinanderfolgende Haltestellen; gilt für jeden Trolleybus, der dort fährt.
+fahrleitungslos:
+  - strecke: ["Hardplatz", "Albisriederplatz"]
+    notiz: "Seit dem Umbau des Albisriederplatzes 2015 kreuzt die Fahrleitung die Tramlinien nicht mehr. Die Trolleybusse senken die Stromabnehmer und fahren mit Akku bis zur nächsten Haltestelle."
+    quellen: [wp-trolleybus]
+  - strecke: ["Bahnhof Altstetten", "Bristenstrasse", "Baslerstrasse", "Letzipark West", "Kappeli", "Flurstrasse", "Albisrank", "Hubertus"]
+    von: 2019-12-15
+    notiz: "Linie 83 fährt westlich des Albisriederplatzes ohne Fahrleitung; die Akkus laden unter der Fahrleitung zwischen Hardplatz und Milchbuck. Ab Hubertus nutzt sie die Fahrleitung der Linie 33."
+    quellen: [wp-trolleybus]
+  - strecke: ["Waidspital", "Weihersteig", "Bucheggplatz"]
+    von: 2026-10-19
+    notiz: "Linie 69 hat Fahrleitung nur zwischen ETH Hönggerberg und Waidspital sowie zwischen Bucheggplatz und Milchbuck; dazwischen fährt sie mit Akku (aus der Chronik geschlossen)."
+    quellen: [wp-trolleybus]
+
 linien:
   - id: bus-31
     nummer: "31"
     art: bus
     farbe: "#A5A2C6"
+    trolleybus:
+      - von: null
+        bis: null
+        quellen: [wp-trolleybus, gtfs]
+    chronik:
+      - {datum: 2007, text: "Endet am Hegibachplatz; den Abschnitt zum Klusplatz befährt nur noch die Linie 33."}
+      - {datum: 2017-08-27, text: "Abschnitt Bahnhof Altstetten–Micafil wegen des Baus der Limmattalbahn vorübergehend eingestellt, ersetzt durch den Autobus 31E."}
+      - {datum: 2017-12-10, text: "Linie 34 geht in der 31 auf: Durchmesserlinie über die Hegibachstrasse nach Witikon, Kienastenwies."}
+      - {datum: 2019-07-15, text: "Endet am Bahnhof Altstetten; nach Schlieren fährt die Limmattalbahn (Tram 2). Bis dahin war die 31 die einzige Trolleybuslinie über die Stadtgrenze."}
+      - {datum: 2021-05-31, text: "Wieder bis Hermetschloo, über die Hermetschloostrasse."}
     versionen:
       - von: 2021-05-31
         weg: [
@@ -77,6 +116,21 @@ linien:
     nummer: "32"
     art: bus
     farbe: "#CCB2D1"
+    trolleybus:
+      - von: null
+        bis: null
+        quellen: [wp-trolleybus, gtfs]
+    chronik:
+      - {datum: 1939-05-27, text: "Eröffnet als Linie B: Bezirksgebäude–Limmatplatz–Bucheggplatz."}
+      - {datum: 1948-04-26, text: "Verlängert bis Goldbrunnenplatz."}
+      - {datum: 1952-02-04, text: "Goldbrunnenplatz–Utohof (heute Strassenverkehrsamt) ersetzt die Autobuslinie F."}
+      - {datum: 1954-10-11, text: "Linie B heisst neu 32."}
+      - {datum: 1974, text: "Einspurige, signalgesicherte Strecke Helvetiaplatz–Militär-/Langstrasse."}
+      - {datum: 1975-04-02, text: "Trolleybus Bucheggplatz–Hungerbergstrasse als Linie 74."}
+      - {datum: 1986-12-13, text: "Linie 74 verlängert bis Holzerhurd."}
+      - {datum: 1999-05-30, text: "Linien 32 und 74 werden zur 32 Holzerhurd–Strassenverkehrsamt."}
+      - {datum: 2015, text: "Fahrleitung am Bucheggplatz abgebaut; die Kreuzung wird mit Akku befahren."}
+      - {datum: 2031, geplant: true, text: "Das Tram nach Affoltern ersetzt den Abschnitt Bucheggplatz–Holzerhurd; die 32 fährt dann in den Hauptverkehrszeiten zur ETH Hönggerberg."}
     versionen:
       - von: 2014-12-14
         weg: [
@@ -94,6 +148,20 @@ linien:
     nummer: "33"
     art: bus
     farbe: "#DAD69C"
+    trolleybus:
+      - von: null
+        bis: null
+        quellen: [wp-trolleybus, gtfs]
+    chronik:
+      - {datum: 1942-06-19, text: "Albisriederplatz–Spyriplatz ersetzt die Autobuslinie A."}
+      - {datum: 1947-10-20, text: "Verlängert bis Kirche Fluntern."}
+      - {datum: 1967-10-30, text: "Wegen des Neubaus der Hardbrücke mit Autobussen."}
+      - {datum: 1975-06-01, text: "Wieder Trolleybus zwischen Kirche Fluntern und Albisriederplatz."}
+      - {datum: 1975, text: "Mit der Linie 73 zur 33 Kirche Fluntern–Morgental vereinigt."}
+      - {datum: 1998-10-24, text: "Verlängert bis Bahnhof Tiefenbrunnen (3,8 km)."}
+      - {datum: 2013, text: "Streckentausch mit der 72: Die 33 fährt nun zum Triemli, die 72 zum Morgental."}
+      - {datum: 2015, text: "Umbau Albisriederplatz: Zwischen Hardplatz und Albisriederplatz ohne Fahrleitung, mit Akku."}
+      - {datum: 2027, geplant: true, text: "Mit der Umstellung der Linie 80 fährt die 33 bis zum Triemlispital."}
     versionen:
       - von: 2024-07-29
         weg: [
@@ -190,6 +258,17 @@ linien:
     nummer: "34"
     art: bus
     farbe: "#75BEE9"
+    trolleybus:
+      - von: null
+        bis: 2017-12-09
+        quellen: [wp-trolleybus]
+    chronik:
+      - {datum: 1946-10-14, text: "Klusplatz–Witikon (Berghaldenstrasse) ersetzt die Autobuslinie C. Bis 1956 ohne Verbindung zum übrigen Trolleybusnetz."}
+      - {datum: 1954-10-11, text: "Linie C heisst neu 34."}
+      - {datum: 1956-02-13, text: "Fahrleitung über Burgwies–Sempacherstrasse–Klusplatz mit dem Netz verbunden."}
+      - {datum: 1971-05-03, text: "Verlängert bis Loorenstrasse."}
+      - {datum: 1980-10-30, text: "Verlängert bis Kienastenwies."}
+      - {datum: 2017-12-10, text: "Geht in der Linie 31 auf."}
     versionen:
       - von: 2014-12-14
         bis: 2017-12-09
@@ -414,6 +493,12 @@ linien:
     nummer: "46"
     art: bus
     farbe: "#C1D59F"
+    trolleybus:
+      - von: null
+        bis: null
+        quellen: [wp-trolleybus, gtfs]
+    chronik:
+      - {datum: 1995-05-28, text: "Trolleybus Bahnhofquai/HB–Rütihof ersetzt die Autobuslinie 46."}
     versionen:
       - von: 2014-12-14
         weg: [
@@ -612,6 +697,14 @@ linien:
     nummer: "69"
     art: bus
     farbe: "#75BEE9"
+    trolleybus:
+      - von: 2026-10-19
+        bis: null
+        quellen: [wp-trolleybus]
+        notiz: "Fahrleitung nur ETH Hönggerberg–Waidspital und Bucheggplatz–Milchbuck."
+    chronik:
+      - {datum: 2025-08, text: "Fahrleitung montiert. Geplant war der Trolleybus ab dem Fahrplanwechsel im Dezember 2025."}
+      - {datum: 2026-10-19, text: "Trolleybus ETH Hönggerberg–Milchbuck, wegen später Lieferung der Fahrzeuge verspätet."}
     versionen:
       - von: 2014-12-14
         weg: [
@@ -649,6 +742,14 @@ linien:
     nummer: "71"
     art: bus
     farbe: "#75BEE9"
+    trolleybus:
+      - von: null
+        bis: 2015-11-19
+        quellen: [wp-trolleybus]
+    chronik:
+      - {datum: 2013-12-15, text: "Trolleybus-Verstärkerlinie Rosengartenstrasse–Krematorium Sihlfeld."}
+      - {datum: 2015-11-20, text: "Nur noch mit Autobussen."}
+      - {datum: 2015-12-13, text: "Eingestellt, ersetzt durch die Buslinie 83."}
     versionen:
       - von: 2014-12-14
         bis: 2015-12-12
@@ -664,6 +765,17 @@ linien:
     nummer: "72"
     art: bus
     farbe: "#C6A693"
+    trolleybus:
+      - von: null
+        bis: null
+        quellen: [wp-trolleybus, gtfs]
+    chronik:
+      - {datum: 1974-09-02, text: "Trolleybus Albisriederplatz–Morgental als Linie 73, ersetzt die Autobuslinie 73."}
+      - {datum: 1975, text: "Linie 73 geht in der 33 auf."}
+      - {datum: 1994-09-01, text: "Trolleybus Milchbuck–Triemli ersetzt die Autobuslinie 72."}
+      - {datum: 2013, text: "Streckentausch mit der 33: Die 72 fährt nun zum Morgental."}
+      - {datum: 2015, text: "Fahrleitung am Bucheggplatz und am Albisriederplatz abgebaut; dort fährt sie mit Akku."}
+      - {geplant: true, text: "Verlängerung nach Adliswil (Netzentwicklungsstrategie, ohne Termin)."}
     versionen:
       - von: 2020-02-10
         weg: [
@@ -827,6 +939,8 @@ linien:
     nummer: "80"
     art: bus
     farbe: "#CBCFB3"
+    chronik:
+      - {datum: 2027, geplant: true, text: "Umstellung auf Trolleybus bis Ende 2027 (Kosten rund 47 Millionen Franken). Die 80 endet dann beim Triemli, die 33 übernimmt das Triemlispital."}
     versionen:
       - von: 2026-04-06
         weg: [
@@ -907,6 +1021,15 @@ linien:
     nummer: "83"
     art: bus
     farbe: "#75BEE9"
+    trolleybus:
+      - von: 2019-12-15
+        bis: null
+        quellen: [gtfs, wp-trolleybus]
+        notiz: "Die Fahrplandaten führen die Linie ab dem Fahrplanwechsel Dezember 2019 als Trolleybus; die Batterie-Trolleybusse ersetzten die Dieselbusse im Frühling 2020."
+    chronik:
+      - {datum: 2015-12-13, text: "Autobus Milchbuck–Albisriederplatz–Bahnhof Altstetten ersetzt die Verstärkerlinie 71."}
+      - {datum: 2019-12-15, text: "Dem Trolleybusbetrieb zugeteilt (Fahrplandaten)."}
+      - {datum: 2020-04, text: "Acht Batterie-Trolleybusse ersetzen die Dieselbusse. Westlich des Albisriederplatzes ohne Fahrleitung."}
     versionen:
       - von: 2015-12-13
         weg: [

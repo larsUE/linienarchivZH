@@ -27,6 +27,21 @@ export const istAktiv = (v, datum) => (!v.von || v.von <= datum) && (!v.bis || d
 
 export const GRUPPEN = { tram: 'Tram', bus: 'Bus' };
 
+/** Trolleybus-Zeitraum einer Linie an einem Datum, sonst null (Autobus oder Tram). */
+export const trolleybusAm = (linie, datum) => linie.trolleybus?.find((z) => istAktiv(z, datum)) ?? null;
+
+/** Verkehrsmittel einer Linie an einem Datum: Tram, Baulinie, Trolleybus oder Bus */
+export function artName(linie, datum) {
+  if (linie.art === 'baulinie') return 'Baulinie';
+  if (linie.gruppe !== 'bus') return 'Tram';
+  return trolleybusAm(linie, datum) ? 'Trolleybus' : 'Bus';
+}
+
+/** Busabschnitte, auf denen Trolleybusse am Datum ohne Fahrleitung (mit Akku) fahren */
+export function ohneFahrleitung(netz, datum) {
+  return new Set((netz.fahrleitungslos ?? []).filter((f) => istAktiv(f, datum)).flatMap((f) => f.kanten));
+}
+
 /** Ist das Verkehrsmittel im Jahr erfasst? (Busse erst ab 2015) */
 export const erfasst = (netz, gruppe, jahr) => netz.erfasstAb[gruppe] !== undefined && jahr >= netz.erfasstAb[gruppe];
 
@@ -67,6 +82,8 @@ export function aenderungen(netz, jahr, gruppen = ['tram']) {
     if (!a && b) liste.push({ linie: l.id, art: 'neu', version: b });
     else if (a && !b) liste.push({ linie: l.id, art: 'eingestellt', version: a });
     else if (a && b && !gleicherWeg(a, b, d1, d2)) liste.push({ linie: l.id, art: 'geändert', version: b, vorher: a });
+    else if (a && b && !!trolleybusAm(l, d1) !== !!trolleybusAm(l, d2))
+      liste.push({ linie: l.id, art: 'umgestellt', version: b, zu: trolleybusAm(l, d2) ? 'Trolleybus' : 'Autobus' });
   }
   return liste;
 }
@@ -98,6 +115,16 @@ export function vergleicheFolgen(alt, neu) {
 
 const fmt = new Intl.DateTimeFormat('de-CH', { day: 'numeric', month: 'numeric', year: 'numeric' });
 export const datum = (iso) => (iso ? fmt.format(new Date(iso + 'T12:00:00')) : null);
+
+const MONATE = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+/** Datum der Chronik: Tag (2017-08-27), Monat (2020-04) oder Jahr (2015) */
+export function chronikDatum(d) {
+  if (!d) return 'ohne Termin';
+  const [j, m, t] = d.split('-');
+  if (t) return datum(d);
+  if (m) return `${MONATE[Number(m) - 1]} ${j}`;
+  return j;
+}
 
 export function zeitraumText(v) {
   if (!v.von && !v.bis) return 'ganzer Erfassungszeitraum';

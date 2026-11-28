@@ -131,6 +131,22 @@ npm run daten
 
 `bus-versionen.mjs` war der einmalige Ausgangspunkt. Seither wird `data/busse.yaml` von Hand gepflegt; der Import vergleicht nur noch (`data/import/bus/bericht.md`). Umbenannte Bushaltestellen stehen dort unter `fahrplan_alias`. Der Bericht listet Haltestellen, die weniger als 60 m auseinanderliegen, als Kandidaten.
 
+### Trolleybusse
+
+Trolleybus und Autobus unterscheiden sich in der Karte durch einen dünnen dunklen Mittelstrich (die Fahrleitung) auf den Trolleybussen. Auf Abschnitten ohne Fahrleitung, wo die Trolleybusse mit Akku fahren, ist er gestrichelt. Die Übersicht listet Trolleybus und Autobus getrennt, und die Umstellung einer Linie zählt als Änderung gegenüber dem Vorjahr (2020: Linie 83). Die Linienansicht zeigt unter dem Versionsband, wann die Linie als Trolleybus verkehrt, im Linienweg die Fahrleitung, und darunter die Chronik der Linie.
+
+In [`data/busse.yaml`](data/busse.yaml):
+
+| Schlüssel | Bedeutung |
+|---|---|
+| `trolleybus` (je Linie) | Zeiträume als Trolleybus, `von`/`bis` taggenau. Ohne Eintrag ist die Linie ein Autobus. |
+| `chronik` (je Linie) | Ereignisse mit `datum` als Tag, Monat oder Jahr, auch vor 2015; `geplant: true` für Vorhaben |
+| `fahrleitungslos` | Haltestellenfolgen ohne Fahrleitung, mit Zeitraum; gilt für jeden Trolleybus, der dort fährt |
+
+Quellen sind der Wikipedia-Artikel *Trolleybus Zürich* und die GTFS-Daten: Dort beginnt die `route_id` der Trolleybuslinien mit `2-`, die der Autobuslinien mit `3-`. Danach ist die Linie 83 ab dem Fahrplanwechsel am 15.12.2019 Trolleybus (Wikipedia: Batterie-Trolleybusse ab Frühling 2020). Die Linie 69 fährt seit dem 19.10.2026 als Trolleybus. Das ist nach dem Stichtag 1. Juli, deshalb zeigen Karte und Übersicht sie erst ab dem Stand 2027; bis dahin steht die Umstellung nur in der Linienansicht. Auch die für Ende 2027 geplante Umstellung der Linie 80 steht nur in der Chronik.
+
+Die fahrleitungslosen Abschnitte sind aus dem Text der Chronik geschlossen. Zwischen Hardplatz und Albisriederplatz gilt der Abschnitt ab Beginn der Busdaten, weil der Umbau des Albisriederplatzes 2015 nicht taggenau bekannt ist. Den Akku-Abschnitt am Bucheggplatz (ebenfalls seit 2015) kennt das Archiv nicht genauer und zeichnet ihn nicht.
+
 Regeln beim Erzeugen der Versionen:
 
 - Vorübergehende Zeiträume (unter 8 Wochen oder zwischen zwei gleichen Wegen) entfallen, wie beim Tram.
